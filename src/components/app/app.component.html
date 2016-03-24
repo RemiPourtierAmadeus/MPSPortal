@@ -1,9 +1,22 @@
 <h1 class="col-lg-2">My First Angular 2 App</h1>
 
+<!--
+    In the nav tags, we define different links, Metrics, Performance and News
+    In classical development, we should use: <a href="path/of/your/page.html"> My page </a>
+    Here, we configure the link into AppComponent:
+        [routerLink]="['Metrics']"
+         -> Metrics is the name we defined in AppComponent with the path /metrics and the component
+            MetricsComponent. So our routeur know what to display.
+-->
 <nav>
     <a [routerLink]="['Metrics']">Metrics</a>
     <a [routerLink]="['Performance']">Performance</a>
     <a [routerLink]="['News']">News</a>
 </nav>
 
+
+<!--
+    Tag router-outlet: It will display the content of the selected component. If user clicks on
+    Performance, it will display the PerformanceComponent.
+-->
 <router-outlet></router-outlet>

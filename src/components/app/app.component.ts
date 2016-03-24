@@ -5,6 +5,10 @@ import {NewsComponent} from "../news/news.component";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {HomeComponent} from "../home/home.component";
 
+/**
+ * Component App. With @Component we define the characteristics of our component:
+ * the style, the tag name, the assigned html file, directives we would like to use
+ */
 @Component({
     selector: 'app',
     moduleId: module.id,
@@ -12,10 +16,19 @@ import {HomeComponent} from "../home/home.component";
     styleUrls: ['./app.component.css'],
     directives: [ROUTER_DIRECTIVES]
 })
+
+/**
+ * Routing configuration. The decorator @RouteConfig defines the path, the name and the component
+ * for each route. This decorator is directly linked to the app.component.html which contains
+ * the clickable links and to the tag router-outlet. The tag router-outlet will displays the
+ * component according to user choices. If user clicks on Metrics, router-outlet will show the
+ * component.
+ */
 @RouteConfig([
     {path: '/metrics', name: 'Metrics', component: MetricsComponent},
     {path: '/performance', name: 'Performance', component: PerformanceComponent},
     {path: '/news', name: 'News', component: NewsComponent}
 ])
+
 export class AppComponent {
 }
