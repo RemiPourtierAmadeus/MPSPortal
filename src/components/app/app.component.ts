@@ -4,6 +4,7 @@ import {PerformanceComponent} from "../performance/performance.component";
 import {NewsComponent} from "../news/news.component";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {HomeComponent} from "../home/home.component";
+import {LogInComponent} from "../log-in/log-in.component";
 
 /**
  * Component App. With @Component we define the characteristics of our component:
@@ -27,7 +28,8 @@ import {HomeComponent} from "../home/home.component";
 @RouteConfig([
     {path: '/metrics', name: 'Metrics', component: MetricsComponent},
     {path: '/performance', name: 'Performance', component: PerformanceComponent},
-    {path: '/news', name: 'News', component: NewsComponent}
+    {path: '/news', name: 'News', component: NewsComponent},
+    {path: '/log-in', name: 'LogIn', component: LogInComponent}
 ])
 
 export class AppComponent {
