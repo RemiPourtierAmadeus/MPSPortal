@@ -1,5 +1,6 @@
 import * as gulp from 'gulp';
 import {getBrowserSync} from '../browsersync';
+import * as historyApiFallBack from 'connect-history-api-fallback';
 
 let bs = getBrowserSync();
 
@@ -13,7 +14,8 @@ function init(){
             routes: {
                 "/node_modules": "node_modules"
             }
-        }
+        },
+        middleware: [historyApiFallBack()]
     });
 }
 
