@@ -9,9 +9,5 @@ import {NewsComponent} from "../news/news.component";
     templateUrl: './app.component.html',
     styleUrls : ['./app.component.css']
 })
-/*@RouteConfig([
-    {path:'/metrics', name: 'Metrics', component: MetricsComponent},
-    {path:'/performance',        name: 'Performance',       component: PerformanceComponent},
-    {path:'/news',        name: 'News',       component: NewsComponent}
-])*/
+
 export class AppComponent { }

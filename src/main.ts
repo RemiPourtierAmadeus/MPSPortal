@@ -3,6 +3,3 @@ import {AppComponent} from './components/app/app.component';
 
 
 bootstrap(AppComponent);
-/*bootstrap(AppComponent, [
-    ROUTER_PROVIDERS
-]);*/
