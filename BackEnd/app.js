@@ -34,6 +34,7 @@ con.query('SELECT * FROM T_User',function(err,rows){
     console.log('Data received from Db:\n');
     console.log(rows);
 });
+
 con.end(function(err) {
     // The connection is terminated gracefully
     // Ensures all previously enqueued queries are still
