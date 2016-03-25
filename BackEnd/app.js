@@ -1,7 +1,7 @@
 var express = require('express'); // Utilisation du module express de nodejs.
 var logger = require('morgan'); // Permet de gérer les logs et la coloration des messages.
-var router = require('./scripts/apiRequests/routes');
-var database = require('./scripts/models/database');
+var router = require('./scripts/routing/routes');
+var database = require('./scripts/model/manageUsers');
 var bodyParser = require('body-parser');
 var app = express();
 
