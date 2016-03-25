@@ -17,7 +17,7 @@ con.connect(function(err){
     console.log('Connection established');
 });
 
-var employee = { user_id: '2',
+var employee = { user_id: '3',
     full_name: 'Test',
     email_address: 'user@test.com',
     type: 'Admin',
