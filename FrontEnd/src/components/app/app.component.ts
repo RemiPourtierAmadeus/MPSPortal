@@ -10,7 +10,7 @@ import {LogOutComponent} from "../log-out/log-out.component";
 /**
  * Component App. With @Component we define the characteristics of our component:
  * the style, the tag name, the assigned html file, directives we would like to use
- */
+*/
 @Component({
     selector: 'app',
     moduleId: module.id,
