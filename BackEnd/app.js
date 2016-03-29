@@ -11,7 +11,7 @@ var app = express();
 app.use(logger('dev'));
 
 /**
- * Initialiser de la base de donnée.
+ * Database initialisation.
  */
 database.initialiseDB();
 
@@ -19,7 +19,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 /**
- * Permet de définir les autorisations pour les requêtes HTTP.
+ * We define authorisation for http requests.
  */
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // Définit qui a le droit d'appeler le serveur.
@@ -29,8 +29,8 @@ app.use(function(req, res, next) {
 });
 
 /**
- * Un fixe d'un problème dont je ne comprend pas l'origine ni la solution.
- * Le problème venait du fait que quand on essayait de <i>POST</i> le naviguateur web envoyait un <i>OPTIONS</i> à la place.
+ * We define authorisation for http requests for every under domain
+ * For instance: /users or /projects.
  */
 app.options('/*', function(req, res){
     res.header('Access-Control-Allow-Origin', "*");
@@ -40,12 +40,12 @@ app.options('/*', function(req, res){
 });
 
 /**
- * Permet de dire que l'on utilise le routeur nommé <i>router</i> pour la l'adresse <i>localhost:3000/</i>
+ * We define to app the routeur it has to use in the address localhost:3000/
  */
 app.use('/',router);
 
 /**
- * Permet de créer un serveur qui écoute sur le port 3000.
+ * Creates a server at the address 3000.
  * @type {http.Server}
  */
 var server = app.listen(3000, function () {

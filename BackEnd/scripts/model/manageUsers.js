@@ -18,7 +18,6 @@ var fs = require('fs');
  * @param fail
  */
 exports.getUsers = function (success, fail) {
-    console.log("Im in getuser");
     connectionVariable.query('SELECT * FROM T_User', function (err, rows) {
         if (err) throw err;
 
@@ -34,7 +33,6 @@ exports.getUsers = function (success, fail) {
  * @param fail
  */
 exports.addUser = function (userParams, success, fail) {
-    console.log('Im in adduser: ' + userParams);
     connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, res) {
         if (err) throw err;
     });
