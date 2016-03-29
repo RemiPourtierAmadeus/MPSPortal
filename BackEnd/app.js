@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 /**
- * Utilisation du logger en mode développement.
+ * Use the logger in the development mode
  */
 app.use(logger('dev'));
 
