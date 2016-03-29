@@ -51,8 +51,32 @@ router.get('/users', function (req, res) {
         res.sendStatus(500);
     };
 
-    console.log("Coucou from get users");
     userManager.getUsers(success, fail);
+
+});
+
+
+/**
+ * Function put on users. When the front-end is requesting a put on
+ * users, we verifies the success of the request and then call the method
+ * addUsers from userManager.
+ */
+router.put('/users', function (req, res) {
+    console.log(req.body);
+    var success = function () {
+        var finalObject = 'success';
+        console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+
+    userManager.addUser(data,success, fail);
 
 });
 

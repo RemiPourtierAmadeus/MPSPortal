@@ -1,29 +1,30 @@
-
 /*exports.getUsers =  function(success,fail){
 
  };*/
 
 var mysql = require("mysql");
-var connectionVariable= require('../core/core').connectionVariable;
+var connectionVariable = require('../core/core').connectionVariable;
 
 // First you need to create a connection to the db
 /*
-var employee = {
-    user_id: '3',
-    full_name: 'Test',
-    email_address: 'user@test.com',
-    type: 'Admin',
-    password: 'test'
-};
+ var employee = {
+ user_id: '3',
+ full_name: 'Test',
+ email_address: 'user@test.com',
+ type: 'Admin',
+ password: 'test'
+ };
 
-con.query('INSERT INTO T_User SET ?', employee, function (err, res) {
-    if (err) throw err;
 
-});
+ */
 
-*/
-
-exports.getUsers= function(success,fail){
+/**
+ * Function getUsers. This function get the list of all users.
+ * @param success
+ * @param fail
+ */
+exports.getUsers = function (success, fail) {
+    console.log("Im in getuser");
     connectionVariable.query('SELECT * FROM T_User', function (err, rows) {
         if (err) throw err;
 
@@ -32,23 +33,42 @@ exports.getUsers= function(success,fail){
     });
 }
 
-/*
+/**
+ * Function addUser. This function will create a new user according to data in userParams.
+ * @param userParams
+ * @param success
+ * @param fail
+ */
+exports.addUser = function (userParams, success, fail) {
+    console.log('Im in adduser: ' + userParams);
+    connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, res) {
+        if (err) throw err;
+    });
+}
 
-exports.shopsChosen = function (shops, success, fail){
-
-    // Cette requête permet de déselectionner les magasins précédemment choisis par l'utilisateur.
-    var sqlrequest= "UPDATE shops SET id_user=NULL WHERE id_user IS NOT NULL;";
-
-    // Si l'utilisateur a choisi des magasins.
-    if (shops.length != 0) {
-        // Alors on update chaque magasin choisi par l'utilisateur en bdd en concatenant l'update à la requete sql.
-        shops.forEach(function (shopId) {
-            sqlrequest += "UPDATE shops SET id_user=1 WHERE id=" + shopId + ";";
+/**
+ * Function updateUsers. This function will update a user according to data in userParams.
+ * @param userParams
+ * @param success
+ * @param fail
+ */
+exports.updateUsers = function (userParams, success, fail) {
+    var userKeys = ["user_id",
+        "full_name",
+        "email_address",
+        "type",
+        "password"];
+    console.log('Im in update: ' + userParams);
+    for (var i = 0; i < userKeys.length; i++) {
+        console.log("in loop: " + userParams[i]);
+    }
+    /*userParams.forEach(function(userIDS){
+     console.log(userIDS);
+     });*/
+    if (userParams.hasOwnProperty('user_id')) {
+        connectionVariable.query('UPDATE INTO T_User SET ? ', userParams, function (err, res) {
+            if (err) throw err;
         });
-        database.update(infosConnexion, sqlrequest, success, fail);
     }
-    // Sinon on envoie la requete sql qui ne contient que la réinitialisation.
-    else {
-        database.update(infosConnexion,sqlrequest, success, fail);
-    }
-};*/
+}
+
