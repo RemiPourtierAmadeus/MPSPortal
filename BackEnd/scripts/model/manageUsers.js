@@ -1,21 +1,16 @@
-/*exports.getUsers =  function(success,fail){
-
- };*/
+/**
+ * Manage users. This file contains all the functions to manage user table:
+ * - Add a user
+ * - Update a user
+ * - Delete a user
+ * - Get users list
+ * @type {exports|module.exports}
+ */
 
 var mysql = require("mysql");
 var connectionVariable = require('../core/core').connectionVariable;
+var userKeys = require('../core/core').userKeys;
 var fs = require('fs');
-
-// First you need to create a connection to the db
-/*
- var employee = {
- user_id: '3',
- full_name: 'Test',
- email_address: 'user@test.com',
- type: 'Admin',
- password: 'test'
- };
- */
 
 /**
  * Function getUsers. This function get the list of all users.
@@ -52,28 +47,18 @@ exports.addUser = function (userParams, success, fail) {
  * @param fail
  */
 exports.updateUsers = function (userParams, success, fail) {
-    var userKeys = ["user_id",
-        "full_name",
-        "email_address",
-        "type",
-        "password"];
-    console.log('Im in update: ' + userParams);
+
     paramsInQuery = "";
-    console.log("user params transformed: " + userParams);
-    /*if (userParams.length != 0) {
-     userParams.forEach(function (shopId) {
-     sqlrequest += "UPDATE T_User SET id_user=1 WHERE id=" + shopId + ";";
-     console.log("shop id:" + shopId);
-     });
-     }*/
-
-    console.log("tain :" + userParams[userKeys[0]]);
-
-    if (userParams[userKeys[0]].length>0) {
+    /**
+     * Start treatment of the request. We verify we have a user id in the request.
+     */
+    if (userParams[userKeys[0]].length > 0) {
+        /**
+         * We start building the query. We get back all data we have from the http request.
+         * Then we add the attributes to change into the parameters of the query : paramsInQuery.
+         */
         for (var i = 1; i < userKeys.length; i++) {
-            console.log("je rentre dans la boucle");
             if (userParams.hasOwnProperty(userKeys[i])) {
-                console.log("value: " + userParams[userKeys[i]]);
                 if (i == 1) {
                     paramsInQuery = userKeys[i] + "='" + userParams[userKeys[i]] + "'";
                 }
@@ -81,19 +66,22 @@ exports.updateUsers = function (userParams, success, fail) {
                     paramsInQuery += ", " + userKeys[i] + "='" + userParams[userKeys[i]] + "'";
                 }
             }
-            console.log("in loop: " + userParams[i]);
         }
-
-        console.log("part of query: " + paramsInQuery);
+        /**
+         * We create the final query.
+         * @type {string}
+         */
         paramsInQuery = "UPDATE T_User SET  " + paramsInQuery + " WHERE user_id=" + userParams[userKeys[0]];
 
-        console.log("full query: " + paramsInQuery);
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(paramsInQuery, function (err, res) {
+            if (err) throw err;
+        });
 
-        if (userParams.hasOwnProperty('user_id')) {
-            connectionVariable.query(paramsInQuery, function (err, res) {
-                if (err) throw err;
-            });
-
-        }
+    }
+    else {
+        console.log("An error has occurred: No user_id found in the request.");
     }
 }
