@@ -1,5 +1,7 @@
 /**
- * Created by Guillaume on 08/07/2015.
+ * File routes. It makes the link between the back-end and the front-end.
+ * In fact, it manages the behavior of the back-end according to the
+ * http request from the front-end.
  */
 
 var express = require('express');
@@ -11,6 +13,11 @@ var database = require('./../models/database');
 var userManager = require('./../model/manageUsers');
 
 // HTTP request: POST for users
+/**
+ * Function post on users. When the front-end is requesting a post on
+ * users, we verifies the success of the request and then call the method
+ * updateUsers from userManager.
+ */
 router.post('/users', function(req,res){
     console.log(req.body);
     var success = function () {
@@ -26,10 +33,14 @@ router.post('/users', function(req,res){
     // Grab data from http request
     var data = req.body;
 
-    database.shopsChosen(data, success, fail);
+    userManager.updateUsers(data, success, fail);
 });
 
-// HTTP request: Get for users
+/**
+ * Function get on users. When the front-end is requesting a get on
+ * users, we verifies the success of the request and then call the method
+ * getUsers from userManager.
+ */
 router.get('/users', function (req, res) {
     var success = function (objetJSON) {
         console.log(objetJSON);
@@ -40,6 +51,6 @@ router.get('/users', function (req, res) {
         res.sendStatus(500);
     };
 
-    database.getShopsChosen(success, fail);
+    userManager.getUsers(success, fail);
 
 });

@@ -1,15 +1,11 @@
-
+require('../core/core.js');
 var mysql = require("mysql");
 
-var con = mysql.createConnection({
-    host: "ncemysqlp4",
-    port: "3315",
-    user: "backend_portal",
-    password: "Amadeus1",
-    database: "MPS_Portal"
-});
 
-exports.initialiseBDD = function(){
+/**
+ * Function initialiseDB. It makes the connection to the database.
+ */
+exports.initialiseDB = function(){
     // First you need to create a connection to the db
     con.connect(function (err) {
         if (err) {
@@ -19,4 +15,16 @@ exports.initialiseBDD = function(){
         console.log('Connection established');
     });
 
-}
+};
+
+/**
+ * Function disconnectDB. It makes the disconnection to the database.
+ */
+exports.disconnectDB = function(){
+
+    con.end(function (err) {
+        // The connection is terminated gracefully
+        // Ensures all previously enqueued queries are still
+        // before sending a COM_QUIT packet to the MySQL server.
+    });
+};

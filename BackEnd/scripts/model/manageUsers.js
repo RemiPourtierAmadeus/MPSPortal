@@ -6,7 +6,7 @@
 var mysql = require("mysql");
 
 // First you need to create a connection to the db
-
+/*
 var employee = {
     user_id: '3',
     full_name: 'Test',
@@ -25,10 +25,26 @@ con.query('SELECT * FROM T_User', function (err, rows) {
 
     console.log('Data received from Db:\n');
     console.log(rows);
-});
+});*/
 
-con.end(function (err) {
-    // The connection is terminated gracefully
-    // Ensures all previously enqueued queries are still
-    // before sending a COM_QUIT packet to the MySQL server.
-});
+
+
+
+exports.shopsChosen = function (shops, success, fail){
+
+    // Cette requête permet de déselectionner les magasins précédemment choisis par l'utilisateur.
+    var sqlrequest= "UPDATE shops SET id_user=NULL WHERE id_user IS NOT NULL;";
+
+    // Si l'utilisateur a choisi des magasins.
+    if (shops.length != 0) {
+        // Alors on update chaque magasin choisi par l'utilisateur en bdd en concatenant l'update à la requete sql.
+        shops.forEach(function (shopId) {
+            sqlrequest += "UPDATE shops SET id_user=1 WHERE id=" + shopId + ";";
+        });
+        database.update(infosConnexion, sqlrequest, success, fail);
+    }
+    // Sinon on envoie la requete sql qui ne contient que la réinitialisation.
+    else {
+        database.update(infosConnexion,sqlrequest, success, fail);
+    }
+};
