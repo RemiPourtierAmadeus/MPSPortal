@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
  * We define authorisation for http requests.
  */
 app.use(function(req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*"); // Définit qui a le droit d'appeler le serveur.
+    res.setHeader("Access-Control-Allow-Origin", "*"); // We define the right to call the server.
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS"); // Définit les méthodes qu'on a le droit d'utiliser.
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS"); // We define all methods we can use
     next();
 });
 

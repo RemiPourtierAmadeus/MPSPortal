@@ -18,7 +18,26 @@ var fs = require('fs');
  * @param fail
  */
 exports.getUsers = function (success, fail) {
-    connectionVariable.query('SELECT * FROM T_User', function (err, rows) {
+
+    var query= "SELECT ";
+    /**
+     * We first build the query manually from the userKeys (an array which contains all the
+     * table attributes). We don't want to use the traditional "*" for security reasons.
+     */
+    for(var i=0; i<userKeys.length;i++){
+        if(i==0){
+            query= query+""+userKeys[i];
+        }
+        else {
+            query = query + ", " + userKeys[i];
+        }
+    }
+    query=query+" FROM T_User";
+
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, rows) {
         if (err) throw err;
 
         console.log('Data received from Db:\n');
@@ -70,7 +89,7 @@ exports.updateUsers = function (userParams, success, fail) {
          * @type {string}
          */
         paramsInQuery = "UPDATE T_User SET  " + paramsInQuery + " WHERE user_id=" + userParams[userKeys[0]];
-
+        console.log("Query: "+ paramsInQuery);
         /**
          * We update the data.
          */

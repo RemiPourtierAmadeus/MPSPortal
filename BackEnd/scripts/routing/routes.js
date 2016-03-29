@@ -5,7 +5,7 @@
  */
 
 var express = require('express');
-// Création d'un routeur
+
 var router = express.Router();
 
 var database = require('../model/database');
@@ -52,7 +52,6 @@ router.get('/users', function (req, res) {
     };
 
     userManager.getUsers(success, fail);
-
 });
 
 
