@@ -48,7 +48,7 @@ app.use('/',router);
  * Creates a server at the address 3000.
  * @type {http.Server}
  */
-var server = app.listen(3000, function () {
+var server = app.listen(3500, function () {
 
     var host = server.address().address;
     var port = server.address().port;

@@ -6,6 +6,8 @@ import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {HomeComponent} from "../home/home.component";
 import {LogInComponent} from "../log-in/log-in.component";
 import {LogOutComponent} from "../log-out/log-out.component";
+import {ManageUsersService} from "../../shared/services/src/manage-users.service";
+
 
 /**
  * Component App. With @Component we define the characteristics of our component:
@@ -16,7 +18,8 @@ import {LogOutComponent} from "../log-out/log-out.component";
     moduleId: module.id,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ManageUsersService]
 })
 
 /**
@@ -34,5 +37,15 @@ import {LogOutComponent} from "../log-out/log-out.component";
     {path: '/log-out', name: 'LogOut', component: LogOutComponent}
 ])
 
-export class AppComponent {
+export class AppComponent implements ManageUsersService{
+
+    private userManager;
+
+    constructor(private _manageUserService: ManageUsersService){
+        console.log("ouais je rentre");
+    }
+
+    ngOnInit(){
+        this.userManager= this._manageUserService.getUsers();
+    }
 }
