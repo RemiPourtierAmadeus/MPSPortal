@@ -51,6 +51,9 @@ router.get('/users', function (req, res) {
         res.sendStatus(500);
     };
 
+    console.log("Coucou from get users");
     userManager.getUsers(success, fail);
 
 });
+
+module.exports = router;

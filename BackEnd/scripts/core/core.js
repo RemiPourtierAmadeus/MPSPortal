@@ -17,13 +17,4 @@ var connectionVariable = mysql.createConnection({
     database: "MPS_Portal"
 });
 
-connectionVariable.connect(function (err) {
-    if (err) {
-        console.log('Error connecting to Db: ' + err);
-        return;
-    }
-    console.log('Connection established');
-});
-
-
 module.exports={connectionVariable : connectionVariable};

@@ -4,7 +4,7 @@
  };*/
 
 var mysql = require("mysql");
-var connectionVariable= require('../core/core');
+var connectionVariable= require('../core/core').connectionVariable;
 
 // First you need to create a connection to the db
 /*
@@ -21,14 +21,16 @@ con.query('INSERT INTO T_User SET ?', employee, function (err, res) {
 
 });
 
+*/
 
-connectionVariable.query('SELECT * FROM T_User', function (err, rows) {
-    if (err) throw err;
+exports.getUsers= function(success,fail){
+    connectionVariable.query('SELECT * FROM T_User', function (err, rows) {
+        if (err) throw err;
 
-    console.log('Data received from Db:\n');
-    console.log(rows);
-});
-
+        console.log('Data received from Db:\n');
+        console.log(rows);
+    });
+}
 
 /*
 
