@@ -4,6 +4,7 @@
 
 var mysql = require("mysql");
 var connectionVariable = require('../core/core').connectionVariable;
+var fs = require('fs');
 
 // First you need to create a connection to the db
 /*
@@ -14,8 +15,6 @@ var connectionVariable = require('../core/core').connectionVariable;
  type: 'Admin',
  password: 'test'
  };
-
-
  */
 
 /**
@@ -59,16 +58,42 @@ exports.updateUsers = function (userParams, success, fail) {
         "type",
         "password"];
     console.log('Im in update: ' + userParams);
-    for (var i = 0; i < userKeys.length; i++) {
-        console.log("in loop: " + userParams[i]);
-    }
-    /*userParams.forEach(function(userIDS){
-     console.log(userIDS);
-     });*/
-    if (userParams.hasOwnProperty('user_id')) {
-        connectionVariable.query('UPDATE INTO T_User SET ? ', userParams, function (err, res) {
-            if (err) throw err;
-        });
+    paramsInQuery = "";
+    console.log("user params transformed: " + userParams);
+    /*if (userParams.length != 0) {
+     userParams.forEach(function (shopId) {
+     sqlrequest += "UPDATE T_User SET id_user=1 WHERE id=" + shopId + ";";
+     console.log("shop id:" + shopId);
+     });
+     }*/
+
+    console.log("tain :" + userParams[userKeys[0]]);
+
+    if (userParams[userKeys[0]].length>0) {
+        for (var i = 1; i < userKeys.length; i++) {
+            console.log("je rentre dans la boucle");
+            if (userParams.hasOwnProperty(userKeys[i])) {
+                console.log("value: " + userParams[userKeys[i]]);
+                if (i == 1) {
+                    paramsInQuery = userKeys[i] + "='" + userParams[userKeys[i]] + "'";
+                }
+                else {
+                    paramsInQuery += ", " + userKeys[i] + "='" + userParams[userKeys[i]] + "'";
+                }
+            }
+            console.log("in loop: " + userParams[i]);
+        }
+
+        console.log("part of query: " + paramsInQuery);
+        paramsInQuery = "UPDATE T_User SET  " + paramsInQuery + " WHERE user_id=" + userParams[userKeys[0]];
+
+        console.log("full query: " + paramsInQuery);
+
+        if (userParams.hasOwnProperty('user_id')) {
+            connectionVariable.query(paramsInQuery, function (err, res) {
+                if (err) throw err;
+            });
+
+        }
     }
 }
-
