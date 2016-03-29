@@ -1,7 +1,7 @@
 var express = require('express'); // Utilisation du module express de nodejs.
 var logger = require('morgan'); // Permet de gérer les logs et la coloration des messages.
 var router = require('./scripts/routing/routes');
-var database = require('./scripts/model/manageUsers');
+var database = require('./scripts/model/database');
 var bodyParser = require('body-parser');
 var app = express();
 
@@ -13,7 +13,7 @@ app.use(logger('dev'));
 /**
  * Initialiser de la base de donnée.
  */
-database.initialisationBDD();
+database.initialiseDB();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded

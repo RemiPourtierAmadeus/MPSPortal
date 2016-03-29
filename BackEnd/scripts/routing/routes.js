@@ -8,7 +8,7 @@ var express = require('express');
 // Création d'un routeur
 var router = express.Router();
 
-var database = require('./../models/database');
+var database = require('../model/database');
 
 var userManager = require('./../model/manageUsers');
 

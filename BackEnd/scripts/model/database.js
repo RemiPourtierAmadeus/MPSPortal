@@ -1,13 +1,14 @@
-require('../core/core.js');
+var connectionVariable=require('../core/core.js');
 var mysql = require("mysql");
 
+console.log("connection variable"+connectionVariable);
 
 /**
  * Function initialiseDB. It makes the connection to the database.
  */
 exports.initialiseDB = function(){
     // First you need to create a connection to the db
-    con.connect(function (err) {
+    connectionVariable.connect(function (err) {
         if (err) {
             console.log('Error connecting to Db: ' + err);
             return;
@@ -22,7 +23,7 @@ exports.initialiseDB = function(){
  */
 exports.disconnectDB = function(){
 
-    con.end(function (err) {
+    connectionVariable.end(function (err) {
         // The connection is terminated gracefully
         // Ensures all previously enqueued queries are still
     });

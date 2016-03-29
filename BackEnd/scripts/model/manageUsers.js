@@ -4,6 +4,7 @@
  };*/
 
 var mysql = require("mysql");
+var connectionVariable= require('../core/core');
 
 // First you need to create a connection to the db
 /*
@@ -20,15 +21,16 @@ con.query('INSERT INTO T_User SET ?', employee, function (err, res) {
 
 });
 
-con.query('SELECT * FROM T_User', function (err, rows) {
+
+connectionVariable.query('SELECT * FROM T_User', function (err, rows) {
     if (err) throw err;
 
     console.log('Data received from Db:\n');
     console.log(rows);
-});*/
+});
 
 
-
+/*
 
 exports.shopsChosen = function (shops, success, fail){
 
@@ -47,4 +49,4 @@ exports.shopsChosen = function (shops, success, fail){
     else {
         database.update(infosConnexion,sqlrequest, success, fail);
     }
-};
+};*/

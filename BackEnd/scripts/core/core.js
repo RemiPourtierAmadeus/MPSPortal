@@ -9,10 +9,21 @@ var mysql = require("mysql");
 /**
  * Initialisation of the variable to connect to mysql database.
  */
-var con = mysql.createConnection({
+var connectionVariable = mysql.createConnection({
     host: "ncemysqlp4",
     port: "3315",
     user: "backend_portal",
     password: "Amadeus1",
     database: "MPS_Portal"
 });
+
+connectionVariable.connect(function (err) {
+    if (err) {
+        console.log('Error connecting to Db: ' + err);
+        return;
+    }
+    console.log('Connection established');
+});
+
+
+module.exports={connectionVariable : connectionVariable};
