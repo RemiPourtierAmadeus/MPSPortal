@@ -57,7 +57,7 @@ router.get('/users', function (req, res) {
 
 
 /**
- * Function put on users. When the front-end is requesting a put on
+ * Function puts on users. When the front-end is requesting a put on
  * users, we verifies the success of the request and then call the method
  * addUsers from userManager.
  */
@@ -80,4 +80,31 @@ router.put('/users', function (req, res) {
 
 });
 
+
+/**
+ * Function deletes on users. When the front-end is requesting a removal of a user,
+ * we verifies the success of the request and then call the method
+ * deleteUsers from userManager.
+ */
+router.delete('/users', function (req, res) {
+    console.log(req.body);
+    var success = function () {
+        var finalObject = 'success';
+        console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+
+    userManager.deleteUsers(data,success, fail);
+});
+
+/**
+ * We export the router in order to be imported in other files.
+ */
 module.exports = router;

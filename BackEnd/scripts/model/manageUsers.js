@@ -85,3 +85,19 @@ exports.updateUsers = function (userParams, success, fail) {
         console.log("An error has occurred: No user_id found in the request.");
     }
 }
+
+/**
+ * Function deleteUsers. This function delete a user from the database.
+ * @param success
+ * @param fail
+ */
+exports.deleteUsers = function (userParams, success, fail) {
+
+    console.log("User params: " + userParams.user_id);
+    connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, rows) {
+        if (err) throw err;
+
+        console.log('Data received from Db:\n');
+        console.log(rows);
+    });
+}
