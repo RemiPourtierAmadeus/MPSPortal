@@ -39,7 +39,9 @@ exports.getUsers = function (success, fail) {
      */
     connectionVariable.query(query, function (err, rows) {
         if (err) throw err;
-        success(rows);
+        else {
+            success(rows);
+        }
         console.log('Data received from Db:\n');
         console.log(rows);
     });
@@ -49,7 +51,7 @@ exports.getUsers = function (success, fail) {
  * Function addUser. This function will create a new user according to data in userParams.
  * @param userParams
  * @param success
- * @param fail
+ * @param failnpm instal
  */
 exports.addUser = function (userParams, success, fail) {
     connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, res) {
