@@ -22,3 +22,9 @@
     Performance, it will display the PerformanceComponent.
 -->
 <router-outlet></router-outlet>
+
+
+<div *ngIf="userManager_error">An error occurred while loading the users!</div>
+<ul>
+    <li *ngFor="#user of userManager">{{user.user_id}}</li>
+</ul>

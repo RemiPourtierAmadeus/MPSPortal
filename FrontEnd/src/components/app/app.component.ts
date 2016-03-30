@@ -7,6 +7,7 @@ import {HomeComponent} from "../home/home.component";
 import {LogInComponent} from "../log-in/log-in.component";
 import {LogOutComponent} from "../log-out/log-out.component";
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
+import {Http} from "angular2/http";
 
 
 /**
@@ -37,15 +38,21 @@ import {ManageUsersService} from "../../shared/services/src/manage-users.service
     {path: '/log-out', name: 'LogOut', component: LogOutComponent}
 ])
 
-export class AppComponent implements ManageUsersService{
-
-    private userManager;
+export class AppComponent {
+    public userManager;
+    public userManager_error = false;
 
     constructor(private _manageUserService: ManageUsersService){
-        console.log("ouais je rentre");
+        this._manageUserService.getUsers().subscribe(
+            data => { this.userManager = data},
+            err => { this.userManager_error = true }
+        );
     }
 
-    ngOnInit(){
-        this.userManager= this._manageUserService.getUsers();
+    getUsers(){
+
     }
+    /*ngOnInit(){
+        this.userManager= this._manageUserService.getUsers();
+    }*/
 }
