@@ -47,13 +47,14 @@ export class AppComponent {
 
         this._manageUserService.getUsers().subscribe(
             data => {
-                this.userManager = data;
+                this.userManager = data[0];
+                console.log(data)
                 this.message="works well";
             },
             err => { this.userManager_error = true },
             () => console.log('done')
         );
-        console.log(this.userManager);
+
     }
 
     /*ngOnInit(){

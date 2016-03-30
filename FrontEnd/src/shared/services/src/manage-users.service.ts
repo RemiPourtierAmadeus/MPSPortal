@@ -18,24 +18,23 @@ export class ManageUsersService {
     getUsers() {
         //this.users=this.http.get("localhost:3500/users");
         return Observable.forkJoin(
-            this.http.get('http://ncevc-04296:3500/users').map((res:Response)=>res.json())
+            this.http.get('http://ncevc-04296:3500/users').map((res:Response)=>
+                res=res.json()
+            )
         );
     }
 
     /*
      addUser(){
      return 0;
-
      }
 
      updateUsers(){
      return 0;
-
      }
 
      deleteUsers(){
      return 0;
-
      }*/
 
 }
