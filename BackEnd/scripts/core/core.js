@@ -26,7 +26,9 @@ var userKeys = ["user_id",
     "full_name",
     "email_address",
     "type",
-    "password"];
+    "password",
+    "active"
+];
 
 /**
  * We exports the variable in order to be used in other files.

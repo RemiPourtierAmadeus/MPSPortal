@@ -48,7 +48,6 @@ export class AppComponent {
         this._manageUserService.getUsers().subscribe(
             data => {
                 this.userManager = data[0];
-                console.log(data);
             },
             err => { this.userManager_error = true },
             () => console.log('done')

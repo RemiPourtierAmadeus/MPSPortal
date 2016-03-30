@@ -1,4 +1,4 @@
-<h1 class="col-lg-2">MPS Perf & Metrics Portal</h1>
+<div class="row"><h1>MPS Perf & Metrics Portal</h1></div>
 
 <!--
     In the nav tags, we define different links, Metrics, Performance and News
@@ -26,8 +26,5 @@
 
 <div *ngIf="userManager_error">An error occurred while loading the users!</div>
 <ul>
-    <li *ngFor="#user of userManager">{{user.user_id}}</li>
+    <li *ngFor="#user of userManager">{{user.full_name}}</li>
 </ul>
-
-{{message}}
-{{userManager_error}}
