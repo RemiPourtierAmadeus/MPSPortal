@@ -37,13 +37,13 @@ exports.getUsers = function (success, fail) {
     /**
      * We run the query
      */
-    connectionVariable.query(query, function (err, rows) {
+    connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
-            success(rows);
+            success(data);
         }
         console.log('Data received from Db:\n');
-        console.log(rows);
+        console.log(data);
     });
 }
 
@@ -51,11 +51,14 @@ exports.getUsers = function (success, fail) {
  * Function addUser. This function will create a new user according to data in userParams.
  * @param userParams
  * @param success
- * @param failnpm instal
+ * @param fail
  */
 exports.addUser = function (userParams, success, fail) {
-    connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, res) {
+    connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
         if (err) throw err;
+        else {
+            success(data);
+        }
     });
 }
 
@@ -95,8 +98,11 @@ exports.updateUsers = function (userParams, success, fail) {
         /**
          * We update the data.
          */
-        connectionVariable.query(paramsInQuery, function (err, res) {
+        connectionVariable.query(paramsInQuery, function (err, data) {
             if (err) throw err;
+            else {
+                success(data);
+            }
         });
 
     }
@@ -113,10 +119,12 @@ exports.updateUsers = function (userParams, success, fail) {
 exports.deleteUsers = function (userParams, success, fail) {
 
     console.log("User params: " + userParams.user_id);
-    connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, rows) {
+    connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, data) {
         if (err) throw err;
-
+        else {
+            success(data);
+        }
         console.log('Data received from Db:\n');
-        console.log(rows);
+        console.log(data);
     });
 }
