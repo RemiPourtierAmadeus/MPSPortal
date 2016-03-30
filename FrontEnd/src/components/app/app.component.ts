@@ -41,17 +41,21 @@ import {Http} from "angular2/http";
 export class AppComponent {
     public userManager;
     public userManager_error = false;
+    public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
+
         this._manageUserService.getUsers().subscribe(
-            data => { this.userManager = data},
-            err => { this.userManager_error = true }
+            data => {
+                this.userManager = data;
+                this.message="works well";
+            },
+            err => { this.userManager_error = true },
+            () => console.log('done')
         );
+        console.log(this.userManager);
     }
 
-    getUsers(){
-
-    }
     /*ngOnInit(){
         this.userManager= this._manageUserService.getUsers();
     }*/

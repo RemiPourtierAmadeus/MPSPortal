@@ -39,7 +39,7 @@ exports.getUsers = function (success, fail) {
      */
     connectionVariable.query(query, function (err, rows) {
         if (err) throw err;
-
+        success(rows);
         console.log('Data received from Db:\n');
         console.log(rows);
     });

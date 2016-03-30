@@ -24,19 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*"); // We define the right to call the server.
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS"); // We define all methods we can use
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // We define all methods we can use
     next();
-});
-
-/**
- * We define authorisation for http requests for every under domain
- * For instance: /users or /projects.
- */
-app.options('/*', function(req, res){
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
-    res.sendStatus(200);
 });
 
 /**
