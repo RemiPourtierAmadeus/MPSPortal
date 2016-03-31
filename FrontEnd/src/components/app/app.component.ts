@@ -8,6 +8,7 @@ import {LogInComponent} from "../log-in/log-in.component";
 import {LogOutComponent} from "../log-out/log-out.component";
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
 import {Http} from "angular2/http";
+import {HeaderComponent} from "../header/header.component";
 
 
 /**
@@ -19,7 +20,10 @@ import {Http} from "angular2/http";
     moduleId: module.id,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [
+        ROUTER_DIRECTIVES,
+        HeaderComponent,
+    ],
     providers: [ManageUsersService]
 })
 

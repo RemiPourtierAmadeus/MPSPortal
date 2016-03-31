@@ -1,28 +1,13 @@
-<div class="row"><h1>MPS Perf & Metrics Portal</h1></div>
-
-<!--
-    In the nav tags, we define different links, Metrics, Performance and News
-    In classical development, we should use: <a href="path/of/your/page.html"> My page </a>
-    Here, we configure the link into AppComponent:
-        [routerLink]="['Metrics']"
-         -> Metrics is the name we defined in AppComponent with the path /metrics and the component
-            MetricsComponent. So our router know what to display.
--->
-<nav>
-    <a [routerLink]="['Metrics']">Metrics</a>
-    <a [routerLink]="['Performance']">Performance</a>
-    <a [routerLink]="['News']">News</a>
-    <a [routerLink]="['LogIn']">Log in</a>
-    <a [routerLink]="['LogOut']">Log out</a>
-</nav>
-
-
+<div class="header">
+    <header></header>
+</div>
 <!--
     Tag router-outlet: It will display the content of the selected component. If user clicks on
     Performance, it will display the PerformanceComponent.
 -->
-<router-outlet></router-outlet>
-
+<div class="row">
+    <router-outlet></router-outlet>
+</div>
 
 <div *ngIf="userManager_error">An error occurred while loading the users!</div>
 <ul>
