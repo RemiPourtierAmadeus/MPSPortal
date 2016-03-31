@@ -32,8 +32,13 @@ export class AddUserComponent {
             "", [""], true);
     }
 
-    onSubmit(){
+    addNewUser(){
         this.submitted=true;
+        this.user=new UserComponent("122", "", "",
+            "", [""], true);
     }
 
+    onSubmit(){
+        console.log("Coucou");
+    }
 }
