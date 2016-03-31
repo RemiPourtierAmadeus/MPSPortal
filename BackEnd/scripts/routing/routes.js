@@ -19,7 +19,7 @@ var userManager = require('./../model/manageUsers');
  * updateUsers from userManager.
  */
 router.post('/users', function(req,res){
-    console.log(req.body);
+    console.log("Method post start: "+req.body);
     var success = function () {
         var finalObject = 'success';
         console.log(finalObject);
