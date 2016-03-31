@@ -10,4 +10,8 @@ import {Component} from 'angular2/core';
     templateUrl: './add-user.component.html',
     styleUrls : ['./add-user.component.css']
 })
-export class AddUserComponent { }
+export class AddUserComponent {
+    constructor(){
+        
+    }
+}

@@ -1,1 +1,71 @@
-<h1> Hey, I'm AddUserComponent !</h1>
+<div class="row">
+    <div class="large-offset-1 medium-offset-1">
+        <label>
+            <h2> Add user</h2>
+        </label>
+    </div>
+</div>
+<form>
+    <div class="row">
+        <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
+            <label>Full Name
+                <input type="text" placeholder="First and last name"/>
+            </label>
+        </div>
+        <div class="large-4 medium-4 columns end">
+            <div class="row collapse">
+                <label>Email address</label>
+                <div class="small-9 columns">
+                    <input type="text" placeholder=""/>
+                </div>
+                <div class="small-3 columns">
+                    <span class="postfix">@amadeus.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
+            <label>Login
+                <input type="text" placeholder=""/>
+            </label>
+        </div>
+        <div class="large-4 medium-4 columns end">
+            <div class="row collapse">
+                <label>Optional email address</label>
+                <div class="small-9 columns end">
+                    <input type="text" placeholder=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-3 large-offset-2 columns">
+            <label> User type
+                <select>
+                    <option value="husker">Admin</option>
+                    <option value="starbuck">Operational</option>
+                    <option value="hotdog">Developer</option>
+                    <option value="apollo">Manager</option>
+                </select>
+            </label>
+        </div>
+        <div class="large-3 columns">
+            <label>Part</label>
+            <input id="metrics" type="checkbox" class="postfix"><label for="metrics">Metrics</label>
+            <input id="performance" type="checkbox" class="postfix"><label for="performance">Performance</label>
+        </div>
+        <div class="large-4 columns end">
+            <label>Send report</label>
+            <input id="yes" type="checkbox" class="postfix"><label for="yes">Yes</label>
+            <input id="no" type="checkbox" class="postfix"><label for="no">No</label>
+        </div>
+    </div>
+</form>
+
+<br>
+<div class="row buttonRow">
+    <div class="large-4 large-offset-5 end">
+        <a  class="button info">Success Button</a>
+    </div>
+</div>
