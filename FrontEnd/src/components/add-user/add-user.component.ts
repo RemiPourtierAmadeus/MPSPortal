@@ -11,7 +11,5 @@ import {Component} from 'angular2/core';
     styleUrls : ['./add-user.component.css']
 })
 export class AddUserComponent {
-    constructor(){
-        
-    }
+
 }
