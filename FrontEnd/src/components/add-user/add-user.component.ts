@@ -4,12 +4,14 @@
 
 import {Component} from 'angular2/core';
 import {UserComponent} from "../user/user.component";
+import {ManageUsersService} from "../../shared/services/src/manage-users.service";
 
 @Component({
     selector: 'add-user',
     moduleId: module.id,
     templateUrl: './add-user.component.html',
-    styleUrls : ['./add-user.component.css']
+    styleUrls : ['./add-user.component.css'],
+    providers: [ManageUsersService]
 })
 
 /**
@@ -23,7 +25,10 @@ export class AddUserComponent {
     public submitted;
     public user;
 
-    constructor(){
+    public userManager;
+    public userManager_error = false;
+
+    constructor(private _manageUserService: ManageUsersService){
         this.submitted = false;
         this.userTypesValues = ["Admin","Operational","Developer","Manager"];
         this.websitePartsValues = ["Metrics","Performance"]; //TODO: TO use !
@@ -32,13 +37,23 @@ export class AddUserComponent {
             "", [""], true);
     }
 
-    addNewUser(){
-        this.submitted=true;
-        this.user=new UserComponent("122", "", "",
-            "", [""], true);
-    }
-
     onSubmit(){
-        console.log("Coucou");
+        this.submitted=true;
+        /*this._manageUserService.getUsers().subscribe(
+            data => {
+                this.userManager = data[0];
+            },
+            err => { this.userManager_error = true },
+            () => console.log('done')
+        );*/
+        var tmp={user_id : "5",
+            full_name : "Pierre"};
+        this._manageUserService.addUser(tmp).subscribe(
+            data => {
+                this.userManager = data[0];
+            },
+            err => { this.userManager_error = true },
+            () => console.log('done')
+        );
     }
 }

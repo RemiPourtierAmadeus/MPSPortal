@@ -51,13 +51,13 @@ export class AppComponent {
 
     constructor(private _manageUserService: ManageUsersService){
 
-        this._manageUserService.getUsers().subscribe(
+       /* this._manageUserService.getUsers().subscribe(
             data => {
                 this.userManager = data[0];
             },
             err => { this.userManager_error = true },
             () => console.log('done')
-        );
+        );*/
 
     }
 

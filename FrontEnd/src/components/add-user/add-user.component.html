@@ -5,68 +5,82 @@
         </label>
     </div>
 </div>
-<form (ngSubmit)="onSubmit()" #userForm="ngForm">
-    <div class="row">
-        <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
-            <label>Full Name
-                <input type="text" placeholder="First and last name" required
-                       [(ngModel)]="user.fullName" ngControl="fullName" #spy/>
-            </label>
-        </div>
-        <div class="large-4 medium-4 columns end">
-            <div class="row collapse">
-                <label>Email address</label>
-                <div class="small-9 columns">
-                    <input type="text" placeholder="" required [(ngModel)]="user.email"/>
-                </div>
-                <div class="small-3 columns">
-                    <span class="postfix">@amadeus.com</span>
+<div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="row">
+            <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
+                <label>Full Name
+                    <input type="text" placeholder="First and last name" required
+                           [(ngModel)]="user.fullName" ngControl="fullName" #spy/>
+                </label>
+            </div>
+            <div class="large-4 medium-4 columns end">
+                <div class="row collapse">
+                    <label>Email address</label>
+                    <div class="small-9 columns">
+                        <input type="text" placeholder="" required [(ngModel)]="user.email"/>
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix">@amadeus.com</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
-            <label>Login
-                <input type="text" placeholder="" value="{{user.fullName}}" disabled [(ngModel)]="user.login"/>
-            </label>
-        </div>
-        <div class="large-4 medium-4 columns end">
-            <div class="row collapse">
-                <label>Optional email address</label>
-                <div class="small-9 columns end">
-                    <input type="text" placeholder=""/>
+        <div class="row">
+            <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
+                <label>Login
+                    <input type="text" placeholder="" value="{{user.fullName}}" disabled [(ngModel)]="user.login"/>
+                </label>
+            </div>
+            <div class="large-4 medium-4 columns end">
+                <div class="row collapse">
+                    <label>Optional email address</label>
+                    <div class="small-9 columns end">
+                        <input type="text" placeholder=""/>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="large-3 large-offset-2  medium-2 medium-offset-2 end columns">
-            <label> User type
-                <select>
-                    <option *ngFor="#type of userTypesValues" value="type" >{{type}}</option>
-                </select>
-            </label>
-        </div>
-        <div class="large-3  medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns">
-            <label>Part</label>
+        <div class="row">
+            <div class="large-3 large-offset-2  medium-2 medium-offset-2 end columns">
+                <label> User type
+                    <select>
+                        <option *ngFor="#type of userTypesValues" value="type">{{type}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="large-3  medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns">
+                <label>Part</label>
 
-            <input id="metrics" type="checkbox" class="postfix"><label for="metrics">Metrics</label>
-            <input id="performance" type="checkbox" class="postfix"><label for="performance">Performance</label>
-            <!--<select>
-                <option *ngFor="#partWeb of websitePartsValues" value="partWeb">{{partWeb}}</option>
-            </select>-->
+                <input id="metrics" type="checkbox" class="postfix"><label for="metrics">Metrics</label>
+                <input id="performance" type="checkbox" class="postfix"><label for="performance">Performance</label>
+                <!--<select>
+                    <option *ngFor="#partWeb of websitePartsValues" value="partWeb">{{partWeb}}</option>
+                </select>-->
+            </div>
+            <div class="large-3 medium-3 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end">
+                <label>Send report</label>
+                <input id="yes" type="checkbox" class="postfix"><label for="yes">Yes</label>
+                <input id="no" type="checkbox" class="postfix"><label for="no">No</label>
+            </div>
         </div>
-        <div class="large-3 medium-3 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end">
-            <label>Send report</label>
-            <input id="yes" type="checkbox" class="postfix"><label for="yes">Yes</label>
-            <input id="no" type="checkbox" class="postfix"><label for="no">No</label>
+        <br>
+        <div class="row buttonRow">
+            <div class="large-4 large-offset-5 medium-4 medium-offset-5 small-offset-4 end">
+                <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div [hidden]="!submitted">
+    <div class="row">
+        <div class=" large-4 large-offset-2 medium-4 medium-offset-2 small-4 small-offset-2">
+            <label> The user has been succesfully added </label>
+            <div *ngIf="userManager_error">An error occurred while loading the users!</div>
+            <ul>
+                <li *ngFor="#user of userManager">{{user.full_name}}</li>
+            </ul>
+
         </div>
     </div>
-    <br>
-    <div class="row buttonRow">
-        <div class="large-4 large-offset-5 medium-4 medium-offset-5 small-offset-4 end">
-            <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
-        </div>
-    </div>
-</form>
+</div>
