@@ -23,7 +23,13 @@ export class AddUserComponent {
     public websitePartsValues;
     public reportsValues;
     public submitted;
+
     public user;
+    public userType;
+    public metrics;
+    public performance;
+    public reportsY;
+    public reportsN;
 
     public userManager;
     public userManager_error = false;
@@ -46,6 +52,11 @@ export class AddUserComponent {
         this.user= new UserComponent("", "", "",
             "", [""], true);
         this.dbUserTable=["user_id","full_name","email_address","type"];
+        this.metrics="";
+        this.performance="";
+        this.reportsN="";
+        this.reportsY="";
+        this.userType="";
     }
 
     /**
@@ -64,7 +75,9 @@ export class AddUserComponent {
      */
     buildUserJSON(){
         let userJSON= {};
-
+        console.log("fullname", this.user.fullname);
+        console.log("email", this.user.email);
+        console.log("optionalEmail", this.user.optionalEmail);
 
         return userJSON;
     }

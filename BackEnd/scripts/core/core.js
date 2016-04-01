@@ -30,6 +30,14 @@ var userKeys = ["user_id",
     "active"
 ];
 
+var userTypes = [
+    "admin",
+    "developer",
+    "operational",
+    "manager",
+    "top_manager"
+];
+
 /**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
@@ -38,7 +46,8 @@ var userKeys = ["user_id",
  */
 module.exports = {
     connectionVariable: connectionVariable,
-    userKeys: userKeys
+    userKeys: userKeys,
+    userTypes: userTypes
 };
 
 
