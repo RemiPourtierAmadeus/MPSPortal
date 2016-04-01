@@ -10,6 +10,7 @@ import {ManageUsersService} from "../../shared/services/src/manage-users.service
 import {Http} from "angular2/http";
 import {HeaderComponent} from "../header/header.component";
 import {AddUserComponent} from "../add-user/add-user.component";
+import {UserListComponent} from "../user-list/user-list.component";
 
 
 /**
@@ -40,6 +41,7 @@ import {AddUserComponent} from "../add-user/add-user.component";
     {path: '/performance', name: 'Performance', component: PerformanceComponent},
     {path: '/news', name: 'News', component: NewsComponent},
     {path: '/add-user', name: 'AddUser', component: AddUserComponent},
+    {path: '/user-list', name: 'UserList', component: UserListComponent},
     {path: '/log-in', name: 'LogIn', component: LogInComponent},
     {path: '/log-out', name: 'LogOut', component: LogOutComponent}
 ])

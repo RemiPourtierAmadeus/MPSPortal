@@ -39,19 +39,19 @@ export class AddUserComponent {
 
     onSubmit(){
         this.submitted=true;
-        /*this._manageUserService.getUsers().subscribe(
-            data => {
-                this.userManager = data[0];
-            },
-            err => { this.userManager_error = true },
-            () => console.log('done')
-        );*/
-        this._manageUserService.addUser("Pierre").subscribe(
+        this._manageUserService.getUsers().subscribe(
             data => {
                 this.userManager = data[0];
             },
             err => { this.userManager_error = true },
             () => console.log('done')
         );
+        /* this._manageUserService.addUser("Pierre").subscribe(
+            data => {
+                this.userManager = data[0];
+            },
+            err => { this.userManager_error = true },
+            () => console.log('done')
+        );*/
     }
 }
