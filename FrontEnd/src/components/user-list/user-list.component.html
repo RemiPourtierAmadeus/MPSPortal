@@ -1,7 +1,7 @@
 
+<br>
 <div *ngIf="userManager_error">An error occurred while loading the users!</div>
-
-
+<div class="row">
 <table>
     <thead>
     <tr>
@@ -16,9 +16,10 @@
     <tr *ngFor="#user of userManager">
         <td>{{user.user_id}}</td>
         <td>{{user.full_name}}</td>
-        <td>{{user.email}}</td>
+        <td>{{user.email_address}}</td>
         <td>{{user.type}}</td>
         <td>{{user.password}}</td>
     </tr>
     </tbody>
 </table>
+</div>
