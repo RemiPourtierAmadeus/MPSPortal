@@ -134,6 +134,8 @@ exports.deleteUsers = function (userParams, success, fail) {
 
 /**
  * Function generateUserId.
+ * The function generates an id for the user according to the user type and the last id generated for the
+ * last added user. Then it increments the last id and return the id value.
  * @param userParams
  */
 function generateUserId(userParams) {
@@ -147,7 +149,7 @@ function generateUserId(userParams) {
                 id= data;
             }
             console.log('Data received from Db:\n');
-            console.log(data);
+            console.log(id);
         });
     }
     else console.log("An error has occurred: The user doesn't have a type");
@@ -162,7 +164,6 @@ function generateUserId(userParams) {
  * @returns {string}
  */
 function getCurrentUserType(userParams){
-    console.log("oui je rentre");
     if (userParams.hasOwnProperty("type")) {
         var typeValue=userParams.type.toLowerCase();
         console.log("Type value: "+ typeValue);
