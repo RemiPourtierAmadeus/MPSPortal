@@ -46,9 +46,7 @@ export class AddUserComponent {
             err => { this.userManager_error = true },
             () => console.log('done')
         );*/
-        var tmp={user_id : "5",
-            full_name : "Pierre"};
-        this._manageUserService.addUser(tmp).subscribe(
+        this._manageUserService.addUser("Pierre").subscribe(
             data => {
                 this.userManager = data[0];
             },
