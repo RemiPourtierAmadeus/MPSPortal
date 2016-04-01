@@ -44,7 +44,7 @@ export class UserListComponent implements onInit {
      * and the error message.
      */
     getUsers(){
-        this._manageUserService.getUsers().subscribe(
+        this._manageUserService.getUsers().then(
             users => this.users=users,
             error => this.errorMessage= <any> error);
         console.log("Into getUsers: "+this.users);
@@ -59,7 +59,7 @@ export class UserListComponent implements onInit {
         if(!name){
             return;
         }
-        this._manageUserService.addUser(name).subscribe(
+        this._manageUserService.addUser(name).then(
             user => this.users.push(user),
             error => this.errorMessage = <any> error);
     }

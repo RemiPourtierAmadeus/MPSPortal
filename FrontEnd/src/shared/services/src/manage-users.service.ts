@@ -22,30 +22,30 @@ export class ManageUsersService {
             )
         );*/
         return this.http.get(this._serverLink)
-            .map(res => <UserComponent[]> res.json().data)
-            .do(data => console.log(data))
+            .toPromise()
+            .then(res => <UserComponent[]> res.json().data)
             .catch(this.handleError);
     }
 
 
-    addUser(user_id: string): Observable<UserComponent>  {
-
+    addUser(user_id: string): Promise<UserComponent>  {
         //var tmp='{user_id : "5", full_name : "Pierre"}';
         let body = JSON.stringify({ user_id });
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
         console.log("User data in addUSer service: "+body);
-        return this.http.post(this._serverLink, body, options).
-            map( res=><UserComponent> res.json().data).
-            catch(this.handleError);
+        return this.http.post(this._serverLink, body, options)
+            .toPromise()
+            .then(res=> <UserComponent> res.json().data)
+            .catch(this.handleError);
     }
 
     private handleError (error: Response) {
         // in a real world app, we may send the error to some remote logging infrastructure
         // instead of just logging it to the console
         console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
+        return Promise.reject(error.message || error.json().error || 'Server error');
     }
     /*
      updateUsers(){
