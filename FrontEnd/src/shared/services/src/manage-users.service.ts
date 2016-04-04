@@ -40,7 +40,7 @@ export class ManageUsersService {
      */
     addUser(userJSON): Promise<UserComponent>  {
         let tmp={user_id : "13", full_name : "Pierre"};
-        let body = JSON.stringify( tmp );
+        let body = JSON.stringify( userJSON );
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 

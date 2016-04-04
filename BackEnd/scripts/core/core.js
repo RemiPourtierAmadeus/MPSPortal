@@ -30,6 +30,11 @@ var userKeys = ["user_id",
     "active"
 ];
 
+
+/**
+ * Initialisation of the variable which contains all the user type possibilities.
+ * @type {string[]}
+ */
 var userTypes = [
     "admin",
     "developer",

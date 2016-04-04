@@ -65,6 +65,7 @@ export class AddUserComponent {
      * @returns {boolean}
      */
     formComplete(){
+        //TODO : Fill the function.
         return true;
     }
 
@@ -74,13 +75,20 @@ export class AddUserComponent {
      * @returns JSON
      */
     buildUserJSON(){
-        let userJSON= {};
+        let userJSON= {
+            full_name : this.user.fullName,
+            email_address : this.user.email,
+            type: this.user.type.toLowerCase()
+        };
         console.log("fullname", this.user.fullname);
         console.log("email", this.user.email);
         console.log("optionalEmail", this.user.optionalEmail);
+        console.log("type", this.user.type.toLowerCase());
+
 
         return userJSON;
     }
+
     /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. If the form has been correctly filled,
