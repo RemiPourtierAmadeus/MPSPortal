@@ -1,32 +1,26 @@
 import {Pipe, PipeTransform} from 'angular2/core';
-/*
- * Raise the value exponentially
- * Takes an exponent argument that defaults to 1.
- * Usage:
- *   value | exponentialStrength:exponent
- * Example:
- *   {{ 2 |  exponentialStrength:10}}
- *   formats to: 1024
+/**
+ * LoginPipe
+ * The pipe is used to generate the login. We replace each space by a dot
+ * and we put all the letter in lower case before returning the final login.
  */
 @Pipe({name: 'loginTransformation'})
 export class LoginPipe implements PipeTransform {
     transform(value:string, [exponent]) :string{
         let array=[];
         array=value.split(" ");
-        let finalString="";
-        //finalString= value.toLowerCase();
+        let login="";
         for( var i=0;i<array.length;i++){
             array[i]=array[i].toLowerCase();
             if(array[i].length>0){
                 if(i==0){
-                    finalString=array[i].toLowerCase();
+                    login=array[i].toLowerCase();
                 }
                 else{
-                    finalString=finalString+"."+array[i].toLowerCase();
+                    login=login+"."+array[i].toLowerCase();
                 }
-
             }
         }
-        return finalString;
+        return login;
     }
 }
