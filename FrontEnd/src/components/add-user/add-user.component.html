@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="large-offset-1 medium-offset-1">
+    <div class="large-offset-1 medium-offset-1 small-offset-1">
         <label>
             <h2> Add user</h2>
         </label>
@@ -36,7 +36,7 @@
                 <div class="row collapse">
                     <label>Optional email address</label>
                     <div class="small-9 columns end">
-                        <input type="text" placeholder=""/>
+                        <input type="text" placeholder="" [(ngModel)]="user.emailOptional"/>
                     </div>
                 </div>
             </div>
@@ -52,8 +52,8 @@
             <div class="large-3  medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns">
                 <label>Part</label>
 
-                <input id="metrics" type="checkbox" class="postfix"><label for="metrics">Metrics</label>
-                <input id="performance" type="checkbox" class="postfix"><label for="performance">Performance</label>
+                <input id="metrics" type="checkbox" class="postfix"><label for="metrics" >Metrics</label>
+                <input id="performance" type="checkbox" class="postfix"><label for="performance" >Performance</label>
                 <!--<select>
                     <option *ngFor="#partWeb of websitePartsValues" value="partWeb">{{partWeb}}</option>
                 </select>-->

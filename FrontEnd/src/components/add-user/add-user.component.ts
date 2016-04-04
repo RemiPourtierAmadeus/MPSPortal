@@ -23,11 +23,27 @@ export class AddUserComponent {
     public websitePartsValues;
     public reportsValues;
     public submitted;
+
     public user;
+    public userType;
+    public metrics;
+    public performance;
+    public reportsY;
+    public reportsN;
 
     public userManager;
     public userManager_error = false;
+    public responseFromServer;
+    public errorFromServer;
 
+    private dbUserTable;
+
+    /**
+     * Constructor AddUserComponent.
+     * We inject ManageUserService into the component thanks to the parameters we give here. Then, it initializes
+     * all the component attributes.
+     * @param _manageUserService
+     */
     constructor(private _manageUserService: ManageUsersService){
         this.submitted = false;
         this.userTypesValues = ["Admin","Operational","Developer","Manager"];
@@ -35,25 +51,48 @@ export class AddUserComponent {
         this.reportsValues = ["Yes","No"]; //TODO: TO use !
         this.user= new UserComponent("", "", "",
             "", [""], true);
+        this.dbUserTable=["user_id","full_name","email_address","type"];
+        this.metrics="";
+        this.performance="";
+        this.reportsN="";
+        this.reportsY="";
+        this.userType="";
     }
 
+    /**
+     * Function formComplete.
+     * The function verifies if the form has been correctly filled. It returns true if yes, else false.
+     * @returns {boolean}
+     */
+    formComplete(){
+        return true;
+    }
+
+    /**
+     * Function buildUserJSON.
+     * The function builds the JSON from the user information filled in the form.
+     * @returns JSON
+     */
+    buildUserJSON(){
+        let userJSON= {};
+        console.log("fullname", this.user.fullname);
+        console.log("email", this.user.email);
+        console.log("optionalEmail", this.user.optionalEmail);
+
+        return userJSON;
+    }
+    /**
+     * Function onSubmit.
+     * The function is called when user click on the submit button in the form. If the form has been correctly filled,
+     * we add the new user to the database by calling the manageUser service function  "AddUser".
+     */
     onSubmit(){
         this.submitted=true;
-        /*this._manageUserService.getUsers().subscribe(
-            data => {
-                this.userManager = data[0];
-            },
-            err => { this.userManager_error = true },
-            () => console.log('done')
-        );*/
-        var tmp={user_id : "5",
-            full_name : "Pierre"};
-        this._manageUserService.addUser(tmp).subscribe(
-            data => {
-                this.userManager = data[0];
-            },
-            err => { this.userManager_error = true },
-            () => console.log('done')
-        );
+        if(this.formComplete()) {
+            let finalUserJSON = this.buildUserJSON();
+            this._manageUserService.addUser(finalUserJSON).then(
+                user => this.responseFromServer = user,
+                error => this.errorFromServer = <any> error);
+        }
     }
 }

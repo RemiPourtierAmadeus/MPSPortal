@@ -76,7 +76,8 @@ router.put('/users', function (req, res) {
     // Grab data from http request
     var data = req.body;
 
-    userManager.addUser(data,success, fail);
+    userManager.generateUserId(data, success,fail);
+    /*userManager.addUser(data,success, fail);*/
 
 });
 
