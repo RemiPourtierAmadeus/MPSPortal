@@ -54,7 +54,6 @@ exports.getUsers = function (success, fail) {
  * @param success
  * @param fail
  */
-//exports.addUser = function (userId, userParams, success, fail) {
 function addUser(userId, userTypeValue, userParams, success, fail){
     userParams["user_id"]=userId;
     connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
@@ -121,7 +120,6 @@ exports.updateUsers = function (userParams, success, fail) {
  * @param fail
  */
 exports.deleteUsers = function (userParams, success, fail) {
-
     console.log("User params: " + userParams.user_id);
     connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, data) {
         if (err) throw err;
@@ -160,6 +158,8 @@ exports.generateUserId = function(userParams, success, fail) {
 
 /**
  * Function updateUserIdInDB.
+ * This function will update the table TR_LastUserId in the database with the new generated user id.
+ * It takes 2 parameters: The user id and the user type.
  * @param userId
  * @param userType
  */
@@ -177,7 +177,6 @@ function updateUserIdInDB(userId, userType){
      */
     connectionVariable.query(paramsInQuery, function (err, data) {
         if (err) throw err;
-
     });
 }
 
