@@ -54,15 +54,16 @@ exports.getUsers = function (success, fail) {
  * @param success
  * @param fail
  */
-exports.addUser = function (userParams, success, fail) {
-    var userId = generateUserId(userParams);
-    console.log("Final User ID: "+userId);
-    /*connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
+//exports.addUser = function (userId, userParams, success, fail) {
+function addUser(userId, userTypeValue, userParams, success, fail){
+    userParams["user_id"]=userId;
+    connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
         if (err) throw err;
         else {
             success(data);
+            updateUserIdInDB(userId, userTypeValue);
         }
-    });*/
+    });
 }
 
 /**
@@ -138,7 +139,7 @@ exports.deleteUsers = function (userParams, success, fail) {
  * last added user. Then it increments the last id and return the id value.
  * @param userParams
  */
-function generateUserId(userParams) {
+exports.generateUserId = function(userParams, success, fail) {
     var typeValue=getCurrentUserType(userParams);
     var id= -1;
     if(typeValue!== ""){
@@ -146,7 +147,8 @@ function generateUserId(userParams) {
         connectionVariable.query(query, function (err, data) {
             if (err) throw err;
             else {
-                id= data;
+                id= data[0].value+1;
+                addUser(id, typeValue, userParams, success, fail);
             }
             console.log('Data received from Db:\n');
             console.log(id);
@@ -154,6 +156,29 @@ function generateUserId(userParams) {
     }
     else console.log("An error has occurred: The user doesn't have a type");
     return id;
+}
+
+/**
+ * Function updateUserIdInDB.
+ * @param userId
+ * @param userType
+ */
+function updateUserIdInDB(userId, userType){
+    var condition= "type = '"+userType+"'";
+    var data= "value = '"+ userId+ "'";
+    /**
+     * We create the final query.
+     * @type {string}
+     */
+    paramsInQuery = "UPDATE TR_LastUserId SET  " + data + " WHERE " + condition;
+    console.log("Query: " + paramsInQuery);
+    /**
+     * We update the data.
+     */
+    connectionVariable.query(paramsInQuery, function (err, data) {
+        if (err) throw err;
+
+    });
 }
 
 /**
@@ -166,10 +191,7 @@ function generateUserId(userParams) {
 function getCurrentUserType(userParams){
     if (userParams.hasOwnProperty("type")) {
         var typeValue=userParams.type.toLowerCase();
-        console.log("Type value: "+ typeValue);
-        console.log("user types: "+userTypes);
         for( var i=0; i<userTypes.length; i++){
-            console.log("current value: "+ userTypes[i]);
             if(userTypes[i]===typeValue){
                 return userTypes[i];
             }
