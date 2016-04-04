@@ -34,7 +34,7 @@
         <div class="row">
             <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
                 <label>Login
-                    <input type="text" placeholder="" value="{{user.fullName}}" disabled [(ngModel)]="user.login"/>
+                    <input type="text" placeholder="" value="{{user.fullName | loginTransformation: tmp}}" disabled [(ngModel)]="user.login"/>
                 </label>
             </div>
             <div class="large-4 medium-4 columns end">
@@ -83,7 +83,6 @@
         </div>
     </form>
 </div>
-Yes report: {{user.sendReport}}
 
 <div [hidden]="!submitted">
     <div class="row">

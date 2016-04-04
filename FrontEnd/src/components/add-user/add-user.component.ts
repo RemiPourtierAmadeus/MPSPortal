@@ -5,13 +5,15 @@
 import {Component} from 'angular2/core';
 import {UserComponent} from "../user/user.component";
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
+import {LoginPipe} from "../../shared/pipes/src/loginPipe";
 
 @Component({
     selector: 'add-user',
     moduleId: module.id,
     templateUrl: './add-user.component.html',
     styleUrls: ['./add-user.component.css'],
-    providers: [ManageUsersService]
+    providers: [ManageUsersService],
+    pipes:[LoginPipe]
 })
 
 /**
@@ -34,6 +36,7 @@ export class AddUserComponent {
     public errorFromServer;
 
     private dbUserTable;
+    private tmp;
 
     /**
      * Constructor AddUserComponent.
@@ -52,6 +55,7 @@ export class AddUserComponent {
         this.reportsN = "";
         this.reportsY = "";
         this.formCorrectlyFilled = true;
+        this.tmp="";
     }
 
     /**
