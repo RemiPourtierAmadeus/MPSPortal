@@ -17,11 +17,14 @@ export class LoginPipe implements PipeTransform {
         //finalString= value.toLowerCase();
         for( var i=0;i<array.length;i++){
             array[i]=array[i].toLowerCase();
-            if(i==0){
-                finalString=array[i].toLowerCase();
-            }
-            else{
-                finalString=finalString+"."+array[i].toLowerCase();
+            if(array[i].length>0){
+                if(i==0){
+                    finalString=array[i].toLowerCase();
+                }
+                else{
+                    finalString=finalString+"."+array[i].toLowerCase();
+                }
+
             }
         }
         return finalString;
