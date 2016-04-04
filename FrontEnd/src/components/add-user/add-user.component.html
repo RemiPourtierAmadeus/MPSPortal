@@ -6,6 +6,11 @@
     </div>
 </div>
 <div [hidden]="submitted">
+    <div [hidden]="formCorrectlyFilled" class="row">
+        <div class="filling_error large-4 large-offset-4 medium-4 medium-offset-4 small-4 small-offset-4 end ">
+            <label class="error_message"> Please choose Metrics or/and Performance</label>
+        </div>
+    </div>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
         <div class="row">
             <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
@@ -49,29 +54,37 @@
                     </select>
                 </label>
             </div>
-            <div class="large-3  medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns">
+            <div class="large-2 medium-2 small-8 small-offset-3 large-offset-0 medium-offset-0 columns ">
+                <label>Send report</label>
+                <select [(ngModel)]="user.sendReport" required>
+                    <option *ngFor="#reportValue of reportsValues" ng-value="reportValue">{{reportValue}}</option>
+                </select>
+                <!--<input  id="yes" name="report" type="radio" class="postfix" [(ngModel)]="user.sendReport" value="yes" ><label for="yes">Yes</label>
+                <input  id="no" name="report" type="radio" class="postfix" [(ngModel)]="user.sendReport" value="no" ><label for="no">No</label>
+                -->
+            </div>
+            <div class="large-3  medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end">
                 <label>Part</label>
 
-                <input id="metrics" type="checkbox" class="postfix"><label for="metrics" >Metrics</label>
-                <input id="performance" type="checkbox" class="postfix"><label for="performance" >Performance</label>
+                <input id="metrics" type="checkbox" class="postfix"  (click)="user.metrics= !user.metrics" ><label for="metrics" >Metrics</label>
+                <input id="performance" type="checkbox" class="postfix" (click)="user.performance= !user.performance"><label for="performance" >Performance</label>
                 <!--<select>
                     <option *ngFor="#partWeb of websitePartsValues" value="partWeb">{{partWeb}}</option>
                 </select>-->
             </div>
-            <div class="large-3 medium-3 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end">
-                <label>Send report</label>
-                <input id="yes" type="checkbox" class="postfix"><label for="yes">Yes</label>
-                <input id="no" type="checkbox" class="postfix"><label for="no">No</label>
-            </div>
+
         </div>
+
         <br>
         <div class="row buttonRow">
-            <div class="large-4 large-offset-5 medium-4 medium-offset-5 small-offset-4 end">
+            <div class="large-1 large-offset-5 medium-4 medium-offset-5 small-offset-4 end buttonCell">
                 <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
             </div>
         </div>
     </form>
 </div>
+Yes report: {{user.sendReport}}
+
 <div [hidden]="!submitted">
     <div class="row">
         <div class=" large-4 large-offset-2 medium-4 medium-offset-2 small-4 small-offset-2">

@@ -35,8 +35,12 @@ export class UserComponent {
         public login: string,
         public email: string,
         public type: string,
-        public websitePart: Array,
-        public sendReport: boolean,
+        public metrics:boolean,
+        public performance:boolean,
+        public sendReportY: boolean,
+        public sendReportN: boolean,
+        public sendReport: string,
+
         public password?: string, /** When a variable has a ? that means this variable is optional
                                         when we call the constructor**/
         public userId?: number,

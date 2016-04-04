@@ -10,7 +10,7 @@ import {ManageUsersService} from "../../shared/services/src/manage-users.service
     selector: 'add-user',
     moduleId: module.id,
     templateUrl: './add-user.component.html',
-    styleUrls : ['./add-user.component.css'],
+    styleUrls: ['./add-user.component.css'],
     providers: [ManageUsersService]
 })
 
@@ -25,13 +25,10 @@ export class AddUserComponent {
     public submitted;
 
     public user;
-    public userType;
-    public metrics;
-    public performance;
     public reportsY;
     public reportsN;
+    public formCorrectlyFilled;
 
-    public userManager;
     public userManager_error = false;
     public responseFromServer;
     public errorFromServer;
@@ -44,19 +41,17 @@ export class AddUserComponent {
      * all the component attributes.
      * @param _manageUserService
      */
-    constructor(private _manageUserService: ManageUsersService){
+    constructor(private _manageUserService:ManageUsersService) {
         this.submitted = false;
-        this.userTypesValues = ["Admin","Operational","Developer","Manager"];
-        this.websitePartsValues = ["Metrics","Performance"]; //TODO: TO use !
-        this.reportsValues = ["Yes","No"]; //TODO: TO use !
-        this.user= new UserComponent("", "", "",
-            "", [""], true);
-        this.dbUserTable=["user_id","full_name","email_address","type"];
-        this.metrics="";
-        this.performance="";
-        this.reportsN="";
-        this.reportsY="";
-        this.userType="";
+        this.userTypesValues = ["Admin", "Operational", "Developer", "Manager"];
+        this.websitePartsValues = ["Metrics", "Performance"]; //TODO: TO use !
+        this.reportsValues = ["Yes", "No"]; //TODO: TO use !
+        this.user = new UserComponent("", "", "",
+            "", false, false, false,false, "");
+        this.dbUserTable = ["user_id", "full_name", "email_address", "type"];
+        this.reportsN = "";
+        this.reportsY = "";
+        this.formCorrectlyFilled = true;
     }
 
     /**
@@ -64,8 +59,11 @@ export class AddUserComponent {
      * The function verifies if the form has been correctly filled. It returns true if yes, else false.
      * @returns {boolean}
      */
-    formComplete(){
-        //TODO : Fill the function.
+    formComplete() {
+        if (!this.user.metrics && !this.user.performance) {
+            this.formCorrectlyFilled = false;
+            return false;
+        }
         return true;
     }
 
@@ -74,18 +72,12 @@ export class AddUserComponent {
      * The function builds the JSON from the user information filled in the form.
      * @returns JSON
      */
-    buildUserJSON(){
-        let userJSON= {
-            full_name : this.user.fullName,
-            email_address : this.user.email,
+    buildUserJSON() {
+        let userJSON = {
+            full_name: this.user.fullName,
+            email_address: this.user.email,
             type: this.user.type.toLowerCase()
         };
-        console.log("fullname", this.user.fullname);
-        console.log("email", this.user.email);
-        console.log("optionalEmail", this.user.optionalEmail);
-        console.log("type", this.user.type.toLowerCase());
-
-
         return userJSON;
     }
 
@@ -94,9 +86,9 @@ export class AddUserComponent {
      * The function is called when user click on the submit button in the form. If the form has been correctly filled,
      * we add the new user to the database by calling the manageUser service function  "AddUser".
      */
-    onSubmit(){
-        this.submitted=true;
-        if(this.formComplete()) {
+    onSubmit() {
+        if (this.formComplete()) {
+            this.submitted = true;
             let finalUserJSON = this.buildUserJSON();
             this._manageUserService.addUser(finalUserJSON).then(
                 user => this.responseFromServer = user,
