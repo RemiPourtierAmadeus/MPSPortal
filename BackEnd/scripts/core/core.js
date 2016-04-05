@@ -27,7 +27,8 @@ var userKeys = ["user_id",
     "email_address",
     "type",
     "password",
-    "active"
+    "active",
+    "login"
 ];
 
 
@@ -49,6 +50,8 @@ var userTypes = [
  */
 var passwordLength = 8;
 
+var paramQ= "quality";
+
 /**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
@@ -59,7 +62,8 @@ module.exports = {
     connectionVariable: connectionVariable,
     userKeys: userKeys,
     userTypes: userTypes,
-    passwordLength : passwordLength
+    passwordLength : passwordLength,
+    paramQ : paramQ
 };
 
 

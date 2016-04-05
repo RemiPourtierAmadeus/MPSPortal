@@ -12,6 +12,7 @@ var connectionVariable = require('../core/core').connectionVariable;
 var userKeys = require('../core/core').userKeys;
 var userTypes = require('../core/core').userTypes;
 var passwordLength = require('../core/core').passwordLength;
+var paramQ = require('../core/core').paramQ;
 var fs = require('fs');
 var nodemailer = require('nodemailer');
 //var transporter = nodemailer.createTransport('smtps://muscsmtp3:25');
@@ -28,11 +29,23 @@ var nodemailer = require('nodemailer');
 exports.connect = function (userParams, success, fail) {
 
     /**
-     * We first build the query manually from the userKeys (an array which contains all the
-     * table attributes).
+     * We first build the query manually. We ask the user_id from the login and the password
+     * we have in userParams.
      */
-    var query = "SELECT " + userKeys[0];
-    query = query + " FROM T_User";
+    var query = "SELECT " + userKeys[0] + " FROM T_User WHERE "
+        + userKeys[6] + "='" + userParams[userKeys[6]] + "' AND "
+        + userKeys[4] + "=MD5('" + paramQ +userParams[userKeys[4]]+"')";
+
+    console.log("query for connection:" + query);
+
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
 }
 
 /**
@@ -273,4 +286,9 @@ function sendEmail(email) {
         }
         console.log('Message sent: ' + info.response);
     });
+}
+
+function authentification(dataFromUser, dataFromDB, success, fail) {
+
+
 }
