@@ -14,7 +14,9 @@ var userTypes = require('../core/core').userTypes;
 var passwordLength = require('../core/core').passwordLength;
 var fs = require('fs');
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+//var transporter = nodemailer.createTransport('smtps://muscsmtp3:25');
+
+//smtps://user%40gmail.com:pass@smtp.gmail.com
 
 
 /**
@@ -23,7 +25,7 @@ var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp
  * @param success
  * @param fail
  */
-exports.connect = function (userParams, success, fail){
+exports.connect = function (userParams, success, fail) {
 
     /**
      * We first build the query manually from the userKeys (an array which contains all the
@@ -74,9 +76,11 @@ exports.getUsers = function (success, fail) {
  * @param success
  * @param fail
  */
-function addUser(userId, userTypeValue, generatedPassword, userParams, success, fail){
-    userParams[userKeys[0]]=userId;
-    userParams[userKeys[4]]=generatedPassword;
+function addUser(userId, userTypeValue, generatedPassword, userParams, success, fail) {
+    userParams[userKeys[0]] = userId;
+    userParams[userKeys[4]] = generatedPassword;
+    //sendEmail(userParams["email_address"]);
+
     connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
         if (err) throw err;
         else {
@@ -158,15 +162,15 @@ exports.deleteUsers = function (userParams, success, fail) {
  * last added user. Then it increments the last id and return the id value.
  * @param userParams
  */
-exports.generateUserId = function(userParams, success, fail) {
-    var typeValue=getCurrentUserType(userParams);
-    var id= -1;
-    if(typeValue!== ""){
-        var query = "SELECT * FROM TR_LastUserId WHERE type='"+typeValue+"'";
+exports.generateUserId = function (userParams, success, fail) {
+    var typeValue = getCurrentUserType(userParams);
+    var id = -1;
+    if (typeValue !== "") {
+        var query = "SELECT * FROM TR_LastUserId WHERE type='" + typeValue + "'";
         connectionVariable.query(query, function (err, data) {
             if (err) throw err;
             else {
-                id= data[0].value+1;
+                id = data[0].value + 1;
                 var generatedPassword = generatePassword();
                 addUser(id, typeValue, generatedPassword, userParams, success, fail);
             }
@@ -183,9 +187,9 @@ exports.generateUserId = function(userParams, success, fail) {
  * @param userId
  * @param userType
  */
-function updateUserIdInDB(userId, userType){
-    var condition= "type = '"+userType+"'";
-    var data= "value = '"+ userId+ "'";
+function updateUserIdInDB(userId, userType) {
+    var condition = "type = '" + userType + "'";
+    var data = "value = '" + userId + "'";
     /**
      * We create the final query.
      * @type {string}
@@ -207,11 +211,11 @@ function updateUserIdInDB(userId, userType){
  * @param userParams
  * @returns {string}
  */
-function getCurrentUserType(userParams){
+function getCurrentUserType(userParams) {
     if (userParams.hasOwnProperty("type")) {
-        var typeValue=userParams.type.toLowerCase();
-        for( var i=0; i<userTypes.length; i++){
-            if(userTypes[i]===typeValue){
+        var typeValue = userParams.type.toLowerCase();
+        for (var i = 0; i < userTypes.length; i++) {
+            if (userTypes[i] === typeValue) {
                 return userTypes[i];
             }
         }
@@ -226,12 +230,12 @@ function getCurrentUserType(userParams){
  * defined in core file.
  * @returns {string}
  */
-function generatePassword(){
+function generatePassword() {
     var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
     var generatedPwd = '';
-    for (var i=0; i<passwordLength; i++) {
+    for (var i = 0; i < passwordLength; i++) {
         var rnum = Math.floor(Math.random() * chars.length);
-        generatedPwd += chars.substring(rnum,rnum+1);
+        generatedPwd += chars.substring(rnum, rnum + 1);
     }
     return generatedPwd;
 }
@@ -242,17 +246,29 @@ function generatePassword(){
  * log in to change the password.
  * @param email
  */
-function sendEmail(email){
+function sendEmail(email) {
+    console.log("into email: " + email);
+    var smtpConfig = {
+        host: 'smtp.gmail.com',//'mucsmtp3.amadeus.net',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'remi.pourtier@gmail.com',
+            pass: '%110893%'
+        } // use SSL
+    };
+    var transporter = nodemailer.createTransport(smtpConfig);
+
     var mailData = {
-        from: 'remi.pourtier@amadeus.com',
-        to: email,
+        from: 'remi.pourtier@gmail.com',
+        to: 'remi.pourtier@amadeus.com',
         subject: 'Message title',
         text: 'Plaintext version of the message',
         html: 'HTML version of the message'
     };
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
+    transporter.sendMail(mailData, function (error, info) {
+        if (error) {
             return console.log(error);
         }
         console.log('Message sent: ' + info.response);
