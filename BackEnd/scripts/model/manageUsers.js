@@ -16,6 +16,23 @@ var fs = require('fs');
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
 
+
+/**
+ * Function connect.
+ * This function verifies user inputs and then validate the connection.
+ * @param success
+ * @param fail
+ */
+exports.connect = function (userParams, success, fail){
+
+    /**
+     * We first build the query manually from the userKeys (an array which contains all the
+     * table attributes).
+     */
+    var query = "SELECT " + userKeys[0];
+    query = query + " FROM T_User";
+}
+
 /**
  * Function getUsers. This function get the list of all users.
  * @param success

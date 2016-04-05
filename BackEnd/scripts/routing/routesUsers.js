@@ -12,14 +12,37 @@ var database = require('../model/database');
 
 var userManager = require('./../model/manageUsers');
 
+/**
+ * Function post. When the front-end is requesting a post on
+* on "nothing" (on "/") we know the user would like to log in.
+* In consequence, we verifies couple login/password and return the success or the failure of the request
+* updateUsers from userManager.
+*/
+router.post('/connect', function(req,res){
+    var success = function () {
+        var finalObject = 'success';
+        //console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+    console.log("In post, data received: "+data);
+
+    userManager.connect(data, success, fail);
+});
+
 // HTTP request: POST for users
 /**
  * Function post on users. When the front-end is requesting a post on
  * users, we verifies the success of the request and then call the method
  * updateUsers from userManager.
  */
-router.post('/users', function(req,res){
-    console.log("Method post start: "+req.body);
+router.post('/', function(req,res){
     var success = function () {
         var finalObject = 'success';
         console.log(finalObject);
@@ -42,7 +65,7 @@ router.post('/users', function(req,res){
  * users, we verifies the success of the request and then call the method
  * getUsers from userManager.
  */
-router.get('/users', function (req, res) {
+router.get('/', function (req, res) {
     var success = function (objetJSON) {
         console.log(objetJSON);
         res.send(objetJSON);
@@ -61,7 +84,7 @@ router.get('/users', function (req, res) {
  * users, we verifies the success of the request and then call the method
  * addUsers from userManager.
  */
-router.put('/users', function (req, res) {
+router.put('/', function (req, res) {
     console.log(req.body);
     var success = function () {
         var finalObject = 'success';
@@ -77,8 +100,6 @@ router.put('/users', function (req, res) {
     var data = req.body;
 
     userManager.generateUserId(data, success,fail);
-    /*userManager.addUser(data,success, fail);*/
-
 });
 
 
@@ -87,7 +108,7 @@ router.put('/users', function (req, res) {
  * we verifies the success of the request and then call the method
  * deleteUsers from userManager.
  */
-router.delete('/users', function (req, res) {
+router.delete('/', function (req, res) {
     console.log(req.body);
     var success = function () {
         var finalObject = 'success';
