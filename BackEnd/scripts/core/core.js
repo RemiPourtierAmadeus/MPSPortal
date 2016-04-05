@@ -44,6 +44,12 @@ var userTypes = [
 ];
 
 /**
+ * We define the length of the generated password.
+ * @type {number}
+ */
+var passwordLength = 8;
+
+/**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
  *      var userKeys = require('../core/core').userKeys; // To have userKeys
@@ -52,7 +58,8 @@ var userTypes = [
 module.exports = {
     connectionVariable: connectionVariable,
     userKeys: userKeys,
-    userTypes: userTypes
+    userTypes: userTypes,
+    passwordLength : passwordLength
 };
 
 

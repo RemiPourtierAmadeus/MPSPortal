@@ -11,6 +11,7 @@ var mysql = require("mysql");
 var connectionVariable = require('../core/core').connectionVariable;
 var userKeys = require('../core/core').userKeys;
 var userTypes = require('../core/core').userTypes;
+var passwordLength = require('../core/core').passwordLength;
 var fs = require('fs');
 
 /**
@@ -54,8 +55,9 @@ exports.getUsers = function (success, fail) {
  * @param success
  * @param fail
  */
-function addUser(userId, userTypeValue, userParams, success, fail){
-    userParams["user_id"]=userId;
+function addUser(userId, userTypeValue, generatedPassword, userParams, success, fail){
+    userParams[userKeys[0]]=userId;
+    userParams[userKeys[4]]=generatedPassword;
     connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
         if (err) throw err;
         else {
@@ -146,10 +148,9 @@ exports.generateUserId = function(userParams, success, fail) {
             if (err) throw err;
             else {
                 id= data[0].value+1;
-                addUser(id, typeValue, userParams, success, fail);
+                var generatedPassword = generatePassword();
+                addUser(id, typeValue, generatedPassword, userParams, success, fail);
             }
-            console.log('Data received from Db:\n');
-            console.log(id);
         });
     }
     else console.log("An error has occurred: The user doesn't have a type");
@@ -197,4 +198,21 @@ function getCurrentUserType(userParams){
         }
     }
     return "";
+}
+
+/**
+ * Function generatePassword.
+ * This function generates a password from every letter of the alphabet (lower case and capital)
+ * and numbers. We randomly choose a letter or a number until the password has the password length
+ * defined in core file.
+ * @returns {string}
+ */
+function generatePassword(){
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    var generatedPwd = '';
+    for (var i=0; i<passwordLength; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        generatedPwd += chars.substring(rnum,rnum+1);
+    }
+    return generatedPwd;
 }
