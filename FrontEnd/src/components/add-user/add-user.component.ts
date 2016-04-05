@@ -80,7 +80,8 @@ export class AddUserComponent {
         let userJSON = {
             full_name: this.user.fullName,
             email_address: this.user.email,
-            type: this.user.type.toLowerCase()
+            type: this.user.type.toLowerCase(),
+            login: this.user.login
         };
         return userJSON;
     }
