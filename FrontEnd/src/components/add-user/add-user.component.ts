@@ -95,6 +95,7 @@ export class AddUserComponent {
         if (this.formComplete()) {
             this.submitted = true;
             let finalUserJSON = this.buildUserJSON();
+            console.log("json send to the db: "+finalUserJSON);
             this._manageUserService.addUser(finalUserJSON).then(
                 user => this.responseFromServer = user,
                 error => this.errorFromServer = <any> error);
