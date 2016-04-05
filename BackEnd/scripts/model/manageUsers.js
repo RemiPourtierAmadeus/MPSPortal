@@ -13,6 +13,8 @@ var userKeys = require('../core/core').userKeys;
 var userTypes = require('../core/core').userTypes;
 var passwordLength = require('../core/core').passwordLength;
 var fs = require('fs');
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
 
 /**
  * Function getUsers. This function get the list of all users.
@@ -215,4 +217,27 @@ function generatePassword(){
         generatedPwd += chars.substring(rnum,rnum+1);
     }
     return generatedPwd;
+}
+
+/**
+ * Function sendEmail.
+ * This function sends an email to the new user with its generated password and ask him to
+ * log in to change the password.
+ * @param email
+ */
+function sendEmail(email){
+    var mailData = {
+        from: 'remi.pourtier@amadeus.com',
+        to: email,
+        subject: 'Message title',
+        text: 'Plaintext version of the message',
+        html: 'HTML version of the message'
+    };
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
 }
