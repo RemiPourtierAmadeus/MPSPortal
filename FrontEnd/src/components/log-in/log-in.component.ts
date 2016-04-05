@@ -10,4 +10,6 @@ import {Component} from 'angular2/core';
     templateUrl: './log-in.component.html',
     styleUrls : ['./log-in.component.css']
 })
-export class LogInComponent { }
+export class LogInComponent {
+
+}

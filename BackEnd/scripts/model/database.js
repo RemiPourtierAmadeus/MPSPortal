@@ -1,4 +1,4 @@
-var connectionVariable=require('../core/core.js').connectionVariable;
+var connectionVariable=require('../core/config.js').connectionVariable;
 var mysql = require("mysql");
 
 console.log("connection variable"+connectionVariable);

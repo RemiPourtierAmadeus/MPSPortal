@@ -8,7 +8,7 @@
  */
 
 var mysql = require("mysql");
-var connectionVariable = require('../core/core').connectionVariable;
+var connectionVariable = require('../core/config').connectionVariable;
 var userKeys = require('../core/core').userKeys;
 var userTypes = require('../core/core').userTypes;
 var passwordLength = require('../core/core').passwordLength;
@@ -27,7 +27,6 @@ var nodemailer = require('nodemailer');
  * @param fail
  */
 exports.connect = function (userParams, success, fail) {
-
     /**
      * We first build the query manually. We ask the user_id from the login and the password
      * we have in userParams.
