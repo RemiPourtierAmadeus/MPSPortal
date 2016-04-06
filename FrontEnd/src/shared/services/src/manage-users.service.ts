@@ -14,6 +14,7 @@ export class ManageUsersService {
 
     private users;
     private _serverLink ='http://ncevc-04296:3500/users';
+    private extensionLink=["/connect"];
 
     /**
      * Constructor
@@ -39,13 +40,26 @@ export class ManageUsersService {
      * @returns {Promise<*>|Promise<T>}
      */
     addUser(userJSON): Promise<UserComponent>  {
-        let tmp={user_id : "13", full_name : "Pierre"};
         let body = JSON.stringify( userJSON );
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        console.log("User data in addUSer service: "+body);
         return this.http.put(this._serverLink, body, options)
+            .toPromise()
+            .then(res=> <UserComponent> res.json().data)
+            .catch(this.handleError);
+    }
+
+    connect(userJSON): Promise<UserComponent>{
+        console.log("je rentre dans connect manage user");
+        let body = JSON.stringify( userJSON );
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        let path= this._serverLink+this.extensionLink[0];
+        console.log("Path: "+ path);
+        console.log("User params: " + userJSON);
+        return this.http.post(path, body, options)
             .toPromise()
             .then(res=> <UserComponent> res.json().data)
             .catch(this.handleError);

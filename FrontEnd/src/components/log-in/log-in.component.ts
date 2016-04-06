@@ -50,9 +50,10 @@ export class LogInComponent {
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
+        console.log("Into on submit");
         this.submitted = true;
         let finalUserJSON = this.buildUserJSON();
-        this._manageUserService.addUser(finalUserJSON).then(
+        this._manageUserService.connect(finalUserJSON).then(
             user => this.responseFromServer = user,
             error => this.errorFromServer = <any> error);
 

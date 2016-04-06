@@ -3,16 +3,16 @@
         <div class="login-box">
             <div class="row">
                 <div class="large-12 columns">
-                    <form>
+                    <form (ngSubmit)="onSubmit()">
                         <label> <h3>Login</h3></label>
                         <div class="row">
                             <div class="large-12 columns">
-                                <input type="text" name="login" placeholder="Username"/>
+                                <input type="text" name="login" [(ngModel)]="user.login" placeholder="Username" required/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="large-12 columns">
-                                <input type="password" name="password" placeholder="Password"/>
+                                <input type="password" name="password" [(ngModel)]="user.password"  placeholder="Password" required/>
                             </div>
                         </div>
                         <div class="row">
@@ -26,3 +26,6 @@
         </div>
     </div>
 </div>
+
+User login: {{user.login}}
+User password: {{user.password}}
