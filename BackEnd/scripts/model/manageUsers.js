@@ -67,8 +67,9 @@ exports.getUsers = function (success, fail) {
             query = query + ", " + userKeys[i];
         }
     }
-    query = query + " FROM T_User";
+    query = query + " FROM T_User "; //WHERE login='remi.pourtier' AND password=MD5('TR4tQ0DL')
 
+    console.log("query for getUsers:" + query);
     /**
      * We run the query
      */
@@ -90,10 +91,38 @@ exports.getUsers = function (success, fail) {
  */
 function addUser(userId, userTypeValue, generatedPassword, userParams, success, fail) {
     userParams[userKeys[0]] = userId;
-    userParams[userKeys[4]] = generatedPassword;
+    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";
+    //userParams[userKeys[6]] = "MD5('"+userParams[userKeys[6]]+"')";
     //sendEmail(userParams["email_address"]);
 
-    connectionVariable.query('INSERT INTO T_User SET ?', userParams, function (err, data) {
+    var query="INSERT INTO T_User ";
+    var attributes="(";
+    var values="(";
+    var cpt=0; //Will represent the number of field in parameters.
+    for(var i=0; i<userKeys.length;i++){
+        if (userParams.hasOwnProperty(userKeys[i])) {
+            if (cpt == 0) {
+                attributes = attributes+ userKeys[i];
+                values= values+"'"+ userParams[userKeys[i]]+"'";
+            }
+            else {
+                if(i!=4){
+                    values= values+", "+"'"+userParams[userKeys[i]]+"'";
+                }
+                else{
+                    values= values+", "+userParams[userKeys[i]];
+                }
+                attributes = attributes+", "+ userKeys[i];
+            }
+            cpt++;
+        }
+    }
+    attributes=attributes+")";
+    values=values+")";
+    query= query + attributes+" VALUES "+values;
+    console.log("query for adding user: "+query);
+
+    connectionVariable.query( query, function (err, data) {
         if (err) throw err;
         else {
             success(data);
@@ -119,14 +148,16 @@ exports.updateUsers = function (userParams, success, fail) {
          * We start building the query. We get back all data we have from the http request.
          * Then we add the attributes to change into the parameters of the query : paramsInQuery.
          */
+        var cpt=0;
         for (var i = 1; i < userKeys.length; i++) {
             if (userParams.hasOwnProperty(userKeys[i])) {
-                if (i == 1) {
+                if (cpt == 0) {
                     paramsInQuery = userKeys[i] + "='" + userParams[userKeys[i]] + "'";
                 }
                 else {
                     paramsInQuery += ", " + userKeys[i] + "='" + userParams[userKeys[i]] + "'";
                 }
+                cpt++;
             }
         }
         /**

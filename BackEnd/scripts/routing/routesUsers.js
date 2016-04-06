@@ -15,18 +15,20 @@ var userManager = require('./../model/manageUsers');
 /**
  * Function post. When the front-end is requesting a post on
 * on "nothing" (on "/") we know the user would like to log in.
-* In consequence, we verifies couple login/password and return the success or the failure of the request
+* In consequence, we verify the couple login/password and return the success or the failure of the request
 * updateUsers from userManager.
 */
 router.post('/connect', function(req,res){
     var success = function () {
-        var finalObject = {success: 'true'};
+        var finalObject = [{success: 'true'}];
         //console.log(finalObject);
         res.send(finalObject);
     };
 
     var fail = function(){
-        res.sendStatus(500);
+        var finalObject = [{success: 'false'}];
+        res.send(finalObject);
+        //res.sendStatus(500);
     };
 
     // Grab data from http request
