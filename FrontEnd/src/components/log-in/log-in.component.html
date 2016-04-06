@@ -1,31 +1,37 @@
-<div class="row">
-    <div class="large-3 large-centered medium-3 medium-centered small-3 small-centeredcolumns">
-        <div class="login-box">
-            <div class="row">
-                <div class="large-12 columns">
-                    <form (ngSubmit)="onSubmit()">
-                        <label> <h3>Login</h3></label>
-                        <div class="row">
-                            <div class="large-12 columns">
-                                <input type="text" name="login" [(ngModel)]="user.login" placeholder="Username" required/>
+<div [hidden]="submitted">
+    <div class="row">
+        <div class="large-3 large-centered medium-3 medium-centered small-3 small-centeredcolumns">
+            <div class="login-box">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <form (ngSubmit)="onSubmit()">
+                            <label><h3>Login</h3></label>
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <input type="text" name="login" [(ngModel)]="user.login" placeholder="Username"
+                                           required/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="large-12 columns">
-                                <input type="password" name="password" [(ngModel)]="user.password"  placeholder="Password" required/>
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <input type="password" name="password" [(ngModel)]="user.password"
+                                           placeholder="Password" required/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="large-12 large-centered columns">
-                                <input type="submit" class="button expand" value="Log In"/>
+                            <div class="row">
+                                <div class="large-12 large-centered columns">
+                                    <input type="submit" class="button expand" value="Log In"/>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<div [hidden]="!submitted">
+    Response: {{responseFromServer}}
+</div>
 User login: {{user.login}}
 User password: {{user.password}}

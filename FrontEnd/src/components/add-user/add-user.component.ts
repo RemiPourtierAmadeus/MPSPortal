@@ -126,6 +126,7 @@ export class AddUserComponent {
             this._manageUserService.addUser(finalUserJSON).then(
                 user => this.responseFromServer = user,
                 error => this.errorFromServer = <any> error);
+            console.log("response from server: "+ this.responseFromServer);
         }
     }
 }

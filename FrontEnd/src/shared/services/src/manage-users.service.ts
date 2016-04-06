@@ -50,6 +50,12 @@ export class ManageUsersService {
             .catch(this.handleError);
     }
 
+    /**
+     * Function connect.
+     * This function verifies information given by user with a post HTTP request.
+     * @param userJSON
+     * @returns {Promise<UserComponent>|Promise<*>|Promise<T>}
+     */
     connect(userJSON): Promise<UserComponent>{
         console.log("je rentre dans connect manage user");
         let body = JSON.stringify( userJSON );
@@ -74,7 +80,8 @@ export class ManageUsersService {
     private handleError (error: Response) {
         // in a real world app, we may send the error to some remote logging infrastructure
         // instead of just logging it to the console
+        console.log("error la");
         console.error(error);
-        return Promise.reject(error.message || error.json().error || 'Server error');
+        return Promise.reject(error|| error.json().error || 'Server error');
     }
 }

@@ -20,7 +20,7 @@ var userManager = require('./../model/manageUsers');
 */
 router.post('/connect', function(req,res){
     var success = function () {
-        var finalObject = 'success';
+        var finalObject = {success: 'true'};
         //console.log(finalObject);
         res.send(finalObject);
     };

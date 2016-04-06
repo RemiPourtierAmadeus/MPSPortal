@@ -41,7 +41,14 @@ export class LogInComponent {
             password: this.user.password,
             login: this.user.login
         };
+
+        console.log("user json: "+userJSON["password"]);
         return userJSON;
+    }
+
+    redirect(responseFromDB){
+        console.log("into redirect, response: "+responseFromDB);
+        this.submitted = true;
     }
 
     /**
@@ -50,11 +57,11 @@ export class LogInComponent {
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
-        console.log("Into on submit");
-        this.submitted = true;
+        console.log("Into on submit");//TR4tQ0DL
+
         let finalUserJSON = this.buildUserJSON();
         this._manageUserService.connect(finalUserJSON).then(
-            user => this.responseFromServer = user,
+            user => this.redirect(user),
             error => this.errorFromServer = <any> error);
 
     }
