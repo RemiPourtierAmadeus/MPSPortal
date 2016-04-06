@@ -19,10 +19,9 @@ var userManager = require('./../model/manageUsers');
 * updateUsers from userManager.
 */
 router.post('/connect', function(req,res){
-    var success = function () {
-        var finalObject = [{success: 'true'}];
-        //console.log(finalObject);
-        res.send(finalObject);
+    var success = function (objetJSON) {
+        console.log(objetJSON);
+        res.send(objetJSON);
     };
 
     var fail = function(){

@@ -47,7 +47,7 @@ export class LogInComponent {
     }
 
     redirect(responseFromDB){
-        console.log("into redirect, response: "+responseFromDB);
+        console.log("into redirect, response: "+responseFromDB["user_id"]);
         this.submitted = true;
     }
 
