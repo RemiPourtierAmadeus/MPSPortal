@@ -65,14 +65,14 @@ export class ManageUsersService {
         let path= this._serverLink+this.extensionLink[0];
         console.log("Path: "+ path);
         console.log("User params: " + userJSON);
-        /*return this.http.post(path, body, options)
-            .toPromise()
-            .then(res=> <UserComponent> res.json())
-            .catch(this.handleError);*/
         return this.http.post(path, body, options)
             .toPromise()
-            .then(res => <UserComponent[]> res.json())
+            .then(res=> <UserComponent> res.json())
             .catch(this.handleError);
+        /*return this.http.post(path, body, options)
+            .toPromise()
+            .then(res => <UserComponent> res.json())
+            .catch(this.handleError);*/
     }
 
     /**

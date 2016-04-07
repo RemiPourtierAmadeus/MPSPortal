@@ -47,8 +47,10 @@ export class LogInComponent {
     }
 
     redirect(responseFromDB){
-        console.log("into redirect, response: "+responseFromDB["user_id"]);
+        console.log("into redirect, response: "+responseFromDB[0].user_id);
+        this.user=responseFromDB[0];
         this.submitted = true;
+
     }
 
     /**
@@ -61,7 +63,7 @@ export class LogInComponent {
 
         let finalUserJSON = this.buildUserJSON();
         this._manageUserService.connect(finalUserJSON).then(
-            user => this.redirect(user),
+            user => this.redirect(user), //this.user=user,
             error => this.errorFromServer = <any> error);
 
     }

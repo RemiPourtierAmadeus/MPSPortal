@@ -40,6 +40,16 @@ exports.connect = function (userParams, success, fail) {
     connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
+            /**
+             * After the error test, we would like to know if the query returns a value
+             * If the query succeed (paramaters match), we just send the user id as confirmation
+             * Else we create our own JSON with the value -1 which means that the user has not
+             * been found.
+             */
+            if (typeof data[0] == 'undefined' && data[0]== null){
+                console.log("User has not been found");
+                data=[{"user_id":-1}];
+            }
             success(data);
         }
         console.log('Data received from Db:\n');
