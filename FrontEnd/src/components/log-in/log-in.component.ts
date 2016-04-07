@@ -29,7 +29,7 @@ export class LogInComponent {
      * @param _manageUserService
      */
     constructor(private _manageUserService:ManageUsersService) {
-        this.connectionFailed=true;
+        this.connectionFailed=false;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }

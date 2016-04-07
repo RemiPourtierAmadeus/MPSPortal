@@ -17,7 +17,8 @@ var userKeys = ["user_id",
     "type",
     "password",
     "active",
-    "login"
+    "login",
+    "generatedPwd"
 ];
 
 

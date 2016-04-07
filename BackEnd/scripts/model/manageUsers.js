@@ -100,10 +100,10 @@ exports.getUsers = function (success, fail) {
  * @param fail
  */
 function addUser(userId, userTypeValue, generatedPassword, userParams, success, fail) {
-    userParams[userKeys[0]] = userId;
-    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";
-    //userParams[userKeys[6]] = "MD5('"+userParams[userKeys[6]]+"')";
-    //sendEmail(userParams["email_address"]);
+    userParams[userKeys[0]] = userId;/** set user id */
+    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";/** Password : encoding  */
+    userParams[userKeys[5]] = 1; /** Active : 1 => yes */
+    userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
 
     var query="INSERT INTO T_User ";
     var attributes="(";
@@ -326,9 +326,4 @@ function sendEmail(email) {
         }
         console.log('Message sent: ' + info.response);
     });
-}
-
-function authentification(dataFromUser, dataFromDB, success, fail) {
-
-
 }
