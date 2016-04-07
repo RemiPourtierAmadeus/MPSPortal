@@ -13,12 +13,18 @@ import {UserComponent} from "../user/user.component";
     styleUrls: ['./log-in.component.css'],
     providers: [ManageUsersService]
 })
+
 export class LogInComponent {
 
     public user;
     public submitted;
     public responseFromServer;
     public errorFromServer;
+
+    private emailAddress;
+    private subjectEmail;
+    private emailCopy;
+    public emailContent;
 
     public connectionFailed;
 
@@ -29,6 +35,10 @@ export class LogInComponent {
      * @param _manageUserService
      */
     constructor(private _manageUserService:ManageUsersService) {
+        this.emailAddress="mailto:jdoucet@amadeus.com";
+        this.subjectEmail="?subject=MPS Metrics and Performance";
+        this.emailCopy="&cc=jdoucet@amadeus.com";
+        this.emailContent=this.emailAddress+this.subjectEmail+this.emailCopy;
         this.connectionFailed=false;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
@@ -59,7 +69,6 @@ export class LogInComponent {
      * @param responseFromDB
      */
     redirect(responseFromDB){
-        console.log("into redirect, response: "+responseFromDB[0].user_id);
         this.user=responseFromDB[0];
         if(this.user.user_id==-1){
             this.connectionFailed=true;
@@ -67,21 +76,20 @@ export class LogInComponent {
         else{
             this.submitted = true;
         }
-
     }
 
+    displayPassword(){
+
+    }
     /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. Then,
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
-        console.log("Into on submit");//TR4tQ0DL
-
         let finalUserJSON = this.buildUserJSON();
         this._manageUserService.connect(finalUserJSON).then(
             user => this.redirect(user), //this.user=user,
             error => this.errorFromServer = <any> error);
-
     }
 }

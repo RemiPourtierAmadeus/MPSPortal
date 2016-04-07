@@ -2,6 +2,7 @@
  * File core. It contains all global variables we need for the
  * back end.
  * @type {exports|module.exports}
+ *
  */
 
 
