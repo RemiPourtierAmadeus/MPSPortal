@@ -20,6 +20,8 @@ export class LogInComponent {
     public responseFromServer;
     public errorFromServer;
 
+    public connectionFailed;
+
     /**
      * Constructor LogInComponent.
      * We inject ManageUserService into the component thanks to the parameters we give here.
@@ -27,6 +29,7 @@ export class LogInComponent {
      * @param _manageUserService
      */
     constructor(private _manageUserService:ManageUsersService) {
+        this.connectionFailed=true;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
@@ -46,10 +49,24 @@ export class LogInComponent {
         return userJSON;
     }
 
+    /**
+     * Function redirect.
+     * This function will check the value of the user id we get back from the database.
+     * If the value is -1: the username/password is incorrect
+     * If the value is bigger or equals than 0: the username/password is correct
+     * We redirect to the home page while the connection succeed else we display the
+     * connection failure to inform user.
+     * @param responseFromDB
+     */
     redirect(responseFromDB){
         console.log("into redirect, response: "+responseFromDB[0].user_id);
         this.user=responseFromDB[0];
-        this.submitted = true;
+        if(this.user.user_id==-1){
+            this.connectionFailed=true;
+        }
+        else{
+            this.submitted = true;
+        }
 
     }
 
