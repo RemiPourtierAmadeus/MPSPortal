@@ -12,18 +12,17 @@ import {LogInComponent} from "../log-in/log-in.component";
     styleUrls : ['./connection-content.component.css'],
     directives: [LogInComponent]
 })
+
 export class ConnectionContentComponent {
 
-    public errorMessage;
-    public errorRaised;
-    public submitted;
-    public connectionFailed;
+    public modelForChild;
 
     constructor(){
-        this.submitted=false;
-        this.connectionFailed=false;
-        this.errorMessage="";
-        this.errorRaised=false;
+        this.modelForChild={errorMessage: '', errorRaised: false};
+    }
+
+    handleChildEvent(arg){
+
     }
 
 }

@@ -37,7 +37,7 @@ export class LogInComponent{
      */
     constructor(private _manageUserService:ManageUsersService) {
         //super();
-        this.emailAddress="mailto:jdoucet@amadeus.com";
+        this.emailAddress="mailto:GBS-GPA-SCS-MPS-Services@amadeus.com";
         this.subjectEmail="?subject=MPS Metrics and Performance";
         this.emailCopy="&cc=jdoucet@amadeus.com";
         this.emailContent=this.emailAddress+this.subjectEmail+this.emailCopy;
