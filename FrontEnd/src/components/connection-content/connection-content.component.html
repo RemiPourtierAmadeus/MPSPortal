@@ -1,1 +1,20 @@
-<h1> Hey, I'm connectionContentComponent !</h1>
+<div [hidden]="submitted">
+    <div class="row">
+        <div [hidden]="!connectionFailed" class="loginError large-5 large-centered medium-6 medium-centered small-7 small-centered columns">
+            The couple username/password is not correct.
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-4 large-centered medium-5 medium-centered small-6 small-centered columns">
+            <div class="login-box">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <log-in></log-in>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div [hidden]="!submitted">
+</div>

@@ -11,6 +11,7 @@ import {Http} from "angular2/http";
 import {HeaderComponent} from "../header/header.component";
 import {AddUserComponent} from "../add-user/add-user.component";
 import {UserListComponent} from "../user-list/user-list.component";
+import {ConnectionContentComponent} from "../connection-content/connection-content.component";
 
 
 /**
@@ -42,7 +43,7 @@ import {UserListComponent} from "../user-list/user-list.component";
     {path: '/news', name: 'News', component: NewsComponent},
     {path: '/add-user', name: 'AddUser', component: AddUserComponent},
     {path: '/user-list', name: 'UserList', component: UserListComponent},
-    {path: '/log-in', name: 'LogIn', component: LogInComponent},
+    {path: '/connection-content', name: 'ConnectionContent', component: ConnectionContentComponent},
     {path: '/log-out', name: 'LogOut', component: LogOutComponent}
 ])
 
@@ -51,19 +52,5 @@ export class AppComponent {
     public userManager_error = false;
     public message="Doesn't work";
 
-    constructor(private _manageUserService: ManageUsersService){
-
-       /* this._manageUserService.getUsers().subscribe(
-            data => {
-                this.userManager = data[0];
-            },
-            err => { this.userManager_error = true },
-            () => console.log('done')
-        );*/
-
-    }
-
-    /*ngOnInit(){
-        this.userManager= this._manageUserService.getUsers();
-    }*/
+    constructor(private _manageUserService: ManageUsersService){ }
 }

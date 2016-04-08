@@ -1,47 +1,27 @@
-<div [hidden]="submitted">
+<form (ngSubmit)="onSubmit()">
+    <label><h3>Login</h3></label>
     <div class="row">
-        <div [hidden]="!connectionFailed" class="loginError large-5 large-centered medium-6 medium-centered small-7 small-centered columns">
-            The couple username/password is not correct.
+        <div class="large-12 columns">
+            <input type="text" name="login" [(ngModel)]="user.login"
+                   placeholder="Username"
+                   required/>
         </div>
     </div>
     <div class="row">
-        <div class="large-4 large-centered medium-5 medium-centered small-6 small-centered columns">
-            <div class="login-box">
-                <div class="row">
-                    <div class="large-12 columns">
-                        <form (ngSubmit)="onSubmit()">
-                            <label><h3>Login</h3></label>
-                            <div class="row">
-                                <div class="large-12 columns">
-                                    <input type="text" name="login" [(ngModel)]="user.login"
-                                           placeholder="Username"
-                                           required/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="large-12 columns">
-                                    <input type="password" name="password" [(ngModel)]="user.password"
-                                           placeholder="Password" required/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="large-6  columns">
-                                    <input type="submit" class="button expand" value="Log In"/>
-                                </div>
-                                <div class="large-6 large-centered columns">
-                                    <div class="forgotContact text-right">
-                                        <a (click)="displayPassword">Forgot password </a><br>
-                                        <a href="{{emailContent}}"> Contact us </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <div class="large-12 columns">
+            <input type="password" name="password" [(ngModel)]="user.password"
+                   placeholder="Password" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6  columns">
+            <input type="submit" class="button expand" value="Log In"/>
+        </div>
+        <div class="large-6 large-centered columns">
+            <div class="forgotContact text-right">
+                <a (click)="displayPassword">Forgot password </a><br>
+                <a href="{{emailContent}}"> Contact us </a>
             </div>
         </div>
     </div>
-</div>
-<div [hidden]="!submitted">
-    Response: {{user.user_id}}
-</div>
+</form>

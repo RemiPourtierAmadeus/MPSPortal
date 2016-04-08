@@ -5,6 +5,7 @@
 import {Component} from 'angular2/core';
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
 import {UserComponent} from "../user/user.component";
+import {ConnectionContentComponent} from "../connection-content/connection-content.component";
 
 @Component({
     selector: 'log-in',
@@ -14,7 +15,7 @@ import {UserComponent} from "../user/user.component";
     providers: [ManageUsersService]
 })
 
-export class LogInComponent {
+export class LogInComponent{
 
     public user;
     public submitted;
@@ -35,6 +36,7 @@ export class LogInComponent {
      * @param _manageUserService
      */
     constructor(private _manageUserService:ManageUsersService) {
+        //super();
         this.emailAddress="mailto:jdoucet@amadeus.com";
         this.subjectEmail="?subject=MPS Metrics and Performance";
         this.emailCopy="&cc=jdoucet@amadeus.com";
