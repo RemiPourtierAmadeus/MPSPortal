@@ -5,16 +5,16 @@
         <img class="backgroundConnection"
              src="../../assets/connection/connection_background.png">
     </div>-->
-    <div class="contentForConnection" >
-
+    <div class="contentForConnection">
         <div class="row">
-            <div [hidden]="!connectionFailed"
-                 class="loginError large-4 large-offset-8 medium-6 medium-centered small-7 small-centered columns">
-                {{errorMessage}}
+            <div class="globe large-6 medium-5 columns">
+                <img src="../../assets/connection/globe.png">
             </div>
-        </div>
-        <div class="row">
-            <div class="large-4 large-offset-8 medium-5 medium-centered small-9 small-centered columns">
+            <div class="loginContent large-5 medium-5 small-9 columns">
+                <div [hidden]="!connectionFailed"
+                     class="loginError large-4 large-offset-8 medium-6 medium-centered small-7 small-centered columns">
+                    {{errorMessage}}
+                </div>
                 <div class="login-box">
                     <div class="row">
                         <div class="large-12 columns">
@@ -23,6 +23,8 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>

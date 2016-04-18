@@ -5,15 +5,15 @@
   background-size: 100%;
   background-repeat: no-repeat;
   width:100%;
-  height:100%;}
-
-.contentForConnection{
-  padding-top: 20%;
+  height:100%;
 }
 
-.imageBackground{
-  z-index:2;
-  position:relative;
+.contentForConnection{
+  padding-top: 15%;
+}
+
+.loginContent{
+  padding-top:10%;
 }
 
 .login-box {
@@ -25,6 +25,7 @@
 }
 
 .loginError{
+  width:100%;
   text-align: center;
   background: rgba(169,68,66,0.8);
   color:white;
@@ -34,4 +35,5 @@
   padding-top:10px;
   padding-bottom:10px;
   margin-top: 40px;
+  margin-left:0px;
 }
