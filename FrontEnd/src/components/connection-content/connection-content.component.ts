@@ -21,8 +21,6 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
     }
 
-    handleChildEvent(arg){
-
-    }
+    handleChildEvent(arg){}
 
 }
