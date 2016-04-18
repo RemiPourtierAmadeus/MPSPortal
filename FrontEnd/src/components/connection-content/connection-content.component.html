@@ -1,15 +1,15 @@
 <div [hidden]="submitted">
     <div class="row">
         <div [hidden]="!connectionFailed" class="loginError large-5 large-centered medium-6 medium-centered small-7 small-centered columns">
-            The couple username/password is not correct.
+            {{errorMessage}}
         </div>
     </div>
     <div class="row">
-        <div class="large-4 large-centered medium-5 medium-centered small-6 small-centered columns">
+        <div class="large-4 large-centered medium-5 medium-centered small-9 small-centered columns">
             <div class="login-box">
                 <div class="row">
                     <div class="large-12 columns">
-                        <log-in></log-in>
+                        <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
                     </div>
                 </div>
             </div>

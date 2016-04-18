@@ -2,10 +2,11 @@
  * Component LogInComponent
  */
 
-import {Component} from 'angular2/core';
+import {Component, EventEmitter} from 'angular2/core';
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
 import {UserComponent} from "../user/user.component";
 import {ConnectionContentComponent} from "../connection-content/connection-content.component";
+import {Output} from "angular2/core";
 
 @Component({
     selector: 'log-in',
@@ -29,6 +30,7 @@ export class LogInComponent{
 
     public connectionFailed;
 
+    @Output() sendErrorMessage= new EventEmitter<string>();
     /**
      * Constructor LogInComponent.
      * We inject ManageUserService into the component thanks to the parameters we give here.
@@ -74,6 +76,7 @@ export class LogInComponent{
         this.user=responseFromDB[0];
         if(this.user.user_id==-1){
             this.connectionFailed=true;
+            this.sendErrorMessage.emit("The couple user/password is not correct");
         }
         else{
             this.submitted = true;

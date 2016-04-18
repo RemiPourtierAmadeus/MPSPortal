@@ -16,11 +16,21 @@ import {LogInComponent} from "../log-in/log-in.component";
 export class ConnectionContentComponent {
 
     public modelForChild;
+    public connectionFailed;
+    public errorMessage;
 
     constructor(){
         this.modelForChild={errorMessage: '', errorRaised: false};
+        this.connectionFailed=false;
+        this.errorMessage="";
     }
 
     handleChildEvent(arg){}
 
+    sendErrorMessage(message:string){
+        if(message.length>0){
+            this.connectionFailed=true;
+            this.errorMessage=message;
+        }
+    }
 }
