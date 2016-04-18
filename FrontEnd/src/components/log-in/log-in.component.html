@@ -2,15 +2,29 @@
     <label><h3>Login</h3></label>
     <div class="row">
         <div class="large-12 columns">
-            <input type="text" name="login" [(ngModel)]="user.login"
-                   placeholder="Username"
-                   required/>
+            <div class="row iconAndInput">
+                <div class="iconContent large-1  columns" data-equalizer-watch >
+                    <i class="fa fa-user" ></i>
+                </div>
+                <div class="inputContent large-11 columns end" data-equalizer-watch>
+                    <input type="text" name="login" [(ngModel)]="user.login"
+                           placeholder="Username"
+                           required/>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="large-12 columns">
-            <input type="password" name="password" [(ngModel)]="user.password"
-                   placeholder="Password" required/>
+        <div class="large-12 columns ">
+            <div class="row iconAndInput" data-equalizer data-equalize-on="large" >
+                <div class="iconContent large-1  columns" data-equalizer-watch >
+                    <i class="fa fa-key" ></i>
+                </div>
+                <div class="inputContent large-11 columns end" data-equalizer-watch>
+                    <input type="password" name="password" [(ngModel)]="user.password"
+                           placeholder="Password" required/>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
