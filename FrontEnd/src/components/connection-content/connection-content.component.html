@@ -1,20 +1,28 @@
-<div [hidden]="submitted">
-    <div class="row">
-        <div [hidden]="!connectionFailed" class="loginError large-5 large-centered medium-6 medium-centered small-7 small-centered columns">
-            {{errorMessage}}
+<div class="connectionContent">
+    <!--<img data-interchange="[./connection_background.png,(large)]">
+
+     <div class="imageBackground">
+        <img class="backgroundConnection"
+             src="../../assets/connection/connection_background.png">
+    </div>-->
+    <div class="contentForConnection" >
+
+        <div class="row">
+            <div [hidden]="!connectionFailed"
+                 class="loginError large-4 large-offset-8 medium-6 medium-centered small-7 small-centered columns">
+                {{errorMessage}}
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="large-4 large-centered medium-5 medium-centered small-9 small-centered columns">
-            <div class="login-box">
-                <div class="row">
-                    <div class="large-12 columns">
-                        <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+        <div class="row">
+            <div class="large-4 large-offset-8 medium-5 medium-centered small-9 small-centered columns">
+                <div class="login-box">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div [hidden]="!submitted">
 </div>

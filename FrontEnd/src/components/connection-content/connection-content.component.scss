@@ -1,4 +1,21 @@
 
+
+.connectionContent{
+  background:url("../../assets/connection/connection_background.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;}
+
+.contentForConnection{
+  padding-top: 20%;
+}
+
+.imageBackground{
+  z-index:2;
+  position:relative;
+}
+
 .login-box {
   background: #fff;
   border: 1px solid #ddd;
