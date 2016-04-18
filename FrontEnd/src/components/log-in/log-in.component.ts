@@ -76,16 +76,13 @@ export class LogInComponent{
         this.user=responseFromDB[0];
         if(this.user.user_id==-1){
             this.connectionFailed=true;
-            this.sendErrorMessage.emit("The couple user/password is not correct");
+            this.sendErrorMessage.emit("The couple username/password is not correct.");
         }
         else{
             this.submitted = true;
         }
     }
 
-    displayPassword(){
-
-    }
     /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. Then,
@@ -96,5 +93,5 @@ export class LogInComponent{
         this._manageUserService.connect(finalUserJSON).then(
             user => this.redirect(user), //this.user=user,
             error => this.errorFromServer = <any> error);
-    }
+    }//z36KF0zp
 }

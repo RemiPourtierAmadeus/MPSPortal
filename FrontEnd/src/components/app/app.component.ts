@@ -26,6 +26,7 @@ import {ConnectionContentComponent} from "../connection-content/connection-conte
     directives: [
         ROUTER_DIRECTIVES,
         HeaderComponent,
+        ConnectionContentComponent
     ],
     providers: [ManageUsersService]
 })
@@ -50,7 +51,10 @@ import {ConnectionContentComponent} from "../connection-content/connection-conte
 export class AppComponent {
     public userManager;
     public userManager_error = false;
+    public userIsNotConnected;
     public message="Doesn't work";
 
-    constructor(private _manageUserService: ManageUsersService){ }
+    constructor(private _manageUserService: ManageUsersService){
+        this.userIsNotConnected=true;
+    }
 }

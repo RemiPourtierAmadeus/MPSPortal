@@ -27,6 +27,13 @@ export class ConnectionContentComponent {
 
     handleChildEvent(arg){}
 
+    /**
+     * Function sendErrorMessage.
+     * We run this function while an event from logInComponent rise. This event contains
+     * an error message. So we update the front-end by confirming the connection Failed and then
+     * we update the error message content.
+     * @param message
+     */
     sendErrorMessage(message:string){
         if(message.length>0){
             this.connectionFailed=true;

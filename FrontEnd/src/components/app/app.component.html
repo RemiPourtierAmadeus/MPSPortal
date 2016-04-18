@@ -1,15 +1,21 @@
-<div class="header">
-    <header></header>
+<div *ngIf="userIsNotConnected">
+    <connection-content></connection-content>
 </div>
-<!--
-    Tag router-outlet: It will display the content of the selected component. If user clicks on
-    Performance, it will display the PerformanceComponent.
--->
-<div class="row">
-    <router-outlet></router-outlet>
-</div>
+<div *ngIf="!userIsNotConnected">
 
-<div *ngIf="userManager_error">An error occurred while loading the users!</div>
-<ul>
-    <li *ngFor="#user of userManager">{{user.full_name}}</li>
-</ul>
+    <div class="header">
+        <header></header>
+    </div>
+    <!--
+        Tag router-outlet: It will display the content of the selected component. If user clicks on
+        Performance, it will display the PerformanceComponent.
+    -->
+    <div class="row">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div *ngIf="userManager_error">An error occurred while loading the users!</div>
+    <ul>
+        <li *ngFor="#user of userManager">{{user.full_name}}</li>
+    </ul>
+</div>
