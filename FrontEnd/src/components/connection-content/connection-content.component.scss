@@ -95,9 +95,9 @@
 
 
 /**
-* CSS For phone
+* CSS For phone -no landscape
 **/
-@media only screen and (max-width: 40em){
+@media only screen and (max-width: 40em) and (min-height: 500px){
 
   h1{
     font-size: 20px;
@@ -125,6 +125,42 @@
     z-index:0;
   }
 
+
+  .login-box {
+    background:rgba(255,255,255,0.8);
+  }
+
+}
+
+
+/**
+* CSS For phone -no landscape
+**/
+@media only screen and (min-width: 500px) and (max-height: 40em){
+
+  h1{
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .connectionContent{
+    background:url("../../assets/connection/connection_background2.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
+  }
+
+  .loginContent{
+    position:absolute;
+    max-width: 320px;
+    z-index: 888;
+  }
+
+  .globe{
+    position:absolute;
+    z-index:0;
+  }
 
   .login-box {
     background:rgba(255,255,255,0.8);
