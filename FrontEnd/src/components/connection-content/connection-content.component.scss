@@ -1,7 +1,6 @@
 .titleApp{
   text-align: center;
   color:rgb(0,99,167);
-  margin-top:30px;
 
 }
 
@@ -15,10 +14,6 @@
 
 .contentForConnection{
   padding-top: 12%;
-}
-
-.loginContent{
-  padding-top:10%;
 }
 
 .login-box {
@@ -41,4 +36,44 @@
   padding-bottom:10px;
   margin-left:0px;
 
+}
+
+@media only screen and (min-width: 64.063em){
+  .loginContent{
+    padding-top:10%;
+  }
+
+  .titleApp{
+    margin-top:30px;
+  }
+
+}
+
+@media only screen and (max-width: 64.063em) and (min-width:40.063em) {
+  .loginContent {
+    padding-top: 10%;
+  }
+}
+
+@media only screen and (max-width: 64.063em) and (min-width:40.063em)
+  and (min-height:63.063em ){
+
+  .login-box {
+    background:rgba(255,255,255,0.8);
+  }
+
+  .loginContent{
+    padding-top:15%;
+    position:absolute;
+  }
+  .globe{
+    position:absolute;
+  }
+
+  .globe{
+    z-index:0;
+  }
+  .loginContent{
+    z-index: 888;
+  }
 }

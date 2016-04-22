@@ -12,10 +12,11 @@
     </div>
     <div class="contentForConnection">
         <div class="row">
-            <div class="globe large-6 medium-5 columns">
+            <div class="globe large-6 medium-up-5 medium-12 small-12 columns">
                 <img src="../../assets/connection/globe.png">
             </div>
-            <div class="loginContent large-5 medium-5 small-9 columns">
+
+            <div class="loginContent large-5 large-offset-1 medium-up-5 medium-10 medium-offset-1 small-12 columns end">
                 <div [hidden]="!connectionFailed"
                      class="loginError large-4 large-offset-8 medium-6 medium-centered small-7 small-centered columns">
                     {{errorMessage}}
