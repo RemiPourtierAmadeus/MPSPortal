@@ -4,7 +4,7 @@
             <h1> Metrics & Performance Portal</h1>
         </div>
     </div>
-    <div class="contentForConnection">
+    <div class="contentForConnection show-for-landscape">
         <div class="contentRow row">
             <div class="globe large-6 medium-up-5 medium-11 small-12 small-up-2 columns">
                 <img src="../../assets/connection/globe.png">
@@ -25,4 +25,27 @@
             </div>
         </div>
     </div>
+
+    <div class="contentForConnectionPortrait show-for-portrait">
+        <div class="contentRowPortrait row">
+            <div class="globePortrait large-6 medium-11 small-12columns">
+                <img src="../../assets/connection/globe.png">
+            </div>
+
+            <div class="loginContentPortrait large-5 large-offset-1  medium-10 medium-offset-1  small-12 columns end">
+                <div [hidden]="!connectionFailed"
+                     class="loginError large-4 large-offset-8 medium-6 medium-centered small-7 small-centered columns">
+                    {{errorMessage}}
+                </div>
+                <div class="login-boxPortrait">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

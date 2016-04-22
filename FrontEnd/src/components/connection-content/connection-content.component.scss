@@ -1,7 +1,6 @@
 .titleApp{
   text-align: center;
   color:rgb(0,99,167);
-
 }
 
 .connectionContent{
@@ -16,13 +15,14 @@
   padding-top: 12%;
 }
 
-.login-box {
+.login-box, .login-boxPortrait {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   margin: 20px 0;
   padding: 20px 20px 0 20px;
 }
+
 
 .loginError{
   width:100%;
@@ -36,6 +36,22 @@
   padding-bottom:10px;
   margin-left:0px;
 
+}
+
+.login-boxPortrait {
+  background:rgba(255,255,255,0.8);
+}
+
+.loginContentPortrait{
+  padding-top:40%;
+  position:absolute;
+  z-index: 888;
+}
+
+.globePortrait{
+  top:25%;
+  position:absolute;
+  z-index:0;
 }
 
 /**
@@ -61,9 +77,23 @@
   }
 }
 
+@media only screen and (orientation:portrait){
+  .connectionContent{
+    background:url("../../assets/connection/connection_background3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
+  }
+  h1{
+    margin-top: 5%;
+  }
+}
+
+
 /**
 * CSS For tablet in "portrait" view
-**/
+*
 @media only screen and (max-width: 64.063em) and (min-width:40.063em)
   and (min-height:63.063em ){
 
@@ -92,11 +122,11 @@
     margin-top:10%;
   }
 }
-
+*/
 
 /**
 * CSS For phone -no landscape
-**/
+*
 @media only screen and (max-width: 40em) and (min-height: 500px){
 
   h1{
@@ -135,7 +165,7 @@
 
 /**
 * CSS For phone -no landscape
-**/
+
 @media only screen and (min-width: 500px) and (max-height: 40em){
 
   h1{
@@ -167,3 +197,4 @@
   }
 
 }
+**/
