@@ -5,7 +5,7 @@
 }
 
 .connectionContent{
-  background:url("../../assets/connection/connection_background.png");
+  background:url("../../assets/connection/connection_background2.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width:100%;
@@ -58,12 +58,16 @@
 @media only screen and (max-width: 64.063em) and (min-width:40.063em)
   and (min-height:63.063em ){
 
+  .contentForConnection{
+    padding-top:10%;
+  }
+
   .login-box {
     background:rgba(255,255,255,0.8);
   }
 
   .loginContent{
-    padding-top:15%;
+    padding-top:20%;
     position:absolute;
   }
   .globe{
@@ -75,5 +79,9 @@
   }
   .loginContent{
     z-index: 888;
+  }
+
+  .contentRow{
+    margin-top:10%;
   }
 }
