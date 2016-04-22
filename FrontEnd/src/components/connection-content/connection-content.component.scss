@@ -38,6 +38,9 @@
 
 }
 
+/**
+* CSS for desktop screen
+**/
 @media only screen and (min-width: 64.063em){
   .loginContent{
     padding-top:10%;
@@ -49,12 +52,18 @@
 
 }
 
+/**
+* CSS For tablet in landscape view
+**/
 @media only screen and (max-width: 64.063em) and (min-width:40.063em) {
   .loginContent {
     padding-top: 10%;
   }
 }
 
+/**
+* CSS For tablet in "portrait" view
+**/
 @media only screen and (max-width: 64.063em) and (min-width:40.063em)
   and (min-height:63.063em ){
 
@@ -72,19 +81,53 @@
   .loginContent{
     padding-top:20%;
     position:absolute;
+    z-index: 888;
   }
   .globe{
     position:absolute;
-  }
-
-  .globe{
     z-index:0;
-  }
-  .loginContent{
-    z-index: 888;
   }
 
   .contentRow{
     margin-top:10%;
   }
+}
+
+
+/**
+* CSS For phone
+**/
+@media only screen and (max-width: 40em){
+
+  h1{
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .connectionContent{
+    background:url("../../assets/connection/connection_background3.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
+  }
+
+  .loginContent{
+    padding-top:20%;
+    position:absolute;
+    z-index: 888;
+  }
+
+
+  .globe{
+    position:absolute;
+    padding-top: 20%;
+    z-index:0;
+  }
+
+
+  .login-box {
+    background:rgba(255,255,255,0.8);
+  }
+
 }
