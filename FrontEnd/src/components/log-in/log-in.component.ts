@@ -80,6 +80,8 @@ export class LogInComponent{
         }
         else{
             this.submitted = true;
+            this.sendErrorMessage.emit("success");
+
         }
     }
 

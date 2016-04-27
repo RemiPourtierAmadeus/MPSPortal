@@ -60,12 +60,17 @@ export class ConnectionContentComponent {
      * @param message
      */
     sendErrorMessage(message:string){
-        if(message.length>0){
+        if(message==="success"){
+            this.updateCurrentPageValue();
+            this.connectionFailed=false;
+        }
+        else{
             this.connectionFailed=true;
             this.errorMessage=message;
         }
-        else{
-            this.updateCurrentPageValue();
-        }
     }
+    /*
+     "login": "remi.pourtier",
+     "password": "DyqT42ny"
+     */
 }

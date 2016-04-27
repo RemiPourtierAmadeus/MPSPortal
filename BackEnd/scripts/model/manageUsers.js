@@ -31,7 +31,7 @@ exports.connect = function (userParams, success, fail) {
      * We first build the query manually. We ask the user_id from the login and the password
      * we have in userParams.
      */
-    var query = "SELECT " + userKeys[0] + " FROM T_User WHERE "
+    var query = "SELECT " + userKeys[0] + ", " + userKeys[7] + " FROM T_User WHERE "
         + userKeys[6] + "='" + userParams[userKeys[6]] + "' AND "
         + userKeys[4] + "=MD5('" + paramQ +userParams[userKeys[4]]+"')";
 
