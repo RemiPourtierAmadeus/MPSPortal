@@ -4,13 +4,14 @@
 
 import {Component} from 'angular2/core';
 import {LogInComponent} from "../log-in/log-in.component";
+import {ChangePwdComponent} from "../change-pwd/change-pwd.component";
 
 @Component({
     selector: 'connection-content',
     moduleId: module.id,
     templateUrl: './connection-content.component.html',
     styleUrls : ['./connection-content.component.css'],
-    directives: [LogInComponent]
+    directives: [LogInComponent, ChangePwdComponent]
 })
 
 export class ConnectionContentComponent {
@@ -34,7 +35,7 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=1;
+        this.currentPageValue=2;
     }
 
     handleChildEvent(arg){}
@@ -53,6 +54,14 @@ export class ConnectionContentComponent {
     }
 
     /**
+     * Function redirectToHomePage.
+     * This function redirects the user to the home page after a successful connection
+     */
+    redirectToHomePage(){
+        //TODO
+    }
+
+    /**
      * Function sendErrorMessage.
      * We run this function while an event from logInComponent rise. This event contains
      * an error message. So we update the front-end by confirming the connection Failed and then
@@ -60,8 +69,12 @@ export class ConnectionContentComponent {
      * @param message
      */
     sendErrorMessage(message:string){
-        if(message==="success"){
+        if(message==="success | password generated"){
             this.updateCurrentPageValue();
+            this.connectionFailed=false;
+        }
+        else if(message==="success | password not-generated"){
+            this.redirectToHomePage();
             this.connectionFailed=false;
         }
         else{

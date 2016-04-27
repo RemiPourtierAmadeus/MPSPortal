@@ -21,7 +21,9 @@
                             <div *ngIf="currentPageValue == 1" class="error">
                                 <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
                             </div>
-
+                            <div *ngIf="currentPageValue == 2" class="error">
+                                <change-pwd (sendErrorMessage)="sendErrorMessage($event)"></change-pwd>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -58,7 +58,6 @@ export class LogInComponent{
             password: this.user.password,
             login: this.user.login
         };
-
         console.log("user json: "+userJSON["password"]);
         return userJSON;
     }
@@ -79,9 +78,14 @@ export class LogInComponent{
             this.sendErrorMessage.emit("The couple username/password is not correct.");
         }
         else{
+            console.log("generated password ? "+ this.user.generatedPwd);
             this.submitted = true;
-            this.sendErrorMessage.emit("success");
-
+            if(this.user.generatedPwd==1){
+                this.sendErrorMessage.emit("success | password generated");
+            }
+            else{
+                this.sendErrorMessage.emit("success | password not-generated");
+            }
         }
     }
 
@@ -95,5 +99,5 @@ export class LogInComponent{
         this._manageUserService.connect(finalUserJSON).then(
             user => this.redirect(user), //this.user=user,
             error => this.errorFromServer = <any> error);
-    }//z36KF0zp
+    }
 }
