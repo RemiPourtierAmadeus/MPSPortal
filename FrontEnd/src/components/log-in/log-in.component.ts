@@ -30,7 +30,7 @@ export class LogInComponent{
 
     public connectionFailed;
 
-    @Output() sendErrorMessage= new EventEmitter<string>();
+    @Output() sendUser= new EventEmitter<UserComponent>();
     /**
      * Constructor LogInComponent.
      * We inject ManageUserService into the component thanks to the parameters we give here.
@@ -75,17 +75,18 @@ export class LogInComponent{
         this.user=responseFromDB[0];
         if(this.user.user_id==-1){
             this.connectionFailed=true;
-            this.sendErrorMessage.emit("The couple username/password is not correct.");
+            this.user= new UserComponent("", "", "",
+                    "", false, false, false,false, "", "",-1, "", 1,
+                "The couple username/password is not correct.");
+            this.sendUser.emit(this.user);
         }
         else{
             console.log("generated password ? "+ this.user.generatedPwd);
+            this.user= new UserComponent("", "", "",
+                "", false, false, false,false, "", "",this.user.user_id, "",  this.user.generatedPwd,
+                "");
             this.submitted = true;
-            if(this.user.generatedPwd==1){
-                this.sendErrorMessage.emit("success | password generated");
-            }
-            else{
-                this.sendErrorMessage.emit("success | password not-generated");
-            }
+            this.sendUser.emit(this.user);
         }
     }
 

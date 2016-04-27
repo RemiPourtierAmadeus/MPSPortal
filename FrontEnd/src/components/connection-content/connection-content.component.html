@@ -19,10 +19,11 @@
                     <div class="row">
                         <div class="large-12 columns">
                             <div *ngIf="currentPageValue == 1" class="error">
-                                <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                                <log-in (sendUser)="sendUser($event)"></log-in>
                             </div>
                             <div *ngIf="currentPageValue == 2" class="error">
-                                <change-pwd (sendErrorMessage)="sendErrorMessage($event)" login="{{user.}}"></change-pwd>
+                                <change-pwd (sendUser)="sendUser($event)"
+                                            *ngIf="user" user-generated="{{user.generatedPwd}}" user-id="{{user.userId}}"></change-pwd>
                             </div>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
                     <div class="row">
                         <div class="large-12 columns">
                             <div *ngIf="currentPageValue == 1" class="error">
-                                <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                                <log-in (sendUser)="sendUser($event)"></log-in>
                             </div>
                         </div>
                     </div>

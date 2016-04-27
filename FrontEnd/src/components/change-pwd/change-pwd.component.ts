@@ -18,15 +18,22 @@ import {VerificationPwdComponent} from "../verification-pwd/verification-pwd.com
 
 export class ChangePwdComponent {
 
-    public user;
-    public errorFromServer;
 
-    @Input() login:string;
+    public errorFromServer;
+    public user;
+
+    @Input('user-generated') generatedPwd:number;
+    @Input('user-id') userId:number;
     @Output() sendErrorMessage= new EventEmitter<string>();
 
-    constructor(private _manageUserService:ManageUsersService) {
-        this.user = new UserComponent("", "", "",
-            "", false, false, false,false, "", "");
+    constructor(private _manageUserService:ManageUsersService) {}
+
+    ngOnInit(){
+        console.log("user id: "+ this.userId);
+        console.log("generatedPwd: "+ this.generatedPwd);
+        this.user=new UserComponent("", "", "",
+            "", false, false, false,false, "", "",this.userId, "",  this.generatedPwd,
+            "");
     }
 
     /**

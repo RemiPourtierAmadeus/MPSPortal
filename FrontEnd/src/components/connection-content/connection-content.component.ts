@@ -5,6 +5,7 @@
 import {Component} from 'angular2/core';
 import {LogInComponent} from "../log-in/log-in.component";
 import {ChangePwdComponent} from "../change-pwd/change-pwd.component";
+import {UserComponent} from "../user/user.component";
 
 @Component({
     selector: 'connection-content',
@@ -19,6 +20,8 @@ export class ConnectionContentComponent {
     public modelForChild;
     public connectionFailed;
     public errorMessage;
+    public user;
+
     /**
      * Current page value contains the following variable: 1,2,3
      * Each number corresponds to a component:
@@ -35,7 +38,9 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=2;
+        this.currentPageValue=1;
+        this.user = new UserComponent("", "", "",
+            "", false, false, false, false, "","");
     }
 
     handleChildEvent(arg){}
@@ -47,6 +52,7 @@ export class ConnectionContentComponent {
     updateCurrentPageValue(){
         if(this.currentPageValue==1 || this.currentPageValue==2){
             this.currentPageValue++;
+            console.log("new value: "+this.currentPageValue);
         }
         else{
             this.currentPageValue=0;
@@ -68,18 +74,20 @@ export class ConnectionContentComponent {
      * we update the error message content.
      * @param message
      */
-    sendErrorMessage(message:string){
-        if(message==="success | password generated"){
+    sendUser(user:UserComponent){
+        this.user=user;
+        if(user.userId==-1){
+            this.connectionFailed=true;
+            this.errorMessage=user.error;
+        }
+        else if(user.generatedPwd==1){
+            console.log("wa je rentre");
             this.updateCurrentPageValue();
             this.connectionFailed=false;
         }
-        else if(message==="success | password not-generated"){
+        else{
             this.redirectToHomePage();
             this.connectionFailed=false;
-        }
-        else{
-            this.connectionFailed=true;
-            this.errorMessage=message;
         }
     }
     /*
