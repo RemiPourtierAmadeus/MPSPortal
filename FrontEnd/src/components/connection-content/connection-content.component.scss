@@ -60,8 +60,9 @@
 * CSS for desktop screen
 **/
 @media only screen and (min-width: 64.063em) {
-  .loginContent{
+  .contentRow > .loginContent{
     padding-top:10%;
+    //height:100%;
   }
 
   .titleApp{
