@@ -18,7 +18,10 @@
                 <div class="login-box">
                     <div class="row">
                         <div class="large-12 columns">
-                            <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                            <div *ngIf="currentPageValue == 1" class="error">
+                                <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -40,7 +43,9 @@
                 <div class="login-boxPortrait">
                     <div class="row">
                         <div class="large-12 columns">
-                            <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                            <div *ngIf="currentPageValue == 1" class="error">
+                                <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
+                            </div>
                         </div>
                     </div>
                 </div>
