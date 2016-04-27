@@ -22,7 +22,7 @@
                                 <log-in (sendErrorMessage)="sendErrorMessage($event)"></log-in>
                             </div>
                             <div *ngIf="currentPageValue == 2" class="error">
-                                <change-pwd (sendErrorMessage)="sendErrorMessage($event)"></change-pwd>
+                                <change-pwd (sendErrorMessage)="sendErrorMessage($event)" login="{{user.}}"></change-pwd>
                             </div>
                         </div>
                     </div>
