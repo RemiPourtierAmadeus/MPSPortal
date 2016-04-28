@@ -80,7 +80,10 @@ export class ChangePwdComponent {
 
 
     redirect(responseFromDB){
-        console.log("into redirect, response: "+responseFromDB[0]);
+        console.log("into redirect, response: "+responseFromDB[0].success);
+        if(responseFromDB[0].success){
+            console.log("oui ca suffit");
+        }
         //this.user=responseFromDB[0];
         /*if(this.user.user_id==-1){
             this.user= new UserComponent("", "", "",
