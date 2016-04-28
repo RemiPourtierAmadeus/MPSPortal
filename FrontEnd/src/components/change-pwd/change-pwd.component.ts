@@ -78,26 +78,28 @@ export class ChangePwdComponent {
         this.sendUser.emit(this.user);
     }
 
-
+    /**
+     * Function redirect.
+     * This function will check the feedback received from the database.
+     * If the value is success: the update succeed we can return our user
+     * If we have another value, we emit an error to the pattern component
+     * @param responseFromDB
+     */
     redirect(responseFromDB){
-        console.log("into redirect, response: "+responseFromDB[0].success);
         if(responseFromDB[0].success==="true"){
-            console.log("oui ca suffit");
-        }
-        //this.user=responseFromDB[0];
-        /*if(this.user.user_id==-1){
             this.user= new UserComponent("", "", "",
-                "", false, false, false,false, "", "",-1, "", 1,
-                "The couple username/password is not correct.");
+                "", false, false, false,false, "",this.user.password ,this.user.userId, "", 0,
+                "");
+            this.password2="";
             this.sendUser.emit(this.user);
         }
         else{
-            console.log("generated password ? "+ this.user.generatedPwd);
+            console.log("error case");
             this.user= new UserComponent("", "", "",
-                "", false, false, false,false, "", "",this.user.user_id, "",  this.user.generatedPwd,
-                "");
+                "", false, false, false,false, "", "",this.user.userId, "", 1,
+                "An error has occurred just before the redirection phase");
             this.sendUser.emit(this.user);
-        }*/
+        }
     }
 
     /**

@@ -64,6 +64,7 @@ export class ConnectionContentComponent {
      * This function redirects the user to the home page after a successful connection
      */
     redirectToHomePage(){
+        console.log("this is the redirection");
         //TODO
     }
 
