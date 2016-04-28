@@ -21,16 +21,19 @@ export class ChangePwdComponent {
 
     public errorFromServer;
     public user;
+    public password2;
 
     @Input('user-generated') generatedPwd:number;
     @Input('user-id') userId:number;
-    @Output() sendErrorMessage= new EventEmitter<string>();
+    @Output() sendUser= new EventEmitter<UserComponent>();
 
     constructor(private _manageUserService:ManageUsersService) {}
 
+    /**
+     * Function ngOnInit.
+     * We instanciate our current user from the component inputs.
+     */
     ngOnInit(){
-        console.log("user id: "+ this.userId);
-        console.log("generatedPwd: "+ this.generatedPwd);
         this.user=new UserComponent("", "", "",
             "", false, false, false,false, "", "",this.userId, "",  this.generatedPwd,
             "");
@@ -51,14 +54,45 @@ export class ChangePwdComponent {
     }
 
     /**
+     * Function samePassword.
+     * This function verifies if the two given passwords are identical (but not empty). It returns true if yes,
+     * else false.
+     * @returns {boolean}
+     */
+    samePassword(){
+        if(this.user.password!=="" && this.password2!==""
+            && this.user.password===this.password2) return true;
+        return false;
+    }
+
+    /**
+     * Function emitErrorUser.
+     * This function emits a user through the output in order to alert an other component
+     * that an error has occured while the changing password phase.
+     */
+    emitErrorUser(){
+        this.password2="";
+        this.user= new UserComponent("", "", "",
+            "", false, false, false,false, "", "",this.userId, "",  this.generatedPwd,
+            "Given passwords are different.");
+        this.sendUser.emit(this.user);
+    }
+    /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. Then,
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
-        let finalUserJSON = this.buildUserJSON();
-        this._manageUserService.connect(finalUserJSON).then(
-            user => 1, //this.user=user,
-            error => this.errorFromServer = <any> error);
+        if(this.samePassword()){
+            console.log("good password");
+            /*
+            let finalUserJSON = this.buildUserJSON();
+            this._manageUserService.connect(finalUserJSON).then(
+                user => 1, //this.user=user,
+                error => this.errorFromServer = <any> error);*/
+        }
+        else{
+            this.emitErrorUser();
+        }
     }
 }
