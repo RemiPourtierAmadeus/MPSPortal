@@ -38,7 +38,7 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=2;
+        this.currentPageValue=1;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
@@ -81,7 +81,6 @@ export class ConnectionContentComponent {
             this.errorMessage=user.error;
         }
         else if(user.generatedPwd==1){
-            console.log("wa je rentre");
             this.updateCurrentPageValue();
             this.connectionFailed=false;
         }

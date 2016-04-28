@@ -46,10 +46,13 @@ export class ChangePwdComponent {
      */
     buildUserJSON() {
         let userJSON = {
+            user_id: this.user.userId,
             password: this.user.password,
-            login: this.user.login
+            generatedPwd: this.user.generatedPwd
         };
-        console.log("user json: "+userJSON["password"]);
+        console.log("password: "+userJSON["password"]);
+        console.log("user_id: "+userJSON["user_id"]);
+        console.log("generatedPwd: "+userJSON["generatedPwd"]);
         return userJSON;
     }
 
@@ -85,11 +88,11 @@ export class ChangePwdComponent {
     onSubmit() {
         if(this.samePassword()){
             console.log("good password");
-            /*
+
             let finalUserJSON = this.buildUserJSON();
-            this._manageUserService.connect(finalUserJSON).then(
+            this._manageUserService.updateUser(finalUserJSON).then(
                 user => 1, //this.user=user,
-                error => this.errorFromServer = <any> error);*/
+                error => this.errorFromServer = <any> error);
         }
         else{
             this.emitErrorUser();

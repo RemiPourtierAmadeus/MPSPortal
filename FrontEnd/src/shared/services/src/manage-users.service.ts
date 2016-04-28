@@ -51,28 +51,40 @@ export class ManageUsersService {
     }
 
     /**
-     * Function connect.
-     * This function verifies information given by user with a post HTTP request.
+     * Function updateUser. This function updates user data.
      * @param userJSON
      * @returns {Promise<UserComponent>|Promise<*>|Promise<T>}
      */
-    connect(userJSON): Promise<UserComponent>{
-        console.log("je rentre dans connect manage user");
+    updateUser(userJSON): Promise<UserComponent>{
         let body = JSON.stringify( userJSON );
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        let path= this._serverLink+this.extensionLink[0];
+        let path= this._serverLink;
         console.log("Path: "+ path);
         console.log("User params: " + userJSON);
         return this.http.post(path, body, options)
             .toPromise()
             .then(res=> <UserComponent> res.json())
             .catch(this.handleError);
-        /*return this.http.post(path, body, options)
+    }
+
+    /**
+     * Function connect.
+     * This function verifies information given by user with a post HTTP request.
+     * @param userJSON
+     * @returns {Promise<UserComponent>|Promise<*>|Promise<T>}
+     */
+    connect(userJSON): Promise<UserComponent>{
+        let body = JSON.stringify( userJSON );
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        let path= this._serverLink+this.extensionLink[0];
+        return this.http.post(path, body, options)
             .toPromise()
-            .then(res => <UserComponent> res.json())
-            .catch(this.handleError);*/
+            .then(res=> <UserComponent> res.json())
+            .catch(this.handleError);
     }
 
     /**

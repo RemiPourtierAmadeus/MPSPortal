@@ -161,7 +161,10 @@ exports.updateUsers = function (userParams, success, fail) {
         var cpt=0;
         for (var i = 1; i < userKeys.length; i++) {
             if (userParams.hasOwnProperty(userKeys[i])) {
-                if (cpt == 0) {
+                if(userKeys[i]==="password"){
+                    paramsInQuery = userKeys[i] + "=MD5('" + paramQ + userParams[userKeys[i]] + "')";
+                }
+                else if (cpt == 0) {
                     paramsInQuery = userKeys[i] + "='" + userParams[userKeys[i]] + "'";
                 }
                 else {
