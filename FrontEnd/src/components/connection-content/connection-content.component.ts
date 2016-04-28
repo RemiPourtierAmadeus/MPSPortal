@@ -89,8 +89,4 @@ export class ConnectionContentComponent {
             this.connectionFailed=false;
         }
     }
-    /*
-     "login": "remi.pourtier",
-     "password": "DyqT42ny"
-     */
 }

@@ -48,11 +48,8 @@ export class ChangePwdComponent {
         let userJSON = {
             user_id: this.user.userId,
             password: this.user.password,
-            generatedPwd: this.user.generatedPwd
+            generatedPwd: 0
         };
-        console.log("password: "+userJSON["password"]);
-        console.log("user_id: "+userJSON["user_id"]);
-        console.log("generatedPwd: "+userJSON["generatedPwd"]);
         return userJSON;
     }
 
@@ -80,6 +77,26 @@ export class ChangePwdComponent {
             "Given passwords are different.");
         this.sendUser.emit(this.user);
     }
+
+
+    redirect(responseFromDB){
+        console.log("into redirect, response: "+responseFromDB[0]);
+        //this.user=responseFromDB[0];
+        /*if(this.user.user_id==-1){
+            this.user= new UserComponent("", "", "",
+                "", false, false, false,false, "", "",-1, "", 1,
+                "The couple username/password is not correct.");
+            this.sendUser.emit(this.user);
+        }
+        else{
+            console.log("generated password ? "+ this.user.generatedPwd);
+            this.user= new UserComponent("", "", "",
+                "", false, false, false,false, "", "",this.user.user_id, "",  this.user.generatedPwd,
+                "");
+            this.sendUser.emit(this.user);
+        }*/
+    }
+
     /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. Then,
@@ -87,11 +104,9 @@ export class ChangePwdComponent {
      */
     onSubmit() {
         if(this.samePassword()){
-            console.log("good password");
-
             let finalUserJSON = this.buildUserJSON();
             this._manageUserService.updateUser(finalUserJSON).then(
-                user => 1, //this.user=user,
+                user => this.redirect(user),
                 error => this.errorFromServer = <any> error);
         }
         else{

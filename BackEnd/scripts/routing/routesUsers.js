@@ -45,7 +45,7 @@ router.post('/connect', function(req,res){
  */
 router.post('/', function(req,res){
     var success = function () {
-        var finalObject = 'success';
+        var finalObject = [{success: 'true'}];
         console.log(finalObject);
         res.send(finalObject);
     };

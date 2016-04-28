@@ -58,7 +58,6 @@ export class LogInComponent{
             password: this.user.password,
             login: this.user.login
         };
-        console.log("user json: "+userJSON["password"]);
         return userJSON;
     }
 
@@ -81,7 +80,6 @@ export class LogInComponent{
             this.sendUser.emit(this.user);
         }
         else{
-            console.log("generated password ? "+ this.user.generatedPwd);
             this.user= new UserComponent("", "", "",
                 "", false, false, false,false, "", "",this.user.user_id, "",  this.user.generatedPwd,
                 "");
@@ -98,7 +96,7 @@ export class LogInComponent{
     onSubmit() {
         let finalUserJSON = this.buildUserJSON();
         this._manageUserService.connect(finalUserJSON).then(
-            user => this.redirect(user), //this.user=user,
+            user => this.redirect(user),
             error => this.errorFromServer = <any> error);
     }
 }
