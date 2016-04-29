@@ -63,7 +63,7 @@ exports.connect = function (userParams, success, fail) {
                 console.log("User has not been found");
                 data=[{"user_id":-1}];
             }
-            else if(generateNewPassword){
+            else if(generateNewPassword==true){
                 var generatedPassword = generatePassword();
                 data={"user_id":data[0].user_id, "password":generatedPassword, "generatedPwd":1};
                 updateUsersInDb(data, success,fail);
@@ -77,11 +77,14 @@ exports.connect = function (userParams, success, fail) {
 }
 
 function updateUsersInDb(userParams, success, fail){
+    //userParams[userKeys[0]]=""+userParams[userKeys[0]];
+    console.log("user id: "+userParams[userKeys[0]].length );
     var paramsInQuery = "";
     /**
      * Start treatment of the request. We verify we have a user id in the request.
      */
-    if (userParams[userKeys[0]].length > 0) {
+    if (userParams[userKeys[0]].length > 0 ) {
+        console.log("la je rentre pas");
         /**
          * We start building the query. We get back all data we have from the http request.
          * Then we add the attributes to change into the parameters of the query : paramsInQuery.
