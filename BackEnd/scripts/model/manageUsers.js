@@ -27,6 +27,7 @@ var nodemailer = require('nodemailer');
  * @param fail
  */
 exports.connect = function (userParams, success, fail) {
+    var generateNewPassword=false;
     /**
      * We first build the query manually. We ask the user_id and the login from the login and the password
      * we have in userParams.
@@ -41,6 +42,7 @@ exports.connect = function (userParams, success, fail) {
      * we have in userParams.
      */
     else if(userParams.hasOwnProperty(userKeys[2]) ){
+        generateNewPassword=true;
         var query = "SELECT " + userKeys[0] + " FROM T_User WHERE "
             + userKeys[2] + "='" + userParams[userKeys[2]] +"'";
     }
@@ -61,13 +63,65 @@ exports.connect = function (userParams, success, fail) {
                 console.log("User has not been found");
                 data=[{"user_id":-1}];
             }
+            else if(generateNewPassword){
+                var generatedPassword = generatePassword();
+                data={"user_id":data[0].user_id, "password":generatedPassword, "generatedPwd":1};
+                updateUsersInDb(data, success,fail);
+                //TODO: sendEmail()
+            }
             success(data);
+            console.log('Data received from Db:\n');
+            console.log(data);
         }
-        console.log('Data received from Db:\n');
-        console.log(data);
     });
 }
 
+function updateUsersInDb(userParams, success, fail){
+    var paramsInQuery = "";
+    /**
+     * Start treatment of the request. We verify we have a user id in the request.
+     */
+    if (userParams[userKeys[0]].length > 0) {
+        /**
+         * We start building the query. We get back all data we have from the http request.
+         * Then we add the attributes to change into the parameters of the query : paramsInQuery.
+         */
+        var cpt=0;
+        for (var i = 1; i < userKeys.length; i++) {
+            if (userParams.hasOwnProperty(userKeys[i])) {
+                if(userKeys[i]==="password"){
+                    paramsInQuery = userKeys[i] + "=MD5('" + paramQ + userParams[userKeys[i]] + "')";
+                }
+                else if (cpt == 0) {
+                    paramsInQuery = userKeys[i] + "='" + userParams[userKeys[i]] + "'";
+                }
+                else {
+                    paramsInQuery += ", " + userKeys[i] + "='" + userParams[userKeys[i]] + "'";
+                }
+                cpt++;
+            }
+        }
+        /**
+         * We create the final query.
+         * @type {string}
+         */
+        paramsInQuery = "UPDATE T_User SET  " + paramsInQuery + " WHERE user_id=" + userParams[userKeys[0]];
+        console.log("Query: " + paramsInQuery);
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(paramsInQuery, function (err, data) {
+            if (err) throw err;
+            else {
+                success(data);
+            }
+        });
+
+    }
+    else {
+        console.log("An error has occurred: No user_id found in the request.");
+    }
+}
 /**
  * Function getUsers. This function get the list of all users.
  * @param success
@@ -160,50 +214,7 @@ function addUser(userId, userTypeValue, generatedPassword, userParams, success, 
  */
 exports.updateUsers = function (userParams, success, fail) {
 
-    paramsInQuery = "";
-    /**
-     * Start treatment of the request. We verify we have a user id in the request.
-     */
-    if (userParams[userKeys[0]].length > 0) {
-        /**
-         * We start building the query. We get back all data we have from the http request.
-         * Then we add the attributes to change into the parameters of the query : paramsInQuery.
-         */
-        var cpt=0;
-        for (var i = 1; i < userKeys.length; i++) {
-            if (userParams.hasOwnProperty(userKeys[i])) {
-                if(userKeys[i]==="password"){
-                    paramsInQuery = userKeys[i] + "=MD5('" + paramQ + userParams[userKeys[i]] + "')";
-                }
-                else if (cpt == 0) {
-                    paramsInQuery = userKeys[i] + "='" + userParams[userKeys[i]] + "'";
-                }
-                else {
-                    paramsInQuery += ", " + userKeys[i] + "='" + userParams[userKeys[i]] + "'";
-                }
-                cpt++;
-            }
-        }
-        /**
-         * We create the final query.
-         * @type {string}
-         */
-        paramsInQuery = "UPDATE T_User SET  " + paramsInQuery + " WHERE user_id=" + userParams[userKeys[0]];
-        console.log("Query: " + paramsInQuery);
-        /**
-         * We update the data.
-         */
-        connectionVariable.query(paramsInQuery, function (err, data) {
-            if (err) throw err;
-            else {
-                success(data);
-            }
-        });
-
-    }
-    else {
-        console.log("An error has occurred: No user_id found in the request.");
-    }
+    updateUsersInDb(userParams,success,fail);
 }
 
 /**

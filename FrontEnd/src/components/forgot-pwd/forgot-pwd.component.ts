@@ -61,6 +61,7 @@ export class ForgotPwdComponent {
      */
     redirect(responseFromDB){
         let userFromDB=responseFromDB[0];
+        console.log("user id: "+ userFromDB.user_id);
         if(userFromDB.user_id==-1){
             this.user= new UserComponent("", "", "",
                 "", false, false, false,false, "", "",-1, "", 1,

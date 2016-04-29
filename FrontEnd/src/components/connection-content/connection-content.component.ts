@@ -51,7 +51,7 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=4;
+        this.currentPageValue=1;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
