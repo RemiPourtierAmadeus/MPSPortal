@@ -51,7 +51,7 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=1;
+        this.currentPageValue=4;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
@@ -89,6 +89,7 @@ export class ConnectionContentComponent {
      */
     sendUser(user:UserComponent){
         this.user=user;
+        this.connectionFailed=false;
         if(this.user.error=="Forgot password"){
             this.currentPageValue=3;
         }
@@ -104,11 +105,9 @@ export class ConnectionContentComponent {
         }
         else if(user.generatedPwd==1){
             this.updateCurrentPageValue();
-            this.connectionFailed=false;
         }
         else{
             this.redirectToHomePage();
-            this.connectionFailed=false;
         }
     }
 }

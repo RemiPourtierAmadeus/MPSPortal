@@ -1,1 +1,23 @@
-<h1> Hey, I'm ConfirmationEmailSentComponent !</h1>
+<form (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="large-11">
+            <label><h3>Confirmation</h3></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="info  large-2 columns ">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </div>
+        <div class="row iconAndInput large-9  columns end">
+            Your request has been taken into account.<br/>
+            You will receive a new generated password into your email box.<br/>
+
+        </div>
+    </div>
+    <br/>
+    <div class="buttonDiv row">
+        <div class="large-4 large-offset-4 medium-4 medium-offset-4 small-4 small-offset-4 columns">
+            <input type="submit" class="button expand" value="Home page"/>
+        </div>
+    </div>
+</form>
