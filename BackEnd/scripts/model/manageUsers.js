@@ -67,9 +67,9 @@ exports.connect = function (userParams, success, fail) {
                 var generatedPassword = generatePassword();
                 data={"user_id":data[0].user_id, "password":generatedPassword, "generatedPwd":1};
                 updateUsersInDb(data, success,fail);
+                data=[data];
                 //TODO: sendEmail()
             }
-            data=[data];
             success(data);
             console.log('Data received from Db:\n');
             console.log(data);
