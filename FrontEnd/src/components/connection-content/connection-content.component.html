@@ -25,6 +25,10 @@
                                 <change-pwd (sendUser)="sendUser($event)"
                                             *ngIf="user" user-generated="{{user.generatedPwd}}" user-id="{{user.userId}}"></change-pwd>
                             </div>
+                            <div *ngIf="currentPageValue == 3" class="error">
+                                <forgot-pwd (sendUser)="sendUser($event)"
+                                            *ngIf="user" user-generated="{{user.generatedPwd}}" user-id="{{user.userId}}"></forgot-pwd>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,6 +52,14 @@
                         <div class="large-12 columns">
                             <div *ngIf="currentPageValue == 1" class="error">
                                 <log-in (sendUser)="sendUser($event)"></log-in>
+                            </div>
+                            <div *ngIf="currentPageValue == 2" class="error">
+                                <change-pwd (sendUser)="sendUser($event)"
+                                            *ngIf="user" user-generated="{{user.generatedPwd}}" user-id="{{user.userId}}"></change-pwd>
+                            </div>
+                            <div *ngIf="currentPageValue == 3" class="error">
+                                <forgot-pwd (sendUser)="sendUser($event)"
+                                            *ngIf="user"></forgot-pwd>
                             </div>
                         </div>
                     </div>

@@ -6,13 +6,14 @@ import {Component} from 'angular2/core';
 import {LogInComponent} from "../log-in/log-in.component";
 import {ChangePwdComponent} from "../change-pwd/change-pwd.component";
 import {UserComponent} from "../user/user.component";
+import {ForgotPwdComponent} from "../forgot-pwd/forgot-pwd.component";
 
 @Component({
     selector: 'connection-content',
     moduleId: module.id,
     templateUrl: './connection-content.component.html',
     styleUrls : ['./connection-content.component.css'],
-    directives: [LogInComponent, ChangePwdComponent]
+    directives: [LogInComponent, ChangePwdComponent, ForgotPwdComponent]
 })
 
 export class ConnectionContentComponent {
@@ -26,8 +27,8 @@ export class ConnectionContentComponent {
      * Current page value contains the following variable: 1,2,3
      * Each number corresponds to a component:
      * 1 = Login Component
-     * 2 = Forgot password Component
-     * 3 = Email Address Component
+     * 2 = Change password Component
+     * 3 = Forgot password Component
      * We use it to know which is the page to display
      * IF the current page value is 0, that means we have redirect the user to
      * the home page of the application
@@ -38,7 +39,7 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=1;
+        this.currentPageValue=3;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
@@ -77,7 +78,13 @@ export class ConnectionContentComponent {
      */
     sendUser(user:UserComponent){
         this.user=user;
-        if(user.userId==-1){
+        if(this.user.error=="Forgot password"){
+            this.currentPageValue=3;
+        }
+        else if(this.user.error=="Login"){
+            this.currentPageValue=1;
+        }
+        else if(user.userId==-1){
             this.connectionFailed=true;
             this.errorMessage=user.error;
         }

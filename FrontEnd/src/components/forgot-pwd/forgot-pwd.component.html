@@ -1,1 +1,29 @@
-<h1> Hey, I'm forgotPwdComponent !</h1>
+<form (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="large-1 columns">
+            <i class="fa fa-arrow-circle-left" aria-hidden="true" (click)="backToConnection()"></i>
+        </div>
+        <div class="large-11">
+            <label><h3>Forgot Password</h3></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="row iconAndInput">
+                <div class="iconContent large-1 medium-2 small-2 columns" data-equalizer-watch>
+                    <i class="fa fa-envelope-o"></i>
+                </div>
+                <div class="inputContent large-11 medium-10 small-10 columns end " data-equalizer-watch>
+                    <input type="text" name="login" [(ngModel)]="user.email"
+                           placeholder="Email address"
+                           required/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-4 large-centered medium-6 medium-centered small-6 small-centered columns">
+            <input type="submit" class="button expand" value="Send Password"/>
+        </div>
+    </div>
+</form>

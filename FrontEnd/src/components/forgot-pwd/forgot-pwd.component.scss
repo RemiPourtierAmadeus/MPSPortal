@@ -1,0 +1,43 @@
+label{
+  text-align:center;
+  color:rgb(0,99,167);
+}
+
+.iconContent{
+  color: white;
+  font-size: 25px;
+  background-color:rgb(0,99,167);
+  height:39px;
+  text-align: center;
+  padding:0px;
+}
+
+.iconContent:hover{
+  background-color:white;
+  color: rgb(0,99,167);
+  border: 1px solid rgb(0,99,167);
+}
+
+.inputContent{
+  padding-left:0px;
+}
+.iconAndInput{
+  padding-left:15px;
+}
+.fa-envelope-o{
+  padding-top: 7px;
+}
+
+.fa-arrow-circle-left{
+  font-size: 30px;
+  color:rgb(0,99,167);
+  margin-top: 8px;
+}
+.fa-arrow-circle-left:hover{
+  font-size: 35px;
+  margin-top: 5px;
+}
+.forgotContact{
+  font-size: 12px;
+  color: #0066c0;
+}

@@ -89,6 +89,17 @@ export class LogInComponent{
     }
 
     /**
+     * Function forgotPwd.
+     * This function send to the pattern component the following error "Forgot password" to inform it
+     * the user asks for the forgot password page.
+     */
+    forgotPwd(){
+        this.user= new UserComponent("", "", "",
+            "", false, false, false,false, "", "",-1, "", 1,
+            "Forgot password");
+        this.sendUser.emit(this.user);
+    }
+    /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. Then,
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
