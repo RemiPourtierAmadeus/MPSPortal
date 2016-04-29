@@ -69,6 +69,7 @@ exports.connect = function (userParams, success, fail) {
                 updateUsersInDb(data, success,fail);
                 //TODO: sendEmail()
             }
+            data=[data];
             success(data);
             console.log('Data received from Db:\n');
             console.log(data);
