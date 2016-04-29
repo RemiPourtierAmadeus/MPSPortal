@@ -102,6 +102,12 @@ export class ChangePwdComponent {
         }
     }
 
+    /**
+     * Function passwordIsCorrect.
+     * This function verifies if the given password has the correct structure.
+     * It should have at least one letter and one number and a length of 6.
+     * @returns {boolean}
+     */
     passwordIsCorrect(){
         let number=false;
         let letter=false;
