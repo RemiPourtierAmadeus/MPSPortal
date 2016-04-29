@@ -83,7 +83,7 @@ function updateUsersInDb(userParams, success, fail){
     /**
      * Start treatment of the request. We verify we have a user id in the request.
      */
-    if (userParams[userKeys[0]].length > 0 ) {
+    if (userParams[userKeys[0]] >= 0 ) {
         console.log("la je rentre pas");
         /**
          * We start building the query. We get back all data we have from the http request.
@@ -116,7 +116,7 @@ function updateUsersInDb(userParams, success, fail){
         connectionVariable.query(paramsInQuery, function (err, data) {
             if (err) throw err;
             else {
-                success(data);
+                //success(data);
             }
         });
 
