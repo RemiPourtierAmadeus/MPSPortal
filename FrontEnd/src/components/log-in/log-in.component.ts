@@ -7,6 +7,7 @@ import {ManageUsersService} from "../../shared/services/src/manage-users.service
 import {UserComponent} from "../user/user.component";
 import {ConnectionContentComponent} from "../connection-content/connection-content.component";
 import {Output} from "angular2/core";
+import {Input} from "angular2/core";
 
 @Component({
     selector: 'log-in',
@@ -30,6 +31,7 @@ export class LogInComponent{
 
     public connectionFailed;
 
+    @Input('email-content') emailContent:string;
     @Output() sendUser= new EventEmitter<UserComponent>();
     /**
      * Constructor LogInComponent.
@@ -39,10 +41,6 @@ export class LogInComponent{
      */
     constructor(private _manageUserService:ManageUsersService) {
         //super();
-        this.emailAddress="mailto:GBS-GPA-SCS-MPS-Services@amadeus.com";
-        this.subjectEmail="?subject=MPS Metrics and Performance";
-        this.emailCopy="&cc=jdoucet@amadeus.com";
-        this.emailContent=this.emailAddress+this.subjectEmail+this.emailCopy;
         this.connectionFailed=false;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");

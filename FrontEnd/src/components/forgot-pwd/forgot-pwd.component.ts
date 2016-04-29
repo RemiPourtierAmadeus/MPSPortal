@@ -5,6 +5,7 @@
 import {Component, EventEmitter, Output} from 'angular2/core';
 import {UserComponent} from "../user/user.component";
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
+import {Input} from "angular2/core";
 
 @Component({
     selector: 'forgot-pwd',
@@ -18,6 +19,7 @@ export class ForgotPwdComponent {
     private errorFromServer;
     private submitted;
 
+    @Input('email-content') emailContent:string;
     @Output() sendUser= new EventEmitter<UserComponent>();
 
     constructor(private _manageUserService:ManageUsersService) {
@@ -62,7 +64,7 @@ export class ForgotPwdComponent {
         if(userFromDB.user_id==-1){
             this.user= new UserComponent("", "", "",
                 "", false, false, false,false, "", "",-1, "", 1,
-                "The couple username/password is not correct.");
+                "Unkown email. Verify your email address or contact us");
             this.sendUser.emit(this.user);
         }
         else{

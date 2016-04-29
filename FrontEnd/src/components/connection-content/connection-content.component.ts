@@ -7,6 +7,7 @@ import {LogInComponent} from "../log-in/log-in.component";
 import {ChangePwdComponent} from "../change-pwd/change-pwd.component";
 import {UserComponent} from "../user/user.component";
 import {ForgotPwdComponent} from "../forgot-pwd/forgot-pwd.component";
+import {HeaderComponent} from "../header/header.component";
 import {ConfirmationEmailSentComponent} from "../confirmation-email-sent/confirmation-email-sent.component";
 
 @Component({
@@ -24,6 +25,11 @@ export class ConnectionContentComponent {
     public errorMessage;
     public user;
 
+    private emailAddress;
+    private subjectEmail;
+    private emailCopy;
+    public emailContent;
+
     /**
      * Current page value contains the following variable: 1,2,3
      * Each number corresponds to a component:
@@ -38,6 +44,10 @@ export class ConnectionContentComponent {
     public currentPageValue;
 
     constructor(){
+        this.emailAddress="mailto:GBS-GPA-SCS-MPS-Services@amadeus.com";
+        this.subjectEmail="?subject=MPS Metrics and Performance";
+        this.emailCopy="&cc=jdoucet@amadeus.com";
+        this.emailContent=this.emailAddress+this.subjectEmail+this.emailCopy;
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
@@ -55,7 +65,6 @@ export class ConnectionContentComponent {
     updateCurrentPageValue(){
         if(this.currentPageValue==1 || this.currentPageValue==2){
             this.currentPageValue++;
-            console.log("new value: "+this.currentPageValue);
         }
         else{
             this.currentPageValue=0;
