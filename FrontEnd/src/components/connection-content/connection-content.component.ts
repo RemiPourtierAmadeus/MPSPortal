@@ -7,13 +7,14 @@ import {LogInComponent} from "../log-in/log-in.component";
 import {ChangePwdComponent} from "../change-pwd/change-pwd.component";
 import {UserComponent} from "../user/user.component";
 import {ForgotPwdComponent} from "../forgot-pwd/forgot-pwd.component";
+import {ConfirmationEmailSentComponent} from "../confirmation-email-sent/confirmation-email-sent.component";
 
 @Component({
     selector: 'connection-content',
     moduleId: module.id,
     templateUrl: './connection-content.component.html',
     styleUrls : ['./connection-content.component.css'],
-    directives: [LogInComponent, ChangePwdComponent, ForgotPwdComponent]
+    directives: [LogInComponent, ChangePwdComponent, ForgotPwdComponent, ConfirmationEmailSentComponent]
 })
 
 export class ConnectionContentComponent {
@@ -29,6 +30,7 @@ export class ConnectionContentComponent {
      * 1 = Login Component
      * 2 = Change password Component
      * 3 = Forgot password Component
+     * 4 = Confirm component
      * We use it to know which is the page to display
      * IF the current page value is 0, that means we have redirect the user to
      * the home page of the application
@@ -39,7 +41,7 @@ export class ConnectionContentComponent {
         this.modelForChild={errorMessage: '', errorRaised: false};
         this.connectionFailed=false;
         this.errorMessage="";
-        this.currentPageValue=3;
+        this.currentPageValue=1;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
@@ -83,6 +85,9 @@ export class ConnectionContentComponent {
         }
         else if(this.user.error=="Login"){
             this.currentPageValue=1;
+        }
+        else if(this.user.error=="Email sent"){
+            this.currentPageValue=4;
         }
         else if(user.userId==-1){
             this.connectionFailed=true;

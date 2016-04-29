@@ -29,6 +29,10 @@
                                 <forgot-pwd (sendUser)="sendUser($event)"
                                             *ngIf="user" user-generated="{{user.generatedPwd}}" user-id="{{user.userId}}"></forgot-pwd>
                             </div>
+                            <div *ngIf="currentPageValue == 4" class="error">
+                                <confirmation-email-sent (sendUser)="sendUser($event)"
+                                                         *ngIf="user"></confirmation-email-sent>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,6 +64,10 @@
                             <div *ngIf="currentPageValue == 3" class="error">
                                 <forgot-pwd (sendUser)="sendUser($event)"
                                             *ngIf="user"></forgot-pwd>
+                            </div>
+                            <div *ngIf="currentPageValue == 4" class="error">
+                                <confirmation-email-sent (sendUser)="sendUser($event)"
+                                            *ngIf="user"></confirmation-email-sent>
                             </div>
                         </div>
                     </div>

@@ -28,9 +28,12 @@ label{
   padding-top: 7px;
 }
 
+.fa-info-circle, .fa-arrow-circle-left{
+  color:rgb(0,99,167);
+}
+
 .fa-arrow-circle-left{
   font-size: 30px;
-  color:rgb(0,99,167);
   margin-top: 8px;
 }
 .fa-arrow-circle-left:hover{
@@ -40,4 +43,12 @@ label{
 .forgotContact{
   font-size: 12px;
   color: #0066c0;
+}
+
+.info{
+  font-style: italic;
+}
+
+.buttonDiv{
+  margin-top:1em;
 }

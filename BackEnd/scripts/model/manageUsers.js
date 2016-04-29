@@ -28,12 +28,23 @@ var nodemailer = require('nodemailer');
  */
 exports.connect = function (userParams, success, fail) {
     /**
-     * We first build the query manually. We ask the user_id from the login and the password
+     * We first build the query manually. We ask the user_id and the login from the login and the password
      * we have in userParams.
      */
-    var query = "SELECT " + userKeys[0] + ", " + userKeys[7] + " FROM T_User WHERE "
-        + userKeys[6] + "='" + userParams[userKeys[6]] + "' AND "
-        + userKeys[4] + "=MD5('" + paramQ +userParams[userKeys[4]]+"')";
+    if (userParams.hasOwnProperty(userKeys[6]) && userParams.hasOwnProperty(userKeys[4])) {
+        var query = "SELECT " + userKeys[0] + ", " + userKeys[7] + " FROM T_User WHERE "
+            + userKeys[6] + "='" + userParams[userKeys[6]] + "' AND "
+            + userKeys[4] + "=MD5('" + paramQ +userParams[userKeys[4]]+"')";
+    }
+    /**
+     * We first build the query manually. We ask the user_id from the email address
+     * we have in userParams.
+     */
+    else if(userParams.hasOwnProperty(userKeys[2]) ){
+        var query = "SELECT " + userKeys[0] + " FROM T_User WHERE "
+            + userKeys[2] + "='" + userParams[userKeys[2]] +"'";
+    }
+
 
     console.log("query for connection:" + query);
 
