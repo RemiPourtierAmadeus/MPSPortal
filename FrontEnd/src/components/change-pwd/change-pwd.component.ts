@@ -70,11 +70,11 @@ export class ChangePwdComponent {
      * This function emits a user through the output in order to alert an other component
      * that an error has occured while the changing password phase.
      */
-    emitErrorUser(){
+    emitErrorUser(error:string){
         this.password2="";
         this.user= new UserComponent("", "", "",
             "", false, false, false,false, "", "",this.userId, "",  this.generatedPwd,
-            "Given passwords are different.");
+            error);
         this.sendUser.emit(this.user);
     }
 
@@ -102,20 +102,42 @@ export class ChangePwdComponent {
         }
     }
 
+    passwordIsCorrect(){
+        let number=false;
+        let letter=false;
+        for(var i=0;i<this.user.password.length;i++){
+            if(number && letter) return true;
+            if(this.user.password.charCodeAt(i) >47 && this.user.password.charCodeAt(i) <58 ){
+                number=true;
+            }
+            if( (this.user.password.charCodeAt(i) >64 && this.user.password.charCodeAt(i) <91)
+                || (this.user.password.charCodeAt(i) >96 && this.user.password.charCodeAt(i) <123) ){
+                letter=true;
+            }
+        }
+        if(number && letter) return true;
+        return false;
+    }
+
     /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. Then,
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
-        if(this.samePassword()){
-            let finalUserJSON = this.buildUserJSON();
-            this._manageUserService.updateUser(finalUserJSON).then(
-                user => this.redirect(user),
-                error => this.errorFromServer = <any> error);
+        if(this.passwordIsCorrect()){
+            if(this.samePassword()){
+                let finalUserJSON = this.buildUserJSON();
+                this._manageUserService.updateUser(finalUserJSON).then(
+                    user => this.redirect(user),
+                    error => this.errorFromServer = <any> error);
+            }
+            else{
+                this.emitErrorUser("Given passwords are different.");
+            }
         }
         else{
-            this.emitErrorUser();
+            this.emitErrorUser("Password must contains at least 6 letters & numbers.");
         }
     }
 }

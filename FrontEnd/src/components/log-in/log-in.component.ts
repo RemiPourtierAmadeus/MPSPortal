@@ -66,7 +66,6 @@ export class LogInComponent{
      */
     redirect(responseFromDB){
         this.user=responseFromDB[0];
-        console.log("user id : "+this.user.user_id);
         if(this.user.user_id==-1){
             this.connectionFailed=true;
             this.user= new UserComponent("", "", "",
