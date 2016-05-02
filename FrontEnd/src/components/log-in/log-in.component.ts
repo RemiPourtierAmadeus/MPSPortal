@@ -23,8 +23,6 @@ export class LogInComponent{
     public submitted;
     public errorFromServer;
 
-    public emailContent;
-
     public connectionFailed;
 
     @Input('email-content') emailContent:string;

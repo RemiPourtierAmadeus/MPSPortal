@@ -15,7 +15,8 @@ const LIBS_DEPENDENCIES = [
     'node_modules/angular2/bundles/angular2.dev.js',
     'node_modules/angular2/bundles/router.dev.js',
     'node_modules/angular2/bundles/angular2-polyfills.js',
-    'node_modules/angular2/bundles/http.dev.js'
+    'node_modules/angular2/bundles/http.dev.js',
+    'node_modules/angular2-cookie/bundles/angular2-cookie.min.js'
 ];
 
 const TARGET = 'dist/index.html';

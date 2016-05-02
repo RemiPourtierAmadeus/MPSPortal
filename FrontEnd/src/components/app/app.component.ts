@@ -13,6 +13,7 @@ import {AddUserComponent} from "../add-user/add-user.component";
 import {UserListComponent} from "../user-list/user-list.component";
 import {ConnectionContentComponent} from "../connection-content/connection-content.component";
 import {UserComponent} from "../user/user.component";
+//import {CookieService} from "angular2-cookie/core";
 
 
 /**
@@ -27,9 +28,11 @@ import {UserComponent} from "../user/user.component";
     directives: [
         ROUTER_DIRECTIVES,
         HeaderComponent,
+        ConnectionContentComponent,
+        HomeComponent,
         ConnectionContentComponent
     ],
-    providers: [ManageUsersService, ConnectionContentComponent, HomeComponent]
+    providers: [ManageUsersService]
 })
 
 /**
@@ -63,7 +66,7 @@ export class AppComponent {
     public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
-        this.pageToShow=0;
+        this.pageToShow=1;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
@@ -73,7 +76,6 @@ export class AppComponent {
      * @param user
      */
     instantiateUser(user:UserComponent){
-        console.log("oui je rentre");
         this.user=user;
         if(this.user.userId>=0){
             this.pageToShow=1;

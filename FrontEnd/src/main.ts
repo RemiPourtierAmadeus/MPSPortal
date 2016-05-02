@@ -5,6 +5,9 @@ import {ManageUsersService} from "./shared/services/src/manage-users.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {ANGULAR2_COOKIE_PROVIDERS} from "angular2-cookie/core";
+import {CookieOptions} from "angular2-cookie/core";
+import {CookieService} from "angular2-cookie/core";
 
 
 bootstrap(AppComponent, [
