@@ -132,6 +132,7 @@ export class ChangePwdComponent {
      */
     onSubmit() {
         if(this.passwordIsCorrect()){
+            console.log("passwordcorrect");
             if(this.samePassword()){
                 let finalUserJSON = this.buildUserJSON();
                 this._manageUserService.updateUser(finalUserJSON).then(

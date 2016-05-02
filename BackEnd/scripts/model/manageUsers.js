@@ -117,7 +117,7 @@ function updateUsersInDb(userParams, success, fail){
         connectionVariable.query(paramsInQuery, function (err, data) {
             if (err) throw err;
             else {
-                //success(data);
+                success(data);
             }
         });
 
