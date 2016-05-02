@@ -66,7 +66,7 @@ export class AppComponent {
     public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
-        this.pageToShow=1;
+        this.pageToShow=0;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
