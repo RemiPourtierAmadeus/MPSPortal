@@ -17,15 +17,15 @@ export class ShowDescriptionDirective {
     }
 
     onMouseEnter() {
-        this._highlight("none");
+        this._highlight("yellow");
     }
 
     onMouseLeave() {
-        this._highlight("block");
+        this._highlight(null);
     }
 
-    private _highlight(typeOfDisplay: string) {
-        this._el.style.display = typeOfDisplay;
+    private _highlight(color: string) {
+        this._el.style.backgroundColor = color;
     }
 
 }
