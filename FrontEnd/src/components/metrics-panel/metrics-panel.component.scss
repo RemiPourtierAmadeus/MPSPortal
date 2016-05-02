@@ -1,4 +1,21 @@
-.row {
+.main {
   background-color: rgb(13, 179, 179);
-  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.centeredElement, .row{
+  margin-top:10%;
+}
+
+.arrow{
+  margin-top:5%;
+}
+h1{
+  color:white;
+  text-align: center;
+}
+
+
+
