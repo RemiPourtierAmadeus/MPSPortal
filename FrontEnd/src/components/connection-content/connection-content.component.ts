@@ -90,16 +90,17 @@ export class ConnectionContentComponent {
     sendUser(user:UserComponent){
         this.user=user;
         this.connectionFailed=false;
-        if(this.user.error=="Forgot password"){
+        if(this.user.error==="Forgot password"){
             this.currentPageValue=3;
         }
-        else if(this.user.error=="Login"){
+        else if(this.user.error==="Login"){
             this.currentPageValue=1;
         }
-        else if(this.user.error=="Email sent"){
+        else if(this.user.error==="Email sent"){
             this.currentPageValue=4;
         }
-        else if(user.userId==-1){
+        else if(user.userId==-1 || this.user.error==="Given passwords are different."
+            || this.user.error==="Password must contains at least 6 letters & numbers."){
             this.connectionFailed=true;
             this.errorMessage=user.error;
         }
@@ -107,6 +108,7 @@ export class ConnectionContentComponent {
             this.updateCurrentPageValue();
         }
         else{
+            this.connectionFailed=false;
             this.redirectToHomePage();
         }
     }

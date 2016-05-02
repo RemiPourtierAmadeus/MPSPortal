@@ -50,6 +50,9 @@ export class ChangePwdComponent {
             password: this.user.password,
             generatedPwd: 0
         };
+        console.log("user id: "+userJSON.user_id);
+        console.log("user id: "+userJSON.password);
+        console.log("user id: "+userJSON.generatedPwd);
         return userJSON;
     }
 
@@ -71,9 +74,10 @@ export class ChangePwdComponent {
      * that an error has occured while the changing password phase.
      */
     emitErrorUser(error:string){
+        console.log('emit error user');
         this.password2="";
         this.user= new UserComponent("", "", "",
-            "", false, false, false,false, "", "",this.userId, "",  this.generatedPwd,
+            "", false, false, false,false, "", "",this.user.userId, "",  this.generatedPwd,
             error);
         this.sendUser.emit(this.user);
     }
@@ -86,7 +90,10 @@ export class ChangePwdComponent {
      * @param responseFromDB
      */
     redirect(responseFromDB){
+        console.log("into redirect");
         if(responseFromDB[0].success==="true"){
+
+            console.log("into redirect true");
             this.user= new UserComponent("", "", "",
                 "", false, false, false,false, "",this.user.password ,this.user.userId, "", 0,
                 "");
@@ -131,9 +138,11 @@ export class ChangePwdComponent {
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
+        console.log("onsubmit");
         if(this.passwordIsCorrect()){
             console.log("passwordcorrect");
             if(this.samePassword()){
+                console.log("into samepassword");
                 let finalUserJSON = this.buildUserJSON();
                 this._manageUserService.updateUser(finalUserJSON).then(
                     user => this.redirect(user),
