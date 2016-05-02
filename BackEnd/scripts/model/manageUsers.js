@@ -66,7 +66,7 @@ exports.connect = function (userParams, success, fail) {
             else if(generateNewPassword==true){
                 var generatedPassword = generatePassword();
                 data={"user_id":data[0].user_id, "password":generatedPassword, "generatedPwd":1};
-                updateUsersInDb(data, success,fail);
+                updateUsersInDb(generateNewPassword,data, success,fail);
                 data=[data];
                 //TODO: sendEmail()
             }
@@ -77,7 +77,7 @@ exports.connect = function (userParams, success, fail) {
     });
 }
 
-function updateUsersInDb(userParams, success, fail){
+function updateUsersInDb(newPasswordGenerated, userParams, success, fail){
     //userParams[userKeys[0]]=""+userParams[userKeys[0]];
     console.log("user id: "+userParams[userKeys[0]].length );
     var paramsInQuery = "";
@@ -117,7 +117,9 @@ function updateUsersInDb(userParams, success, fail){
         connectionVariable.query(paramsInQuery, function (err, data) {
             if (err) throw err;
             else {
-                success(data);
+                if(!newPasswordGenerated){
+                    success(data);
+                }
             }
         });
 
@@ -218,7 +220,7 @@ function addUser(userId, userTypeValue, generatedPassword, userParams, success, 
  */
 exports.updateUsers = function (userParams, success, fail) {
 
-    updateUsersInDb(userParams,success,fail);
+    updateUsersInDb(false,userParams,success,fail);
 }
 
 /**
