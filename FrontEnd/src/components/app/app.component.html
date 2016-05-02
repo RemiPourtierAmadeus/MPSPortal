@@ -1,7 +1,10 @@
-<div *ngIf="userIsNotConnected">
-    <connection-content></connection-content>
+<div *ngIf="pageToShow==0">
+    <connection-content (sendCurrentUser)="instantiateUser($event)" ></connection-content>
 </div>
-<div *ngIf="!userIsNotConnected">
+<div *ngIf="pageToShow==1">
+    <home></home>
+</div>
+<div *ngIf="pageToShow==2">
 
     <div class="header">
         <header></header>

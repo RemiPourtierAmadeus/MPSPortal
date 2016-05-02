@@ -12,6 +12,7 @@ import {HeaderComponent} from "../header/header.component";
 import {AddUserComponent} from "../add-user/add-user.component";
 import {UserListComponent} from "../user-list/user-list.component";
 import {ConnectionContentComponent} from "../connection-content/connection-content.component";
+import {UserComponent} from "../user/user.component";
 
 
 /**
@@ -28,7 +29,7 @@ import {ConnectionContentComponent} from "../connection-content/connection-conte
         HeaderComponent,
         ConnectionContentComponent
     ],
-    providers: [ManageUsersService]
+    providers: [ManageUsersService, ConnectionContentComponent, HomeComponent]
 })
 
 /**
@@ -49,12 +50,33 @@ import {ConnectionContentComponent} from "../connection-content/connection-conte
 ])
 
 export class AppComponent {
-    public userManager;
+    public user;
     public userManager_error = false;
-    public userIsNotConnected;
+    /**
+     * Page to show is variable which contains an integer
+     * If pageToShow = 0 => user is not connected => show connection content
+     * If pageToShow = 1 => user is connected and we show the home page
+     * If pageToShow = 2 => user is connected and the user has choosen the part of the website
+     * from the home page.
+     */
+    public pageToShow;
     public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
-        this.userIsNotConnected=true;
+        this.pageToShow=0;
+        this.user = new UserComponent("", "", "",
+            "", false, false, false, false, "","");
+    }
+
+    /**
+     * Function instanciateUser
+     * @param user
+     */
+    instantiateUser(user:UserComponent){
+        console.log("oui je rentre");
+        this.user=user;
+        if(this.user.userId>=0){
+            this.pageToShow=1;
+        }
     }
 }

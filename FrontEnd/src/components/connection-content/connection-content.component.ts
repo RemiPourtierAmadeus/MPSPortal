@@ -2,13 +2,14 @@
  * Component ConnectionContentComponent
  */
 
-import {Component} from 'angular2/core';
+import {Component, EventEmitter} from 'angular2/core';
 import {LogInComponent} from "../log-in/log-in.component";
 import {ChangePwdComponent} from "../change-pwd/change-pwd.component";
 import {UserComponent} from "../user/user.component";
 import {ForgotPwdComponent} from "../forgot-pwd/forgot-pwd.component";
 import {HeaderComponent} from "../header/header.component";
 import {ConfirmationEmailSentComponent} from "../confirmation-email-sent/confirmation-email-sent.component";
+import {Output} from "angular2/core";
 
 @Component({
     selector: 'connection-content',
@@ -30,6 +31,8 @@ export class ConnectionContentComponent {
     private emailCopy;
     public emailContent;
 
+
+    @Output() sendCurrentUser= new EventEmitter<UserComponent>();
     /**
      * Current page value contains the following variable: 1,2,3
      * Each number corresponds to a component:
@@ -76,7 +79,9 @@ export class ConnectionContentComponent {
      * This function redirects the user to the home page after a successful connection
      */
     redirectToHomePage(){
-        console.log("this is the redirection");
+        console.log("this is the redirection, user id: "+this.user.userId);
+
+        this.sendCurrentUser.emit(this.user);
         //TODO
     }
 
