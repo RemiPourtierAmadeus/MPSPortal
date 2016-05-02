@@ -90,10 +90,7 @@ export class ChangePwdComponent {
      * @param responseFromDB
      */
     redirect(responseFromDB){
-        console.log("into redirect");
         if(responseFromDB[0].success==="true"){
-
-            console.log("into redirect true");
             this.user= new UserComponent("", "", "",
                 "", false, false, false,false, "",this.user.password ,this.user.userId, "", 0,
                 "");
@@ -138,11 +135,8 @@ export class ChangePwdComponent {
      * we build a JSON from data given by user (couple login/password) and then we send the data to the server.
      */
     onSubmit() {
-        console.log("onsubmit");
         if(this.passwordIsCorrect()){
-            console.log("passwordcorrect");
             if(this.samePassword()){
-                console.log("into samepassword");
                 let finalUserJSON = this.buildUserJSON();
                 this._manageUserService.updateUser(finalUserJSON).then(
                     user => this.redirect(user),
