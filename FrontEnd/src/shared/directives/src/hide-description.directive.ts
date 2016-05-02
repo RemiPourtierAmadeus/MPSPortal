@@ -1,15 +1,15 @@
 /**
- * Directive ShowDescriptionDirective
+ * Directive HideDescriptionDirective
  */
 import {Directive, ElementRef, Input} from 'angular2/core';
 @Directive({
-    selector: '[showDescription]',
+    selector: '[hideDescription]',
     host: {
         '(mouseenter)': 'onMouseEnter()',
         '(mouseleave)': 'onMouseLeave()'
     }
 })
-export class ShowDescriptionDirective {
+export class HideDescriptionDirective {
     private _el:HTMLElement;
 
     constructor(el: ElementRef) {
@@ -17,15 +17,14 @@ export class ShowDescriptionDirective {
     }
 
     onMouseEnter() {
-        this._highlight("none");
+        this._highlight("block");
     }
 
     onMouseLeave() {
-        this._highlight("block");
+        this._highlight("none");
     }
 
     private _highlight(typeOfDisplay: string) {
         this._el.style.display = typeOfDisplay;
     }
-
 }
