@@ -11,8 +11,6 @@ import {VerificationPwdComponent} from "../verification-pwd/verification-pwd.com
     selector: 'change-pwd',
     moduleId: module.id,
     templateUrl: './change-pwd.component.html',
-    controller: VerificationPwdComponent,
-    controllerAs: "passwordVerification",
     styleUrls : ['./change-pwd.component.css']
 })
 
