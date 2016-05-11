@@ -337,8 +337,8 @@ function sendEmail(email) {
         port: 465,
         secure: true,
         auth: {
-            user: 'remi.pourtier@gmail.com',
-            pass: '%110893%'
+            user: '',
+            pass: ''
         } // use SSL
     };
     var transporter = nodemailer.createTransport(smtpConfig);
