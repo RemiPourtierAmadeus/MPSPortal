@@ -2,7 +2,7 @@
  * Component HomeComponent
  */
 
-import {Component} from '@angular2/core';
+import {Component} from 'angular2/core';
 import {MetricsPanelComponent} from "../metrics-panel/metrics-panel.component";
 import {PerformancePanelComponent} from "../performance-panel/performance-panel.component";
 import {NewsPanelComponent} from "../news-panel/news-panel.component";
