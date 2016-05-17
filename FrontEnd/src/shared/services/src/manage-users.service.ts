@@ -30,8 +30,7 @@ export class ManageUsersService {
         debugger;
         return this.http.get(this._serverLink)
             .toPromise()
-            .then(
-                res => { debugger; <UserComponent[]> res.json() })
+            .then( res => <UserComponent[]> res.json() )
             .catch(this.handleError);
     }
 
