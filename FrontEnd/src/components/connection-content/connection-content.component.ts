@@ -47,6 +47,7 @@ export class ConnectionContentComponent {
     public currentPageValue;
 
     constructor(){
+
         this.emailAddress="mailto:GBS-GPA-SCS-MPS-Services@amadeus.com";
         this.subjectEmail="?subject=MPS Metrics and Performance";
         this.emailCopy="&cc=jdoucet@amadeus.com";
