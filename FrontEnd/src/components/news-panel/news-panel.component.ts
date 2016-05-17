@@ -12,4 +12,6 @@ import {ShowDescriptionDirective} from "../../shared/directives/src/show-descrip
     styleUrls : ['./news-panel.component.css'],
     directives: [ShowDescriptionDirective]
 })
-export class NewsPanelComponent { }
+export class NewsPanelComponent {
+
+}
