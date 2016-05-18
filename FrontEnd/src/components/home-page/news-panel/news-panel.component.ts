@@ -3,8 +3,8 @@
  */
 
 import {Component} from 'angular2/core';
-import {NewsItemComponent} from "../news-item/news-item.component.ts";
-import {NewsModelComponent} from "../news-model/news-model.component.ts";
+import {NewsItemComponent} from "../news-item/news-item.component";
+import {NewsModelComponent} from "../news-model/news-model.component";
 import {ShowDescriptionDirective} from "../../../shared/directives/src/show-description.directive";
 
 @Component({

@@ -3,16 +3,16 @@ import {MetricsComponent} from "../metrics/metrics.component";
 import {PerformanceComponent} from "../performance/performance.component";
 import {NewsComponent} from "../news/news.component";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
-import {HomeComponent} from "../home/home/home.component.ts";
+import {HomeComponent} from "../home-page/home/home.component";
 import {LogInComponent} from "../connection/log-in/log-in.component";
 import {LogOutComponent} from "../connection/log-out/log-out.component";
 import {ManageUsersService} from "../../shared/services/src/manage-users.service";
 import {Http} from "angular2/http";
 import {HeaderComponent} from "../header/header.component";
-import {AddUserComponent} from "../user/add-user/add-user.component";
-import {UserListComponent} from "../user/user-list/user-list.component";
+import {AddUserComponent} from "../user-components/add-user/add-user.component";
+import {UserListComponent} from "../user-components/user-list/user-list.component";
 import {ConnectionContentComponent} from "../connection/connection-content/connection-content.component";
-import {UserComponent} from "../user/user/user.component.ts";
+import {UserComponent} from "../user-components/user/user.component";
 import {CookieService} from "angular2-cookie/core";
 
 

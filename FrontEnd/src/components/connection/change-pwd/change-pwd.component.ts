@@ -5,7 +5,7 @@
 import {Component, EventEmitter, Output,Input} from 'angular2/core';
 import {VerificationPwdComponent} from "../verification-pwd/verification-pwd.component";
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
-import {UserComponent} from "../../user/user/user.component";
+import {UserComponent} from "../../user-components/user/user.component";
 
 @Component({
     selector: 'change-pwd',

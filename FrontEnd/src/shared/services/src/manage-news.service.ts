@@ -3,7 +3,7 @@
  */
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
-import {NewsModelComponent} from "../../../components/home/news-model/news-model.component";
+import {NewsModelComponent} from "../../../components/home-page/news-model/news-model.component";
 import {Response} from "angular2/http";
 
 @Injectable()

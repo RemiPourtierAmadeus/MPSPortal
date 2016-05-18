@@ -3,10 +3,10 @@
  */
 
 import {Component} from 'angular2/core';
-import {MetricsPanelComponent} from "../metrics-panel/metrics-panel.component.ts";
-import {PerformancePanelComponent} from "../performance-panel/performance-panel.component.ts";
-import {NewsPanelComponent} from "../news-panel/news-panel.component.ts";
-import {ShowDescriptionDirective} from "../../../shared/directives/src/show-description.directive.ts";
+import {MetricsPanelComponent} from "../metrics-panel/metrics-panel.component";
+import {PerformancePanelComponent} from "../performance-panel/performance-panel.component";
+import {NewsPanelComponent} from "../news-panel/news-panel.component";
+import {ShowDescriptionDirective} from "../../../shared/directives/src/show-description.directive";
 
 @Component({
     selector: 'home',

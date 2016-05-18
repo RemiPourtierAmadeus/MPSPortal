@@ -1,7 +1,7 @@
 /**
  * Test Component NewsModel
  */
-import {NewsModelComponent} from "./news-model.component";
+import {NewsModelComponent} from "./news-model.component.ts";
 import {Component} from "angular2/core";
 @Component({
     selector: 'test-news-model',

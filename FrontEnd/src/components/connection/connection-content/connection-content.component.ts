@@ -9,7 +9,7 @@ import {ForgotPwdComponent} from "../forgot-pwd/forgot-pwd.component";
 import {HeaderComponent} from "../../header/header.component";
 import {ConfirmationEmailSentComponent} from "../confirmation-email-sent/confirmation-email-sent.component";
 import {Output} from "angular2/core";
-import {UserComponent} from "../../user/user/user.component";
+import {UserComponent} from "../../user-components/user/user.component";
 
 @Component({
     selector: 'connection-content',
