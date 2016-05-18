@@ -10,7 +10,7 @@ import {Response} from "angular2/http";
 export class ManageNewsService {
 
     private news;
-    private _serverLink;
+    private _serverLink ='http://ncevc-04296:3500/news';
     private extensionLink: string[];
 
     /**
