@@ -5,6 +5,7 @@
 import {Component} from 'angular2/core';
 import {ShowDescriptionDirective} from "../../shared/directives/src/show-description.directive";
 import {NewsItemComponent} from "../news-item/news-item.component";
+import {NewsModelComponent} from "../news-model/news-model.component";
 
 @Component({
     selector: 'news-panel',
@@ -15,7 +16,7 @@ import {NewsItemComponent} from "../news-item/news-item.component";
 })
 export class NewsPanelComponent {
 
-    private newsList;
+    private newsList: NewsModelComponent[];
     constructor(){}
 
 }
