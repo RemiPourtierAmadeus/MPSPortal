@@ -2,10 +2,19 @@
   background-color: rgb(102,102,102);
 }
 
-h3{
+h3, .icon{
   color:white;
 }
 
+.icon{
+  font-size: 45px;
+  text-align:right;
+  margin-top:5px;
+  margin-left:7px;
+}
+
 .title{
-  text-align:center;
+  text-align:left;
+  margin-bottom:4px;
+  margin-top:4px;
 }
