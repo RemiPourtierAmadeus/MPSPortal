@@ -27,7 +27,6 @@ export class ManageUsersService {
      * @returns {Promise<*>|Promise<T>}
      */
     getUsers() {
-        debugger;
         return this.http.get(this._serverLink)
             .toPromise()
             .then( res => <UserComponent[]> res.json() )
