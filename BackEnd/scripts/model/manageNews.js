@@ -34,7 +34,7 @@ exports.getNews = function (success, fail) {
             query = query + ", " + newsKeys[i];
         }
     }
-    query = query + " FROM T_News "; //WHERE login='remi.pourtier' AND password=MD5('TR4tQ0DL')
+    query = query + " FROM T_News ";
 
     console.log("query for getNews:" + query);
     /**
@@ -46,4 +46,72 @@ exports.getNews = function (success, fail) {
             success(data);
         }
     });
+}
+
+
+/**
+ * Function addNews. This function will create a new new according to data in newsParam.
+ * @param userParams
+ * @param success
+ * @param fail
+ */
+exports.addNews = function (newsParam, success, fail) {
+    newsParam[newsKeys[0]] = generateNewsID();
+    /** set user id */
+
+    var query = "INSERT INTO T_News ";
+    var attributes = "(";
+    var values = "(";
+    var cpt = 0; //Will represent the number of field in parameters.
+    for (var i = 0; i < newsKeys.length; i++) {
+        if (newsParam.hasOwnProperty(newsKeys[i])) {
+            if (cpt == 0) {
+                attributes = attributes + newsKeys[i];
+                values = values + "'" + newsParam[newsKeys[i]] + "'";
+            }
+            else {
+                if (i != 4) {
+                    values = values + ", " + "'" + newsParam[newsKeys[i]] + "'";
+                }
+                else {
+                    values = values + ", " + newsParam[newsKeys[i]];
+                }
+                attributes = attributes + ", " + newsKeys[i];
+            }
+            cpt++;
+        }
+    }
+    attributes = attributes + ")";
+    values = values + ")";
+    query = query + attributes + " VALUES " + values;
+    console.log("query for adding user: " + query);
+
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+    });
+}
+
+function updateNewsInDB(){
+
+}
+
+/**
+ * This function generates a new id for the current news.
+ * @returns {number}
+ */
+function generateNewsID() {
+    var query="SELECT MAX(id) FROM MPS_Portal.T_News";
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+    });
+    return 1;
 }

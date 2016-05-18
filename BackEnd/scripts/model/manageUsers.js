@@ -148,7 +148,7 @@ exports.getUsers = function (success, fail) {
             query = query + ", " + userKeys[i];
         }
     }
-    query = query + " FROM T_User "; //WHERE login='remi.pourtier' AND password=MD5('TR4tQ0DL')
+    query = query + " FROM T_User ";
 
     console.log("query for getUsers:" + query);
     /**
