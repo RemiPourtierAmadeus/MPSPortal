@@ -52,6 +52,7 @@ var newsKeys = ["id",
     "date",
     "hour",
     "type",
+    "subtype",
     "newsFrom",
     "state"
 ];

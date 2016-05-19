@@ -32,6 +32,29 @@ router.get('/', function (req, res) {
 });
 
 /**
+ * Function get on users. When the front-end is requesting a get on
+ * users, we verifies the success of the request and then call the method
+ * getUsers from userManager.
+ */
+router.put('/', function (req, res) {
+    console.log(req.body);
+    var success = function () {
+        var finalObject = [{success: 'true'}];
+        console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+
+    newsManager.addNewsInDB(data, success,fail);
+});
+
+/**
  * We export the router in order to be imported in other files.
  */
 module.exports = router;

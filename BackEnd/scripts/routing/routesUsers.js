@@ -88,7 +88,7 @@ router.get('/', function (req, res) {
 router.put('/', function (req, res) {
     console.log(req.body);
     var success = function () {
-        var finalObject = 'success';
+        var finalObject = [{success: 'true'}];
         console.log(finalObject);
         res.send(finalObject);
     };

@@ -55,8 +55,8 @@ exports.getNews = function (success, fail) {
  * @param success
  * @param fail
  */
-function addNews(newsParam, success, fail) {
-    newsParam[newsKeys[0]] = generateNewsID();
+function addNews(newsID, newsParam, success, fail) {
+    newsParam[newsKeys[0]] = newsID;
     /** set user id */
 
     var query = "INSERT INTO T_News ";
@@ -67,15 +67,10 @@ function addNews(newsParam, success, fail) {
         if (newsParam.hasOwnProperty(newsKeys[i])) {
             if (cpt == 0) {
                 attributes = attributes + newsKeys[i];
-                values = values + "'" + newsParam[newsKeys[i]] + "'";
+                values = values + "" + newsParam[newsKeys[i]] + "";
             }
             else {
-                if (i != 4) {
-                    values = values + ", " + "'" + newsParam[newsKeys[i]] + "'";
-                }
-                else {
-                    values = values + ", " + newsParam[newsKeys[i]];
-                }
+                values = values + ", " + "'" + newsParam[newsKeys[i]] + "'";
                 attributes = attributes + ", " + newsKeys[i];
             }
             cpt++;
@@ -99,15 +94,18 @@ function addNews(newsParam, success, fail) {
  *
  * First we get back the max of news id and then we call the function to add a news in T_News table
  */
-exports.addNewsInDB = function(newsParam, success, fail){
-    var query="SELECT MAX(id) FROM MPS_Portal.T_News";
+exports.addNewsInDB = function (newsParam, success, fail) {
+    var query = "SELECT MAX(id) 'value' FROM MPS_Portal.T_News";
     /**
      * We run the query
      */
     connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
-            success(data);
+            console.log("data max: " + data[0].value);
+            var newId = data[0].value + 1;
+            //success(data);
+            addNews(newId, newsParam, success, fail);
         }
     });
 }
@@ -117,7 +115,7 @@ exports.addNewsInDB = function(newsParam, success, fail){
  * @returns {number}
  */
 function generateNewsID() {
-    var query="SELECT MAX(id) FROM MPS_Portal.T_News";
+    var query = "SELECT MAX(id) FROM MPS_Portal.T_News";
     /**
      * We run the query
      */
