@@ -18,6 +18,7 @@ import {ManageNewsService} from "../../../shared/services/src/manage-news.servic
 export class NewsPanelComponent {
 
     newsList: NewsModelComponent[];
+    typeList: number[];
     private errorMessage: string;
 
     constructor(private _manageNewsService: ManageNewsService){}
@@ -32,9 +33,27 @@ export class NewsPanelComponent {
      */
     getNews(){
         this._manageNewsService.getNews().then(
-            news => this.newsList=news,
+            news => this.initialiseVariable(news),
             error => this.errorMessage = <any> error
         );
+    }
+
+    initialiseVariable(news){
+        this.newsList=news;
+        this.typeList=[];
+        for(let i=0;i<this.newsList.length;i++){
+            switch (this.newsList[i].type){
+                case "Info":
+                    this.typeList[i]=0;
+                    break;
+                case "Infrastructure":
+                    this.typeList[i]=1;
+                    break;
+                case "Process":
+                    this.typeList[i]=2;
+                    break;
+            }
+        }
     }
 
 }

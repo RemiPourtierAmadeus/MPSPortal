@@ -12,14 +12,18 @@
 .arrow{
   margin-top:5%;
 }
+
 h1{
   font-family: 'Calibri', sans-serif;
   color:white;
   text-align: center;
-}
 
-h1:hover{
-  text-decoration:underline;
+  a{
+    color: white;
+  }
+  a:hover{
+    text-decoration:underline;
+  }
 }
 
 .description{
