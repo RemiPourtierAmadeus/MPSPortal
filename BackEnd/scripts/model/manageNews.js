@@ -55,7 +55,7 @@ exports.getNews = function (success, fail) {
  * @param success
  * @param fail
  */
-exports.addNews = function (newsParam, success, fail) {
+function addNews(newsParam, success, fail) {
     newsParam[newsKeys[0]] = generateNewsID();
     /** set user id */
 
@@ -94,8 +94,22 @@ exports.addNews = function (newsParam, success, fail) {
     });
 }
 
-function updateNewsInDB(){
-
+/**
+ * Function addNewsInDB.
+ *
+ * First we get back the max of news id and then we call the function to add a news in T_News table
+ */
+exports.addNewsInDB = function(newsParam, success, fail){
+    var query="SELECT MAX(id) FROM MPS_Portal.T_News";
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+    });
 }
 
 /**
