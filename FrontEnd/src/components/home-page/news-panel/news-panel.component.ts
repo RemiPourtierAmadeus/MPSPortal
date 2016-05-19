@@ -17,7 +17,7 @@ import {ManageNewsService} from "../../../shared/services/src/manage-news.servic
 })
 export class NewsPanelComponent {
 
-    private newsList: NewsModelComponent[];
+    newsList: NewsModelComponent[];
     private errorMessage: string;
 
     constructor(private _manageNewsService: ManageNewsService){}

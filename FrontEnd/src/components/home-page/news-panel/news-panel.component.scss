@@ -1,9 +1,8 @@
-.main{
-  background-color: rgb(102,102,102);
-}
+@import '../../../shared/styles/card';
+
 
 h3, .icon{
-  color:white;
+  color:rgb(0,99,167);
 }
 
 .icon{
@@ -17,4 +16,13 @@ h3, .icon{
   text-align:left;
   margin-bottom:4px;
   margin-top:4px;
+}
+
+.card{
+  background-color:white;
+}
+
+.newsContent{
+  margin-top:5px;
+  margin-bottom:5px;
 }

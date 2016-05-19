@@ -8,6 +8,8 @@ import {PerformancePanelComponent} from "../performance-panel/performance-panel.
 import {NewsPanelComponent} from "../news-panel/news-panel.component";
 import {ShowDescriptionDirective} from "../../../shared/directives/src/show-description.directive";
 import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
+import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
+import {UserListComponent} from "../../user-components/user-list/user-list.component";
 
 @Component({
     selector: 'home',
@@ -15,7 +17,10 @@ import {ManageNewsService} from "../../../shared/services/src/manage-news.servic
     templateUrl: './home.component.html',
     styleUrls : ['./home.component.css'],
     providers : [ManageNewsService],
-    directives: [MetricsPanelComponent, PerformancePanelComponent, NewsPanelComponent, ShowDescriptionDirective]
+    directives: [MetricsPanelComponent,
+        PerformancePanelComponent,
+        NewsPanelComponent,
+        ShowDescriptionDirective]
 })
 export class HomeComponent {
 
