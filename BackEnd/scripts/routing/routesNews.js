@@ -32,9 +32,9 @@ router.get('/', function (req, res) {
 });
 
 /**
- * Function get on users. When the front-end is requesting a get on
- * users, we verifies the success of the request and then call the method
- * getUsers from userManager.
+ * Function puts on news. When the front-end is requesting a put on
+ * news, we verifies the success of the request and then call the method
+ * addUsers from newsManager.
  */
 router.put('/', function (req, res) {
     console.log(req.body);
@@ -52,6 +52,29 @@ router.put('/', function (req, res) {
     var data = req.body;
 
     newsManager.addNewsInDB(data, success,fail);
+});
+
+/**
+ * Function post on news. When the front-end is requesting a post on
+ * news, we verifies the success of the request and then call the method
+ * updateNews from newsManager.
+ */
+router.post('/', function(req,res){
+    var success = function () {
+        var finalObject = [{success: 'true'}];
+        console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+    console.log("In post, data received: "+data);
+
+    newsManager.updateNews(data, success, fail);
 });
 
 /**

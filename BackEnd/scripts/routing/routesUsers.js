@@ -56,7 +56,6 @@ router.post('/', function(req,res){
 
     // Grab data from http request
     var data = req.body;
-    console.log("In post, data received: "+data);
 
     userManager.updateUsers(data, success, fail);
 });

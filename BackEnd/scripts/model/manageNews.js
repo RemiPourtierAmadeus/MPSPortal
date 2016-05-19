@@ -127,3 +127,56 @@ function generateNewsID() {
     });
     return 1;
 }
+
+/**
+ * Function updateNews. This function will update a news according to data in newsParams.
+ * @param newsParams
+ * @param success
+ * @param fail
+ */
+exports.updateNews = function (newsParams, success, fail) {
+    var paramsInQuery = "";
+    /**
+     * Start treatment of the request. We verify we have a user id in the request.
+     */
+    if (newsParams[newsKeys[0]] >= 0) {
+        console.log("la je rentre pas");
+        /**
+         * We start building the query. We get back all data we have from the http request.
+         * Then we add the attributes to change into the parameters of the query : paramsInQuery.
+         */
+        var cpt = 0;
+        for (var i = 1; i < newsKeys.length; i++) {
+            if (newsParams.hasOwnProperty(newsKeys[i])) {
+                if (cpt == 0) {
+                    paramsInQuery = newsKeys[i] + "='" + newsParams[newsKeys[i]] + "'";
+                }
+                else {
+                    paramsInQuery += ", " + newsKeys[i] + "='" + newsParams[newsKeys[i]] + "'";
+                }
+                cpt++;
+            }
+        }
+        /**
+         * We create the final query.
+         * @type {string}
+         */
+        paramsInQuery = "UPDATE T_News SET " + paramsInQuery + " WHERE id=" + newsParams[newsKeys[0]];
+        console.log("Query: " + paramsInQuery);
+
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(paramsInQuery, function (err, data) {
+            if (err) throw err;
+            else {
+                success(data);
+            }
+        });
+
+    }
+    else {
+        console.log("An error has occurred: No id found in the request.");
+    }
+
+}
