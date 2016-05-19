@@ -1,5 +1,12 @@
 @import '../../../shared/styles/card';
 
+.main {
+
+  border: 3px solid rgb(0,99,167);
+  border-radius: 5px;
+  margin-bottom:20px;
+
+}
 
 h3, .icon{
   color:rgb(0,99,167);
@@ -31,8 +38,26 @@ h3, .icon{
   color:black;
 }
 .card{
+  transition: margin 0.5s;
+  //transition: transform 1s;
+
   .action{
     padding:0.85em;
   }
+}
+
+.card:hover{
+  margin-top:10px;
+  margin-bottom:10px;
+  transition: margin 0.5s;
+  //transition: transform 1s;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.16), 0 2px 20px 0 rgba(0, 0, 0, 0.12);
+
+  //transform: scale(1.02);
+  //cursor:pointer;
+}
+
+.newsListContent{
+  margin-bottom:20px;
 }
 
