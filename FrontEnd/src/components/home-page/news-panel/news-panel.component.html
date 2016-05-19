@@ -28,20 +28,20 @@
                             <div class="large-8 columns">
                                 <a (click)="loginPage()" >more information</a>
                             </div>
-                            <div class="large-2 columns">
-                                <div *ngIf="typeList==0">
-                                    <a href="#" class="button success">{{news.type}} </a>
-                                </div>
-                                <div *ngIf="typeList==1">
-                                    <a href="#" class="button alert">{{news.type}} </a>
-                                </div>
-                                <div *ngIf="typeList==2">
-                                    <a href="#" class="button default">{{news.type}} </a>
-                                </div>
-                            </div>
-                            <div class="large-2 columns subtype">
+                            <div class="large-1 columns subtype">
                                 <a href="#" class="button secondary">
                                     {{news.subtype}}</a>
+                            </div>
+                            <div class="large-2 large-offset-1 columns type end">
+                                <div *ngIf="news.type=='Info'">
+                                    <a href="#" class="button success">{{news.type}} </a>
+                                </div>
+                                <div *ngIf="news.type=='Infrastructure'">
+                                    <a href="#" class="button alert">{{news.type}} </a>
+                                </div>
+                                <div *ngIf="news.type=='Process'">
+                                    <a href="#" class="button default">{{news.type}} </a>
+                                </div>
                             </div>
                         </div>
                     </div>
