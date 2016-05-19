@@ -85,7 +85,6 @@ function updateUsersInDb(newPasswordGenerated, userParams, success, fail){
      * Start treatment of the request. We verify we have a user id in the request.
      */
     if (userParams[userKeys[0]] >= 0 ) {
-        console.log("la je rentre pas");
         /**
          * We start building the query. We get back all data we have from the http request.
          * Then we add the attributes to change into the parameters of the query : paramsInQuery.

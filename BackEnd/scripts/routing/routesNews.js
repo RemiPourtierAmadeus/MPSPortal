@@ -78,6 +78,28 @@ router.post('/', function(req,res){
 });
 
 /**
+ * Function deletes on news. When the front-end is requesting a removal of a news,
+ * we verifies the success of the request and then call the method
+ * deleteNews from newsManager.
+ */
+router.delete('/', function (req, res) {
+    console.log(req.body);
+    var success = function () {
+        var finalObject = [{success: 'true'}];
+        console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+
+    newsManager.deleteNews(data,success, fail);
+});
+/**
  * We export the router in order to be imported in other files.
  */
 module.exports = router;

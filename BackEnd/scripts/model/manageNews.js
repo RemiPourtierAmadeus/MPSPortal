@@ -140,7 +140,6 @@ exports.updateNews = function (newsParams, success, fail) {
      * Start treatment of the request. We verify we have a user id in the request.
      */
     if (newsParams[newsKeys[0]] >= 0) {
-        console.log("la je rentre pas");
         /**
          * We start building the query. We get back all data we have from the http request.
          * Then we add the attributes to change into the parameters of the query : paramsInQuery.
@@ -163,7 +162,6 @@ exports.updateNews = function (newsParams, success, fail) {
          */
         paramsInQuery = "UPDATE T_News SET " + paramsInQuery + " WHERE id=" + newsParams[newsKeys[0]];
         console.log("Query: " + paramsInQuery);
-
         /**
          * We update the data.
          */
@@ -173,10 +171,22 @@ exports.updateNews = function (newsParams, success, fail) {
                 success(data);
             }
         });
-
     }
     else {
         console.log("An error has occurred: No id found in the request.");
     }
+}
 
+/**
+ * Function deleteUsers. This function delete a user from the database.
+ * @param success
+ * @param fail
+ */
+exports.deleteNews = function (newsParams, success, fail) {
+    connectionVariable.query('DELETE FROM T_News WHERE id=?', newsParams.id, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+    });
 }
