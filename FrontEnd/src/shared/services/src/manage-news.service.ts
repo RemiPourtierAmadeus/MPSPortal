@@ -20,13 +20,13 @@ export class ManageNewsService {
     constructor(private http:Http) {}
 
     /**
-     * Function getUsers. This function makes a get HTTP request to the server
+     * Function getNews. This function makes a get HTTP request to the server
      * @returns {Promise<*>|Promise<T>}
      */
-    getUsers() {
+    getNews() {
         return this.http.get(this._serverLink)
             .toPromise()
-            .then( res => <NewsModelComponent[]> res.json() )
+            .then( res =>  <NewsModelComponent[]> res.json() )
             .catch(this.handleError);
     }
 
