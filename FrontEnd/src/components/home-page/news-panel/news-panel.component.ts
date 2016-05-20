@@ -19,11 +19,13 @@ export class NewsPanelComponent {
 
     newsList: NewsModelComponent[];
     typeList: number[];
+    newsNotFound: boolean;
     private errorMessage: string;
 
     constructor(private _manageNewsService: ManageNewsService){}
 
     ngOnInit(){
+        this.newsNotFound=false;
         this.getNews();
     }
 
@@ -34,12 +36,13 @@ export class NewsPanelComponent {
     getNews(){
         this._manageNewsService.getNews().then(
             news => this.initialiseVariable(news),
-            error => this.errorMessage = <any> error
+            error => this.noNews(error)
         );
     }
 
     initialiseVariable(news){
         this.newsList=news;
+        console.log("news list length: "+news);
         this.typeList=[];
         for(let i=0;i<this.newsList.length;i++){
             switch (this.newsList[i].type){
@@ -54,6 +57,13 @@ export class NewsPanelComponent {
                     break;
             }
         }
+    }
+
+    noNews(error){
+        let emptyNews=new NewsModelComponent(-1,"No news found","","","","","","","");
+        this.newsList=[emptyNews];
+        this.newsNotFound=true;
+
     }
 
 }

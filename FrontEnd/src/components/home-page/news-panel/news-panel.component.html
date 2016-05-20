@@ -7,14 +7,11 @@
             <h3> Last news </h3>
         </div>
     </div>
-    <div class="row newsListContent">
+    <div class="row newsListContent"  *ngIf="newsNotFound==false">
         <div *ngFor="#news of newsList">
             <div class="row newsContent">
                 <div class="large-10 large-centered columns">
                     <div class="card">
-                        <div class="image">
-                            <span class="title"> {{news.title}} | {{news.date}} at {{news.hour}}</span>
-                        </div>
                         <div class="content row">
                             <div class="large-9 columns">
                                 <p>{{news.newsFrom}}: {{news.title}}
@@ -42,6 +39,22 @@
                                 <div *ngIf="news.type=='Process'">
                                     <a href="#" class="button default">{{news.type}} </a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="noNewsToShow" *ngIf="newsNotFound==true">
+        <div *ngFor="#news of newsList">
+            <div class="row newsContent">
+                <div class="large-10 large-centered columns">
+                    <div class="card">
+                        <div class="content row">
+                            <div class="large-9  columns end">
+                                <p> {{news.title}}
+                                </p>
                             </div>
                         </div>
                     </div>
