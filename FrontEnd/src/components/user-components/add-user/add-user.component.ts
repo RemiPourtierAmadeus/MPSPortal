@@ -5,7 +5,7 @@
 import {Component} from 'angular2/core';
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 import {LoginPipe} from "../../../shared/pipes/src/loginPipe";
-import {UserComponent} from "../user/user.component";
+import {UserComponent} from "../../models/user/user.component";
 
 @Component({
     selector: 'add-user',

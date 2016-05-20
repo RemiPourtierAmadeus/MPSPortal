@@ -2,7 +2,7 @@ import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Observable} from "rxjs/Observable";
 import {Response, Headers, RequestOptions} from "angular2/http";
-import {UserComponent} from "../../../components/user-components/user/user.component";
+import {UserComponent} from "../../../components/models/user/user.component";
 
 /**
  * Service ManageUsersService.

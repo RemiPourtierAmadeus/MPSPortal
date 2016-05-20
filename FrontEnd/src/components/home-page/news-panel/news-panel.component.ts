@@ -3,8 +3,8 @@
  */
 
 import {Component} from 'angular2/core';
-import {NewsItemComponent} from "../news-item/news-item.component";
-import {NewsModelComponent} from "../news-model/news-model.component";
+import {NewsItemComponent} from "../../news/news-item/news-item.component";
+import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {ShowDescriptionDirective} from "../../../shared/directives/src/show-description.directive";
 import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
 

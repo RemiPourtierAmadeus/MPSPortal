@@ -4,7 +4,7 @@
 
 import {Component, EventEmitter, Output} from 'angular2/core';
 import {Input} from "angular2/core";
-import {UserComponent} from "../../user-components/user/user.component";
+import {UserComponent} from "../../models/user/user.component";
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 
 @Component({

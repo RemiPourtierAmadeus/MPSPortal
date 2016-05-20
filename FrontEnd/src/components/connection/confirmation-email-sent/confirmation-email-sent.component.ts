@@ -5,7 +5,7 @@
 import {Component} from 'angular2/core';
 import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
-import {UserComponent} from "../../user-components/user/user.component";
+import {UserComponent} from "../../models/user/user.component";
 
 @Component({
     selector: 'confirmation-email-sent',

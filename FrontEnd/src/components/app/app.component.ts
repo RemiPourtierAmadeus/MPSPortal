@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import {MetricsComponent} from "../metrics/metrics.component";
-import {PerformanceComponent} from "../performance/performance.component";
+import {MetricsComponent} from "../metrics/metrics/metrics.component";
+import {PerformanceComponent} from "../performance/performance/performance.component";
 import {NewsComponent} from "../news/news/news.component";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {HomeComponent} from "../home-page/home/home.component";
@@ -12,7 +12,7 @@ import {HeaderComponent} from "../header/header.component";
 import {AddUserComponent} from "../user-components/add-user/add-user.component";
 import {UserListComponent} from "../user-components/user-list/user-list.component";
 import {ConnectionContentComponent} from "../connection/connection-content/connection-content.component";
-import {UserComponent} from "../user-components/user/user.component";
+import {UserComponent} from "../models/user/user.component";
 import {CookieService} from "angular2-cookie/core";
 
 
@@ -67,7 +67,7 @@ export class AppComponent {
     public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
-        this.pageToShow=3;
+        this.pageToShow=1;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }
