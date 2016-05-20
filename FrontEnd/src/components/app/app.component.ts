@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {MetricsComponent} from "../metrics/metrics.component";
 import {PerformanceComponent} from "../performance/performance.component";
-import {NewsComponent} from "../news/news.component";
+import {NewsComponent} from "../news/news/news.component";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {HomeComponent} from "../home-page/home/home.component";
 import {LogInComponent} from "../connection/log-in/log-in.component";
@@ -30,7 +30,8 @@ import {CookieService} from "angular2-cookie/core";
         HeaderComponent,
         ConnectionContentComponent,
         HomeComponent,
-        ConnectionContentComponent
+        ConnectionContentComponent,
+        NewsComponent
     ],
     providers: [ManageUsersService, CookieService]
 })
@@ -45,7 +46,6 @@ import {CookieService} from "angular2-cookie/core";
 @RouteConfig([
     {path: '/metrics', name: 'Metrics', component: MetricsComponent},
     {path: '/performance', name: 'Performance', component: PerformanceComponent},
-    {path: '/news', name: 'News', component: NewsComponent},
     {path: '/add-user', name: 'AddUser', component: AddUserComponent},
     {path: '/user-list', name: 'UserList', component: UserListComponent},
     {path: '/connection-content', name: 'ConnectionContent', component: ConnectionContentComponent},
@@ -60,13 +60,14 @@ export class AppComponent {
      * If pageToShow = 0 => user is not connected => show connection content
      * If pageToShow = 1 => user is connected and we show the home page
      * If pageToShow = 2 => user is connected and the user has choosen the part of the website
+     * IF pageToShow = 3 => user is connected and want to see the news
      * from the home page.
      */
     public pageToShow;
     public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
-        this.pageToShow=1;
+        this.pageToShow=3;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }

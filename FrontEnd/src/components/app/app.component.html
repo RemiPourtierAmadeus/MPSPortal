@@ -4,6 +4,9 @@
 <div *ngIf="pageToShow==1">
     <home></home>
 </div>
+<div *ngIf="pageToShow==3">
+    <news></news>
+</div>
 <div *ngIf="pageToShow==2">
 
     <div class="header">
@@ -19,6 +22,6 @@
 
     <div *ngIf="userManager_error">An error occurred while loading the users!</div>
     <ul>
-        <li *ngFor="#user of userManager">{{user.full_name}}</li>
+        <li *ngFor="let user of userManager">{{user.full_name}}</li>
     </ul>
 </div>

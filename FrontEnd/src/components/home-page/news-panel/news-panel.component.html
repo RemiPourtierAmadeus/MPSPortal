@@ -23,7 +23,7 @@
                         </div>
                         <div class="action row">
                             <div class="large-7 columns">
-                                <a (click)="loginPage()" >more information</a>
+                                <a (click)="redirectToSpecificNews(news.id)" >more information</a>
                             </div>
                             <div class="large-2 large-offset-1 columns type ">
                                 <div *ngIf="news.type=='Info'">

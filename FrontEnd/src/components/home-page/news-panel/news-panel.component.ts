@@ -56,4 +56,8 @@ export class NewsPanelComponent {
 
     }
 
+    redirectToSpecificNews(id){
+        console.log("iep l'id c'est: "+ id);
+    }
+
 }
