@@ -32,33 +32,23 @@ export class NewsPanelComponent {
     /**
      * Function getNews.
      * This function get back the news from the server.
+     * Two cases:
+     * Success: we initialise our news list with data from service
+     * Failure: we call noNews function.
      */
     getNews(){
         this._manageNewsService.getNews().then(
-            news => this.initialiseVariable(news),
+            news => this.newsList=news,
             error => this.noNews(error)
         );
     }
 
-    initialiseVariable(news){
-        this.newsList=news;
-        console.log("news list length: "+news);
-        this.typeList=[];
-        for(let i=0;i<this.newsList.length;i++){
-            switch (this.newsList[i].type){
-                case "Info":
-                    this.typeList[i]=0;
-                    break;
-                case "Infrastructure":
-                    this.typeList[i]=1;
-                    break;
-                case "Process":
-                    this.typeList[i]=2;
-                    break;
-            }
-        }
-    }
-
+    /**
+     * Function noNews.
+     * We call this function in case of error, when no news has been found. This function create an empty new
+     * to show to users.
+     * @param error
+     */
     noNews(error){
         let emptyNews=new NewsModelComponent(-1,"No news found","","","","","","","");
         this.newsList=[emptyNews];
