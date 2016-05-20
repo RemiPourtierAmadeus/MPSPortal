@@ -25,10 +25,10 @@ export class NewsComponent {
 
     constructor(private _manageNewsService:ManageNewsService){
         this.test="nope";
+        this.getNews();
     }
 
     ngOnInit(){
-        this.getNews();
     }
 
     getNews(){
@@ -38,10 +38,6 @@ export class NewsComponent {
         );
     }
 
-    testF(){
-        console.log("je rentre");
-        this.test="damn yes";
-    }
     /**
      * Function noNews.
      * We call this function in case of error, when no news has been found. This function create an empty new
