@@ -1,4 +1,4 @@
-import {Component, onInit} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {UserComponent} from "../../models/user/user.component";
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 
@@ -13,7 +13,7 @@ import {ManageUsersService} from "../../../shared/services/src/manage-users.serv
     styleUrls : ['./user-list.component.css']
 })
 
-export class UserListComponent implements onInit {
+export class UserListComponent  {
 
     /**
      * errorMessage: Attributes which stores potential error message after requesting the server

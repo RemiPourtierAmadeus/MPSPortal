@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Input} from "angular2/core";
 
 /**
  * Component HeaderComponent
@@ -14,4 +15,11 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
         ROUTER_DIRECTIVES
     ]
 })
-export class HeaderComponent { }
+export class HeaderComponent {
+
+    @Input("currentFrameValue") currentFrameValue:string;
+
+    constructor(){}
+
+
+}

@@ -1,7 +1,7 @@
 /**
  * Test Component NewsHeader
  */
-import {NewsHeaderComponent} from "./news-header.component";
+import {NewsHeaderComponent} from "./news-header.component.ts";
 import {Component} from "angular2/core";
 @Component({
     selector: 'test-news-header',
