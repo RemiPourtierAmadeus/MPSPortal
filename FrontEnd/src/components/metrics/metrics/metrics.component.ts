@@ -10,4 +10,6 @@ import {Component} from 'angular2/core';
     templateUrl: './metrics.component.html',
     styleUrls : ['./metrics.component.css']
 })
-export class MetricsComponent { }
+export class MetricsComponent {
+
+}

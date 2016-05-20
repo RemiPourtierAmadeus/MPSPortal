@@ -50,9 +50,6 @@ export class ChangePwdComponent {
             password: this.user.password,
             generatedPwd: 0
         };
-        console.log("user id: "+userJSON.user_id);
-        console.log("user id: "+userJSON.password);
-        console.log("user id: "+userJSON.generatedPwd);
         return userJSON;
     }
 

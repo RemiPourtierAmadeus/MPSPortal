@@ -14,6 +14,7 @@ import {UserListComponent} from "../user-components/user-list/user-list.componen
 import {ConnectionContentComponent} from "../connection/connection-content/connection-content.component";
 import {UserComponent} from "../models/user/user.component";
 import {CookieService} from "angular2-cookie/core";
+import {ManageNewsService} from "../../shared/services/src/manage-news.service";
 
 
 /**
@@ -33,7 +34,7 @@ import {CookieService} from "angular2-cookie/core";
         ConnectionContentComponent,
         NewsComponent
     ],
-    providers: [ManageUsersService, CookieService]
+    providers: [ManageUsersService, ManageNewsService, CookieService]
 })
 
 /**
@@ -67,7 +68,7 @@ export class AppComponent {
     public message="Doesn't work";
 
     constructor(private _manageUserService: ManageUsersService){
-        this.pageToShow=1;
+        this.pageToShow=3;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }

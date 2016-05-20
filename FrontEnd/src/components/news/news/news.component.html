@@ -1,1 +1,5 @@
 <h1> Hey, I'm NewsComponent !</h1>
+
+<div *ngFor="let news of newsList">
+    <news-item news-info="{{news}}"></news-item>
+</div>
