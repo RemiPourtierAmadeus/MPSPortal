@@ -21,8 +21,11 @@ export class NewsComponent {
     subtypeValue: string;
     typeValue: string;
     newsNotFound: boolean;
+    test:string;
 
-    constructor(private _manageNewsService:ManageNewsService){}
+    constructor(private _manageNewsService:ManageNewsService){
+        this.test="nope";
+    }
 
     ngOnInit(){
         this.getNews();
@@ -35,6 +38,10 @@ export class NewsComponent {
         );
     }
 
+    testF(){
+        console.log("je rentre");
+        this.test="damn yes";
+    }
     /**
      * Function noNews.
      * We call this function in case of error, when no news has been found. This function create an empty new

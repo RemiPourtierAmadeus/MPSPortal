@@ -1,5 +1,8 @@
 <h1> Hey, I'm NewsComponent !</h1>
-
 <div *ngFor="let news of newsList">
-    <news-item news-info="{{news}}"></news-item>
+    {{news.title}}
 </div>
+<div *ngFor="let news of newsList">
+    <news-item news-info="{{news}}" test="{{test}}" ></news-item>
+</div>
+<a (click)="testF()">Forgot password </a><br>

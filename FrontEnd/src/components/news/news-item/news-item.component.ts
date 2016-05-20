@@ -14,11 +14,15 @@ import {Input} from "angular2/core";
 })
 export class NewsItemComponent {
 
-    @Input('news-info') news: NewsModelComponent;
-    constructor(){}
+    news: NewsModelComponent;
+    @Input('news-info') currentNews: NewsModelComponent;
+    @Input('test') test: string;
+    constructor(){
+    }
 
     ngOnInit(){
-
-        console.log("news : "+this.news.type);
+        console.log("news : "+this.currentNews.type);
+        this.news= this.currentNews;
     }
+
 }
