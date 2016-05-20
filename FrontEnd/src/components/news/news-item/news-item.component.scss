@@ -1,1 +1,50 @@
 @import '../../../shared/styles/card';
+
+
+.icon{
+  font-size: 45px;
+  text-align:right;
+  margin-top:5px;
+  margin-left:7px;
+}
+
+.title{
+  text-align:left;
+  margin-bottom:4px;
+  margin-top:4px;
+}
+
+.card{
+  background-color:white;
+}
+
+.newsContent{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.fa-calendar{
+  color:black;
+}
+
+.card{
+  transition: margin 0.5s;
+
+  .success, .default{
+    width:134px;
+  }
+  .action{
+    padding:0.85em;
+    padding-bottom:0;
+  }
+}
+
+.subtype, .type{
+  .button{
+    color:white;
+  }
+}
+
+.newsListContent{
+  margin-bottom:20px;
+}

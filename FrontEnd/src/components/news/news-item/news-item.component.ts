@@ -23,14 +23,12 @@ export class NewsItemComponent {
     @Input('type') type: string;
     @Input('subtype') subtype: string;
     @Input('newsFrom') newsFrom: string;
-    constructor(){
-    }
+
+    constructor(){}
 
     ngOnInit(){
         this.news= new NewsModelComponent(this.id, this.title, this.content,
             this.date, this.hour, this.type, this.subtype, this.newsFrom);
-        //console.log("news : "+this.currentNews.type);
-        //this.news= this.currentNews;
     }
 
 }
