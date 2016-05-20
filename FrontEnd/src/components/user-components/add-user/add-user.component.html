@@ -12,7 +12,8 @@
         </div>
     </div>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-        <div class="row">
+
+        <div class="row"><div class="row">
             <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
                 <label>Full Name
                     <input type="text" placeholder="First and last name" required
@@ -31,7 +32,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
             <div class="large-4  medium-4 medium-offset-2 large-offset-2 columns">
                 <label>Login
                     <input type="text" placeholder="" value="{{user.fullName | loginTransformation: tmp}}" disabled [(ngModel)]="user.login"/>
@@ -87,7 +87,7 @@
 <div [hidden]="!submitted">
     <div class="row">
         <div class=" large-4 large-offset-2 medium-4 medium-offset-2 small-4 small-offset-2">
-            <label> The user has been succesfully added </label>
+            <label> The user has been successfully added </label>
             <div *ngIf="userManager_error">An error occurred while loading the users!</div>
             <ul>
                 <li *ngFor="#user of userManager">{{user.full_name}}</li>

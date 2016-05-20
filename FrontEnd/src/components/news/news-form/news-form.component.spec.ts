@@ -1,7 +1,7 @@
 /**
  * Test Component NewsForm
  */
-import {NewsFormComponent} from "./news-form.component";
+import {NewsFormComponent} from "./news-form.component.ts";
 import {Component} from "angular2/core";
 @Component({
     selector: 'test-news-form',

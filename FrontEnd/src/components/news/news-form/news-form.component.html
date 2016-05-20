@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="row">
+        <div class="large-8  medium-8 medium-offset-2 large-offset-2 columns end">
+            <label>Add a news
+                <input type="text" required
+                       [(ngModel)]="news.content" ngControl="news" #spy/>
+            </label>
+        </div>
+    </div>
+    <div class="row buttonRow">
+        <div class="large-1 large-offset-5 medium-4 medium-offset-5 small-offset-4 end buttonCell">
+            <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
+        </div>
+    </div>
+</form>
