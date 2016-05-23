@@ -107,13 +107,16 @@ export class NewsComponent {
      */
     saveNews(news: NewsModelComponent){
         let newsJSON = {
+            id: news.id,
             title: news.title,
             content: news.content,
             type: news.type,
             subtype: news.subtype,
             newsFrom: news.newsFrom
         };
-        this._manageNewsService.updateNews();
+        this._manageNewsService.updateNews(newsJSON).then(
+            news => this.verifyResponse(news),
+            error => this.errorFromServer = <any> error);
     }
 
     /**

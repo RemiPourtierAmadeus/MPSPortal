@@ -57,7 +57,7 @@ export class NewsItemComponent {
             "Performance",
             "Global"
         ];
-        this.pageState = "edit";
+        this.pageState = "general";
     }
 
     /**

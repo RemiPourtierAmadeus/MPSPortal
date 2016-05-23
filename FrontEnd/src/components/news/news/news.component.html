@@ -4,7 +4,7 @@
 <br/>
 <div class="row">
     <div class="news-box large-12 large-centered columns">
-        <news-form (sendNews)="saveNews($event)" newsToSave></news-form>
+        <news-form (sendNews)="saveNews($event)"></news-form>
     </div>
 </div>
 <div class="row">
@@ -12,6 +12,6 @@
         <news-item id="{{news.id}}" title="{{news.title}}"
                    content="{{news.content}}" date="{{news.date}}" hour="{{news.hour}}" type="{{news.type}}"
                    subtype="{{news.subtype}}" newsFrom="{{news.newsFrom}}"
-                   (newsToDelete)="deleteNews($event)" (newsToSave)="addNews($event)"></news-item>
+                   (newsToDelete)="deleteNews($event)" (newsToSave)="saveNews($event)"></news-item>
     </div>
 </div>
