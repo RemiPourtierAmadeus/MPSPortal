@@ -7,50 +7,154 @@ import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {Input} from "angular2/core";
 import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
+import {NewsFormComponent} from "../news-form/news-form.component";
 
 @Component({
     selector: 'news-item',
     moduleId: module.id,
     templateUrl: './news-item.component.html',
-    styleUrls : ['./news-item.component.css']
+    directives: [NewsFormComponent],
+    styleUrls: ['./news-item.component.css']
 })
 export class NewsItemComponent {
 
-    news: NewsModelComponent;
-    confirmDelete:boolean;
-    @Input('id') id: string;
-    @Input('title') title: string;
-    @Input('content') content: string;
-    @Input('date') date: string;
-    @Input('hour') hour: string;
-    @Input('type') type: string;
-    @Input('subtype') subtype: string;
-    @Input('newsFrom') newsFrom: string;
+    news:NewsModelComponent;
+    pageState:string;
+    @Input('id') id:string;
+    @Input('title') title:string;
+    @Input('content') content:string;
+    @Input('date') date:string;
+    @Input('hour') hour:string;
+    @Input('type') type:string;
+    @Input('subtype') subtype:string;
+    @Input('newsFrom') newsFrom:string;
 
 
-    @Output() newsToDelete= new EventEmitter<NewsModelComponent>();
+    typesValues:string[];
+    subtypesValues:string[];
+    newsFromValues:string[];
 
-    constructor(){
 
-        this.confirmDelete=false;
+    @Output() newsToDelete = new EventEmitter<NewsModelComponent>();
+
+    constructor() {
+        this.typesValues = [
+            "Info",
+            "Infrastructure",
+            "Process"];
+        this.subtypesValues = [
+            "Reports",
+            "Outage",
+            "Language",
+            "Planning",
+            "Events"];
+        this.newsFromValues = [
+            "Metrics",
+            "Performance",
+            "Global"
+        ]
+        this.pageState = "general";
     }
 
-    ngOnInit(){
-        this.news= new NewsModelComponent(this.id, this.title, this.content,
+    /**
+     * Function ngOnInit.
+     * NgOnInit initializes the news as newsModel and organize the constants.
+     * We organize the constants for the edit part, when a user would like to edit a
+     * news it will have everything pre-filled according to actual data.
+     */
+    ngOnInit() {
+        this.news = new NewsModelComponent(this.id, this.title, this.content,
             this.date, this.hour, this.type, this.subtype, this.newsFrom);
+        this.organizeConstants();
     }
 
-    openConfirmation(){
+    /**
+     * Function organizeConstants. This function calls three functions in order to
+     * organize types, subtypes and newsfrom lists.
+     */
+    organizeConstants() {
+        this.organizeTypes();
+        this.organizeSubTypes();
+        this.organizeNewsFrom();
+    }
+
+
+    /**
+     * Function organizeTypes.
+     * This function organize the type according to current news type. It puts the current type
+     * at the beginning of the list in order to use it for the edit page.
+     */
+    organizeTypes() {
+        let results=[this.news.type];
+        for(let i=0;i<this.typesValues.length;i++){
+            if(!(this.news.type===this.typesValues[i])){
+                results.push(this.typesValues[i]);
+            }
+        }
+        this.typesValues=results;
+    }
+
+    /**
+     * Function organizeSubTypes.
+     * This function organize subtypes according to current news subtype. It puts the current subtype
+     * at the beginning of the list in order to use it for the edit page.
+     */
+    organizeSubTypes() {
+        let results=[this.news.subtype];
+        for(let i=0;i<this.subtypesValues.length;i++){
+            if(!(this.news.subtype===this.subtypesValues[i])){
+                results.push(this.subtypesValues[i]);
+            }
+        }
+        this.subtypesValues=results;
+    }
+
+    /**
+     * Function organizeNewsFrom.
+     * This function organize newsFrom value according to current news newsFrom value. It puts the current newsFrom value
+     * at the beginning of the list in order to use it for the edit page.
+     */
+    organizeNewsFrom(){
+        let results=[this.news.newsFrom];
+        for(let i=0;i<this.newsFromValues.length;i++){
+            if(!(this.news.newsFrom===this.newsFromValues[i])){
+                results.push(this.newsFromValues[i]);
+            }
+        }
+        this.newsFromValues=results;
+    }
+
+    /**
+     * The function changes the value of the page state to show the div which asks if
+     * the user would like to delete the news.
+     */
+    openConfirmation() {
         console.log("et ouais");
-        this.confirmDelete=true;
+        this.pageState = "delete";
     }
 
-    deleteItem(){
-        this.confirmDelete=false;
+    /**
+     * The function changes the value of the page state to hide the div which asks if
+     * the user would like to delete the news and emits the news to delete to the pattern
+     * component.
+     */
+    deleteItem() {
+        this.pageState = "general";
         this.newsToDelete.emit(this.news);
     }
 
-    initializeConfirmDelete(){
-        this.confirmDelete=false;
+    /**
+     *
+     */
+    initializeConfirmDelete() {
+        this.pageState = "general";
+    }
+
+    /**
+     * Function editNews.
+     * We activate the part of the page for the edition.
+     */
+    editNews() {
+        this.pageState = "edit";
     }
 }

@@ -1,10 +1,10 @@
-<div *ngIf="confirmDelete==false">
+<div *ngIf="pageState=='general'">
     <div class="row newsContent ">
         <div class="cardDiv large-10 large-offset-1 columns panel ">
             <div class="card">
                 <div class="row flexContainer">
                     <div class="editDelete large-1 columns end">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editNews()"></i>
                         <i class="fa fa-times" aria-hidden="true" (click)="openConfirmation()"></i>
                     </div>
                 </div>
@@ -43,8 +43,7 @@
     </div>
 
 </div>
-<div *ngIf="confirmDelete==true">
-
+<div *ngIf="pageState=='delete'">
     <div class="row newsContent ">
         <div class="cardDiv large-10  columns panel ">
             <div class="card">
@@ -99,6 +98,56 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
+</div>
+
+<div *ngIf="pageState=='edit'">
+
+    <div class="row newsContent ">
+        <div class="cardDiv large-10 large-offset-1 columns panel ">
+            <div class="card">
+                <div class="row flexContainer">
+                    <div class="editDelete large-1 columns end">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editNews()"></i>
+                        <i class="fa fa-times" aria-hidden="true" (click)="openConfirmation()"></i>
+                    </div>
+                </div>
+                <div class="content row titleContent">
+                    <div class="large-2 columns">
+                        <select [(ngModel)]="news.newsFrom" required>
+                            <option *ngFor="#from of newsFromValues" ng-value="from">{{from}}</option>
+                        </select>
+                    </div>
+                    <div class="large-5 columns">
+                        <input type="text" required
+                               [(ngModel)]="news.title"/>
+                    </div>
+                    <div class="large-3 columns">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> {{news.date}} at {{news.hour}}
+                    </div>
+                </div>
+                <div class="action row">
+                    <div class="large-7 columns">
+                        <textarea required name="message" [(ngModel)]="news.content"
+                                  #spy rows="5" cols="30">
+                        </textarea>
+                    </div>
+                    <div class="large-2 large-offset-1 columns type ">
+                        <select [(ngModel)]="news.type" required>
+                            <option *ngFor="let type of typesValues" ng-value="type">{{type}}</option>
+                        </select>
+                    </div>
+                    <div class="large-2 columns subtype end">
+                        <select [(ngModel)]="news.subtype" required>
+                            <option *ngFor="let subtypes of subtypesValues" ng-value="subtypes">{{subtypes}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

@@ -1,0 +1,3 @@
+/**
+ * Test service NewsConstantService
+ */
