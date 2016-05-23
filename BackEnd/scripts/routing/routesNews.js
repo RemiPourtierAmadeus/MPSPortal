@@ -84,7 +84,6 @@ router.post('/', function(req,res){
  */
 router.delete('/*', function (req, res) {
     console.log(req.body);
-    console.log("url: "+req.url);
     var success = function () {
         var finalObject = [{success: 'true'}];
         console.log(finalObject);
@@ -98,7 +97,7 @@ router.delete('/*', function (req, res) {
     // Grab data from http request
     var array=req.url.split("/");
     var data = array[1];
-    console.log("data: "+data);
+
     if(data>=0){
         newsManager.deleteNews(data,success, fail);
     }

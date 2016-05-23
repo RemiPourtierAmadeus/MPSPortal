@@ -102,7 +102,6 @@ export class NewsComponent {
     }
 
     deleteNews(news:NewsModelComponent){
-        console.log("news ID: "+news.id);
         let finalNewsJSON = {
             id: news.id
         };

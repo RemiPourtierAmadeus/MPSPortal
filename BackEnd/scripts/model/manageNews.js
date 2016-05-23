@@ -102,7 +102,6 @@ exports.addNewsInDB = function (newsParam, success, fail) {
     connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
-            console.log("data max: " + data[0].value);
             var newId = data[0].value + 1;
             //success(data);
             addNews(newId, newsParam, success, fail);

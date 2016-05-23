@@ -57,7 +57,6 @@ export class ManageNewsService {
      * @returns {any}
      */
     deleteNews(newsJSON): Promise<NewsModelComponent>  {
-        console.log("into delete news: "+newsJSON.id);
         let body = JSON.stringify( newsJSON );
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
