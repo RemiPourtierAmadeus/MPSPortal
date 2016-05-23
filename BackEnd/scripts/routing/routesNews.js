@@ -82,8 +82,9 @@ router.post('/', function(req,res){
  * we verifies the success of the request and then call the method
  * deleteNews from newsManager.
  */
-router.delete('/', function (req, res) {
+router.delete('/*', function (req, res) {
     console.log(req.body);
+    console.log("url: "+req.url);
     var success = function () {
         var finalObject = [{success: 'true'}];
         console.log(finalObject);
@@ -95,9 +96,15 @@ router.delete('/', function (req, res) {
     };
 
     // Grab data from http request
-    var data = req.body;
-
-    newsManager.deleteNews(data,success, fail);
+    var array=req.url.split("/");
+    var data = array[1];
+    console.log("data: "+data);
+    if(data>=0){
+        newsManager.deleteNews(data,success, fail);
+    }
+    else{
+        console.log("A problem has occured while trying to delete a news");
+    }
 });
 /**
  * We export the router in order to be imported in other files.

@@ -106,9 +106,9 @@ export class NewsComponent {
         let finalNewsJSON = {
             id: news.id
         };
-       /* this._manageNewsService.delete(finalNewsJSON).then(
+       this._manageNewsService.deleteNews(finalNewsJSON).then(
             news => this.verifyResponse(news),
-            error => this.errorFromServer = <any> error);*/
+            error => this.errorFromServer = <any> error);
     }
 
     /**

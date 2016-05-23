@@ -38,8 +38,8 @@ export class ManageNewsService {
      * @param userJSON
      * @returns {any}
      */
-    addNews(userJSON):  Promise<NewsModelComponent>  {
-        let body = JSON.stringify( userJSON );
+    addNews(newsJSON):  Promise<NewsModelComponent>  {
+        let body = JSON.stringify( newsJSON );
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
@@ -50,6 +50,25 @@ export class ManageNewsService {
             .catch(this.handleError);
     }
 
+    /**
+     * Function deleteNews.
+     * This function deletes the news into the database.
+     * @param newsJSON
+     * @returns {any}
+     */
+    deleteNews(newsJSON): Promise<NewsModelComponent>  {
+        console.log("into delete news: "+newsJSON.id);
+        let body = JSON.stringify( newsJSON );
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let url= `${this._serverLink}/${newsJSON.id}`;
+        return this.http.delete(url, headers)
+            .toPromise()
+            .then(res=>
+                <NewsModelComponent> res.json())
+            .catch(this.handleError);
+    }
 
     /**
      * Function handleError. This function catches potential errors which come from

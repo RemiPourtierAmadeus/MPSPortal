@@ -182,8 +182,8 @@ exports.updateNews = function (newsParams, success, fail) {
  * @param success
  * @param fail
  */
-exports.deleteNews = function (newsParams, success, fail) {
-    connectionVariable.query('DELETE FROM T_News WHERE id=?', newsParams.id, function (err, data) {
+exports.deleteNews = function (id, success, fail) {
+    connectionVariable.query('DELETE FROM T_News WHERE id=?', id, function (err, data) {
         if (err) throw err;
         else {
             success(data);
