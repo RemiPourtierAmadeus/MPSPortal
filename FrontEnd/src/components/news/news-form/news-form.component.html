@@ -1,9 +1,30 @@
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="row">
-        <div class="large-8  medium-8 medium-offset-2 large-offset-2 columns end">
-            <label>Add a news
-                <input type="text" required
-                       [(ngModel)]="news.content" ngControl="news" #spy/>
+        <h2>Add news</h2>
+    </div>
+    <div class="row">
+        <div class="large-9  medium-9 medium-offset-1 large-offset-1 columns end contentForm">
+            <label>What's up ?
+                <textarea required name="message" [(ngModel)]="news.content"
+                          ngControl="news" #spy rows="5" cols="30">
+                    The cat was playing in the garden.
+                </textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-3 large-offset-1  medium-3 medium-offset-1 columns rowSelect">
+            <label> Type
+                <select [(ngModel)]="news.type" required>
+                    <option *ngFor="let type of typesValue" ng-value="type">{{type}}</option>
+                </select>
+            </label>
+        </div>
+        <div class="large-3 medium-3 medium-offset-1 end columns rowSelect">
+            <label> Subtype
+                <select [(ngModel)]="news.subtype" required>
+                    <option *ngFor="#subtypes of subtypesValue" ng-value="subtypes">{{subtypes}}</option>
+                </select>
             </label>
         </div>
     </div>

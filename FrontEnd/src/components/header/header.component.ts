@@ -17,9 +17,13 @@ import {Input} from "angular2/core";
 })
 export class HeaderComponent {
 
+
     @Input("currentFrameValue") currentFrameValue:string;
 
     constructor(){}
+    ngOnInit(){
+        console.log("Current frame value: "+this.currentFrameValue)
+    };
 
 
 }

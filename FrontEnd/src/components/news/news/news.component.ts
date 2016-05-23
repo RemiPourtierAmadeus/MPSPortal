@@ -23,10 +23,12 @@ export class NewsComponent {
     typeValue: string;
     newsNotFound: boolean;
     test:string;
+    frameType:string;
 
     constructor(private _manageNewsService:ManageNewsService){
         this.test="nope";
         this.getNews();
+        this.frameType="News";
     }
 
     /**

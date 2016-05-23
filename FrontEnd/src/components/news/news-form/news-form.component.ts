@@ -16,12 +16,27 @@ import {NewsModelComponent} from "../../models/news-model/news-model.component";
 export class NewsFormComponent {
 
     news:NewsModelComponent;
+    typesValue:string[];
+    subtypesValue:string[];
 
     constructor(private _manageNewsService:ManageNewsService){
-        this.news= new NewsModelComponent(-1, "", "", "", "", "", "", "");
+        this.news= new NewsModelComponent(-1, "", "", "", "", "Info", "Reports", "");
+        this.typesValue=[
+            "Info",
+            "Infrastructure",
+            "Process"];
+        this.subtypesValue=[
+            "Reports",
+            "Outage",
+            "Language",
+            "Planning",
+            "Communications/Events"];
     }
 
     onSubmit(){
-        console.log("Hello from on Submit");
+        console.log("Content: ", this.news.content);
+        console.log("Type: ", this.news.type);
+        console.log("Subtype: ", this.news.subtype);
     }
+
 }

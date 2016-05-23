@@ -1,0 +1,13 @@
+@import '../../../shared/styles/main';
+@import '../../../shared/styles/variables';
+
+.contentForm, .rowSelect{
+  padding:0px;
+}
+h2{
+  color:$titleColor;
+}
+
+textarea{
+  resize: none;
+}
