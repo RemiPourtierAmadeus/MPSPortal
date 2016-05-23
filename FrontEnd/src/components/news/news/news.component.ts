@@ -40,7 +40,6 @@ export class NewsComponent {
      * all the news from the database.
      */
     getNews(){
-        console.log("oui from getNews");
         this._manageNewsService.getNews().then(
             news => this.newsList=news,
             error => this.noNews(error)
@@ -101,10 +100,28 @@ export class NewsComponent {
         }
     }
 
+    /**
+     * Function saveNews.
+     * It update the current news by calling the updateNews function from manageNewsService.
+     * @param news
+     */
     saveNews(news: NewsModelComponent){
-
+        let newsJSON = {
+            title: news.title,
+            content: news.content,
+            type: news.type,
+            subtype: news.subtype,
+            newsFrom: news.newsFrom
+        };
+        this._manageNewsService.updateNews();
     }
 
+    /**
+     * Function deleteNews.
+     * Firstly, it build the JSON with the news id and then call the deleteNews function
+     * from manageNewsService in order to delete it.
+     * @param news
+     */
     deleteNews(news:NewsModelComponent){
         let finalNewsJSON = {
             id: news.id

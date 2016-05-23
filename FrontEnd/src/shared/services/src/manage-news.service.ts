@@ -32,6 +32,7 @@ export class ManageNewsService {
             .catch(this.handleError);
     }
 
+    /**
     getOneNews(newsJSON){
         let url= `${this._serverLink}/${newsJSON.id}`;
         return this.http.get()
@@ -74,6 +75,25 @@ export class ManageNewsService {
             .toPromise()
             .then(res=>
                 <NewsModelComponent> res.json())
+            .catch(this.handleError);
+    }
+
+    /**
+     * Function updateNews. This function updates news data.
+     * @param userJSON
+     * @returns {Promise<NewsModelComponent>|Promise<*>|Promise<T>}
+     */
+    updateNews(newsJSON): Promise<NewsModelComponent>{
+        let body = JSON.stringify( newsJSON );
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        let path= this._serverLink;
+        console.log("Path: "+ path);
+        console.log("User params: " + newsJSON);
+        return this.http.post(path, body, options)
+            .toPromise()
+            .then(res=> <NewsModelComponent> res.json())
             .catch(this.handleError);
     }
 
