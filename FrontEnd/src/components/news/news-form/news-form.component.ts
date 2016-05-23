@@ -22,6 +22,7 @@ export class NewsFormComponent {
     subtypesValue:string[];
     newsFrom:string[];
     formCorrectlyFilled:boolean;
+    status:string[];
 
     @Output() sendNews= new EventEmitter<NewsModelComponent>();
 
@@ -48,6 +49,10 @@ export class NewsFormComponent {
             "Performance",
             "Global"
         ]
+        this.status=[
+            "Active",
+            "Inactive"
+        ];
     }
 
     /**
@@ -56,10 +61,8 @@ export class NewsFormComponent {
      * @returns {boolean}
      */
     formComplete() {
-        console.log('oui je rentre: ');
-        console.log("active: "+this.news.active);
-        console.log("inactive: "+this.news.inactive);
-        if (!this.news.active && !this.news.inactive) {
+        console.log("inactive: "+this.news.status);
+        if (this.news.status==="Inactive") {
             this.formCorrectlyFilled = false;
             return false;
         }
@@ -76,6 +79,8 @@ export class NewsFormComponent {
     onSubmit(){
         if(this.formComplete()){
             this.sendNews.emit(this.news);
+            this.news= new NewsModelComponent(-1, "", "", "", "", "Info", "Reports", "Metrics", "Inactive");
+
         }
     }
 

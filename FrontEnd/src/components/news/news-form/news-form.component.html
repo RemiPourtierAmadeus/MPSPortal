@@ -43,8 +43,9 @@
         </div>
         <div class="large-2 medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end checkBoxDiv">
             <label>Status</label>
-            <input id="activeState" type="checkbox" class="postfix"  (click)="news.active= !news.active" ><label for="activeState" >Active</label>
-            <input id="inactiveState" type="checkbox" class="postfix" (click)="news.inactive= !news.inactive"><label for="inactiveState" >Inactive</label>
+            <select [(ngModel)]="news.active" required>
+                <option *ngFor="#currentStatus of status" ng-value="currentStatus">{{currentStatus}}</option>
+            </select>
         </div>
     </div>
     <div class="row buttonRow">
