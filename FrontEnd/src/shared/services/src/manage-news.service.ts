@@ -89,8 +89,6 @@ export class ManageNewsService {
         let options = new RequestOptions({headers: headers});
 
         let path= this._serverLink;
-        console.log("Path: "+ path);
-        console.log("User params: " + newsJSON);
         return this.http.post(path, body, options)
             .toPromise()
             .then(res=> <NewsModelComponent> res.json())
