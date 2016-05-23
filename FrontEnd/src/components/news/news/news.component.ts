@@ -24,6 +24,8 @@ export class NewsComponent {
     newsNotFound: boolean;
     test:string;
     frameType:string;
+    responseFromServer:NewsModelComponent;
+    errorFromServer;
 
     constructor(private _manageNewsService:ManageNewsService){
         this.test="nope";
@@ -44,11 +46,39 @@ export class NewsComponent {
     }
 
     /**
+     * Function buildNewsJSON.
+     * The function builds the JSON from the news information filled in the form.
+     * @returns JSON
+     */
+    buildNewsJSON(news) {
+        let newsJSON = {
+            title: news.title,
+            content: news.content,
+            type: news.type,
+            subtype: news.subtype,
+            newsFrom: news.newsFrom
+        };
+        return newsJSON;
+    }
+
+    saveNews(news: NewsModelComponent){
+        let finalNewsJSON = this.buildNewsJSON(news);
+        this._manageNewsService.addNews(finalNewsJSON).then(
+            news => this.verifyResponse(),
+            error => this.errorFromServer = <any> error);
+    }
+
+    verifyResponse(data){
+        console.log("data FROM SERVER "+data.success);
+    }
+
+
+    /**
      * Function noNews.
      * We call this function in case of error, when no news has been found. This function create an empty new
      * to show to users.
      * @param error
- 6    */
+     */
     noNews(error){
         let emptyNews=new NewsModelComponent(-1,"No news found","","","","","","","");
         this.newsList=[emptyNews];

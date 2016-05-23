@@ -5,6 +5,8 @@ import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {NewsModelComponent} from "../../../components/models/news-model/news-model.component";
 import {Response} from "angular2/http";
+import {Headers} from "angular2/http";
+import {RequestOptions} from "angular2/http";
 
 @Injectable()
 export class ManageNewsService {
@@ -27,6 +29,23 @@ export class ManageNewsService {
         return this.http.get(this._serverLink)
             .toPromise()
             .then( res =>  <NewsModelComponent[]> res.json() )
+            .catch(this.handleError);
+    }
+
+    /**
+     * Function addNews.
+     * This function adds a news into the database.
+     * @param userJSON
+     * @returns {any}
+     */
+    addNews(userJSON):  Promise<NewsModelComponent>  {
+        let body = JSON.stringify( userJSON );
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.put(this._serverLink, body, options)
+            .toPromise()
+            .then(res=> <NewsModelComponent> res.json().data)
             .catch(this.handleError);
     }
 

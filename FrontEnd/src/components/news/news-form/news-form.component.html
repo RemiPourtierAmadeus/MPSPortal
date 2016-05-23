@@ -3,8 +3,16 @@
         <h2>Add news</h2>
     </div>
     <div class="row">
+    <div class="large-9  medium-9 medium-offset-1 large-offset-1 columns end contentForm">
+        <label>Title
+            <input type="text" placeholder="" required
+                   [(ngModel)]="news.title" ngControl="title" #spy/>
+        </label>
+    </div>
+</div>
+    <div class="row">
         <div class="large-9  medium-9 medium-offset-1 large-offset-1 columns end contentForm">
-            <label>What's up ?
+            <label>Description
                 <textarea required name="message" [(ngModel)]="news.content"
                           ngControl="news" #spy rows="5" cols="30">
                     The cat was playing in the garden.
@@ -13,17 +21,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="large-3 large-offset-1  medium-3 medium-offset-1 columns rowSelect">
+        <div class="large-2 large-offset-1  medium-3 medium-offset-1 columns rowSelect">
             <label> Type
                 <select [(ngModel)]="news.type" required>
                     <option *ngFor="let type of typesValue" ng-value="type">{{type}}</option>
                 </select>
             </label>
         </div>
-        <div class="large-3 medium-3 medium-offset-1 end columns rowSelect">
+        <div class="large-3 medium-3 large-offset-1 columns rowSelect">
             <label> Subtype
                 <select [(ngModel)]="news.subtype" required>
                     <option *ngFor="#subtypes of subtypesValue" ng-value="subtypes">{{subtypes}}</option>
+                </select>
+            </label>
+        </div>
+        <div class="large-2 medium-3  large-offset-1 end columns rowSelect">
+            <label> From
+                <select [(ngModel)]="news.newsFrom" required>
+                    <option *ngFor="#from of newsFrom" ng-value="from">{{from}}</option>
                 </select>
             </label>
         </div>
