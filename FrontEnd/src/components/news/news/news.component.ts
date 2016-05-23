@@ -79,7 +79,7 @@ export class NewsComponent {
      * Success case: We call the verifyResponse().
      * @param news
      */
-    saveNews(news: NewsModelComponent){
+    addNews(news: NewsModelComponent){
         let finalNewsJSON = this.buildNewsJSON(news);
         this._manageNewsService.addNews(finalNewsJSON).then(
             news => this.verifyResponse(news),
@@ -101,6 +101,10 @@ export class NewsComponent {
         }
     }
 
+    saveNews(news: NewsModelComponent){
+
+    }
+
     deleteNews(news:NewsModelComponent){
         let finalNewsJSON = {
             id: news.id
@@ -109,6 +113,7 @@ export class NewsComponent {
             news => this.verifyResponse(news),
             error => this.errorFromServer = <any> error);
     }
+
 
     /**
      * Function noNews.

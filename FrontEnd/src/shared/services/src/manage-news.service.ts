@@ -32,6 +32,14 @@ export class ManageNewsService {
             .catch(this.handleError);
     }
 
+    getOneNews(newsJSON){
+        let url= `${this._serverLink}/${newsJSON.id}`;
+        return this.http.get()
+            .toPromise()
+            .then( res =>  <NewsModelComponent[]> res.json() )
+            .catch(this.handleError);
+    }
+
     /**
      * Function addNews.
      * This function adds a news into the database.

@@ -8,18 +8,21 @@ import {Input} from "angular2/core";
 import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
 import {NewsFormComponent} from "../news-form/news-form.component";
+import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
 
 @Component({
     selector: 'news-item',
     moduleId: module.id,
     templateUrl: './news-item.component.html',
     directives: [NewsFormComponent],
+    providers: [ManageNewsService],
     styleUrls: ['./news-item.component.css']
 })
 export class NewsItemComponent {
 
     news:NewsModelComponent;
     pageState:string;
+    errorFromServer:string;
     @Input('id') id:string;
     @Input('title') title:string;
     @Input('content') content:string;
@@ -36,8 +39,9 @@ export class NewsItemComponent {
 
 
     @Output() newsToDelete = new EventEmitter<NewsModelComponent>();
+    @Output() newsToSave = new EventEmitter<NewsModelComponent>();
 
-    constructor() {
+    constructor(private _manageNewsService:ManageNewsService) {
         this.typesValues = [
             "Info",
             "Infrastructure",
@@ -52,8 +56,8 @@ export class NewsItemComponent {
             "Metrics",
             "Performance",
             "Global"
-        ]
-        this.pageState = "general";
+        ];
+        this.pageState = "edit";
     }
 
     /**
@@ -129,7 +133,6 @@ export class NewsItemComponent {
      * the user would like to delete the news.
      */
     openConfirmation() {
-        console.log("et ouais");
         this.pageState = "delete";
     }
 
@@ -157,4 +160,22 @@ export class NewsItemComponent {
     editNews() {
         this.pageState = "edit";
     }
+
+
+    /**
+     * Function cancelEditing.
+     * It cancels the current edition and get back initial information.
+     */
+    cancelEditing(){
+        this.news = new NewsModelComponent(this.id, this.title, this.content,
+            this.date, this.hour, this.type, this.subtype, this.newsFrom);
+        this.pageState="general";
+    }
+
+    saveItem(){
+
+        this.newsToSave.emit(this.news);
+    }
+
+
 }

@@ -105,8 +105,8 @@
 
 <div *ngIf="pageState=='edit'">
 
-    <div class="row newsContent ">
-        <div class="cardDiv large-10 large-offset-1 columns panel ">
+    <div class="row newsContent">
+        <div class="cardDiv large-10 columns panel ">
             <div class="card">
                 <div class="row flexContainer">
                     <div class="editDelete large-1 columns end">
@@ -148,6 +148,20 @@
             </div>
         </div>
 
+        <div class="notification large-2 columns panel">
+            <div class="titleNotif">
+                Save news ?
+            </div>
+            <br/>
+            <div class="row icons">
+                <div class="yes large-1 large-offset-1 columns">
+                    <i class="fa fa-check" aria-hidden="true" (click)="saveItem()"></i>
+                </div>
+                <div class="no large-1 large-offset-4 columns end">
+                    <i class="fa fa-times" aria-hidden="true" (click)="cancelEditing()"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
 
