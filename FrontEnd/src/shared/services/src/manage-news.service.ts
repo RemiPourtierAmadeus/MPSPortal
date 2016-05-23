@@ -45,9 +45,11 @@ export class ManageNewsService {
 
         return this.http.put(this._serverLink, body, options)
             .toPromise()
-            .then(res=> <NewsModelComponent> res.json().data)
+            .then(res=>
+                 <NewsModelComponent> res.json())
             .catch(this.handleError);
     }
+
 
     /**
      * Function handleError. This function catches potential errors which come from

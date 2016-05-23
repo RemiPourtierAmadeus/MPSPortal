@@ -8,6 +8,7 @@ import {ManageNewsService} from "../../../shared/services/src/manage-news.servic
 import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {NewsItemComponent} from "../news-item/news-item.component";
 import {HeaderComponent} from "../../header/header.component";
+import {Response} from "angular2/http";
 
 @Component({
     selector: 'news',
@@ -39,6 +40,7 @@ export class NewsComponent {
      * all the news from the database.
      */
     getNews(){
+        console.log("oui from getNews");
         this._manageNewsService.getNews().then(
             news => this.newsList=news,
             error => this.noNews(error)
@@ -64,12 +66,18 @@ export class NewsComponent {
     saveNews(news: NewsModelComponent){
         let finalNewsJSON = this.buildNewsJSON(news);
         this._manageNewsService.addNews(finalNewsJSON).then(
-            news => this.verifyResponse(),
+            news => this.verifyResponse(news),
             error => this.errorFromServer = <any> error);
     }
 
-    verifyResponse(data){
-        console.log("data FROM SERVER "+data.success);
+    verifyResponse(news){
+        console.log("data FROM SERVER "+news[0].success);
+        if(news[0].success==="true"){
+            this.getNews();
+        }
+        else{
+            console.log("An error has occured while trying to add the news");
+        }
     }
 
 
