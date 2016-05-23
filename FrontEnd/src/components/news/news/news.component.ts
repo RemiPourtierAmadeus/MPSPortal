@@ -63,6 +63,14 @@ export class NewsComponent {
         return newsJSON;
     }
 
+    /**
+     * Function saveNews.
+     * This function is called from the output of NewsFormComponent after news submission.
+     * saveNews calls the function addNews from manageNewsService in order to add the news
+     * into the database.
+     * Success case: We call the verifyResponse().
+     * @param news
+     */
     saveNews(news: NewsModelComponent){
         let finalNewsJSON = this.buildNewsJSON(news);
         this._manageNewsService.addNews(finalNewsJSON).then(
@@ -70,13 +78,18 @@ export class NewsComponent {
             error => this.errorFromServer = <any> error);
     }
 
+    /**
+     * Function verifyResponse.
+     * This function verifies if the request succeed and updates the news list by
+     * calling getNews().
+     * @param news
+     */
     verifyResponse(news){
-        console.log("data FROM SERVER "+news[0].success);
         if(news[0].success==="true"){
             this.getNews();
         }
         else{
-            console.log("An error has occured while trying to add the news");
+            console.log("An error has occurred while trying to add the news");
         }
     }
 

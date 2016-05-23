@@ -21,26 +21,31 @@
         </div>
     </div>
     <div class="row">
-        <div class="large-2 large-offset-1  medium-3 medium-offset-1 columns rowSelect">
+        <div class="large-1 large-offset-1  medium-3 medium-offset-1 columns rowSelect">
             <label> Type
                 <select [(ngModel)]="news.type" required>
                     <option *ngFor="let type of typesValue" ng-value="type">{{type}}</option>
                 </select>
             </label>
         </div>
-        <div class="large-3 medium-3 large-offset-1 columns rowSelect">
+        <div class="large-2 medium-3 large-offset-1 columns rowSelect">
             <label> Subtype
                 <select [(ngModel)]="news.subtype" required>
                     <option *ngFor="#subtypes of subtypesValue" ng-value="subtypes">{{subtypes}}</option>
                 </select>
             </label>
         </div>
-        <div class="large-2 medium-3  large-offset-1 end columns rowSelect">
+        <div class="large-2 medium-3  large-offset-1  columns rowSelect">
             <label> From
                 <select [(ngModel)]="news.newsFrom" required>
                     <option *ngFor="#from of newsFrom" ng-value="from">{{from}}</option>
                 </select>
             </label>
+        </div>
+        <div class="large-2 medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end checkBoxDiv">
+            <label>Status</label>
+            <input id="active" type="checkbox" class="postfix"  (click)="news.active= !news.active" ><label for="active" >Active</label>
+            <input id="incative" type="checkbox" class="postfix" (click)="news.inactive= !news.inactive"><label for="inactive" >Inactive</label>
         </div>
     </div>
     <div class="row buttonRow">

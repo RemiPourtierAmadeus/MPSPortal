@@ -22,12 +22,10 @@ export class NewsFormComponent {
     subtypesValue:string[];
     newsFrom:string[];
 
-
-
     @Output() sendNews= new EventEmitter<NewsModelComponent>();
 
     constructor(){
-        this.news= new NewsModelComponent(-1, "", "", "", "", "Info", "Reports", "Metrics");
+        this.news= new NewsModelComponent(-1, "", "", "", "", "Info", "Reports", "Metrics", false,false);
         this.typesValue=[
             "Info",
             "Infrastructure",
@@ -46,7 +44,6 @@ export class NewsFormComponent {
     }
 
     onSubmit(){
-        console.log("on submit");
         this.sendNews.emit(this.news);
     }
 
