@@ -1,5 +1,5 @@
 @import '../../../shared/styles/card';
-
+@import '../../../shared/styles/variables';
 
 .icon{
   font-size: 45px;
@@ -37,6 +37,11 @@
     padding:0.85em;
     padding-bottom:0;
   }
+
+  .titleContent{
+    margin-top:0;
+    padding-top:0;
+  }
 }
 
 .subtype, .type{
@@ -47,4 +52,52 @@
 
 .newsListContent{
   margin-bottom:20px;
+}
+
+
+.flexContainer{
+
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+
+  margin-top:15px;
+
+  .fa-pencil-square-o, .fa-times{
+    color:$titleColor;
+    font-size: 20px;
+  }
+  .fa-pencil-square-o:hover, .fa-times:hover{
+    cursor: pointer;
+  }
+
+}
+
+.newsContent{
+  margin-right:0;
+  .notification{
+    background-color:rgb(139,195,74);
+    color:white;
+    min-height: 15%;
+    .titleNotif{
+      text-align: center;
+      font-size:20px;
+    }
+    .icons{
+      font-size: 40px;
+      transition: font-size 0.5s;
+
+    }
+
+    .fa-times:hover, .fa-check:hover{
+      font-size:50px;
+      cursor:pointer;
+      transition: font-size 0.5s;
+    }
+
+  }
+
 }

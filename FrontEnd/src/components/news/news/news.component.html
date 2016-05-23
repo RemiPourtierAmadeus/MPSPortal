@@ -11,6 +11,6 @@
     <div *ngFor="let news of newsList" >
         <news-item id="{{news.id}}" title="{{news.title}}"
                    content="{{news.content}}" date="{{news.date}}" hour="{{news.hour}}" type="{{news.type}}"
-                   subtype="{{news.subtype}}" newsFrom="{{news.newsFrom}}"></news-item>
+                   subtype="{{news.subtype}}" newsFrom="{{news.newsFrom}}" (newsToDelete)="deleteNews($event)"></news-item>
     </div>
 </div>

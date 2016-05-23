@@ -53,12 +53,20 @@ export class NewsComponent {
      * @returns JSON
      */
     buildNewsJSON(news) {
+        let status="";
+        if(news.active){
+            status="active";
+        }
+        else{
+            status="inactive";
+        }
         let newsJSON = {
             title: news.title,
             content: news.content,
             type: news.type,
             subtype: news.subtype,
-            newsFrom: news.newsFrom
+            newsFrom: news.newsFrom,
+            state: status
         };
         return newsJSON;
     }
@@ -93,6 +101,15 @@ export class NewsComponent {
         }
     }
 
+    deleteNews(news:NewsModelComponent){
+        console.log("news ID: "+news.id);
+        let finalNewsJSON = {
+            id: news.id
+        };
+       /* this._manageNewsService.delete(finalNewsJSON).then(
+            news => this.verifyResponse(news),
+            error => this.errorFromServer = <any> error);*/
+    }
 
     /**
      * Function noNews.
