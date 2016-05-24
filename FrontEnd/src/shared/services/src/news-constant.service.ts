@@ -11,7 +11,9 @@ export class NewsConstantService {
     private newsFrom:string[];
     private status:string[];
 
-
+    /**
+     * In the constructor we initialize the attributes.
+     */
     constructor() {
         this.typesValue = [
             "Info",
@@ -24,9 +26,9 @@ export class NewsConstantService {
             "Planning",
             "Events"];
         this.newsFrom = [
+            "Global",
             "Metrics",
-            "Performance",
-            "Global"
+            "Performance"
         ];
         this.status = [
             "Active",
