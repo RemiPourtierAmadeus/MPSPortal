@@ -26,6 +26,7 @@ import {NewsFilterComponent} from "../news-filter/news-filter.component";
 export class NewsComponent {
 
     newsList:NewsModelComponent[];
+    tmpNewsList:NewsModelComponent[];
     subtypeValue:string;
     typeValue:string;
     newsNotFound:boolean;
@@ -46,38 +47,68 @@ export class NewsComponent {
      * all the news from the database.
      */
     getNews() {
+        console.log('oui je rentre ..');
         this._manageNewsService.getNews().then(
             news => this.newsList = news,
             error => this.noNews(error)
         );
     }
 
-    updateOrder(news:NewsModelComponent) {
+
+    updateOrder(newsFromFilter:NewsModelComponent) {
         console.log('oui je rentre dans update order');
-        this.getNews();
-        this.cleanListFromType(news.type);
-        this.cleanListFromSubType(news.subtype);
-        this.cleanListFromNewsFrom(news.newsFrom);
-        this.cleanListFromStatus(news.status);
+        this._manageNewsService.getNews().then(
+            news => this.updateLists(news, newsFromFilter),
+            error => this.noNews(error)
+        );
+
+    }
+
+    updateLists(news:NewsModelComponent, newsFromFilter){
+        this.newsList=news;
+        if(!(newsFromFilter.type==="All types")){
+            this.cleanListFromType(newsFromFilter.type);
+        }
+        if(!(newsFromFilter.type==="All subtypes")){
+            this.cleanListFromSubType(newsFromFilter.subtype);
+
+        }
+        if(!(newsFromFilter.type==="Global")){
+            this.cleanListFromNewsFrom(newsFromFilter.newsFrom);
+
+        }
+        this.cleanListFromStatus(newsFromFilter.status);
+
     }
 
     cleanListFromType(type) {
-        let tmpNewList=[];
+        this.tmpNewsList= <NewsModelComponent>[];
         for(let i=0;i<this.newsList.length;i++){
             if(this.newsList[i].type===type){
-                tmpNewList.push(this.newsList[i]);
+                this.tmpNewsList.push(this.newsList[i]);
             }
         }
-        this.newsList=tmpNewList;
-
+        this.newsList=this.tmpNewsList;
     }
 
     cleanListFromSubType(subtype) {
-
+        this.tmpNewsList= <NewsModelComponent>[];
+        for(let i=0;i<this.newsList.length;i++){
+            if(this.newsList[i].subtype===subtype){
+                this.tmpNewsList.push(this.newsList[i]);
+            }
+        }
+        this.newsList=this.tmpNewsList;
     }
 
     cleanListFromNewsFrom(newsFrom) {
-
+        this.tmpNewsList= <NewsModelComponent>[];
+        for(let i=0;i<this.newsList.length;i++){
+            if(this.newsList[i].newsFrom===newsFrom){
+                this.tmpNewsList.push(this.newsList[i]);
+            }
+        }
+        this.newsList=this.tmpNewsList;
     }
 
     cleanListFromStatus(status) {

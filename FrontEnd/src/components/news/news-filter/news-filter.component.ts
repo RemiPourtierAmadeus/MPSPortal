@@ -46,14 +46,14 @@ export class NewsFilterComponent {
      */
     organizeData(){
         let tmp="";
-        this.typesValues.push("All types");
+        //this.typesValues.push("All types");
         tmp=this.typesValues[0];
-        this.typesValues[0]=this.typesValues[this.typesValues.length-1];
+        this.typesValues[0]="All types";
         this.typesValues.push(tmp);
 
-        this.subtypesValues.push("All subtypes");
+        //this.subtypesValues.push("All subtypes");
         tmp=this.subtypesValues[0];
-        this.subtypesValues[0]=this.subtypesValues[this.subtypesValues.length-1];
+        this.subtypesValues[0]="All subtypes";
         this.subtypesValues.push(tmp);
 
     }
