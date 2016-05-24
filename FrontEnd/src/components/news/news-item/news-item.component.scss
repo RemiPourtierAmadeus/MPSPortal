@@ -78,8 +78,14 @@
 
 .newsContent{
   margin-right:0;
-  .notification{
+
+  .notificationDelete{
+    background-color:rgb(167,73,65);
+  }
+  .notificationUpdate{
     background-color:rgb(139,195,74);
+  }
+  .notificationUpdate, .notificationDelete{
     color:white;
     min-height: 15%;
     .titleNotif{
