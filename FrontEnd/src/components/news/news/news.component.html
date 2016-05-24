@@ -2,16 +2,21 @@
     <header currentFrameValue="{{frameType}}"></header>
 </div>
 <br/>
-<div class="row">
-    <div class="news-box large-12 large-centered columns">
-        <news-form (sendNews)="addNews($event)"></news-form>
+<div class="main">
+    <div class="row">
+        <div class="news-box large-12 large-centered columns">
+            <news-form (sendNews)="addNews($event)"></news-form>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div *ngFor="let news of newsList" >
-        <news-item id="{{news.id}}" title="{{news.title}}"
-                   content="{{news.content}}" date="{{news.date}}" hour="{{news.hour}}" type="{{news.type}}"
-                   subtype="{{news.subtype}}" newsFrom="{{news.newsFrom}}"
-                   (newsToDelete)="deleteNews($event)" (newsToSave)="saveNews($event)"></news-item>
+    <div class="row">
+        <news-filter></news-filter>
+    </div>
+    <div class="row">
+        <div *ngFor="let news of newsList">
+            <news-item id="{{news.id}}" title="{{news.title}}"
+                       content="{{news.content}}" date="{{news.date}}" hour="{{news.hour}}" type="{{news.type}}"
+                       subtype="{{news.subtype}}" newsFrom="{{news.newsFrom}}"
+                       (newsToDelete)="deleteNews($event)" (newsToSave)="saveNews($event)"></news-item>
+        </div>
     </div>
 </div>

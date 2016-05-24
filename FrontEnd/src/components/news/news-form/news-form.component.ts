@@ -8,11 +8,15 @@ import {NewsComponent} from "../news/news.component";
 import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {EventEmitter} from "angular2/core";
 import {Output} from "angular2/core";
+import {NewsConstantService} from "../../../shared/services/src/news-constant.service";
 
 @Component({
     selector: 'news-form',
     moduleId: module.id,
     templateUrl: './news-form.component.html',
+    providers: [
+        NewsConstantService
+    ],
     styleUrls : ['./news-form.component.css']
 })
 export class NewsFormComponent {
@@ -32,27 +36,12 @@ export class NewsFormComponent {
      * those changes in the newsModel.
      * We also initialize content of the form: types, subtypes and newsFrom.
      */
-    constructor(){
+    constructor(private _newsConstantService:NewsConstantService){
         this.news= new NewsModelComponent(-1, "", "", "", "", "Info", "Reports", "Metrics", false,false);
-        this.typesValue=[
-            "Info",
-            "Infrastructure",
-            "Process"];
-        this.subtypesValue=[
-            "Reports",
-            "Outage",
-            "Language",
-            "Planning",
-            "Events"];
-        this.newsFrom=[
-            "Metrics",
-            "Performance",
-            "Global"
-        ]
-        this.status=[
-            "Active",
-            "Inactive"
-        ];
+        this.typesValue=_newsConstantService.getTypes();
+        this.subtypesValue= _newsConstantService.getSubTypes();
+        this.newsFrom=_newsConstantService.getNewsFrom();
+        this.status=_newsConstantService.getStatus();
     }
 
     /**

@@ -9,13 +9,19 @@ import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {NewsItemComponent} from "../news-item/news-item.component";
 import {HeaderComponent} from "../../header/header.component";
 import {Response} from "angular2/http";
+import {NewsFilterComponent} from "../news-filter/news-filter.component";
 
 @Component({
     selector: 'news',
     moduleId: module.id,
     templateUrl: './news.component.html',
     styleUrls : ['./news.component.css'],
-    directives: [NewsComponent, NewsFormComponent, NewsItemComponent, HeaderComponent]
+    directives: [NewsComponent,
+        NewsFormComponent,
+        NewsItemComponent,
+        HeaderComponent,
+        NewsFilterComponent
+    ]
 })
 export class NewsComponent {
 

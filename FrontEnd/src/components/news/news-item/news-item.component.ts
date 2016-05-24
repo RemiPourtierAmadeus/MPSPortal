@@ -9,13 +9,16 @@ import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
 import {NewsFormComponent} from "../news-form/news-form.component";
 import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
+import {NewsConstantService} from "../../../shared/services/src/news-constant.service";
 
 @Component({
     selector: 'news-item',
     moduleId: module.id,
     templateUrl: './news-item.component.html',
     directives: [NewsFormComponent],
-    providers: [ManageNewsService],
+    providers: [ManageNewsService,
+        NewsConstantService
+    ],
     styleUrls: ['./news-item.component.css']
 })
 export class NewsItemComponent {
@@ -41,22 +44,11 @@ export class NewsItemComponent {
     @Output() newsToDelete = new EventEmitter<NewsModelComponent>();
     @Output() newsToSave = new EventEmitter<NewsModelComponent>();
 
-    constructor(private _manageNewsService:ManageNewsService) {
-        this.typesValues = [
-            "Info",
-            "Infrastructure",
-            "Process"];
-        this.subtypesValues = [
-            "Reports",
-            "Outage",
-            "Language",
-            "Planning",
-            "Events"];
-        this.newsFromValues = [
-            "Metrics",
-            "Performance",
-            "Global"
-        ];
+    constructor(private _manageNewsService:ManageNewsService,
+        private _newsConstantService:NewsConstantService) {
+        this.typesValues = _newsConstantService.getTypes();
+        this.subtypesValues = _newsConstantService.getSubTypes();
+        this.newsFromValues = _newsConstantService.getNewsFrom();
         this.pageState = "general";
     }
 
