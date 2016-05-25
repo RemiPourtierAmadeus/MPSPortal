@@ -18,12 +18,20 @@ import {Input} from "angular2/core";
 export class HeaderComponent {
 
 
+    private menuIsClosed:boolean;
+
     @Input("currentFrameValue") currentFrameValue:string;
 
-    constructor(){}
+    constructor(){
+        this.menuIsClosed=true;
+    }
+
     ngOnInit(){
         console.log("Current frame value: "+this.currentFrameValue)
     };
 
+    showHideMenu(){
+        this.menuIsClosed=!this.menuIsClosed;
+    }
 
 }
