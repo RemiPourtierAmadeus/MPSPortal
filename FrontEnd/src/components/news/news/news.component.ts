@@ -66,53 +66,72 @@ export class NewsComponent {
 
     updateLists(news:NewsModelComponent, newsFromFilter){
         this.newsList=news;
-        if(!(newsFromFilter.type==="All types")){
+        this.tmpNewsList= news;//<NewsModelComponent>[];
+         if(!(newsFromFilter.type==="All types")){
+            console.log("c'est bon");
             this.cleanListFromType(newsFromFilter.type);
         }
-        if(!(newsFromFilter.type==="All subtypes")){
+        if(!(newsFromFilter.subtype==="All subtypes")){
+            console.log("pourquoi tu rentres?");
             this.cleanListFromSubType(newsFromFilter.subtype);
-
         }
-        if(!(newsFromFilter.type==="Global")){
+        if(!(newsFromFilter.newsFrom==="Global")){
             this.cleanListFromNewsFrom(newsFromFilter.newsFrom);
 
         }
         this.cleanListFromStatus(newsFromFilter.status);
+        if(this.newsList.length==0){
+            console.log("je rentre encore? ");
+            let emptyNews=new NewsModelComponent(-1,"No news found","","--","--:--","","","Global","");
+            this.newsList.push(emptyNews);
+        }
+    }
 
+    deleteNewsInList(list,index){
+        let res=[];
+        for(let i=0;i<list.length;i++){
+            if(i!=index){
+                res.push(list[i]);
+            }
+        }
+        return res;
     }
 
     cleanListFromType(type) {
-        this.tmpNewsList= <NewsModelComponent>[];
         for(let i=0;i<this.newsList.length;i++){
-            if(this.newsList[i].type===type){
-                this.tmpNewsList.push(this.newsList[i]);
+            if(!(this.newsList[i].type===type)){
+                this.newsList=this.deleteNewsInList(this.newsList,i);
+                i=i-1;
             }
         }
-        this.newsList=this.tmpNewsList;
     }
 
     cleanListFromSubType(subtype) {
-        this.tmpNewsList= <NewsModelComponent>[];
         for(let i=0;i<this.newsList.length;i++){
-            if(this.newsList[i].subtype===subtype){
-                this.tmpNewsList.push(this.newsList[i]);
+            if(!(this.newsList[i].subtype===subtype)){
+                this.newsList=this.deleteNewsInList(this.newsList,i);
+                i=i-1;
             }
         }
-        this.newsList=this.tmpNewsList;
     }
 
     cleanListFromNewsFrom(newsFrom) {
-        this.tmpNewsList= <NewsModelComponent>[];
         for(let i=0;i<this.newsList.length;i++){
-            if(this.newsList[i].newsFrom===newsFrom){
-                this.tmpNewsList.push(this.newsList[i]);
+            if(!(this.newsList[i].newsFrom===newsFrom)){
+                this.newsList=this.deleteNewsInList(this.newsList,i);
+                i=i-1;
             }
         }
-        this.newsList=this.tmpNewsList;
     }
 
     cleanListFromStatus(status) {
-
+        for(let i=0;i<this.newsList.length;i++){
+            console.log("status i= "+i+" value: "+this.newsList[i].status);
+            if(!(this.newsList[i].status===status)){
+                this.newsList=this.deleteNewsInList(this.newsList,i);
+                i=i-1;
+            }
+        }
     }
 
     /**
