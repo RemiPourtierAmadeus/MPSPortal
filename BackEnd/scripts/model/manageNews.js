@@ -43,11 +43,46 @@ exports.getNews = function (success, fail) {
     connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
-            success(data);
+            decryptData(data, success);
+            //success(data);
         }
     });
 }
 
+/**
+ * function decryptData
+ * We replace the potential encoded characters:
+ * ##1 => ;
+ * ##2 => '
+ * ##3 => \
+ * Then we send the news list through the function success.
+ * @param data
+ * @param success
+ */
+function decryptData(data, success) {
+    /**
+     * We loop on two indexes: 2 and 3.
+     * These indexes correspond to Content and Title field. In application, users
+     * could modify only these two fields by hands and potentially add a sql injection.
+     */
+    for (var j = 0; j < data.length; j++) {
+        /**
+         * Replace news title
+         */
+        data[j].title = data[j].title.split('##1').join(";");
+        data[j].title = data[j].title.split('##2').join("\'");
+        data[j].title = data[j].title.split('##3').join("\\");
+
+        /**
+         * Replace news content
+         */
+        data[j].content = data[j].content.split('##1').join(";");
+        data[j].content = data[j].content.split('##2').join("\'");
+        data[j].content = data[j].content.split('##3').join("\\");
+    }
+
+    success(data);
+}
 
 /**
  * Function addNews. This function will create a new new according to data in newsParam.
@@ -57,8 +92,8 @@ exports.getNews = function (success, fail) {
  */
 function addNews(newsID, newsParam, success, fail) {
     newsParam[newsKeys[0]] = newsID;
-    /** set user id */
-
+    /** Prevent sql injection by removing certain character into newsParams strings*/
+    newsParam = cleanParamsContent(newsParam);
     var query = "INSERT INTO T_News ";
     var attributes = "(";
     var values = "(";
@@ -88,6 +123,35 @@ function addNews(newsID, newsParam, success, fail) {
         }
     });
 }
+
+/**
+ * Function cleanParamsContent
+ * This function clean the data written directly by the user: Content and Title field.
+ * In the application, users could modify only these two fields by hands and potentially
+ * add a sql injection.
+ * To avoid injection, we replace the following characters:
+ * ; => ##1
+ * ' => ##2
+ * \ => ##3
+ * @param params
+ * @returns {*}
+ */
+function cleanParamsContent(params) {
+    /**
+     * We loop on two indexes: 2 and 3.
+     * These indexes correspond to Content and Title field. In application, users
+     * could modify only these two fields by hands and potentially add a sql injection.
+     */
+    for (var i = 1; i < 3; i++) {
+        if (params.hasOwnProperty(newsKeys[i])) {
+            params[newsKeys[i]] = params[newsKeys[i]].split(';').join("##1");
+            params[newsKeys[i]] = params[newsKeys[i]].split('\'').join("##2");
+            params[newsKeys[i]] = params[newsKeys[i]].split('\\').join("##3");
+        }
+    }
+    return params;
+}
+
 
 /**
  * Function addNewsInDB.
