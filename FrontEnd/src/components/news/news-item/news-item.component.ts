@@ -164,8 +164,11 @@ export class NewsItemComponent {
         this.pageState="general";
     }
 
+    /**
+     * When the user has filled the form and clicks on the validate icon, the function sendItem
+     * send the new filled news to the pattern component.
+     */
     saveItem(){
-
         this.newsToSave.emit(this.news);
     }
 

@@ -54,6 +54,13 @@ export class NewsComponent {
     }
 
 
+    /**
+     * Function updateOrder.
+     * This function is the first step to change the news list.
+     * First we get back the latest news from the server and then call the
+     * function updateLists to change the news list according user choices.
+     * @param newsFromFilter
+     */
     updateOrder(newsFromFilter:NewsModelComponent) {
         this._manageNewsService.getNews().then(
             news => this.updateLists(news, newsFromFilter),
@@ -62,6 +69,15 @@ export class NewsComponent {
 
     }
 
+    /**
+     * Function updateLists.
+     * This function calls a function for each filter.
+     * We clean the news list according to: type, subtype, newsFrom and state.
+     * At the end, if the news list is empty (no news according to filters), we
+     * create an empty news.
+     * @param news
+     * @param newsFromFilter
+     */
     updateLists(news:NewsModelComponent, newsFromFilter){
         this.newsList=news;
         this.tmpNewsList= news;//<NewsModelComponent>[];
@@ -85,6 +101,13 @@ export class NewsComponent {
         }
     }
 
+    /**
+     * Function deleteNewsInList.
+     * This function removes an element of the list according to its index.
+     * @param list
+     * @param index
+     * @returns {Array}
+     */
     deleteNewsInList(list,index){
         let res=[];
         for(let i=0;i<list.length;i++){
@@ -95,6 +118,12 @@ export class NewsComponent {
         return res;
     }
 
+    /**
+     * Function cleanListFromType.
+     * This function removes all the news which don't have same type as
+     * the one selected by user.
+     * @param type
+     */
     cleanListFromType(type) {
         for(let i=0;i<this.newsList.length;i++){
             if(!(this.newsList[i].type===type)){
@@ -104,6 +133,12 @@ export class NewsComponent {
         }
     }
 
+    /**
+     * Function cleanListFromSubType.
+     * This function removes all the news which don't have same subtype as
+     * the one selected by user.
+     * @param subtype
+     */
     cleanListFromSubType(subtype) {
         for(let i=0;i<this.newsList.length;i++){
             if(!(this.newsList[i].subtype===subtype)){
@@ -113,6 +148,12 @@ export class NewsComponent {
         }
     }
 
+    /**
+     * Function cleanListFromNewsFrom.
+     * This function removes all the news which don't have same newsFrom (Metrics or Performance) as
+     * the one selected by user.
+     * @param newsFrom
+     */
     cleanListFromNewsFrom(newsFrom) {
         for(let i=0;i<this.newsList.length;i++){
             if(!(this.newsList[i].newsFrom===newsFrom)){
@@ -122,6 +163,12 @@ export class NewsComponent {
         }
     }
 
+    /**
+     * Function cleanListFromStatus.
+     * This function removes all the news which don't have same state as
+     * the one selected by user.
+     * @param state
+     */
     cleanListFromStatus(state) {
         for(let i=0;i<this.newsList.length;i++){
             if(!(this.newsList[i].state===state.toLowerCase())){

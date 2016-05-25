@@ -46,12 +46,11 @@ export class NewsFilterComponent {
      */
     organizeData(){
         let tmp="";
-        //this.typesValues.push("All types");
+
         tmp=this.typesValues[0];
         this.typesValues[0]="All types";
         this.typesValues.push(tmp);
 
-        //this.subtypesValues.push("All subtypes");
         tmp=this.subtypesValues[0];
         this.subtypesValues[0]="All subtypes";
         this.subtypesValues.push(tmp);
@@ -59,12 +58,13 @@ export class NewsFilterComponent {
         tmp=this.status[0];
         this.status[0]="All";
         this.status.push(tmp);
-
     }
 
+    /**
+     * Function onSubmit.
+     * This function sends the current news model to the pattern component.
+     */
     onSubmit(){
-        console.log("status from filter: "+this.news.state.toLowerCase());
-        //this.news.state=this.news.state.toLowerCase();
         this.orderBy.emit(this.news);
     }
 

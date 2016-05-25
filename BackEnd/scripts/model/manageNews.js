@@ -44,7 +44,6 @@ exports.getNews = function (success, fail) {
         if (err) throw err;
         else {
             decryptData(data, success);
-            //success(data);
         }
     });
 }
@@ -156,7 +155,7 @@ function cleanParamsContent(params) {
 
 /**
  * Function generateDateAndHour.
- * This function instiate the hour and the date into news parameters received from the front end.
+ * This function instantiate the hour and the date into news parameters received from the front end.
  */
 function generateDateAndHour(params){
     /**
