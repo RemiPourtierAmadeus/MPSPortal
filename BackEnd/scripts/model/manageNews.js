@@ -94,6 +94,8 @@ function addNews(newsID, newsParam, success, fail) {
     newsParam[newsKeys[0]] = newsID;
     /** Prevent sql injection by removing certain character into newsParams strings*/
     newsParam = cleanParamsContent(newsParam);
+    newsParam = generateDateAndHour(newsParam);
+
     var query = "INSERT INTO T_News ";
     var attributes = "(";
     var values = "(";
@@ -152,6 +154,23 @@ function cleanParamsContent(params) {
     return params;
 }
 
+/**
+ * Function generateDateAndHour.
+ * This function instiate the hour and the date into news parameters received from the front end.
+ */
+function generateDateAndHour(params){
+    /**
+     * new Date().toISOString() format => 2016-05-25T16:27:11.300Z
+     * @type {string}
+     */
+    var currentDate= new Date().toISOString();
+    var arrayDate=currentDate.split('T');
+    var arrayHour= arrayDate[1].split(':');
+    params.date=arrayDate[0];
+    params.hour=arrayHour[0]+":"+arrayHour[1];
+    return params;
+
+}
 
 /**
  * Function addNewsInDB.
