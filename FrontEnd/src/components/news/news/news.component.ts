@@ -47,7 +47,6 @@ export class NewsComponent {
      * all the news from the database.
      */
     getNews() {
-        console.log('oui je rentre ..');
         this._manageNewsService.getNews().then(
             news => this.newsList = news,
             error => this.noNews(error)
@@ -56,7 +55,6 @@ export class NewsComponent {
 
 
     updateOrder(newsFromFilter:NewsModelComponent) {
-        console.log('oui je rentre dans update order');
         this._manageNewsService.getNews().then(
             news => this.updateLists(news, newsFromFilter),
             error => this.noNews(error)
@@ -67,21 +65,19 @@ export class NewsComponent {
     updateLists(news:NewsModelComponent, newsFromFilter){
         this.newsList=news;
         this.tmpNewsList= news;//<NewsModelComponent>[];
+
          if(!(newsFromFilter.type==="All types")){
-            console.log("c'est bon");
             this.cleanListFromType(newsFromFilter.type);
         }
         if(!(newsFromFilter.subtype==="All subtypes")){
-            console.log("pourquoi tu rentres?");
             this.cleanListFromSubType(newsFromFilter.subtype);
         }
         if(!(newsFromFilter.newsFrom==="Global")){
             this.cleanListFromNewsFrom(newsFromFilter.newsFrom);
 
         }
-        this.cleanListFromStatus(newsFromFilter.status);
+        this.cleanListFromStatus(newsFromFilter.state);
         if(this.newsList.length==0){
-            console.log("je rentre encore? ");
             let emptyNews=new NewsModelComponent(-1,"No news found","","--","--:--","","","Global","");
             this.newsList.push(emptyNews);
         }
@@ -124,10 +120,9 @@ export class NewsComponent {
         }
     }
 
-    cleanListFromStatus(status) {
+    cleanListFromStatus(state) {
         for(let i=0;i<this.newsList.length;i++){
-            console.log("status i= "+i+" value: "+this.newsList[i].status);
-            if(!(this.newsList[i].status===status)){
+            if(!(this.newsList[i].state===state.toLowerCase())){
                 this.newsList=this.deleteNewsInList(this.newsList,i);
                 i=i-1;
             }

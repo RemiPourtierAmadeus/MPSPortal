@@ -30,21 +30,21 @@
         <div class="large-1 medium-3 large-offset-1 columns rowSelect">
             <label> Subtype
                 <select [(ngModel)]="news.subtype" required>
-                    <option *ngFor="#subtypes of subtypesValue" ng-value="subtypes">{{subtypes}}</option>
+                    <option *ngFor="let subtypes of subtypesValue" ng-value="subtypes">{{subtypes}}</option>
                 </select>
             </label>
         </div>
         <div class="large-2 medium-3  large-offset-1  columns rowSelect">
             <label> From
                 <select [(ngModel)]="news.newsFrom" required>
-                    <option *ngFor="#from of newsFrom" ng-value="from">{{from}}</option>
+                    <option *ngFor="let from of newsFrom" ng-value="from">{{from}}</option>
                 </select>
             </label>
         </div>
         <div class="large-2 medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end checkBoxDiv">
             <label>Status</label>
-            <select [(ngModel)]="news.active" required>
-                <option *ngFor="#currentStatus of status" ng-value="currentStatus">{{currentStatus}}</option>
+            <select [(ngModel)]="news.state" required>
+                <option *ngFor="let currentStatus of status" ng-value="currentStatus">{{currentStatus}}</option>
             </select>
         </div>
     </div>

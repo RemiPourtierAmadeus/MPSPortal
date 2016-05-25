@@ -27,6 +27,6 @@ export class NewsModelComponent {
         public type:string,
         public subtype:string,
         public newsFrom:string,
-        public status:string
+        public state:string
     ){}
 }

@@ -50,8 +50,8 @@ export class NewsFormComponent {
      * @returns {boolean}
      */
     formComplete() {
-        console.log("inactive: "+this.news.status);
-        if (this.news.status==="Inactive") {
+        console.log("inactive: "+this.news.state);
+        if (this.news.state==="Inactive") {
             this.formCorrectlyFilled = false;
             return false;
         }

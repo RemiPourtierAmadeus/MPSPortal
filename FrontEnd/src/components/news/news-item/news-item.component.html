@@ -117,7 +117,7 @@
                 <div class="content row titleContent">
                     <div class="large-2 columns">
                         <select [(ngModel)]="news.newsFrom" required>
-                            <option *ngFor="#from of newsFromValues" ng-value="from">{{from}}</option>
+                            <option *ngFor="let from of newsFromValues" ng-value="from">{{from}}</option>
                         </select>
                     </div>
                     <div class="large-5 columns">

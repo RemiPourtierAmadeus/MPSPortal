@@ -59,6 +59,8 @@ export class NewsFilterComponent {
     }
 
     onSubmit(){
+        console.log("status from filter: "+this.news.state.toLowerCase());
+        //this.news.state=this.news.state.toLowerCase();
         this.orderBy.emit(this.news);
     }
 

@@ -28,7 +28,7 @@
         </div>
         <div class="large-2 medium-4 small-8 small-offset-3 large-offset-0 medium-offset-0 columns end checkBoxDiv">
             <label>Status</label>
-            <select [(ngModel)]="news.active" required>
+            <select [(ngModel)]="news.state" required>
                 <option *ngFor="#currentStatus of status" ng-value="currentStatus">{{currentStatus}}</option>
             </select>
         </div>
