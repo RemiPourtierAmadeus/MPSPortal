@@ -74,9 +74,11 @@ export class NewsComponent {
         }
         if(!(newsFromFilter.newsFrom==="Global")){
             this.cleanListFromNewsFrom(newsFromFilter.newsFrom);
-
         }
-        this.cleanListFromStatus(newsFromFilter.state);
+        if(!(newsFromFilter.state==="All")){
+            this.cleanListFromStatus(newsFromFilter.state);
+        }
+
         if(this.newsList.length==0){
             let emptyNews=new NewsModelComponent(-1,"No news found","","--","--:--","","","Global","");
             this.newsList.push(emptyNews);

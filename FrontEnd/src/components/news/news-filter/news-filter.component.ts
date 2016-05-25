@@ -56,6 +56,10 @@ export class NewsFilterComponent {
         this.subtypesValues[0]="All subtypes";
         this.subtypesValues.push(tmp);
 
+        tmp=this.status[0];
+        this.status[0]="All";
+        this.status.push(tmp);
+
     }
 
     onSubmit(){
