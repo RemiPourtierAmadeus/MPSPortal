@@ -1,27 +1,27 @@
 <div *ngIf="pageState=='general'">
     <div class="row newsContent ">
-        <div class="cardDiv large-10 large-offset-1 columns panel ">
+        <div class="cardDiv large-10 large-offset-1 medium-10 medium-offset-1 small-10 small-offset-1 columns panel ">
             <div class="card">
                 <div class="row flexContainer">
-                    <div class="editDelete large-1 columns end">
+                    <div class="editDelete large-1 medium-2 small-2 columns end">
                         <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editNews()"></i>
                         <i class="fa fa-times" aria-hidden="true" (click)="openConfirmation()"></i>
                     </div>
                 </div>
                 <div class="content row titleContent">
-                    <div class="large-9 columns">
+                    <div class="large-9 medium-8 small-8 columns">
                         <p>{{news.newsFrom}}: {{news.title}}
                         </p>
                     </div>
-                    <div class="large-3 columns">
+                    <div class="large-3 medium-4 small-4 columns">
                         <i class="fa fa-calendar" aria-hidden="true"></i> {{news.date}} at {{news.hour}}
                     </div>
                 </div>
                 <div class="action row">
-                    <div class="large-7 columns">
+                    <div class="large-7 medium-12 small-12 columns">
                         {{news.content}}
                     </div>
-                    <div class="large-2 large-offset-1 columns type ">
+                    <div class="large-2 large-offset-1 medium-3 small-3 columns type ">
                         <div *ngIf="news.type=='Info'">
                             <a class="button success">{{news.type}} </a>
                         </div>
@@ -32,7 +32,7 @@
                             <a  class="button default">{{news.type}} </a>
                         </div>
                     </div>
-                    <div class="large-1 columns subtype end">
+                    <div class="large-1  medium-3 small-3 columns subtype end">
                         <a class="button secondary">
                             {{news.subtype}}</a>
                     </div>
@@ -45,28 +45,28 @@
 </div>
 <div *ngIf="pageState=='delete'">
     <div class="row newsContent ">
-        <div class="cardDiv large-10  columns panel ">
+        <div class="cardDiv large-10  medium-8  small-8 columns panel ">
             <div class="card">
                 <div class="row flexContainer">
-                    <div class="editDelete large-1 columns end">
+                    <div class="editDelete large-1 medium-2 small-2 columns end">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         <i class="fa fa-times" aria-hidden="true" data-open="exampleModal2"></i>
                     </div>
                 </div>
                 <div class="content row titleContent">
-                    <div class="large-9 columns">
+                    <div class="large-9  medium-7 small-7 columns">
                         <p>{{news.newsFrom}}: {{news.title}}
                         </p>
                     </div>
-                    <div class="large-3 columns">
+                    <div class="large-3 medium-5 small-5 columns">
                         <i class="fa fa-calendar" aria-hidden="true"></i> {{news.date}} at {{news.hour}}
                     </div>
                 </div>
                 <div class="action row">
-                    <div class="large-7 columns">
+                    <div class="large-7 medium-12 small-12 columns">
                         {{news.content}}
                     </div>
-                    <div class="large-2 large-offset-1 columns type ">
+                    <div class="large-2 large-offset-1 medium-3 small-3 columns type ">
                         <div *ngIf="news.type=='Info'">
                             <a class="button success">{{news.type}} </a>
                         </div>
@@ -77,23 +77,23 @@
                             <a class="button default">{{news.type}} </a>
                         </div>
                     </div>
-                    <div class="large-1 columns subtype end">
+                    <div class="large-1 medium-3 small-3 medium-offset-1 small-offset-1 columns subtype end">
                         <a class="button secondary">
                             {{news.subtype}}</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="notificationDelete large-2 columns panel">
+        <div class="notificationDelete large-2 medium-3 small-3 columns panel end">
             <div class="titleNotif">
                 Delete news definitly?
             </div>
             <br/>
             <div class="row icons">
-                <div class="yes large-1 large-offset-1 columns">
+                <div class="yes large-1 large-offset-1 medium-1 medium-offset-1 small-1 small-offset-1 columns">
                     <i class="fa fa-check" aria-hidden="true" (click)="deleteItem()"></i>
                 </div>
-                <div class="no large-1 large-offset-4 columns end">
+                <div class="no large-1 large-offset-4 medium-1 medium-offset-4 small-1 small-offset-4  columns end">
                     <i class="fa fa-times" aria-hidden="true" (click)="initializeConfirmDelete()"></i>
                 </div>
             </div>
