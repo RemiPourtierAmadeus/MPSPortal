@@ -1,16 +1,40 @@
 @import '../../../shared/styles/main';
 @import '../../../shared/styles/variables';
 
-.contentForm, .rowSelect{
-  padding:0px;
-}
-h2{
-  color:$titleColor;
+.main{
+  .contentForm, .rowSelect{
+    padding:0px;
+  }
+  h2{
+    color:$titleColor;
+  }
+
+  textarea{
+    resize: none;
+  }
+
+  .row > .buttonUpDown > div > i{
+    font-style:normal;
+  }
+
+  .row > .buttonUpDown > div > i:hover{
+    color:$titleColor ;
+    opacity: 0.5;
+  }
+
+  .buttonUpDown{
+    color:$titleColor;
+    font-size:35px;
+    font-style: normal;
+    cursor: pointer;
+    margin-top:7px;
+  }
+
+  .buttonUpDown:hover{
+
+  }
 }
 
-textarea{
-  resize: none;
-}
 
 
 /**

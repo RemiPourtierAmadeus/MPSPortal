@@ -27,6 +27,7 @@ export class NewsFormComponent {
     newsFrom:string[];
     formCorrectlyFilled:boolean;
     status:string[];
+    showForm:boolean;
 
     @Output() sendNews= new EventEmitter<NewsModelComponent>();
 
@@ -42,6 +43,11 @@ export class NewsFormComponent {
         this.subtypesValue= _newsConstantService.getSubTypes();
         this.newsFrom=_newsConstantService.getNewsFrom();
         this.status=_newsConstantService.getStatus();
+        this.showForm=true;
+    }
+
+    hideShowForm(){
+        this.showForm=!this.showForm;
     }
 
     /**
