@@ -29,10 +29,6 @@
     cursor: pointer;
     margin-top:7px;
   }
-
-  .buttonUpDown:hover{
-
-  }
 }
 
 
@@ -41,19 +37,15 @@
 * CSS for desktop screen
 **/
 @media only screen and (min-width: 64.063em) {
-
   .checkBoxDiv{
     margin-left:38px;
   }
-
-
 }
 
 /**
 * CSS for tablet in landscape view
 **/
 @media only screen and (max-width: 64.063em) and (min-width:40.063em) {
-
   .medium-4{
     padding:0px;
   }
@@ -61,7 +53,6 @@
   .buttonDiv{
     margin-left:0px;
   }
-
 }
 
 

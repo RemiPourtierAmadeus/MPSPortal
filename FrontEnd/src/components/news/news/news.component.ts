@@ -99,6 +99,85 @@ export class NewsComponent {
             let emptyNews=new NewsModelComponent(-1,"No news found","","--","--:--","","","Global","");
             this.newsList.push(emptyNews);
         }
+
+        this.orderByDate();
+    }
+
+    orderByDate(){
+        let date=[];
+        let id=[];
+        let hour=[];
+        /*for(let i=0;i<this.newsList.length;i++){
+            date.push(this.newsList[i].date);
+            console.log("date: "+date[i]);
+            let tmp=-10;
+            if (i<this.newsList.length-1){
+
+                console.log("date i+1: "+this.newsList[i+1].date);
+                tmp=date[i].localeCompare(this.newsList[i+1].date);
+            }
+            console.log("difference: "+tmp);
+            id.push(this.newsList[i].id);
+            hour.push(this.newsList[i].hour);
+        }
+        console.log("BETWEEN");
+        date.sort();
+        date.reverse();*/
+        let dateSorted=[];
+        dateSorted.push(this.newsList[0].date);
+        let diff=0;
+        for(let i=1;i<this.newsList.length;i++){
+            //console.log("date: "+date[i]);
+            console.log("index: "+i);
+            for(let j=0;j<dateSorted.length;j++){
+                //let diff=this.newsList[i].date.localeCompare(dateSorted[j]);
+                // -1 means  this.newsList[i] < dateSorted[j]
+                console.log('before the function');
+                diff=this.newsList[i].date.localeCompare(dateSorted[j]);
+
+                console.log("newslist:"+this.newsList[i].date);
+                console.log("current date sorted: "+dateSorted[j]);
+                console.log('after the function, diff: '+diff);
+                if(diff==-1|| diff==0){
+                    console.log("on inverse!");
+                    dateSorted=this.pushAtIndex(dateSorted, this.newsList[i], j);
+                    //j=dateSorted.length;
+                }
+                if(j==dateSorted.length-1){
+                    dateSorted.push(this.newsList[i].date);
+                    j=dateSorted.length;
+                }
+                /*if(diff==-1 || diff==0){
+                    console.log("into if:");
+                    console.log("newslist:"+this.newsList[i].date);
+                    console.log("current date sorted: "+dateSorted[j]);
+                    //dateSorted=this.pushAtIndex(dateSorted, this.newsList[i], j);
+                    j=dateSorted.length;
+                    //break;
+                }
+                else if(j==dateSorted.length-1){
+                    dateSorted.push(this.newsList[i]);
+                }*/
+            }
+
+        }
+        console.log("between");
+        for(let j=0;j<dateSorted.length;j++){
+            console.log(dateSorted[j].date);
+        }
+    }
+
+    pushAtIndex(array, element, index){
+        let result=[];
+        for(let i=0;i<array.length;i++){
+            if(i==index){
+                result.push(element);
+            }
+            else{
+                result.push(array[i]);
+            }
+        }
+        return result;
     }
 
     /**
