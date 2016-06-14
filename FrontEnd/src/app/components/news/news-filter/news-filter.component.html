@@ -1,0 +1,41 @@
+<div class="filters">
+    <div class="row">
+        <div class="title large-1 large-offset-1 medium-1 medium-offset-1 small-1 small-offset-1">
+            <h2>Filters</h2>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="large-2 large-offset-1  medium-4 medium-offset-1 small-5 small-offset-1 columns rowSelect">
+            <label> Type
+                <select [(ngModel)]="news.type" required>
+                    <option *ngFor="let type of typesValues" ng-value="type">{{type}}</option>
+                </select>
+            </label>
+        </div>
+        <div class="large-2 medium-4  large-offset-0 medium-4 small-5 medium-offset-0  columns rowSelect">
+            <label> Subtype
+                <select [(ngModel)]="news.subtype" required>
+                    <option *ngFor="let subtypes of subtypesValues" ng-value="subtypes">{{subtypes}}</option>
+                </select>
+            </label>
+        </div>
+        <div class="large-2 large-offset-0  medium-4 medium-offset-1 small-offset-1 small-5  columns rowSelect">
+            <label> From
+                <select [(ngModel)]="news.newsFrom" required>
+                    <option *ngFor="let from of newsFromValues" ng-value="from">{{from}}</option>
+                </select>
+            </label>
+        </div>
+        <div class="large-2 medium-4 small-5  large-offset-0 medium-offset-0 columns checkBoxDiv">
+            <label>Status</label>
+            <select [(ngModel)]="news.state" required>
+                <option *ngFor="let currentStatus of status" ng-value="currentStatus">{{currentStatus}}</option>
+            </select>
+        </div>
+        <div class="large-2 large-offset-12 medium-2 small-offset-1 medium-offset-0 columns end buttonDiv ">
+            <div class="buttonSearch">
+                <a (click)="onSubmit()" class="button secondary">Search</a>
+            </div>
+        </div>
+    </div>
+</div>

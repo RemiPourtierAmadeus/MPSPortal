@@ -1,0 +1,42 @@
+<div *ngIf="currentFrameValue=='News'">
+    <div class="row">
+        <div class="menuIcon large-1 medium-1 small-1 columns">
+            <i class="fa fa-bars" aria-hidden="true" (click)="showHideMenu()"></i>
+        </div>
+        <div class="title large-2 medium-2 small-2 columns end">
+            <h1>News</h1>
+        </div>
+    </div>
+    <div *ngIf="menuIsClosed==false" class="navBar">
+        <div class="row">
+            <nav>
+                <a class="menuItem" >Home page </a>
+                <a class="menuItem" id="item2">Metrics </a>
+                <a class="menuItem" id="item3">Performance</a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="currentFrameValue=='Other'">
+    <div class="row">
+        <h1>MPS Perf & Metrics Portal</h1>
+        <!--
+            In the nav tags, we define different links, Metrics, Performance and News
+            In classical development, we should use: <a href="path/of/your/page.html"> My page </a>
+            Here, we configure the link into AppComponent:
+                [routerLink]="['Metrics']"
+                 -> Metrics is the name we defined in AppComponent with the path /metrics and the component
+                    MetricsComponent. So our router know what to display.
+        -->
+        <nav>
+            <!--<a class="menuItem" [routerLink]="['Metrics']" >Metrics</a>
+            <a class="menuItem" [routerLink]="['Performance']">Performance</a>
+            <a class="menuItem" [routerLink]="['News']">News</a>-->
+            <a class="menuItem" [routerLink]="['AddUser']">Add User</a>
+            <a class="menuItem" [routerLink]="['UserList']">User List</a>
+            <a class="menuItem" [routerLink]="['ConnectionContent']">Log in</a>
+            <a class="menuItem" [routerLink]="['LogOut']">Log out</a>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<form (ngSubmit)="onSubmit()" #userForm="ngForm" class="main">
+    <div class="row">
+        <div class="titleForm large-2 columns">
+            <h2>Add news</h2>
+        </div>
+        <div class="buttonUpDown large-3 columns end">
+            <div *ngIf="showForm==true">
+                <i (click)="hideShowForm()" class="fa fa-angle-double-up" aria-hidden="true"></i>
+            </div>
+            <div *ngIf="showForm==false">
+                <i (click)="hideShowForm()" class="fa fa-angle-double-down" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showForm==true" class="formContent">
+        <div class="row">
+            <div class="large-9  medium-9 medium-offset-1 large-offset-1 columns end contentForm">
+                <label>Title
+                    <input type="text" placeholder="" required
+                           [(ngModel)]="news.title" ngControl="title" #spy/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-9  medium-9 medium-offset-1 large-offset-1 columns end contentForm">
+                <label>Description
+                <textarea required name="message" [(ngModel)]="news.content"
+                          ngControl="news" #spy rows="5" cols="30">
+                </textarea>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-2 large-offset-1 medium-4 medium-offset-1  small-6 columns rowSelect">
+                <label> Type
+                    <select [(ngModel)]="news.type" required>
+                        <option *ngFor="let type of typesValue" ng-value="type">{{type}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="large-1 medium-4 large-offset-1 medium-offset-1 small-6 columns rowSelect">
+                <label> Subtype
+                    <select [(ngModel)]="news.subtype" required>
+                        <option *ngFor="let subtypes of subtypesValue" ng-value="subtypes">{{subtypes}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="large-2 medium-3 medium-4 medium-offset-1 large-offset-1 small-6 columns rowSelect">
+                <label> From
+                    <select [(ngModel)]="news.newsFrom" required>
+                        <option *ngFor="let from of newsFrom" ng-value="from">{{from}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="large-2 medium-4 large-offset-0 medium-offset-1 small-6 columns end checkBoxDiv">
+                <label>Status</label>
+                <select [(ngModel)]="news.state" required>
+                    <option *ngFor="let currentStatus of status" ng-value="currentStatus">{{currentStatus}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row buttonRow">
+            <div class="large-1 large-offset-5 medium-4 medium-offset-5 small-offset-4 end buttonCell">
+                <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showForm==false"></div>
+
+</form>
