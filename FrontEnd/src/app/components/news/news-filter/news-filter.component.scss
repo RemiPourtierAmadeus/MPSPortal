@@ -1,0 +1,30 @@
+@import '../../../../styles/variables';
+
+.filters{
+  background-color: $headerBackground;
+  opacity: 0.7;
+  border-radius: 5px;
+  color:white;
+  margin-top:10px;
+
+  .buttonSearch{
+    margin-top:22px;
+  }
+
+  .secondary{
+    background-color: white;
+    color:$headerBackground;
+    border: 2px solid white;
+  }
+
+  .secondary:hover{
+    background-color: $headerBackground;
+    color:white;
+    border: 2px solid white;
+  }
+}
+
+label{
+  color:white;
+}
+
