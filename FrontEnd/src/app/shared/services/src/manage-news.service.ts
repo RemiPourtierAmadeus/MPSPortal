@@ -72,6 +72,18 @@ export class ManageNewsService {
      * @param newsJSON
      * @returns {any}
     */
+    deleteNews(newsJSON): Promise<NewsModelComponent>  {
+        let body = JSON.stringify( newsJSON );
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let url= `${this._serverLink}/${newsJSON.id}`;
+        return this.http.delete(url, headers)
+            .toPromise()
+            .then(res=>
+                <NewsModelComponent> res.json())
+            .catch(this.handleError);
+    }
 
 
 
