@@ -3,61 +3,48 @@
     <base href="/">
     <title>MPS Perf & Metrics Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/main.css">
 
-    <link rel="stylesheet" href="shared/styles/main.css">
+    
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../node_modules/animate.css/animate.min.css">
+    
+    <!-- project:css -->
+    <!-- endinject -->
 
-
+    <!-- inject:css -->
+    <!-- endinject -->
 </head>
 
 <!-- 3. Display the application -->
 <body>
-<app>Loading...</app>
+    <app>Loading...</app>
 
-<!-- 1. Load libraries -->
-<!-- IE required polyfills, in this exact order -->
-<!-- shims:js -->
-<!-- endinject -->
-
-<!-- libs:js -->
-<!-- endinject -->
-
-<!-- 2. Configure SystemJS -->
-<script>
-    // function.name (all IE)
-    // Remove once https://github.com/angular/angular/issues/6501 is fixed.
-    /*! @source http://stackoverflow.com/questions/6903762/function-name-not-supported-in-ie*/
-    if (!Object.hasOwnProperty('name')) {
-        Object.defineProperty(Function.prototype, 'name', {
-            get: function() {
-                var matches = this.toString().match(/^\s*function\s*((?![0-9])[a-zA-Z0-9_$]*)\s*\(/);
-                var name = matches && matches.length > 1 ? matches[1] : "";
-                // For better performance only parse once, and then cache the
-                // result through a new accessor for repeated access.
-                Object.defineProperty(this, 'name', {value: name});
-                return name;
-            }
-        });
-    }
-</script>
-<script>
-    System.config({
-        defaultJSExtensions: true,
-        "paths": {
-            "angular2-cookie/*": "node_modules/angular2-cookie/*"
-        },
-        packages           : {
-            "angular2": {
-                "defaultExtension": false
-            },
-            "rxjs"    : {
-                "defaultExtension": false
-            }
+    <script>
+        // Fixes undefined module function in SystemJS bundle
+        function module () {
         }
-    });
-    System.import('main')
-            .then(null, console.error.bind(console));
-</script>
+    </script>
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <!-- shims:js -->
+    <!-- endinject -->
+
+    <!-- libs:js -->
+    <!-- endinject -->
+
+    <!-- project:js -->
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
+
+    <% if (ENV === 'dev') { %>
+    <script>
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
+    </script>
+    <% } %>
 </body>
 </html>

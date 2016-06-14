@@ -1,3 +1,3 @@
-###MPSPortal
+###Mps
 
-This is the read me of MPSPortal
+This is the read me of Mps
