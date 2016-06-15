@@ -32,7 +32,7 @@ import {ManageNewsService} from "./shared/services/src/manage-news.service";
  * component.
  */
 @RouteConfig([
-    {path: '/', name: 'Home', component: HomeComponent},
+    {path: '/', name: 'Metrics', component: HomeComponent},
     {path: '/about', name: 'About', component: AboutComponent}
 ])
 export class AppComponent {
@@ -51,8 +51,7 @@ export class AppComponent {
     public message="Doesn't work";
 
     constructor(){
-        this.pageToShow=1;
-        console.log("page to show: "+ this.pageToShow);
+        this.pageToShow=2;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
     }

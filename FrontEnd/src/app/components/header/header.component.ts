@@ -27,8 +27,7 @@ export class HeaderComponent {
     }
 
     ngOnInit(){
-        console.log("Current frame value: "+this.currentFrameValue)
-    };
+    }
 
     showHideMenu(){
         this.menuIsClosed=!this.menuIsClosed;
