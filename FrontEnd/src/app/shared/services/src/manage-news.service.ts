@@ -85,11 +85,6 @@ export class ManageNewsService {
             .catch(this.handleError);
     }
 
-
-
-
-
-
     /**
      * Function handleError. This function catches potential errors which come from
      * the server while a HTTP request.
