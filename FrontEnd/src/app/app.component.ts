@@ -7,6 +7,8 @@ import {ConnectionContentComponent} from "./components/connection/connection-con
 import {UserComponent} from "./components/models/user/user.component";
 import {NewsComponent} from "./components/news/news/news.component";
 import {ManageNewsService} from "./shared/services/src/manage-news.service";
+import {AddUserComponent} from "./components/user-components/add-user/add-user.component";
+import {UserListComponent} from "./components/user-components/user-list/user-list.component";
 
 
 @Component({
@@ -33,7 +35,9 @@ import {ManageNewsService} from "./shared/services/src/manage-news.service";
  */
 @RouteConfig([
     {path: '/', name: 'Metrics', component: HomeComponent},
-    {path: '/about', name: 'About', component: AboutComponent}
+    {path: '/about', name: 'About', component: AboutComponent},
+    {path: '/user-components/add-user', name: 'AddUser', component: AddUserComponent},
+    {path: '/user-components/user-list', name: 'UserList', component: UserListComponent}
 ])
 export class AppComponent {
 
@@ -49,11 +53,15 @@ export class AppComponent {
      */
     public pageToShow;
     public message="Doesn't work";
+    public pageName:string;
+    public linksName:string[];
+    public routerLinks:string[];
 
     constructor(){
         this.pageToShow=2;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
+        this.instantiateSettings();
     }
 
     /**
@@ -65,5 +73,11 @@ export class AppComponent {
         if(this.user.userId>=0){
             this.pageToShow=1;
         }
+    }
+
+    instantiateSettings(){
+        this.pageName="Settings";
+        this.linksName=["Add user", "User list"];
+        this.routerLinks=["AddUser", "UserList"];
     }
 }

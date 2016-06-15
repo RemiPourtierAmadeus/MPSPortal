@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {UserComponent} from "../../models/user/user.component.ts";
-import {ManageUsersService} from "../../../shared/services/src/manage-users.service.ts";
+import {UserComponent} from "../../models/user/user.component";
+import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 
 /**
  * Component UserListComponent
@@ -10,7 +10,8 @@ import {ManageUsersService} from "../../../shared/services/src/manage-users.serv
     selector: 'user-list',
     moduleId: module.id,
     templateUrl: './user-list.component.html',
-    styleUrls : ['./user-list.component.css']
+    styleUrls : ['./user-list.component.css'],
+    providers: [ManageUsersService]
 })
 
 export class UserListComponent  {

@@ -10,9 +10,7 @@
 
 <div *ngIf="pageToShow==2">
     <div class="header">
-        <header currentFrameValue="Metrics"></header>
+        <header currentFrameValue="{{pageName}}" linksName="{{linksName}}" routerLinks="{{routerLinks}}"></header>
     </div>
     <router-outlet ></router-outlet>
 </div>
-
-
