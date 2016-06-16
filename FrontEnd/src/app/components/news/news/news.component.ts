@@ -3,12 +3,12 @@
  */
 
 import {Component} from '@angular/core';
+import {Response} from "@angular/http";
 import {NewsFormComponent} from "../news-form/news-form.component";
 import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
 import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {NewsItemComponent} from "../news-item/news-item.component";
 import {HeaderComponent} from "../../header/header.component";
-import {Response} from "@angular/http";
 import {NewsFilterComponent} from "../news-filter/news-filter.component";
 
 @Component({
@@ -245,20 +245,6 @@ export class NewsComponent {
             error => this.errorFromServer = <any> error);
     }
 
-    /**
-     * Function verifyResponse.
-     * This function verifies if the request succeed and updates the news list by
-     * calling getNews().
-     * @param news
-     */
-    verifyResponse(news) {
-        if (news[0].success === "true") {
-            this.getNews();
-        }
-        else {
-            console.log("An error has occurred while trying to add the news");
-        }
-    }
 
     /**
      * Function saveNews.
@@ -275,8 +261,25 @@ export class NewsComponent {
             newsFrom: news.newsFrom
         };
         this._manageNewsService.updateNews(newsJSON).then(
-            news => this.verifyResponse(news),
+            news => this.verifyResponse(news), //or if you would like to get directly the response you can
+                                                // do this.myVariable=news;
             error => this.errorFromServer = <any> error);
+    }
+
+
+    /**
+     * Function verifyResponse.
+     * This function verifies if the request succeed and updates the news list by
+     * calling getNews().
+     * @param news
+     */
+    verifyResponse(news) {
+        if (news[0].success === "true") {
+            this.getNews();
+        }
+        else {
+            console.log("An error has occurred while trying to add the news");
+        }
     }
 
     /**
