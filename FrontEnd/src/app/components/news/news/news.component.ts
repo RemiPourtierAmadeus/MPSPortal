@@ -293,10 +293,10 @@ export class NewsComponent {
             id: news.id
         };
         //TODO: TO UNCOMMENT WHEN THE BUG WITH DELETENEWS WILL BE FIXED
-        /*
+
         this._manageNewsService.deleteNews(finalNewsJSON).then(
             news => this.verifyResponse(news),
-            error => this.errorFromServer = <any> error);*/
+            error => this.errorFromServer = <any> error);
     }
 
 
