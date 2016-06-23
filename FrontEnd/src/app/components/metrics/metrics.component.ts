@@ -11,14 +11,20 @@ import {ManageMetricsService} from "../../shared/services/src/metrics/manage-met
     moduleId: module.id,
     templateUrl: './metrics.component.html',
     styleUrls : ['./metrics.component.css'],
-    directives : [PanelComponent]
+    directives : [PanelComponent],
+    providers: [ManageMetricsService]
 })
 export class MetricsComponent {
 
 
     private metricsItem:string[];
+    private metricsItemRow1:string[];
+    private metricsItemRow2:string[];
 
     constructor(private _manageMetricsService:ManageMetricsService){
+        this.metricsItem=[];
+        this.metricsItemRow1=[];
+        this.metricsItemRow2=[];
     }
 
     /**
@@ -30,7 +36,15 @@ export class MetricsComponent {
      */
     ngOnInit(){
         this._manageMetricsService.getMetricsItem().then(
-            items => this.metricsItem = items
+            items => this.splitMetricsItemAccordingToRow(items)
         );
+    }
+
+    splitMetricsItemAccordingToRow(items:string[]){
+        this.metricsItem = items;
+        this.metricsItemRow1.push(items[0]);
+        this.metricsItemRow1.push(items[1]);
+        this.metricsItemRow2.push(items[2]);
+        this.metricsItemRow2.push(items[3]);
     }
 }

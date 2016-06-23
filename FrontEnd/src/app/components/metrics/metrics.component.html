@@ -2,36 +2,29 @@
     <div class="row ">
         <div class="title row"><h1>Metrics </h1></div>
         <div class="row">
-            <div class="large-4 large-offset-2 columns">
-                <m-panel
-                        name=""
-                        pathImage=""
-                        color=""
-                ></m-panel>
+            <div *ngFor="let item of metricsItemRow1">
+
+                <div class=" {{item.responsive}} columns">
+                    <m-panel
+                            name="{{item.name}}"
+                            pathImage="{{item.pathImage}}"
+                            color="{{item.color}}"
+                    ></m-panel>
+                </div>
             </div>
-            <div class="large-4  columns end">
-                <m-panel
-                        name=""
-                        pathImage=""
-                        color=""
-                ></m-panel>
-            </div>
+
         </div>
         <br/>
         <div class="row">
-            <div class="large-4 large-offset-2 columns">
-                <m-panel
-                        name=""
-                        pathImage=""
-                        color=""
-                ></m-panel>
-            </div>
-            <div class="large-4  columns end">
-                <m-panel
-                        name=""
-                        pathImage=""
-                        color=""
-                ></m-panel>
+            <div *ngFor="let item of metricsItemRow2">
+
+                <div class=" {{item.responsive}} columns">
+                    <m-panel
+                            name="{{item.name}}"
+                            pathImage="{{item.pathImage}}"
+                            color="{{item.color}}"
+                    ></m-panel>
+                </div>
             </div>
         </div>
     </div>
