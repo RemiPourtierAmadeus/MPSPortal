@@ -1,7 +1,7 @@
 /**
  * Test Component MetricsMetrics
  */
-import {MetricsComponent} from "./metrics.component";
+import {MetricsComponent} from "./metrics.component.ts";
 import {Component} from "@angular/core";
 @Component({
     selector: 'test-metrics',
