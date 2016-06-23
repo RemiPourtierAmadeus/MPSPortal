@@ -7,12 +7,47 @@
     color:white;
   }
 
-  .img{
-    max-height: 2%;
-  }
   .fa{
     font-style: normal;
     color:white;
     font-size: 150px;
+  }
+}
+
+
+/**
+* CSS for smartphone in landscape view
+**/
+@media only screen and (max-height:40em) {
+  .main{
+
+    h3{
+      font-size: 25px;
+    }
+
+    .fa{
+      font-style: normal;
+      color:white;
+      font-size: 50px;
+    }
+  }
+}
+
+
+/**
+* CSS for smartphone in portrait view
+**/
+@media only screen and (max-width:400px) {
+  .main{
+
+    h3{
+      font-size: 15px;
+    }
+
+    .fa{
+      font-style: normal;
+      color:white;
+      font-size: 50px;
+    }
   }
 }
