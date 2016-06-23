@@ -2,12 +2,17 @@
 @import "../../../../styles/variables";
 
 .main{
-  h3{
+  h3, .title{
     text-align: center;
     color:white;
   }
 
   .img{
     max-height: 2%;
+  }
+  .fa{
+    font-style: normal;
+    color:white;
+    font-size: 150px;
   }
 }
