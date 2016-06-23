@@ -2,12 +2,24 @@
  * Component MetricsPanelComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
-    selector: 'panel',
+    selector: 'm-panel',
     moduleId: module.id,
     templateUrl: './panel.component.html',
     styleUrls : ['./panel.component.css']
 })
-export class PanelComponent { }
+export class PanelComponent {
+
+    @Input('name') name:string;
+    @Input('pathImage') pathImage:string;
+    @Input('color') color:string;
+    
+    constructor(){
+        this.name="";
+        this.pathImage="";
+        this.color="";
+    }
+
+}
