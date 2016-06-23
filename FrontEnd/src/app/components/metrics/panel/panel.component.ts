@@ -3,7 +3,7 @@
  */
 
 import {Component, Input} from '@angular/core';
-
+import {} from '../../../../assets/metrics/'
 @Component({
     selector: 'm-panel',
     moduleId: module.id,
