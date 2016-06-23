@@ -9,7 +9,7 @@ import {NewsComponent} from "./components/news/news/news.component";
 import {ManageNewsService} from "./shared/services/src/manage-news.service";
 import {AddUserComponent} from "./components/user-components/add-user/add-user.component";
 import {UserListComponent} from "./components/user-components/user-list/user-list.component";
-
+import {MetricsComponent} from "./components/metrics/metrics.component";
 
 @Component({
     selector: 'app',
@@ -21,7 +21,8 @@ import {UserListComponent} from "./components/user-components/user-list/user-lis
         HeaderComponent,
         ConnectionContentComponent,
         NewsComponent,
-        HomeComponent
+        HomeComponent,
+        MetricsComponent
     ],
     providers:[ManageNewsService]
 })
@@ -58,7 +59,7 @@ export class AppComponent {
     public routerLinks:string[];
 
     constructor(){
-        this.pageToShow=2;
+        this.pageToShow=4;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
         this.instantiateSettings();

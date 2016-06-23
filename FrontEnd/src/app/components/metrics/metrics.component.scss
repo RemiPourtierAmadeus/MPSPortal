@@ -1,0 +1,12 @@
+@import "../../../styles/main";
+@import "../../../styles/_variables";
+
+h1{
+  text-align:center;
+  color:$titleColor;
+}
+
+.main{
+  min-height:100%;
+  background-color:$mainBackgroundColor;
+}

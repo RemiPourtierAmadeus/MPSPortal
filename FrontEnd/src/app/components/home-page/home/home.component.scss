@@ -1,10 +1,12 @@
+@import "../../../../styles/main";
+@import "../../../../styles/_variables";
+
 h1{
   text-align:center;
-  color:rgb(0,99,167);
-  font-family: 'Roboto', sans-serif;
+  color:$titleColor;
 }
 
 .main{
   min-height:100%;
-  background-color:rgb(234, 235, 237);
+  background-color:$mainBackgroundColor;
 }
