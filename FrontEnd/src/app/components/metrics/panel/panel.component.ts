@@ -16,6 +16,7 @@ export class PanelComponent {
     @Input('pathImage') pathImage:string;
     @Input('color') color:string;
     @Input('description') description:string;
+    @Input('icon') icon:string;
 
     private showDescription:boolean;
     
@@ -23,8 +24,10 @@ export class PanelComponent {
         this.name="";
         this.pathImage="";
         this.color="";
+        this.description="";
+        this.icon="";
 
-        this.showDescription=false;
+        this.showDescription=true;
     }
 
     openDescription(){
