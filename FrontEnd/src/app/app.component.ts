@@ -50,6 +50,7 @@ export class AppComponent {
      * If pageToShow = 1 => user is connected and we show the home page
      * If pageToShow = 2 => user is connected and the user has choosen the part of the website
      * IF pageToShow = 3 => user is connected and want to see the news
+     * IF pageToShow = 4 => metrics home page
      * from the home page.
      */
     public pageToShow;
@@ -59,7 +60,7 @@ export class AppComponent {
     public routerLinks:string[];
 
     constructor(){
-        this.pageToShow=4;
+        this.pageToShow=2;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
         this.instantiateSettings();
