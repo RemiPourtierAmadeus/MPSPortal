@@ -4,13 +4,28 @@
 .main{
   h3, .title{
     text-align: center;
-    color:white;
+    a{
+
+      color:white;
+    }
+    a:hover{
+      opacity: 0.8;
+    }
+  }
+
+  .title:hover{
   }
 
   .fa{
     font-style: normal;
     color:white;
     font-size: 150px;
+    cursor: pointer;
+  }
+
+  .fa:hover{
+    opacity: 0.5;
+    transition: opacity 0.8s;
   }
 }
 

@@ -15,11 +15,21 @@ export class PanelComponent {
     @Input('name') name:string;
     @Input('pathImage') pathImage:string;
     @Input('color') color:string;
+    @Input('description') description:string;
+
+    private showDescription:boolean;
     
     constructor(){
         this.name="";
         this.pathImage="";
         this.color="";
+
+        this.showDescription=false;
+    }
+
+    openDescription(){
+        console.log('hey');
+        this.showDescription=!this.showDescription;
     }
 
 }

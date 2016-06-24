@@ -1,22 +1,44 @@
 <div class="main " [ngStyle]="{'background-color':color}">
     <div class="row">
-        <div class="title large-12 medium-12 small-12 columns">
-            <!--<img src="{{pathImage}}" alt="">-->
-            <div *ngIf="name==='News'">
-                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+        <div *ngIf="showDescription==false">
+            <div class="title large-12 medium-12 small-12 columns">
+                <!--<img src="{{pathImage}}" alt="">-->
+                <div *ngIf="name==='News'">
+                    <i class="fa fa-newspaper-o" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
+                <div *ngIf="name==='Projects & Sessions'">
+                    <i class="fa fa-users" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
+                <div *ngIf="name==='Statistics'">
+                    <i class="fa fa-bar-chart" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
+                <div *ngIf="name==='Settings'">
+                    <i class="fa fa-cogs" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
             </div>
-            <div *ngIf="name==='Projects & Sessions'">
-                <i class="fa fa-users" aria-hidden="true"></i>
+        </div>
+        <div *ngIf="showDescription==true">
+            <div class="title large-4 medium-4 small-4  columns">
+                <!--<img src="{{pathImage}}" alt="">-->
+                <div *ngIf="name==='News'">
+                    <i class="fa fa-newspaper-o" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
+                <div *ngIf="name==='Projects & Sessions'">
+                    <i class="fa fa-users" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
+                <div *ngIf="name==='Statistics'">
+                    <i class="fa fa-bar-chart" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
+                <div *ngIf="name==='Settings'">
+                    <i class="fa fa-cogs" aria-hidden="true" (click)="openDescription()"></i>
+                </div>
             </div>
-            <div *ngIf="name==='Statistics'">
-                <i class="fa fa-bar-chart" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="name==='Settings'">
-                <i class="fa fa-cogs" aria-hidden="true"></i>
+            <div class="title large-4 medium-4 small-4  columns">
+                {{description}}
             </div>
         </div>
         <div class="title large-12 medium-12 small-12 columns">
-            <h3>{{name}}</h3>
+            <h3><a>{{name}}</a></h3>
         </div>
     </div>
 </div>
