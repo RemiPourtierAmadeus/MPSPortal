@@ -2,18 +2,7 @@
  * Component UserComponent
  * This component defines the structure of a user. This definition comes from the architecture
  * built in the database.
- */
-
-import {Component} from '@angular/core';
-
-@Component({
-    selector: 'user',
-    moduleId: module.id,
-    templateUrl: './user.component.html',
-    styleUrls : ['./user.component.css']
-})
-
-/**
+ *
  * Class User
  */
 export class UserComponent {
