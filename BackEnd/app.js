@@ -2,6 +2,7 @@ var express = require('express'); // Utilisation du module express de nodejs.
 var logger = require('morgan'); // Permet de gérer les logs et la coloration des messages.
 var userRouter = require('./scripts/routing/routesUsers');
 var newsRouter = require('./scripts/routing/routesNews');
+var projectsRouter = require('./scripts/routing/routeProjects');
 var database = require('./scripts/model/database');
 var bodyParser = require('body-parser');
 var app = express();
@@ -30,10 +31,12 @@ app.use(function(req, res, next) {
 });
 
 /**
- * We define to app the routeur it has to use in the address localhost:3000/
+ * We define to app the router it has to use in the address localhost:3000/
  */
 app.use('/users',userRouter);
 app.use('/news',newsRouter);
+app.use('/projects',projectsRouter);
+
 /**
  * Creates a server at the address 3000.
  * @type {http.Server}
