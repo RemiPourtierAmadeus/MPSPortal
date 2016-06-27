@@ -12,18 +12,42 @@ var connectionVariable = require('../core/config').connectionVariable;
 var paramQ = require('../core/core').paramQ;
 var fs = require('fs');
 
-exports.updateProjects= function (success, fail){
+/**
+ * Function updateProjects.
+ * This function directly update a project from
+ * @param data, success
+ * @param fail
+ */
+exports.updateProjects= function (data,success, fail){
 
 }
 
-exports.addProject= function (success, fail){
+/**
+ * Function addProject.
+ * This function directly update a project from
+ * @param data, success
+ * @param fail
+ */
+exports.addProject= function (data,success, fail){
 
 }
 
-exports.deleteProjects= function (success, fail){
+/**
+ * Function deleteProjects.
+ * This function directly update a project from
+ * @param data, success
+ * @param fail
+ */
+exports.deleteProjects= function (data,success, fail){
 
 }
 
-exports.getProjects= function (success, fail){
+/**
+ * Function getProjects.
+ * This function directly update a project from
+ * @param data, success
+ * @param fail
+ */
+exports.getProjects= function (data,success, fail){
 
 }

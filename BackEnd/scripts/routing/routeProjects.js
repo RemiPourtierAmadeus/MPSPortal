@@ -34,7 +34,7 @@ router.post('/', function(req,res){
     var data = req.body;
     console.log("In post, data received: "+data);
 
-    projectManager.updateProjects(success, fail);
+    projectManager.updateProjects(data,success, fail);
 
 });
 
@@ -58,7 +58,7 @@ router.put('/', function (req, res) {
     // Grab data from http request
     var data = req.body;
 
-    projectManager.addProject(success, fail);
+    projectManager.addProject(data,success, fail);
 });
 
 /**
@@ -76,7 +76,7 @@ router.get('/', function (req, res) {
         res.sendStatus(500);
     };
 
-    projectManager.getProjects(success, fail);
+    projectManager.getProjects(data,success, fail);
 });
 
 /**
