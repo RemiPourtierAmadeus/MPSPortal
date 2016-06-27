@@ -15,3 +15,15 @@ var fs = require('fs');
 exports.updateProjects= function (success, fail){
 
 }
+
+exports.addProject= function (success, fail){
+
+}
+
+exports.deleteProjects= function (success, fail){
+
+}
+
+exports.getProjects= function (success, fail){
+
+}
