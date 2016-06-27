@@ -34,7 +34,33 @@ router.post('/', function(req,res){
     var data = req.body;
     console.log("In post, data received: "+data);
 
+    projectManager.updateProjects(success, fail);
+
 });
+
+/**
+ * Function puts on users. When the front-end is requesting a put on
+ * users, we verifies the success of the request and then call the method
+ * addUsers from userManager.
+ */
+router.put('/', function (req, res) {
+    console.log(req.body);
+    var success = function () {
+        var finalObject = [{success: 'true'}];
+        console.log(finalObject);
+        res.send(finalObject);
+    };
+
+    var fail = function(){
+        res.sendStatus(500);
+    };
+
+    // Grab data from http request
+    var data = req.body;
+
+    userManager.generateUserId(data, success,fail);
+});
+
 
 
 /**

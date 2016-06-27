@@ -11,3 +11,7 @@ var mysql = require("mysql");
 var connectionVariable = require('../core/config').connectionVariable;
 var paramQ = require('../core/core').paramQ;
 var fs = require('fs');
+
+exports.updateProjects= function (success, fail){
+
+}
