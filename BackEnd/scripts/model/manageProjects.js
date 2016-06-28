@@ -115,7 +115,15 @@ exports.addProject= function (data,success, fail){
  * @param fail
  */
 exports.deleteProjects= function (data,success, fail){
-
+    console.log("projects params: " + userParams.user_id);
+    connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
 }
 
 /**
