@@ -67,7 +67,45 @@ exports.updateProjects= function (data,success, fail){
  * @param fail
  */
 exports.addProject= function (data,success, fail){
+    userParams[userKeys[0]] = userId;/** set user id */
+    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";/** Password : encoding  */
+    userParams[userKeys[5]] = 1; /** Active : 1 => yes */
+    userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
 
+    var query="INSERT INTO T_User ";
+    var attributes="(";
+    var values="(";
+    var cpt=0; //Will represent the number of field in parameters.
+    for(var i=0; i<userKeys.length;i++){
+        if (userParams.hasOwnProperty(userKeys[i])) {
+            if (cpt == 0) {
+                attributes = attributes+ userKeys[i];
+                values= values+"'"+ userParams[userKeys[i]]+"'";
+            }
+            else {
+                if(i!=4){
+                    values= values+", "+"'"+userParams[userKeys[i]]+"'";
+                }
+                else{
+                    values= values+", "+userParams[userKeys[i]];
+                }
+                attributes = attributes+", "+ userKeys[i];
+            }
+            cpt++;
+        }
+    }
+    attributes=attributes+")";
+    values=values+")";
+    query= query + attributes+" VALUES "+values;
+    console.log("query for adding user: "+query);
+
+    connectionVariable.query( query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+            updateUserIdInDB(userId, userTypeValue);
+        }
+    });
 }
 
 /**
