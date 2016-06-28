@@ -49,5 +49,31 @@ exports.deleteProjects= function (data,success, fail){
  * @param fail
  */
 exports.getProjects= function (data,success, fail){
+    var query = "SELECT ";
+    /**
+     * We first build the query manually from the userKeys (an array which contains all the
+     * table attributes). We don't want to use the traditional "*" for security reasons.
+     */
+    for (var i = 0; i < userKeys.length; i++) {
+        if (i == 0) {
+            query = query + "" + userKeys[i];
+        }
+        else {
+            query = query + ", " + userKeys[i];
+        }
+    }
+    query = query + " FROM T_Projects ";
 
+    console.log("query for getProjects:" + query);
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
 }
