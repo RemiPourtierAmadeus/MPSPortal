@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row newsListContent"  *ngIf="newsNotFound==false">
-        <div *ngFor="#news of newsList">
+        <div *ngFor="let news of newsList">
             <div class="row newsContent">
                 <div class="large-10 large-centered columns">
                     <div class="card">
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="noNewsToShow" *ngIf="newsNotFound==true">
-        <div *ngFor="#news of newsList">
+        <div *ngFor="let news of newsList">
             <div class="row newsContent">
                 <div class="large-10 large-centered columns">
                     <div class="card">

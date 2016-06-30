@@ -10,6 +10,7 @@ export class NewsConstantService {
     private subtypesValue:string[];
     private newsFrom:string[];
     private status:string[];
+    private numberOfLastNews:number;
 
     /**
      * In the constructor we initialize the attributes.
@@ -34,6 +35,7 @@ export class NewsConstantService {
             "Active",
             "Inactive"
         ];
+        this.numberOfLastNews=3;
     }
 
     /**
@@ -66,5 +68,13 @@ export class NewsConstantService {
      */
     getStatus() {
         return this.status;
+    }
+
+    /**
+     * Get the number of last news.
+     * @returns {number}
+     */
+    getNumberOfLastNews(){
+        return this.numberOfLastNews;
     }
 }

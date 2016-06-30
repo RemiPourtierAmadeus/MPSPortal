@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="row ">
+        <div class="title row"><h1>Metrics </h1></div>
+        <div class="row">
+            <div *ngFor="let item of metricsItemRow1">
+
+                <div class=" {{item.responsive}} columns">
+                    <m-panel
+                            name="{{item.name}}"
+                            pathImage="{{item.pathImage}}"
+                            color="{{item.color}}"
+                            description="{{item.description}}"
+                            icon="{{item.icon}}"
+                    ></m-panel>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div *ngFor="let item of metricsItemRow2">
+
+                <div class=" {{item.responsive}} columns">
+                    <m-panel
+                            name="{{item.name}}"
+                            pathImage="{{item.pathImage}}"
+                            color="{{item.color}}"
+                            description="{{item.description}}"
+                            icon="{{item.icon}}"
+                    ></m-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

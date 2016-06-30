@@ -1,17 +1,4 @@
 /**
- * Component NewsModelComponent
- */
-
-import {Component} from '@angular/core';
-
-@Component({
-    selector: 'news-model',
-    moduleId: module.id,
-    templateUrl: './news-model.component.html',
-    styleUrls : ['./news-model.component.css']
-})
-
-/**
  * Model for news.
  * This component contains the characteristics of a news. We use it to store news information
  * in the front end.

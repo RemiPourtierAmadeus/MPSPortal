@@ -1,0 +1,27 @@
+
+<br>
+<div *ngIf="userManager_error">An error occurred while loading the users!</div>
+<div class="row">
+<table>
+    <thead>
+    <tr>
+        <th width="200">User id</th>
+        <th>Full name</th>
+        <th width="150">Email address</th>
+        <th width="150">Type</th>
+        <th width="150">Password</th>
+        <th width="150">login</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+        <td>{{user.user_id}}</td>
+        <td>{{user.full_name}}</td>
+        <td>{{user.email_address}}</td>
+        <td>{{user.type}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.login}}</td>
+    </tr>
+    </tbody>
+</table>
+</div>

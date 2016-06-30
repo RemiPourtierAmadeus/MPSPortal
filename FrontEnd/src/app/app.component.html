@@ -1,7 +1,6 @@
 <div *ngIf="pageToShow==0">
     <connection-content (sendCurrentUser)="instantiateUser($event)" ></connection-content>
 </div>
-
 <div *ngIf="pageToShow==1">
     <home></home>
 </div>
@@ -11,7 +10,13 @@
 
 <div *ngIf="pageToShow==2">
     <div class="header">
-        <header></header>
+        <header currentFrameValue="{{pageName}}" linksName="{{linksName}}" routerLinks="{{routerLinks}}"></header>
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
 </div>
+
+
+<div *ngIf="pageToShow==4">
+    <metrics></metrics>
+</div>
+

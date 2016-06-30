@@ -1,0 +1,30 @@
+<div class="main " [ngStyle]="{'background-color':color}">
+    <div class="row">
+
+        <div *ngIf="showDescription==false">
+
+            <div class="title large-12 medium-12 small-12 columns">
+                <i class="fa {{icon}}" aria-hidden="true" (click)="openDescription()"></i>
+            </div>
+
+        </div>
+
+        <div *ngIf="showDescription==true">
+
+            <div class="title large-4 medium-4 small-4  columns">
+                <i class="fa {{icon}}" aria-hidden="true" (click)="openDescription()"></i>
+            </div>
+
+            <div class="description large-6 medium-6 small-6
+            large-offset-2 medium-offset-2 small-offset-2 end columns">
+                <h4>{{description}}</h4>
+            </div>
+
+        </div>
+
+        <div class="title large-12 medium-12 small-12 columns">
+            <h3><a>{{name}}</a></h3>
+        </div>
+    </div>
+</div>
+
