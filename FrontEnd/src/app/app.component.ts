@@ -10,6 +10,8 @@ import {ManageNewsService} from "./shared/services/src/manage-news.service";
 import {AddUserComponent} from "./components/user-components/add-user/add-user.component";
 import {UserListComponent} from "./components/user-components/user-list/user-list.component";
 import {MetricsComponent} from "./components/metrics/metrics.component";
+import {AddLanguageComponent} from "./components/+language/add-language/add-language.component";
+import {LanguageListComponent} from "./components/+language/language-list/language-list.component";
 
 @Component({
     selector: 'app',
@@ -38,7 +40,9 @@ import {MetricsComponent} from "./components/metrics/metrics.component";
     {path: '/', name: 'Metrics', component: HomeComponent},
     {path: '/about', name: 'About', component: AboutComponent},
     {path: '/user-components/add-user', name: 'AddUser', component: AddUserComponent},
-    {path: '/user-components/user-list', name: 'UserList', component: UserListComponent}
+    {path: '/user-components/user-list', name: 'UserList', component: UserListComponent},
+    {path: '/language/add', name: 'AddLanguage', component: AddLanguageComponent},
+    {path: '/language/list', name: 'LanguageList', component: LanguageListComponent}
 ])
 export class AppComponent {
 
