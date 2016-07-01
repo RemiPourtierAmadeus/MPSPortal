@@ -114,6 +114,26 @@ exports.getSteps = function (success, fail) {
  * @param fail
  */
 exports.updateStep = function (stepsParams, success, fail) {
+    /**
+     * We create the final query.
+     * @type {string}
+     */
+    if (stepsParams.hasOwnProperty(stepKeys[1]) && stepsParams.hasOwnProperty(stepKeys[0])) {
+        //var query = "UPDATE TR_step SET  " + stepKeys[1] + "='" + stepsParams[stepKeys[1]] + "' WHERE id=" + stepsParams[stepKeys[0]];
+        console.log("Query: " + query);
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(query, function (err, data) {
+            if (err) throw err;
+            else {
+                success(data);
+            }
+        });
+    }
+    else {
+        fail();
+    }
 }
 
 
@@ -124,4 +144,10 @@ exports.updateStep = function (stepsParams, success, fail) {
  * @param fail
  */
 exports.deleteSteps = function (id, success, fail) {
+    connectionVariable.query('DELETE FROM TR_Step WHERE id=?', id, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+    });
 }
