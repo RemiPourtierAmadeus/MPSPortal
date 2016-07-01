@@ -134,7 +134,6 @@ exports.updateLanguages = function (languagesParams, success, fail) {
     else {
         fail();
     }
-
 }
 
 

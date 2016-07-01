@@ -114,17 +114,37 @@ exports.getSteps = function (success, fail) {
  * @param fail
  */
 exports.updateStep = function (stepsParams, success, fail) {
+    var paramsInQuery = "";
     /**
-     * We create the final query.
-     * @type {string}
+     * Start treatment of the request. We verify we have a user id in the request.
      */
-    if (stepsParams.hasOwnProperty(stepKeys[1]) && stepsParams.hasOwnProperty(stepKeys[0])) {
-        //var query = "UPDATE TR_step SET  " + stepKeys[1] + "='" + stepsParams[stepKeys[1]] + "' WHERE id=" + stepsParams[stepKeys[0]];
-        console.log("Query: " + query);
+    if (stepsParams[stepKeys[0]] >= 0) {
+        /**
+         * We start building the query. We get back all data we have from the http request.
+         * Then we add the attributes to change into the parameters of the query : paramsInQuery.
+         */
+        var cpt = 0;
+        for (var i = 1; i < stepKeys.length; i++) {
+            if (stepsParams.hasOwnProperty(stepKeys[i])) {
+                if (cpt == 0) {
+                    paramsInQuery = stepKeys[i] + "='" + stepsParams[stepKeys[i]] + "'";
+                }
+                else {
+                    paramsInQuery += ", " + stepKeys[i] + "='" + stepsParams[stepKeys[i]] + "'";
+                }
+                cpt++;
+            }
+        }
+        /**
+         * We create the final query.
+         * @type {string}
+         */
+        paramsInQuery = "UPDATE TR_Step SET " + paramsInQuery + " WHERE id=" + stepsParams[stepKeys[0]];
+        console.log("Query: " + paramsInQuery);
         /**
          * We update the data.
          */
-        connectionVariable.query(query, function (err, data) {
+        connectionVariable.query(paramsInQuery, function (err, data) {
             if (err) throw err;
             else {
                 success(data);
