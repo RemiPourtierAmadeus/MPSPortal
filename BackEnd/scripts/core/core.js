@@ -31,15 +31,6 @@ var userTypes = [
     "top_manager"
 ];
 
-/**
- * Initialisation of the variable which contains all the attributes of the language table in the
- * database. We will use them in the language manager.
- * @type {string[]}
- */
-var languageKeys = [
-    "id",
-    "name"
-];
 
 
 
@@ -92,6 +83,29 @@ var newsSubTypes = [
 
 
 /**
+ * Initialisation of the variable which contains all the attributes of the language table in the
+ * database. We will use them in the language manager.
+ * @type {string[]}
+ */
+var languageKeys = [
+    "id",
+    "name"
+];
+
+/**
+ * Initialisation of the variable which contains all the attributes of the step table in the
+ * database. We will use them in the step manager.
+ * @type {string[]}
+ */
+var stepKeys = [
+    "id",
+    "order",
+    "name"
+];
+
+
+
+/**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
  *      var userKeys = require('../core/core').userKeys; // To have userKeys
@@ -105,7 +119,8 @@ module.exports = {
     newsKeys : newsKeys,
     newsTypes : newsTypes,
     newsSubTypes : newsSubTypes,
-    languageKeys : languageKeys
+    languageKeys : languageKeys,
+    stepKeys: stepKeys
 };
 
 
