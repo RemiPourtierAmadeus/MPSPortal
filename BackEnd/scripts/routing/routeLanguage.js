@@ -34,7 +34,7 @@ router.post('/', function(req,res){
     var data = req.body;
     console.log("In post, data received: "+data);
 
-    languageManager.updateProjects(data,success, fail);
+    languageManager.updateLanguages(data,success, fail);
 
 });
 
@@ -76,7 +76,7 @@ router.get('/', function (req, res) {
         res.sendStatus(500);
     };
 
-    languageManager.getProjects(data,success, fail);
+    languageManager.getLanguages(data,success, fail);
 });
 
 /**
@@ -99,7 +99,7 @@ router.delete('/', function (req, res) {
     // Grab data from http request
     var data = req.body;
 
-    languageManager.deleteProjects(data,success, fail);
+    languageManager.deleteLanguages(data,success, fail);
 });
 
 /**

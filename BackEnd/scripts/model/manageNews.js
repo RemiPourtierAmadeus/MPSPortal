@@ -260,6 +260,7 @@ exports.updateNews = function (newsParams, success, fail) {
 
 /**
  * Function deleteNews. This function delete a news from the database.
+ * @param id
  * @param success
  * @param fail
  */
