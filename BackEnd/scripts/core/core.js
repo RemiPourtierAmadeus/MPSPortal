@@ -31,6 +31,17 @@ var userTypes = [
     "top_manager"
 ];
 
+/**
+ * Initialisation of the variable which contains all the attributes of the language table in the
+ * database. We will use them in the language manager.
+ * @type {string[]}
+ */
+var languageKeys = [
+    "id",
+    "name"
+];
+
+
 
 /**
  * We define the length of the generated password.
@@ -93,7 +104,8 @@ module.exports = {
     paramQ : paramQ,
     newsKeys : newsKeys,
     newsTypes : newsTypes,
-    newsSubTypes : newsSubTypes
+    newsSubTypes : newsSubTypes,
+    languageKeys : languageKeys
 };
 
 

@@ -10,9 +10,67 @@
 var mysql = require("mysql");
 var connectionVariable = require('../core/config').connectionVariable;
 var fs = require('fs');
-var newsKeys = require('../core/core').newsKeys;
-var newsTypes = require('../core/core').newsTypes;
-var newsSubTypes = require('../core/core').newsSubTypes;
+var languageKeys = require('../core/core').languageKeys;
+
+/**
+ * Function addLanguage. This function will create a language according to data in languagesParam through
+ * the function saveLanguage. Before, it generates the next id for the language.
+ * @param success
+ * @param fail
+ */
+exports.addLanguage = function (languagesParam,success, fail) {
+    var query = "SELECT MAX(id) 'value' FROM MPS_Portal.TR_Language";
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            var languageID = data[0].value + 1;
+            saveLanguage(languageID, languagesParam, success, fail);
+        }
+    });
+}
+
+/**
+ * Function saveLanguage.
+ * This function add directly the language into the database
+ * @param languageID
+ * @param languagesParam
+ * @param success
+ * @param fail
+ */
+function saveLanguage(languageID, languagesParam, success, fail){
+    languagesParam[languageKeys[0]]=languageID;
+    var query = "INSERT INTO TR_Language ";
+    var attributes = "(";
+    var values = "(";
+    var cpt = 0; //Will represent the number of field in parameters.
+    for (var i = 0; i < languageKeys.length; i++) {
+        if (languagesParam.hasOwnProperty(languageKeys[i])) {
+            if (cpt == 0) {
+                attributes = attributes + languageKeys[i];
+                values = values + "" + languagesParam[languageKeys[i]] + "";
+            }
+            else {
+                values = values + ", " + "'" + languagesParam[languageKeys[i]] + "'";
+                attributes = attributes + ", " + languageKeys[i];
+            }
+            cpt++;
+        }
+    }
+    attributes = attributes + ")";
+    values = values + ")";
+    query = query + attributes + " VALUES " + values;
+    console.log("query for adding language: " + query);
+
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+    });
+}
 
 /**
  * Function getLanguages. This function get the list of all languages.
@@ -24,7 +82,7 @@ exports.getLanguages = function (success, fail) {
 }
 
 /**
- * Function updateLanguages. This function will update a language according to data in newsParams.
+ * Function updateLanguages. This function will update a language according to data in languagesParams.
  * @param languagesParams
  * @param success
  * @param fail
@@ -36,7 +94,7 @@ exports.updateLanguages= function (languagesParams,success, fail) {
 
 
 /**
- * Function deleteNews. This function delete a news from the database.
+ * Function deleteLanguages. This function delete a language from the database.
  * @param id
  * @param success
  * @param fail

@@ -58,7 +58,7 @@ router.put('/', function (req, res) {
     // Grab data from http request
     var data = req.body;
 
-    languageManager.addProject(data,success, fail);
+    languageManager.addLanguage(data,success, fail);
 });
 
 /**
