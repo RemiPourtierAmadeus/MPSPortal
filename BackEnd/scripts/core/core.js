@@ -99,7 +99,7 @@ var languageKeys = [
  */
 var stepKeys = [
     "id",
-    "order",
+    "orderStep",
     "name"
 ];
 
