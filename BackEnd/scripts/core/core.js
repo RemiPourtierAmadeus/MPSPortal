@@ -103,8 +103,6 @@ var stepKeys = [
     "name"
 ];
 
-
-
 /**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
