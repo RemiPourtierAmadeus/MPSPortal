@@ -67,16 +67,16 @@ router.put('/', function (req, res) {
  * getProjects from languageManager.
  */
 router.get('/', function (req, res) {
-    var success = function (objetJSON) {
-        console.log(objetJSON);
-        res.send(objetJSON);
+    var success = function (objectJSON) {
+        console.log("into success: "+objectJSON);
+        res.send(objectJSON);
     };
 
     var fail = function(){
         res.sendStatus(500);
     };
 
-    languageManager.getLanguages(data,success, fail);
+    languageManager.getLanguages(success, fail);
 });
 
 /**

@@ -78,7 +78,33 @@ function saveLanguage(languageID, languagesParam, success, fail){
  * @param fail
  */
 exports.getLanguages = function (success, fail) {
+    var query = "SELECT ";
+    /**
+     * We first build the query manually from the languageKeys (an array which contains all the
+     * table attributes). We don't want to use the traditional "*" for security reasons.
+     */
+    for (var i = 0; i < languageKeys.length; i++) {
+        if (i == 0) {
+            query = query + "" + languageKeys[i];
+        }
+        else {
+            query = query + ", " + languageKeys[i];
+        }
+    }
+    query = query + " FROM TR_Language ";
 
+    console.log("query for getLanguages:" + query);
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
 }
 
 /**
