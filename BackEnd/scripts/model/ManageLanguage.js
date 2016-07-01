@@ -18,7 +18,7 @@ var languageKeys = require('../core/core').languageKeys;
  * @param success
  * @param fail
  */
-exports.addLanguage = function (languagesParam,success, fail) {
+exports.addLanguage = function (languagesParam, success, fail) {
     var query = "SELECT MAX(id) 'value' FROM MPS_Portal.TR_Language";
     /**
      * We run the query
@@ -40,8 +40,8 @@ exports.addLanguage = function (languagesParam,success, fail) {
  * @param success
  * @param fail
  */
-function saveLanguage(languageID, languagesParam, success, fail){
-    languagesParam[languageKeys[0]]=languageID;
+function saveLanguage(languageID, languagesParam, success, fail) {
+    languagesParam[languageKeys[0]] = languageID;
     var query = "INSERT INTO TR_Language ";
     var attributes = "(";
     var values = "(";
@@ -113,10 +113,29 @@ exports.getLanguages = function (success, fail) {
  * @param success
  * @param fail
  */
-exports.updateLanguages= function (languagesParams,success, fail) {
+exports.updateLanguages = function (languagesParams, success, fail) {
+    /**
+     * We create the final query.
+     * @type {string}
+     */
+    if (languagesParams.hasOwnProperty(languageKeys[1]) && languagesParams.hasOwnProperty(languageKeys[0])) {
+        var query = "UPDATE TR_Language SET  " + languageKeys[1] + "='" + languagesParams[languageKeys[1]] + "' WHERE id=" + languagesParams[languageKeys[0]];
+        console.log("Query: " + query);
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(query, function (err, data) {
+            if (err) throw err;
+            else {
+                success(data);
+            }
+        });
+    }
+    else {
+        fail();
+    }
 
 }
-
 
 
 /**

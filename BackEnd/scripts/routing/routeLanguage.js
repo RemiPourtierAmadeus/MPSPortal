@@ -20,8 +20,9 @@ var languageManager = require('./../model/manageLanguage');
  */
 router.post('/', function(req,res){
     var success = function (objetJSON) {
-        console.log(objetJSON);
-        res.send(objetJSON);
+        var finalObject = [{success: 'true'}];
+        console.log(finalObject);
+        res.send(finalObject);
     };
 
     var fail = function(){
