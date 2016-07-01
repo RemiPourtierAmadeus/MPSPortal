@@ -78,6 +78,33 @@ function saveStep(stepID, stepsParam, success, fail) {
  * @param fail
  */
 exports.getSteps = function (success, fail) {
+    var query = "SELECT ";
+    /**
+     * We first build the query manually from the stepKeys (an array which contains all the
+     * table attributes). We don't want to use the traditional "*" for security reasons.
+     */
+    for (var i = 0; i < stepKeys.length; i++) {
+        if (i == 0) {
+            query = query + "" + stepKeys[i];
+        }
+        else {
+            query = query + ", " + stepKeys[i];
+        }
+    }
+    query = query + " FROM TR_Step ";
+
+    console.log("query for getsteps:" + query);
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            success(data);
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
 }
 
 /**
