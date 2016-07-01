@@ -3,6 +3,7 @@ var logger = require('morgan'); // Permet de gérer les logs et la coloration de
 var userRouter = require('./scripts/routing/routesUsers');
 var newsRouter = require('./scripts/routing/routesNews');
 var projectsRouter = require('./scripts/routing/routeProjects');
+var languagesRouteur = require('./scripts/routing/routeLanguage');
 var database = require('./scripts/model/database');
 var bodyParser = require('body-parser');
 var app = express();
@@ -36,6 +37,7 @@ app.use(function(req, res, next) {
 app.use('/users',userRouter);
 app.use('/news',newsRouter);
 app.use('/projects',projectsRouter);
+app.use('/languages',languagesRouteur);
 
 /**
  * Creates a server at the address 3000.
