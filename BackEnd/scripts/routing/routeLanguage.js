@@ -100,7 +100,12 @@ router.delete('/', function (req, res) {
     // Grab data from http request
     var data = req.body;
 
-    languageManager.deleteLanguages(data,success, fail);
+    if(data.id>=0){
+        languageManager.deleteLanguages(data.id,success, fail);
+    }
+    else{
+        fail();
+    }
 });
 
 /**

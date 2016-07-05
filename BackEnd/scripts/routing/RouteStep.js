@@ -100,7 +100,12 @@ router.delete('/', function (req, res) {
     // Grab data from http request
     var data = req.body;
 
-    stepManager.deleteSteps(data,success, fail);
+    if(data.id>=0){
+        stepManager.deleteSteps(data.id,success, fail);
+    }
+    else{
+        fail();
+    }
 });
 
 /**

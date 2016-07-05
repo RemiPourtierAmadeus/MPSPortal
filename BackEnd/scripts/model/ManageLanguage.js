@@ -144,7 +144,10 @@ exports.updateLanguages = function (languagesParams, success, fail) {
  * @param fail
  */
 exports.deleteLanguages = function (id, success, fail) {
-    connectionVariable.query('DELETE FROM TR_Language WHERE id=?', id, function (err, data) {
+    console.log("ID: "+id);
+    var query="DELETE FROM TR_Language WHERE id='"+id+"'";
+    console.log("Query: "+query);
+    connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
             success(data);
