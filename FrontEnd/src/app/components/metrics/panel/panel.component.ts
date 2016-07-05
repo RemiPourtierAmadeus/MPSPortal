@@ -27,11 +27,10 @@ export class PanelComponent {
         this.description="";
         this.icon="";
 
-        this.showDescription=true;
+        this.showDescription=false;
     }
 
     openDescription(){
-        console.log('hey');
         this.showDescription=!this.showDescription;
     }
 

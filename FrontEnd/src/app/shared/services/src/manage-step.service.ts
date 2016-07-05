@@ -4,6 +4,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import {StepModel} from "../../../components/models/step.model";
 
 @Injectable()
 export class ManageStepService {
@@ -17,6 +18,17 @@ export class ManageStepService {
      */
     constructor(private http:Http) {}
 
+
+    /**
+     * Function getSteps. This function makes a get HTTP request to the server
+     * @returns {Promise<*>|Promise<T>}
+     */
+    getSteps() {
+        return this.http.get(this._serverLink)
+            .toPromise()
+            .then( res =>  <StepModel[]> res.json() )
+            .catch(this.handleError);
+    }
 
 
     /**

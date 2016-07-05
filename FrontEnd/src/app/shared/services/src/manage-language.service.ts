@@ -4,6 +4,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import {LanguageModel} from "../../../components/models/language.model";
 
 @Injectable()
 export class ManageLanguageService {
@@ -17,13 +18,13 @@ export class ManageLanguageService {
     constructor(private http:Http) {}
 
     /**
-     * Function getNews. This function makes a get HTTP request to the server
+     * Function getLanguages. This function makes a get HTTP request to the server
      * @returns {Promise<*>|Promise<T>}
      */
-    getSteps() {
+    getLanguages() {
         return this.http.get(this._serverLink)
             .toPromise()
-            .then( res =>  <NewsModelComponent[]> res.json() )
+            .then( res =>  <LanguageModel[]> res.json() )
             .catch(this.handleError);
     }
 
