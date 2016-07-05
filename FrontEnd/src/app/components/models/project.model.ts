@@ -1,6 +1,6 @@
 /**
  * Model for project.
- * This component contains the characteristics of a news. We use it to store news information
+ * This component contains the characteristics of a project. We use it to store projects information
  * in the front end.
  */
 export class ProjectModel {
