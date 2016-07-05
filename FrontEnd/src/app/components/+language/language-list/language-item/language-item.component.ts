@@ -14,4 +14,33 @@ export class LanguageItemComponent {
 
     @Input('content') content:string;
 
+    private pageState:string;
+
+    constructor(){
+        this.pageState="general";
+        this.content="";
+    }
+
+    /**
+     * Function to turn on edition process.
+     */
+    editLanguage(){
+        this.pageState="edit";
+    }
+
+    /**
+     * Function to turn on delete process.
+     */
+    deleteLanguage(){
+        this.pageState="delete";
+    }
+
+    confirmEdit(){}
+
+    cancelEdit(){}
+
+    confirmDelete(){}
+
+    cancelDelete(){}
+
 }

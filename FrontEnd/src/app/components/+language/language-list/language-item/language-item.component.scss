@@ -1,2 +1,12 @@
 @import "../../../core/item-list/item-list.component";
 
+.row{
+  text-align: center;
+
+  .fa{
+    cursor: pointer;
+    font-size: 1.5em;
+  }
+}
+
+
