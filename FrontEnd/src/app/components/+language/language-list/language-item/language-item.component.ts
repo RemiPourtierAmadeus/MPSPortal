@@ -35,12 +35,24 @@ export class LanguageItemComponent {
         this.pageState="delete";
     }
 
+    /**
+     * Function to confirm edition.
+     */
     confirmEdit(){}
 
+    /**
+     * Function to cancel edition.
+     */
     cancelEdit(){}
 
+    /**
+     * Function to confirm removal.
+     */
     confirmDelete(){}
 
+    /**
+     * Function to cancel removal.
+     */
     cancelDelete(){}
 
 }
