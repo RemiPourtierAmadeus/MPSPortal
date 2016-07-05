@@ -1,6 +1,12 @@
 <div class="row">
-    <div *ngFor="let language of languages">
-        {{language.name}}
+    <div *ngFor="let language of languages" class="large-8 large-centered medium-8 medium-centered small-12 small-centered">
+
+
+       <language-item
+               content="{{language.name}}"
+       ></language-item>
     </div>
 
+
 </div>
+
