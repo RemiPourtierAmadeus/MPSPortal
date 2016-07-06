@@ -3,21 +3,25 @@
  */
 
 import {Component, Input} from '@angular/core';
+import {ManageLanguageService} from "../../../../shared/services/src/manage-language.service";
 
 @Component({
     selector: 'language-item',
     moduleId: module.id,
     templateUrl: './language-item.component.html',
-    styleUrls : ['./language-item.component.css']
+    styleUrls : ['./language-item.component.css'],
+    providers: [ManageLanguageService]
 })
 export class LanguageItemComponent {
 
     @Input('content') content:string;
+    @Input('id') id:string;
 
     private descriptionClass:string;
     private pageState:string;
+    private errorMessage:string;
 
-    constructor(){
+    constructor(private manageLanguageService:ManageLanguageService){
         this.pageState="general";
         this.content="";
         this.descriptionClass="large-10";
@@ -43,7 +47,25 @@ export class LanguageItemComponent {
      * Function to confirm edition.
      */
     confirmEdit(){
+        let language={
+            id: this.id,
+            content:this.content
+        }
+        this.manageLanguageService.updateLanguage(language).then(
+            success=> this.verifySuccess(success),
+            error => this.errorMessage=error
+        )
+    }
 
+    verifySuccess(dataFromServer){
+        if(dataFromServer.hasOwnProperty("success")){
+            if(dataFromServer.success==true){
+
+            }
+        }
+        else{
+            this.errorMessage="An error has occurred in the language update";
+        }
     }
 
     /**

@@ -34,7 +34,7 @@ export class ManageNewsService {
     /**
      * Function addNews.
      * This function adds a news into the database.
-     * @param userJSON
+     * @param newsJSON
      * @returns {any}
      */
     addNews(newsJSON):  Promise<NewsModelComponent>  {
@@ -50,9 +50,9 @@ export class ManageNewsService {
     }
 
     /**
-     * Function updateUser. This function updates user data.
-     * @param userJSON
-     * @returns {Promise<UserComponent>|Promise<*>|Promise<T>}
+     * Function updateNews. This function updates news data.
+     * @param newsJSON
+     * @returns {Promise<NewsModelComponent>|Promise<*>|Promise<T>}
      */
     updateNews(newsJSON): Promise<NewsModelComponent>{
         let body = JSON.stringify( newsJSON );

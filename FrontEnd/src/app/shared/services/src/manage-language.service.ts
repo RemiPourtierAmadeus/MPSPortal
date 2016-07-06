@@ -28,7 +28,22 @@ export class ManageLanguageService {
             .catch(this.handleError);
     }
 
+    /**
+     * Function updateLanguage. This function updates language data.
+     * @param languageJSON
+     * @returns {Promise<LanguageModel>|Promise<*>|Promise<T>}
+     */
+    updateLanguage(languageJSON): Promise<LanguageModel>{
+        let body = JSON.stringify( languageJSON );
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
 
+        let path= this._serverLink;
+        return this.http.post(path, body, options)
+            .toPromise()
+            .then(res=> <LanguageModel> res.json())
+            .catch(this.handleError);
+    }
 
     /**
      * Function handleError. This function catches potential errors which come from
@@ -42,5 +57,7 @@ export class ManageLanguageService {
         console.error(error);
         return Promise.reject(error|| error.json().error || 'Server error');
     }
+
+
 
 }
