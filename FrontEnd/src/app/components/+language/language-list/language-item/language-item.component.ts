@@ -14,11 +14,13 @@ export class LanguageItemComponent {
 
     @Input('content') content:string;
 
+    private descriptionClass:string;
     private pageState:string;
 
     constructor(){
         this.pageState="general";
         this.content="";
+        this.descriptionClass="large-10";
     }
 
     /**
@@ -26,6 +28,7 @@ export class LanguageItemComponent {
      */
     editLanguage(){
         this.pageState="edit";
+        this.descriptionClass="large-8";
     }
 
     /**
@@ -33,26 +36,31 @@ export class LanguageItemComponent {
      */
     deleteLanguage(){
         this.pageState="delete";
+        this.descriptionClass="large-8";
     }
 
     /**
      * Function to confirm edition.
      */
-    confirmEdit(){}
+    confirmEdit(){
+
+    }
 
     /**
-     * Function to cancel edition.
+     * Function to cancel any action.
      */
-    cancelEdit(){}
+    cancelAction(){
+        this.descriptionClass="large-10";
+        this.pageState="general";
+    }
 
     /**
      * Function to confirm removal.
      */
-    confirmDelete(){}
+    confirmDelete(){
 
-    /**
-     * Function to cancel removal.
-     */
-    cancelDelete(){}
+    }
+
+
 
 }

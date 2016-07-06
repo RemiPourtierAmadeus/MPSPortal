@@ -1,26 +1,45 @@
-<div class="card">
-    <div class="content">
-        <div class="row">
-            <div class="large-10 columns description">
-                <p> {{content}}</p></div>
-            <div *ngIf="pageState==='general'">
-                <div class="large-2 columns">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editLanguage()"></i>
-                    <i class="fa fa-times" aria-hidden="true" (click)="deleteLanguage()"></i>
+<div class="row">
+    <div class="card columns" [ngClass]="descriptionClass">
+        <div class="content">
+            <div class="row">
+                <div *ngIf="pageState==='general' || pageState==='delete'">
+                    <div class=" large-10 columns description">
+                        <p> {{content}}</p>
+                    </div>
+
+                    <div *ngIf="pageState==='general'">
+                        <div class="large-2 columns">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editLanguage()"></i>
+                            <i class="fa fa-times" aria-hidden="true" (click)="deleteLanguage()"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="pageState==='edit'">
+                    <div class=" large-10 columns description">
+                        <label>Edit language name
+                            <input type="text" placeholder="" required
+                                   [(ngModel)]="content" />
+                        </label>
+                    </div>
+
                 </div>
             </div>
-            <div *ngIf="pageState==='edit'">
-                <div class="large-2 columns">
-                    <i class="fa fa-check" aria-hidden="true" (click)="confirmEdit()"></i>
-                    <i class="fa fa-times" aria-hidden="true" (click)="cancelEdit()"></i>
-                </div>
-            </div>
-            <div *ngIf="pageState==='delete'">
-                <div class="large-2 columns">
-                    <i class="fa fa-check" aria-hidden="true" (click)="confirmDelete()"></i>
-                    <i class="fa fa-times" aria-hidden="true" (click)="cancelDelete()"></i>
-                </div>
-            </div>
+        </div>
+    </div>
+
+    <div *ngIf="pageState==='edit'" class="confirmation large-2 end columns  notificationUpdate">
+
+            Save modifications ?
+
+            <i class="fa fa-check" aria-hidden="true" (click)="confirmEdit()"></i>
+            <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
+
+    </div>
+    <div *ngIf="pageState==='delete'" class="confirmation large-2 end columns notificationDelete">
+        <div class="">
+            <i class="fa fa-check" aria-hidden="true" (click)="confirmDelete()"></i>
+            <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
         </div>
     </div>
 </div>
