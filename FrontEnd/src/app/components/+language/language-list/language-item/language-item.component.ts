@@ -47,20 +47,18 @@ export class LanguageItemComponent {
      * Function to confirm edition.
      */
     confirmEdit(){
-
         let language={
             id: +this.id,
             name:this.content
-        }
-        console.log("into confirm edit");
+        };
         this.manageLanguageService.updateLanguage(language).then(
             success=> this.verifySuccess(success),
             error => this.errorMessage=error
         )
     }
 
+
     verifySuccess(dataFromServer){
-        console.log("into verify: "+dataFromServer);
         if(dataFromServer.hasOwnProperty("success")){
             if(dataFromServer.success==true){
 
@@ -83,7 +81,13 @@ export class LanguageItemComponent {
      * Function to confirm removal.
      */
     confirmDelete(){
-
+        let language={
+            id: +this.id
+        };
+        this.manageLanguageService.deleteLanguage(language).then(
+            success=> this.verifySuccess(success),
+            error => this.errorMessage=error
+        )
     }
 
 
