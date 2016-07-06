@@ -22,16 +22,7 @@ export class AddLanguageComponent {
     }
 
     simulateYourService(): Array<ProjectModel>{
-        let JSON={
-            id: "1131",
-            title: "My Tytle"
-        }
-        let JSON2={
-            id: "1131",
-            title: "My Tytle"
-        }
-        let res= [JSON, JSON2]
-        return res;
+        return this.projectList;
     }
 
 }
