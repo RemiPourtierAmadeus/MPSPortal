@@ -19,7 +19,7 @@
                     <div class=" large-10 columns description">
                         <label>Edit language name
                             <input type="text" placeholder="" required
-                                   [(ngModel)]="content" />
+                                   [(ngModel)]="content"/>
                         </label>
                     </div>
 
@@ -30,17 +30,17 @@
 
     <div *ngIf="pageState==='edit'" class="confirmation large-2 end columns  notificationUpdate">
 
-            Save modifications ?
+        Save modifications ? <br/>
 
-            <i class="fa fa-check" aria-hidden="true" (click)="confirmEdit()"></i>
-            <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
+        <i class="fa fa-check" aria-hidden="true" (click)="confirmEdit()"></i>
+        <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
 
     </div>
     <div *ngIf="pageState==='delete'" class="confirmation large-2 end columns notificationDelete">
-        <div class="">
-            <i class="fa fa-check" aria-hidden="true" (click)="confirmDelete()"></i>
-            <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
-        </div>
+        Delete language? <br/>
+        <i class="fa fa-check" aria-hidden="true" (click)="confirmDelete()"></i>
+        <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
+
     </div>
 </div>
 
