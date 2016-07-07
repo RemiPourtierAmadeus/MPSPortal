@@ -108,6 +108,47 @@ exports.getLanguages = function (success, fail) {
 }
 
 /**
+ * Function getLanguagesFromId. This function returns the language according to language id.
+ * @param id:number
+ * @param success:function
+ * @param fail:function
+ */
+exports.getLanguagesFromId = function (id, success, fail) {
+    var query = "SELECT ";
+    /**
+     * We first build the query manually from the languageKeys (an array which contains all the
+     * table attributes). We don't want to use the traditional "*" for security reasons.
+     */
+    for (var i = 0; i < languageKeys.length; i++) {
+        if (i == 0) {
+            query = query + "" + languageKeys[i];
+        }
+        else {
+            query = query + ", " + languageKeys[i];
+        }
+    }
+    query = query + " FROM TR_Language WHERE id='"+id+"'";
+
+    //console.log("query for getLanguages:" + query);
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else if(data.length>0){
+            success(data);
+        }
+        else{
+            var finalObject = [{id: '-1'}];
+            success(finalObject)
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
+
+}
+
+/**
  * Function updateLanguages. This function will update a language according to data in languagesParams.
  * @param languagesParams
  * @param success

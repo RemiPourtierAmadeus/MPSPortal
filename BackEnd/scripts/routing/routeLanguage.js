@@ -48,7 +48,6 @@ router.put('/', function (req, res) {
     console.log(req.body);
     var success = function () {
         var finalObject = [{success: 'true'}];
-        console.log(finalObject);
         res.send(finalObject);
     };
 
@@ -61,6 +60,8 @@ router.put('/', function (req, res) {
 
     languageManager.addLanguage(data,success, fail);
 });
+
+
 
 /**
  * Function get on projects. When the front-end is requesting a get on
@@ -77,8 +78,19 @@ router.get('/', function (req, res) {
         res.sendStatus(500);
     };
 
-    languageManager.getLanguages(success, fail);
+    if(req.query.hasOwnProperty("id")){
+        if(req.query.id>=0){
+            languageManager.getLanguagesFromId(req.query.id, success, fail);
+        }
+        else{
+            fail();
+        }
+    }
+    else{
+        languageManager.getLanguages(success, fail);
+    }
 });
+
 
 /**
  * Function deletes on projects. When the front-end is requesting a removal of a project,
