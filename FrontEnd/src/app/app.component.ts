@@ -81,6 +81,9 @@ export class AppComponent {
         }
     }
 
+    /**
+     * Instantiate settings function
+     */
     instantiateSettings(){
         this.pageName="Settings";
         this.linksName=["Add user", "User list"];

@@ -13,16 +13,10 @@ import {ProjectModel} from "../../models/project.model";
 })
 export class AddLanguageComponent {
 
-    private projectList:Array<ProjectModel>;
+    private descriptionClass:string;
 
     constructor(){
-        this.projectList=this.simulateYourService();
-        //console.log("project id: "+this.projectList[0].id);
-        //console.log("project name: "+this.projectList[1].id);
-    }
-
-    simulateYourService(): Array<ProjectModel>{
-        return this.projectList;
+        this.descriptionClass = "large-10";
     }
 
 }

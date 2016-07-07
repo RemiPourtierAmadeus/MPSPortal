@@ -31,7 +31,7 @@ export class LanguageItemComponent {
         this.pageState = "general";
         this.content = "";
         this.id="";
-        this.descriptionClass = "large-10";
+        this.descriptionClass = "large-10 large-centered";
         this.language = new LanguageModel();
     }
 
@@ -81,7 +81,7 @@ export class LanguageItemComponent {
         if (dataFromServer[0].hasOwnProperty("success")) {
             if (dataFromServer[0].success === "true") {
                 this.pageState = "general";
-                this.descriptionClass = "large-10";
+                this.descriptionClass = "large-10 large-centered";
                 this.manageLanguageService.getLanguageFromId(this.id).then(
                     language => {
                         this.language=language[0];
@@ -102,7 +102,7 @@ export class LanguageItemComponent {
      * Function to cancel any action.
      */
     cancelAction() {
-        this.descriptionClass = "large-10";
+        this.descriptionClass = "large-10 large-centered";
         this.pageState = "general";
     }
 
