@@ -10,18 +10,33 @@ import {LanguageModel} from "../../../components/models/language.model";
 export class ManageLanguageService {
 
     private _serverLink = 'http://ncevc-04296:3500/languages';
+    private parameter:string[];
 
     /**
      * Constructor
      * @param http
      */
-    constructor(private http:Http) {}
+    constructor(private http:Http) {
+        this.parameter=["id"];
+    }
 
     /**
      * Function getLanguages. This function makes a get HTTP request to the server
      * @returns {Promise<*>|Promise<T>}
      */
     getLanguages() {
+        return this.http.get(this._serverLink)
+            .toPromise()
+            .then(res =>  <LanguageModel[]> res.json())
+            .catch(this.handleError);
+    }
+
+    /**
+     * Function getLanguageFromId. This function gets the language from language id.
+     * @returns {Promise<*>|Promise<T>}
+     */
+    getLanguageFromId(id:number){
+        this._serverLink=this._serverLink+"?id="+id;
         return this.http.get(this._serverLink)
             .toPromise()
             .then(res =>  <LanguageModel[]> res.json())

@@ -4,7 +4,7 @@
             <div class="row">
                 <div *ngIf="pageState==='general' || pageState==='delete'">
                     <div class=" large-10 columns description">
-                        <p> {{content}}</p>
+                        <p> {{language.name}}</p>
                     </div>
 
                     <div *ngIf="pageState==='general'">
@@ -16,7 +16,7 @@
                 </div>
 
                 <div *ngIf="pageState==='edit'">
-                    <div class=" large-10 columns description">
+                    <div class=" large-12 columns description">
                         <label>Edit language name
                             <input type="text" placeholder="" required
                                    [(ngModel)]="content"/>
