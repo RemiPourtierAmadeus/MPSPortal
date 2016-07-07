@@ -36,8 +36,19 @@ export class ManageLanguageService {
      * @returns {Promise<*>|Promise<T>}
      */
     getLanguageFromId(id:number){
-        this._serverLink=this._serverLink+"?id="+id;
-        return this.http.get(this._serverLink)
+
+        /**
+         * Variable currentServerLink.
+         * We use this variable because we don't want to modify the attribute this._serverLink
+         * himself by adding directly the id.
+         * ex: this._serverLink=this._serverLink+"?id="+id
+         * -----> TO AVOID ! Because the function will modify the _serverlink for all the action
+         * of the page, it could break other functions of the service because they use _serverLink
+         * @type {string}
+         */
+        let currentServerLink=this._serverLink+"?id="+id;
+
+        return this.http.get(currentServerLink)
             .toPromise()
             .then(res =>  <LanguageModel[]> res.json())
             .catch(this.handleError);

@@ -35,12 +35,7 @@ export class LanguageItemComponent {
     ngOnInit() {
         this.language = new LanguageModel(this.id, this.content);
 
-        this.manageLanguageService.getLanguageFromId(1).then(
-            language => {
-                console.log("language: "+language);//this.language = language
-            },
-            error => this.errorMessage = error
-        );
+
     }
 
     /**
@@ -75,9 +70,22 @@ export class LanguageItemComponent {
 
 
     verifySuccess(dataFromServer) {
-        if (dataFromServer.hasOwnProperty("success")) {
-            if (dataFromServer.success == true) {
-
+        console.log("verifySuccess");
+        if (dataFromServer[0].hasOwnProperty("success")) {
+            console.log("into has own property");
+            if (dataFromServer[0].success === "true") {
+                console.log("jerentre");
+                this.pageState = "general";
+                this.descriptionClass = "large-10";
+                this.manageLanguageService.getLanguageFromId(this.id).then(
+                    language => {
+                        this.language=language[0];
+                    },
+                    error => this.errorMessage = error
+                );
+            }
+            else{
+                this.errorMessage = "An error has occurred while the get language process";
             }
         }
         else {
