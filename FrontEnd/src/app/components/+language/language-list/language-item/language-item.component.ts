@@ -2,9 +2,10 @@
  * Component LanguageLanguageListLanguageItemComponent
  */
 
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {ManageLanguageService} from "../../../../shared/services/src/manage-language.service";
 import {LanguageModel} from "../../../models/language.model";
+import {EventEmitter} from "events";
 
 @Component({
     selector: 'language-item',
@@ -18,6 +19,8 @@ export class LanguageItemComponent {
     @Input('content') content:string;
     @Input('id') id:string;
 
+    @Output() haveToDeleteLanguage=new EventEmitter<LanguageModel>();
+
     private descriptionClass:string;
     private pageState:string;
     private errorMessage:string;
@@ -27,15 +30,13 @@ export class LanguageItemComponent {
     constructor(private manageLanguageService:ManageLanguageService) {
         this.pageState = "general";
         this.content = "";
+        this.id="";
         this.descriptionClass = "large-10";
         this.language = new LanguageModel();
-
     }
 
     ngOnInit() {
         this.language = new LanguageModel(this.id, this.content);
-
-
     }
 
     /**
@@ -105,13 +106,13 @@ export class LanguageItemComponent {
      * Function to confirm removal.
      */
     confirmDelete() {
-        let language = {
-            id: +this.id
-        };
+        this.haveToDeleteLanguage.emit(this.language);
+
+        /**
         this.manageLanguageService.deleteLanguage(language).then(
             success=> this.verifySuccess(success),
             error => this.errorMessage = error
-        )
+        )**/
     }
 
 

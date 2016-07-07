@@ -32,7 +32,11 @@ export class LanguageListComponent {
      */
     constructor(private manageLanguageService:ManageLanguageService) {
         this.languages = [];
-        this.test="<div class=\"row\"> <div class=\"large-8 medium-8 small-8\"></div> <div class=\"large-2 medium-2 small-2\"></div> <div class=\"large-2 medium-2 small-2\"></div> </div>"
+        this.test="<div class=\"row\"> " +
+            "<div class=\"large-8 medium-8 small-8\"></div> " +
+            "<div class=\"large-2 medium-2 small-2\"></div> " +
+            "<div class=\"large-2 medium-2 small-2\"></div> " +
+            "</div>";
     }
 
     /**
@@ -45,4 +49,22 @@ export class LanguageListComponent {
             error => this.errorMessage = <any> error
         );
     }
+
+    /**
+     * DeleteLanguage calls the service deleteLanguage from ManageLanguageService in order to delete the
+     * language which comes from a LanguageItemComponent.
+     * @param language
+     */
+    deleteLanguage(language:LanguageModel){
+
+        this.manageLanguageService.deleteLanguage(language).then(
+            res => this.verifyResult(res),
+            error => this.errorMessage=error
+        );
+    }
+
+    verifyResult(infoFromDB){
+        debugger;
+    }
+
 }
