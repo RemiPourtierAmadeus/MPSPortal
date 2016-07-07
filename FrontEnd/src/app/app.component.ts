@@ -12,6 +12,7 @@ import {UserListComponent} from "./components/user-components/user-list/user-lis
 import {MetricsComponent} from "./components/metrics/metrics.component";
 import {AddLanguageComponent} from "./components/+language/add-language/add-language.component";
 import {LanguageListComponent} from "./components/+language/language-list/language-list.component";
+import {LanguageComponent} from "./components/+language/language.component";
 
 @Component({
     selector: 'app',
@@ -41,8 +42,7 @@ import {LanguageListComponent} from "./components/+language/language-list/langua
     {path: '/about', name: 'About', component: AboutComponent},
     {path: '/user-components/add-user', name: 'AddUser', component: AddUserComponent},
     {path: '/user-components/user-list', name: 'UserList', component: UserListComponent},
-    {path: '/language/add', name: 'AddLanguage', component: AddLanguageComponent},
-    {path: '/language/list', name: 'LanguageList', component: LanguageListComponent}
+    {path: '/languages', name: 'Language', component: LanguageComponent}
 ])
 export class AppComponent {
 
