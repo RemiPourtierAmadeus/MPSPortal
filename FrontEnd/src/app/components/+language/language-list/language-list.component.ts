@@ -45,7 +45,7 @@ export class LanguageListComponent {
      */
     ngOnInit() {
         this.manageLanguageService.getLanguages().then(
-            languages =>{  this.languages = languages},
+            languages => this.languages = languages,
             error => this.errorMessage = <any> error
         );
     }
@@ -56,15 +56,32 @@ export class LanguageListComponent {
      * @param language
      */
     deleteLanguage(language:LanguageModel){
-
         this.manageLanguageService.deleteLanguage(language).then(
             res => this.verifyResult(res),
             error => this.errorMessage=error
         );
     }
 
-    verifyResult(infoFromDB){
-        debugger;
+    /**
+     * This function verifies the result from the database.
+     * dataFromServer should have the following structure:
+     * [{"success" : "true"}]
+     * We just verifies this feedback. If success value is true, we call the function getLanguages
+     * in order to have the new version of the language list.
+     * @param dataFromServer
+     */
+    verifyResult(dataFromServer){
+        if(dataFromServer[0].hasOwnProperty("success")){
+            if(dataFromServer[0].success==="true"){
+                this.manageLanguageService.getLanguages().then(
+                    languages => this.languages = languages,
+                    error => this.errorMessage = <any> error
+                );
+            }
+            else{
+                this.errorMessage="A problem has occurred while the delete phase";
+            }
+        }
     }
 
 }

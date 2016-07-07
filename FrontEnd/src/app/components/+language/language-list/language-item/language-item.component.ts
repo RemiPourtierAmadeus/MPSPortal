@@ -69,13 +69,17 @@ export class LanguageItemComponent {
         )
     }
 
-
+    /**
+     * This function verifies the result from the database.
+     * dataFromServer should have the following structure:
+     * [{"success" : "true"}]
+     * We just verifies this feedback. If success value is true, we call the function getLanguageFromId
+     * in order to have the new version of the current language.
+     * @param dataFromServer
+     */
     verifySuccess(dataFromServer) {
-        console.log("verifySuccess");
         if (dataFromServer[0].hasOwnProperty("success")) {
-            console.log("into has own property");
             if (dataFromServer[0].success === "true") {
-                console.log("jerentre");
                 this.pageState = "general";
                 this.descriptionClass = "large-10";
                 this.manageLanguageService.getLanguageFromId(this.id).then(

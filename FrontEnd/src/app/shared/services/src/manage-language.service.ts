@@ -82,8 +82,7 @@ export class ManageLanguageService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-       let url = `${this._serverLink}/${languageJSON.id}`;
-        //debugger;
+       let url = `${this._serverLink}?id=${languageJSON.id}`;
 
         return this.http.delete(url, headers)
             .toPromise()
