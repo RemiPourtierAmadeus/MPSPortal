@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row languageItem">
     <div class="card columns" [ngClass]="descriptionClass">
         <div class="content">
             <div class="row">
@@ -35,7 +35,7 @@
     </div>
 
     <div *ngIf="pageState==='delete'" class="confirmation large-2 end columns notificationDelete">
-        Delete language? <br/>
+        Confirm delete? <br/>
         <i class="fa fa-check" aria-hidden="true" (click)="confirmDelete()"></i>
         <i class="fa fa-times" aria-hidden="true" (click)="cancelAction()"></i>
     </div>

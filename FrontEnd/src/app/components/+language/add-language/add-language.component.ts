@@ -17,8 +17,8 @@ export class AddLanguageComponent {
 
     constructor(){
         this.projectList=this.simulateYourService();
-        console.log("project id: "+this.projectList[0].id);
-        console.log("project name: "+this.projectList[1].id);
+        //console.log("project id: "+this.projectList[0].id);
+        //console.log("project name: "+this.projectList[1].id);
     }
 
     simulateYourService(): Array<ProjectModel>{
