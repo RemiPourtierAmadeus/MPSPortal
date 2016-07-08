@@ -3,6 +3,7 @@
  */
 
 import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ManageLanguageService} from "../../../../shared/services/src/manage-language.service";
 import {LanguageModel} from "../../../models/language.model";
 import {EventEmitter} from "events";
@@ -12,7 +13,8 @@ import {EventEmitter} from "events";
     moduleId: module.id,
     templateUrl: './language-item.component.html',
     styleUrls: ['./language-item.component.css'],
-    providers: [ManageLanguageService]
+    providers: [ManageLanguageService],
+    directives:[ROUTER_DIRECTIVES]
 })
 export class LanguageItemComponent {
 
@@ -27,7 +29,9 @@ export class LanguageItemComponent {
 
     private language:LanguageModel;
 
-    constructor(private manageLanguageService:ManageLanguageService) {
+    constructor(private manageLanguageService:ManageLanguageService,
+        private router:Router
+    ) {
         this.pageState = "general";
         this.content = "";
         this.id="";
@@ -104,6 +108,7 @@ export class LanguageItemComponent {
     cancelAction() {
         this.descriptionClass = "large-10 large-centered";
         this.pageState = "general";
+        this.router.navigate(["About"]);
     }
 
     /**
