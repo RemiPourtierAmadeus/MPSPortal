@@ -16,9 +16,21 @@ import {ShowHideButtonComponent} from "../../core/show-hide-button/show-hide-but
 export class AddLanguageComponent {
 
     private descriptionClass:string;
+    private showForm:boolean;
+    private content:string;
 
     constructor(){
         this.descriptionClass = "large-10";
+        this.showForm=false;
+        this.content="";
+    }
+
+    /**
+     * The function showHideForm changes the attribute value of showForm in order to
+     * display or hide the form.
+     */
+    showHideForm(show:boolean){
+        this.showForm=show;
     }
 
 }

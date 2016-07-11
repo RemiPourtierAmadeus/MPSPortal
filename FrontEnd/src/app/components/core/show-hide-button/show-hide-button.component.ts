@@ -21,12 +21,15 @@ export class ShowHideButtonComponent {
      * Constructor.
      */
     constructor(){
-        this.showForm=true;
+        this.showForm=false;
     }
 
+    /**
+     * The function hideShowForm changes the attribute value of showForm and send it as output
+     */
     hideShowForm(){
         this.showForm=!this.showForm;
-       //this.sendShowHide.emit(this.showForm);
+       this.sendShowHide.emit(this.showForm);
     }
 
 }

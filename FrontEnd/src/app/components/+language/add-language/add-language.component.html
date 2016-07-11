@@ -1,21 +1,36 @@
-<div class="row">
+<form (ngSubmit)="onSubmit()" #userForm="ngForm" class="main">
+    <div class="row">
 
-    <div class="card columns large-8 large-centered">
+        <div class="card columns large-8 large-centered">
 
-        <div class="row">
+            <div class="row">
+                <div class="showHide large-1 columns end">
+                    <show-hide-button
+                            (sendShowHide)="showHideForm($event)"
+                    ></show-hide-button>
+                </div>
+                <div class="titleForm large-6 columns end">
+                    <h3>Add news</h3>
+                </div>
 
-            <div class="titleForm large-6 columns">
-                <h2>Add news</h2>
             </div>
-            <div class="large-3 columns end">
-                <show-hide-button></show-hide-button>
+            <div *ngIf="showForm==true">
+                <div class=" large-10 columns description">
+                    <label>Language name
+                        <input type="text" placeholder="" required
+                               [(ngModel)]="content"/>
+                    </label>
+                </div>
+                <div class=" large-2 columns buttonRow ">
+                    <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
+
+                </div>
             </div>
+
         </div>
-        coucou
-        {{descriptionClass}}
     </div>
-</div>
 
-<div class="row">
-    <div class="large-2 columns end"></div>
-</div>
+    <div class="row">
+        <div class="large-2 columns end"></div>
+    </div>
+</form>
