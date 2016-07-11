@@ -48,7 +48,7 @@ export class LanguageItemComponent {
      */
     editLanguage() {
         this.pageState = "edit";
-        this.descriptionClass = "large-8";
+        this.descriptionClass = "large-8 large-offset-1";
     }
 
     /**
@@ -56,7 +56,7 @@ export class LanguageItemComponent {
      */
     deleteLanguage() {
         this.pageState = "delete";
-        this.descriptionClass = "large-8";
+        this.descriptionClass = "large-8 large-offset-1";
     }
 
     /**
@@ -108,7 +108,7 @@ export class LanguageItemComponent {
     cancelAction() {
         this.descriptionClass = "large-10 large-centered";
         this.pageState = "general";
-        this.router.navigate(["About"]);
+        //this.router.navigate(["About"]);
     }
 
     /**
