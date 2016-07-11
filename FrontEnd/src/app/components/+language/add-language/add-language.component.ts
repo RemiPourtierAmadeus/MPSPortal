@@ -29,7 +29,7 @@ export class AddLanguageComponent {
     constructor(private manageLanguageService:ManageLanguageService){
         this.descriptionClass = "large-10";
         this.showForm=false;
-        this.language=new LanguageModel();
+        this.language=new LanguageModel(-1,"");
     }
 
     /**
@@ -63,7 +63,7 @@ export class AddLanguageComponent {
     verifySuccess(success){
         if(success[0].id>=0){
             this.languageHasBeenCreated.emit(success[0]);
-            this.language=new LanguageModel();
+            this.language=new LanguageModel(-1,"");
         }
     }
 }

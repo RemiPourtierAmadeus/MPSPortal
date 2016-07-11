@@ -3,7 +3,6 @@
  */
 
 import {Component, Output, EventEmitter} from '@angular/core';
-import {NewsModelComponent} from "../../../../../dist/template/app/components/models/news-model/news-model.component";
 
 @Component({
     selector: 'show-hide-button',
@@ -12,7 +11,6 @@ import {NewsModelComponent} from "../../../../../dist/template/app/components/mo
     styleUrls : ['./show-hide-button.component.css']
 })
 export class ShowHideButtonComponent {
-
 
     showForm:boolean;
     @Output() sendShowHide = new EventEmitter<boolean>();

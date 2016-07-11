@@ -6,7 +6,6 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ManageLanguageService} from "../../../../shared/services/src/manage-language.service";
 import {LanguageModel} from "../../../models/language.model";
-import {EventEmitter} from "events";
 
 @Component({
     selector: 'language-item',
@@ -19,7 +18,7 @@ import {EventEmitter} from "events";
 export class LanguageItemComponent {
 
     @Input('content') content:string;
-    @Input('id') id:string;
+    @Input('id') id:number;
 
     @Output() haveToDeleteLanguage=new EventEmitter<LanguageModel>();
 
@@ -30,13 +29,12 @@ export class LanguageItemComponent {
     private language:LanguageModel;
 
     constructor(private manageLanguageService:ManageLanguageService,
-        private router:Router
-    ) {
+        private router:Router) {
         this.pageState = "general";
         this.content = "";
-        this.id="";
+        this.id=-1;
         this.descriptionClass = "large-10 large-centered";
-        this.language = new LanguageModel();
+        this.language = new LanguageModel(-1,"");
     }
 
     ngOnInit() {

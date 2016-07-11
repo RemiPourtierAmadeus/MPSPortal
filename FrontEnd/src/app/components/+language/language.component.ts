@@ -23,7 +23,7 @@ export class LanguageComponent {
     private language:LanguageModel;
 
     constructor(){
-        this.language = new LanguageModel();
+        this.language = new LanguageModel(-1,"");
     }
 
     refreshLanguageList(language:LanguageModel){

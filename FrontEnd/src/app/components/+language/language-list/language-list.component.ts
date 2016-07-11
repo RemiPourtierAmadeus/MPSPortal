@@ -35,9 +35,7 @@ export class LanguageListComponent {
      */
     constructor(private manageLanguageService:ManageLanguageService) {
         this.languages = [];
-        this.requestAGet=new SuccessModel();
-
-
+        this.requestAGet="";
     }
 
     /**
@@ -54,7 +52,6 @@ export class LanguageListComponent {
      * have been changed.
      */
     ngOnChanges(){
-        console.log("bha ouais je rentre");
         this.getLanguages();
     }
 
