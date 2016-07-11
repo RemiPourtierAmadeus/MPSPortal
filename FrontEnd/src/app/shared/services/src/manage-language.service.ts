@@ -5,6 +5,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {LanguageModel} from "../../../components/models/language.model";
+import {SuccessModel} from "../../../components/models/success.model";
 
 @Injectable()
 export class ManageLanguageService {
@@ -88,6 +89,25 @@ export class ManageLanguageService {
             .toPromise()
             .then(res=>
                 <LanguageModel> res.json())
+            .catch(this.handleError);
+    }
+
+
+    /**
+     * Function AddLanguage. It adds a language into the database and return a promise with the success or the failure
+     * (SuccessModel) of the operation.
+     * @param language
+     * @returns {any<T>|Promise<void>|Promise<T>|Promise<R>|any}
+     */
+    addLanguage(language:LanguageModel):Promise<SuccessModel>{
+        let body = JSON.stringify(language);
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.put(this._serverLink, body, options)
+            .toPromise()
+            .then(res=>
+                <SuccessModel> res.json())
             .catch(this.handleError);
     }
 

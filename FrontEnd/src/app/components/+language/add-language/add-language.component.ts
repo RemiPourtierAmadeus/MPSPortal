@@ -2,27 +2,33 @@
  * Component LanguageAddLanguageComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output } from '@angular/core';
 import {ProjectModel} from "../../models/project.model";
 import {ShowHideButtonComponent} from "../../core/show-hide-button/show-hide-button.component";
+import {ManageLanguageService} from "../../../shared/services/src/manage-language.service";
+import {LanguageModel} from "../../models/language.model";
 
 @Component({
     selector: 'add-language',
     moduleId: module.id,
     templateUrl: './add-language.component.html',
     styleUrls : ['./add-language.component.css'],
-    directives: [ShowHideButtonComponent]
+    directives: [ShowHideButtonComponent],
+    providers: [ManageLanguageService]
 })
 export class AddLanguageComponent {
 
     private descriptionClass:string;
     private showForm:boolean;
-    private content:string;
+    private language:LanguageModel;
+    private errorMessage:string;
 
-    constructor(){
+    @Output() languageHasBeenCreated = new EventEmitter<boolean>();
+
+    constructor(private manageLanguageService:ManageLanguageService){
         this.descriptionClass = "large-10";
         this.showForm=false;
-        this.content="";
+        this.language=new LanguageModel();
     }
 
     /**
@@ -33,4 +39,14 @@ export class AddLanguageComponent {
         this.showForm=show;
     }
 
+    onSubmit(){
+        this.manageLanguageService.addLanguage(this.language).then(
+            success => this.verifySuccess(success),
+            error => this.errorMessage=error
+        );
+    }
+
+    verifySuccess(success){
+
+    }
 }
