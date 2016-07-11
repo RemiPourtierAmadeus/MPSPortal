@@ -22,7 +22,7 @@ export class LanguageListComponent {
     private languages:Array<LanguageModel>;
     private test:string;
 
-    @Input("getRequest") requestAGet:SuccessModel;
+    @Input("getRequest") requestAGet:string;
 
     /**
      * errorMessage: Attributes which stores potential error message after requesting the server
@@ -36,11 +36,8 @@ export class LanguageListComponent {
     constructor(private manageLanguageService:ManageLanguageService) {
         this.languages = [];
         this.requestAGet=new SuccessModel();
-        this.test="<div class=\"row\"> " +
-            "<div class=\"large-8 medium-8 small-8\"></div> " +
-            "<div class=\"large-2 medium-2 small-2\"></div> " +
-            "<div class=\"large-2 medium-2 small-2\"></div> " +
-            "</div>";
+
+
     }
 
     /**
@@ -48,7 +45,14 @@ export class LanguageListComponent {
      * the constructor.
      */
     ngOnInit() {
-        console.log("from ngOnInit");
+        this.getLanguages()
+    }
+
+    ngOnChanges(){
+        this.getLanguages()
+    }
+
+    getLanguages(){
         this.manageLanguageService.getLanguages().then(
             languages => this.languages = languages,
             error => this.errorMessage = <any> error
@@ -78,10 +82,7 @@ export class LanguageListComponent {
     verifyResult(dataFromServer){
         if(dataFromServer[0].hasOwnProperty("success")){
             if(dataFromServer[0].success==="true"){
-                this.manageLanguageService.getLanguages().then(
-                    languages => this.languages = languages,
-                    error => this.errorMessage = <any> error
-                );
+                this.getLanguages();
             }
             else{
                 this.errorMessage="A problem has occurred while the delete phase";

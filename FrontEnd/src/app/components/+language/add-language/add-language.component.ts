@@ -48,8 +48,6 @@ export class AddLanguageComponent {
     }
 
     verifySuccess(success){
-        console.log("into verifySuccess");
-
         if(success[0].success==="true"){
             console.log("into if");
             this.languageHasBeenCreated.emit(success[0]);
