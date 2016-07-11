@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 import {LoginPipe} from "../../../shared/pipes/src/loginPipe";
 import {UserComponent} from "../../models/user/user.component";
+import {ProjectComponent} from "../../+projects/project.component";
 
 @Component({
     selector: 'add-user',
@@ -13,7 +14,8 @@ import {UserComponent} from "../../models/user/user.component";
     templateUrl: './add-user.component.html',
     styleUrls: ['./add-user.component.css'],
     providers: [ManageUsersService],
-    pipes:[LoginPipe]
+    pipes:[LoginPipe],
+    directives:[ProjectComponent]
 })
 
 /**

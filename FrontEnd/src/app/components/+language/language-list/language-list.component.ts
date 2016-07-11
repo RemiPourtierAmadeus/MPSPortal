@@ -20,7 +20,6 @@ import {SuccessModel} from "../../models/success.model";
 export class LanguageListComponent {
 
     private languages:Array<LanguageModel>;
-    private test:string;
 
     @Input("getRequest") requestAGet:string;
 

@@ -1,1 +1,15 @@
-<h1> Hey, I'm ProjectListComponent !</h1>
+<div class="row projectList">
+    <div *ngFor="let project of projects"
+         class="large-8 large-centered medium-8 medium-centered small-12 small-centered">
+
+        <project-item></project-item>
+
+        <!--<language-item
+                id="{{project.id}}"
+                content="{{project.name}}"
+                (haveToDeleteLanguage)="deleteLanguage($event)"
+        ></language-item>-->
+    </div>
+
+
+</div>

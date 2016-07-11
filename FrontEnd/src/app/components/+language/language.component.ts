@@ -22,12 +22,20 @@ export class LanguageComponent {
 
     private language:LanguageModel;
 
+    /**
+     * Constructor.
+     */
     constructor(){
         this.language = new LanguageModel(-1,"");
     }
 
+    /**
+     * RefreshLanguageList.
+     * It changes the attribute language according to AddLanguageComponent output. Changes on this.language
+     * will automatically have an impact on language list.
+     * @param language
+     */
     refreshLanguageList(language:LanguageModel){
-        console.log("I'm into refresh");
         this.language=language;
     }
 }
