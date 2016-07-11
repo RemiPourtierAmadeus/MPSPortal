@@ -7,6 +7,7 @@ import {LanguageListComponent} from "./language-list/language-list.component";
 import {LanguageItemComponent} from "./language-list/language-item/language-item.component";
 import {AddLanguageComponent} from "./add-language/add-language.component";
 import {SuccessModel} from "../models/success.model";
+import {LanguageModel} from "../models/language.model";
 
 @Component({
     selector: 'language',
@@ -19,14 +20,14 @@ import {SuccessModel} from "../models/success.model";
 })
 export class LanguageComponent {
 
-    private success:SuccessModel;
+    private language:LanguageModel;
 
     constructor(){
-        this.success= new SuccessModel();
+        this.language = new LanguageModel();
     }
 
-    refreshLanguageList(success:SuccessModel){
+    refreshLanguageList(language:LanguageModel){
         console.log("I'm into refresh");
-        this.success=success;
+        this.language=language;
     }
 }

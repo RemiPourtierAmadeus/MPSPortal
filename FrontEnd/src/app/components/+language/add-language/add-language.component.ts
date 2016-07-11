@@ -24,7 +24,7 @@ export class AddLanguageComponent {
     private language:LanguageModel;
     private errorMessage:string;
 
-    @Output() languageHasBeenCreated = new EventEmitter<SuccessModel>();
+    @Output() languageHasBeenCreated = new EventEmitter<LanguageModel>();
 
     constructor(private manageLanguageService:ManageLanguageService){
         this.descriptionClass = "large-10";
@@ -40,6 +40,13 @@ export class AddLanguageComponent {
         this.showForm=show;
     }
 
+    /**
+     * Function onSubmit.
+     * This function will be call while user clicks on the submit button into the form. It calls
+     * the function addLanguage from the ManageLanguageService with the component attribute language
+     * which contains the name filled by user. The function add language will make a put request in order
+     * to add the language into the database.
+     */
     onSubmit(){
         this.manageLanguageService.addLanguage(this.language).then(
             success => this.verifySuccess(success),
@@ -47,8 +54,14 @@ export class AddLanguageComponent {
         );
     }
 
+    /**
+     * VerifySuccess.
+     * If the information received from the database are correct, we can alert other components of the page.
+     * To give you the information we use outputs and we directly send the id of the new language.
+     * @param success
+     */
     verifySuccess(success){
-        if(success[0].success==="true"){
+        if(success[0].id>=0){
             this.languageHasBeenCreated.emit(success[0]);
             this.language=new LanguageModel();
         }

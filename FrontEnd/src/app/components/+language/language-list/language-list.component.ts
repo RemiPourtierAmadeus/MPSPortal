@@ -48,11 +48,21 @@ export class LanguageListComponent {
         this.getLanguages()
     }
 
+    /**
+     * ngOnChanges.
+     * It's a native function in Angular 2. It will be execute while one of the component attributes
+     * have been changed.
+     */
     ngOnChanges(){
         console.log("bha ouais je rentre");
-        this.getLanguages()
+        this.getLanguages();
     }
 
+    /**
+     * Function getLanguages.
+     * This function calls the function getLanguages from ManageLanguageService
+     * in order to have the languages list from the database.
+     */
     getLanguages(){
         this.manageLanguageService.getLanguages().then(
             languages => this.languages = languages,
