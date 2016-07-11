@@ -15,7 +15,6 @@ import {ProjectModel} from "../../models/project.model";
 })
 export class ProjectListComponent {
 
-
     private projects:Array<ProjectModel>;
 
     constructor(){
