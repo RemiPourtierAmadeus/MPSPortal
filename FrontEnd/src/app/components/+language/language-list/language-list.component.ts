@@ -49,6 +49,7 @@ export class LanguageListComponent {
     }
 
     ngOnChanges(){
+        console.log("bha ouais je rentre");
         this.getLanguages()
     }
 

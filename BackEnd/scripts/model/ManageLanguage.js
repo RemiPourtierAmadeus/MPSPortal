@@ -67,7 +67,8 @@ function saveLanguage(languageID, languagesParam, success, fail) {
     connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
-            success(data);
+            var finalObject = [{id: languageID}];
+            success(finalObject);
         }
     });
 }

@@ -49,8 +49,8 @@ export class AddLanguageComponent {
 
     verifySuccess(success){
         if(success[0].success==="true"){
-            console.log("into if");
             this.languageHasBeenCreated.emit(success[0]);
+            this.language=new LanguageModel();
         }
     }
 }
