@@ -47,7 +47,7 @@ export class LanguageListComponent {
 
     /**
      * ngOnChanges.
-     * It's a native function in Angular 2. It will be execute while one of the component attributes
+     * It's a native function in Angular 2. It will be executed while one of the component attributes
      * have been changed.
      */
     ngOnChanges(){
