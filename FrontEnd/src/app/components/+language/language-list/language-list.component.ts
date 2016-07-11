@@ -2,11 +2,12 @@
  * Component LanguageComponentsLanguageListComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {LanguageModel} from "../../models/language.model";
 import {ManageLanguageService} from "../../../shared/services/src/manage-language.service";
 import {ItemListComponent} from "../../core/item-list/item-list.component";
 import {LanguageItemComponent} from "./language-item/language-item.component";
+import {SuccessModel} from "../../models/success.model";
 
 @Component({
     selector: 'language-list',
@@ -21,6 +22,8 @@ export class LanguageListComponent {
     private languages:Array<LanguageModel>;
     private test:string;
 
+    @Input("getRequest") requestAGet:SuccessModel;
+
     /**
      * errorMessage: Attributes which stores potential error message after requesting the server
      */
@@ -32,6 +35,7 @@ export class LanguageListComponent {
      */
     constructor(private manageLanguageService:ManageLanguageService) {
         this.languages = [];
+        this.requestAGet=new SuccessModel();
         this.test="<div class=\"row\"> " +
             "<div class=\"large-8 medium-8 small-8\"></div> " +
             "<div class=\"large-2 medium-2 small-2\"></div> " +
@@ -44,6 +48,7 @@ export class LanguageListComponent {
      * the constructor.
      */
     ngOnInit() {
+        console.log("from ngOnInit");
         this.manageLanguageService.getLanguages().then(
             languages => this.languages = languages,
             error => this.errorMessage = <any> error

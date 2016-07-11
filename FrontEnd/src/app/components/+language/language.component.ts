@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
 import {LanguageListComponent} from "./language-list/language-list.component";
 import {LanguageItemComponent} from "./language-list/language-item/language-item.component";
 import {AddLanguageComponent} from "./add-language/add-language.component";
+import {SuccessModel} from "../models/success.model";
 
 @Component({
     selector: 'language',
@@ -18,4 +19,14 @@ import {AddLanguageComponent} from "./add-language/add-language.component";
 })
 export class LanguageComponent {
 
+    private success:SuccessModel;
+
+    constructor(){
+        this.success= new SuccessModel();
+    }
+
+    refreshLanguageList(success:SuccessModel){
+        console.log("I'm into refresh");
+        this.success=success;
+    }
 }

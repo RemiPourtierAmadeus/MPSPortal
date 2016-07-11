@@ -1,2 +1,6 @@
-<add-language></add-language>
-<language-list></language-list>
+<add-language
+        (languageHasBeenCreated)="refreshLanguageList($event)"
+></add-language>
+<language-list
+        getRequest="{{success}}"
+></language-list>

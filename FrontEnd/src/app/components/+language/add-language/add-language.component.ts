@@ -7,6 +7,7 @@ import {ProjectModel} from "../../models/project.model";
 import {ShowHideButtonComponent} from "../../core/show-hide-button/show-hide-button.component";
 import {ManageLanguageService} from "../../../shared/services/src/manage-language.service";
 import {LanguageModel} from "../../models/language.model";
+import {SuccessModel} from "../../models/success.model";
 
 @Component({
     selector: 'add-language',
@@ -23,7 +24,7 @@ export class AddLanguageComponent {
     private language:LanguageModel;
     private errorMessage:string;
 
-    @Output() languageHasBeenCreated = new EventEmitter<boolean>();
+    @Output() languageHasBeenCreated = new EventEmitter<SuccessModel>();
 
     constructor(private manageLanguageService:ManageLanguageService){
         this.descriptionClass = "large-10";
@@ -47,6 +48,11 @@ export class AddLanguageComponent {
     }
 
     verifySuccess(success){
+        console.log("into verifySuccess");
 
+        if(success[0].success==="true"){
+            console.log("into if");
+            this.languageHasBeenCreated.emit(success[0]);
+        }
     }
 }
