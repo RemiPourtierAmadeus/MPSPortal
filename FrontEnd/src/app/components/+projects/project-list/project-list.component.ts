@@ -12,7 +12,8 @@ import {ManageProjectService} from "../../../shared/services/src/manage-project.
     moduleId: module.id,
     templateUrl: './project-list.component.html',
     styleUrls : ['./project-list.component.css'],
-    directives: [ProjectItemComponent]
+    directives: [ProjectItemComponent],
+    providers: [ManageProjectService]
 })
 export class ProjectListComponent {
 
