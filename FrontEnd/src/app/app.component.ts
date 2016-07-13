@@ -38,7 +38,7 @@ import {LanguageComponent} from "./components/+language/language.component";
  * component.
  */
 @RouteConfig([
-    {path: '/', name: 'Metrics', component: HomeComponent},
+    {path: '/', name: 'Metrics', component: LanguageComponent},
     {path: '/about', name: 'About', component: AboutComponent},
     {path: '/user-components/add-user', name: 'AddUser', component: AddUserComponent},
     {path: '/user-components/user-list', name: 'UserList', component: UserListComponent},

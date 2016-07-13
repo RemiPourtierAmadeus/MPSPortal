@@ -34,7 +34,7 @@ export class LanguageListComponent {
      */
     constructor(private manageLanguageService:ManageLanguageService) {
         this.languages = [];
-        this.requestAGet="";
+        //this.requestAGet="";
     }
 
     /**
@@ -42,7 +42,7 @@ export class LanguageListComponent {
      * the constructor.
      */
     ngOnInit() {
-        this.getLanguages()
+        this.getLanguages();
     }
 
     /**

@@ -6,10 +6,27 @@
 export class ProjectModel {
 
     public id:number;
-    public title:string;
+    public name:string;
+    public version:string;
+    public step_id_list:string;
+    public language_id:string;
+    public order:number;
+    public name:string;
+    public name:string;
 
-    constructor(id:number, title:string){
+    public steps:Array<number>;
+
+    constructor(id:number, name:string, version:string){
         this.id=id;
-        this.title=title;
+        this.name=name;
+
+        this.convertStepsIdList();
+    }
+
+
+    convertStepsIdList(){
+        if(this.step_id_list.length>0){
+
+        }
     }
 }

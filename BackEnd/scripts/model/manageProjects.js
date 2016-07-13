@@ -24,7 +24,7 @@ exports.updateProjects= function (data,success, fail){
     userParams[userKeys[5]] = 1; /** Active : 1 => yes */
     userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
 
-    var query="INSERT INTO T_User ";
+    var query="INSERT INTO T_Project ";
     var attributes="(";
     var values="(";
     var cpt=0; //Will represent the number of field in parameters.
@@ -72,7 +72,7 @@ exports.addProject= function (data,success, fail){
     userParams[userKeys[5]] = 1; /** Active : 1 => yes */
     userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
 
-    var query="INSERT INTO T_User ";
+    var query="INSERT INTO T_Project ";
     var attributes="(";
     var values="(";
     var cpt=0; //Will represent the number of field in parameters.
@@ -115,8 +115,8 @@ exports.addProject= function (data,success, fail){
  * @param fail
  */
 exports.deleteProjects= function (data,success, fail){
-    console.log("projects params: " + userParams.user_id);
-    connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, data) {
+    console.log("projects params: " + userParams.id);
+    connectionVariable.query('DELETE FROM T_Project WHERE id=?', userParams.id, function (err, data) {
         if (err) throw err;
         else {
             success(data);
