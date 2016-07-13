@@ -45,10 +45,9 @@ router.post('/', function(req,res){
  */
 router.put('/', function (req, res) {
     console.log(req.body);
-    var success = function () {
-        var finalObject = [{success: 'true'}];
-        console.log(finalObject);
-        res.send(finalObject);
+    var success = function (objectJSON) {
+        console.log("into success: "+objectJSON);
+        res.send(objectJSON);
     };
 
     var fail = function(){

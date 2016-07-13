@@ -9,17 +9,23 @@ export class ProjectModel {
     public name:string;
     public version:string;
     public step_id_list:string;
-    public language_id:string;
+    public language_id:number;
     public order:number;
-    public name:string;
-    public name:string;
+    public jenkins_link:string;
+    public active:string;
 
     public steps:Array<number>;
 
-    constructor(id:number, name:string, version:string){
+    constructor(id:number, name:string, version:string, step_id_list:string,
+                language_id:number, order:number, jenkins_link:string, active:string){
         this.id=id;
         this.name=name;
-
+        this.version=version;
+        this.step_id_list=step_id_list;
+        this.language_id=language_id;
+        this.order=order;
+        this.jenkins_link=jenkins_link;
+        this.active=active;
         this.convertStepsIdList();
     }
 

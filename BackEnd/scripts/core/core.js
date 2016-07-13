@@ -104,6 +104,22 @@ var stepKeys = [
 ];
 
 /**
+ * Initialisation of the variable which contains all the attributes of the project table in the
+ * database. We will use them in the project manager.
+ * @type {string[]}
+ */
+var projectKeys = [
+    "id",
+    "name",
+    "version",
+    "step_id_list",
+    "language_id",
+    "order",
+    "jenkins_link",
+    "active"
+];
+
+/**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
  *      var userKeys = require('../core/core').userKeys; // To have userKeys
@@ -118,7 +134,8 @@ module.exports = {
     newsTypes : newsTypes,
     newsSubTypes : newsSubTypes,
     languageKeys : languageKeys,
-    stepKeys: stepKeys
+    stepKeys: stepKeys,
+    projectKeys: projectKeys
 };
 
 
