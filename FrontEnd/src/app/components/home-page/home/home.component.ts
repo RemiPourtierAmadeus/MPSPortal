@@ -32,13 +32,12 @@ export class HomeComponent {
      * @param request
      */
     openPage(request:number){
-        debugger;
         /**
          * Request value:
          * 4 -> Metrics homepage
          * 3 -> News homepage
          */
-        if(request==2 || request==3){
+        if(request==4 || request==3){
             this.pageToOpen.emit(request);
         }
         else{

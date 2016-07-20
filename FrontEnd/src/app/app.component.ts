@@ -52,7 +52,7 @@ export class AppComponent {
      * Page to show is variable which contains an integer
      * If pageToShow = 0 => user is not connected => show connection content
      * If pageToShow = 1 => user is connected and we show the home page
-     * If pageToShow = 2 => user is connected and the user has choosen the part of the website
+     * If pageToShow = 2 => user is connected and the user has chosen the part of the website
      * IF pageToShow = 3 => user is connected and want to see the news
      * IF pageToShow = 4 => metrics home page
      * from the home page.

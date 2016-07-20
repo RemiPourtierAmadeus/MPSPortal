@@ -52,7 +52,7 @@ export class HeaderComponent {
      */
     openHomePage(){
         console.log("yes from open homepage");
-        this.pageToOpen.emit(1);
+        this.pageToOpen.emit(4);
     }
 
 }

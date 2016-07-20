@@ -2,7 +2,7 @@
  * Component MetricsPanelComponent
  */
 
-import {Component, Input} from '@angular/core';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 import {} from '../../../../assets/metrics/'
 @Component({
     selector: 'm-panel',
@@ -18,6 +18,9 @@ export class PanelComponent {
     @Input('description') description:string;
     @Input('icon') icon:string;
 
+
+    @Output() openLink=new EventEmitter<number>();
+
     private showDescription:boolean;
     
     constructor(){
@@ -32,6 +35,25 @@ export class PanelComponent {
 
     openDescription(){
         this.showDescription=!this.showDescription;
+    }
+
+    clicked(){
+        let pageValue=-1;
+        switch(this.name){
+            case "News":
+                pageValue=3;
+                break;
+            case "Settings":
+                pageValue=2;
+                break;
+            case "News":
+                pageValue=3;
+                break;
+            case "News":
+                pageValue=3;
+                break;
+        }
+        this.openLink.emit(pageValue);
     }
 
 }
