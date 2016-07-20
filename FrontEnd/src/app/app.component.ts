@@ -64,7 +64,7 @@ export class AppComponent {
     public routerLinks:string[];
 
     constructor(){
-        this.pageToShow=2;
+        this.pageToShow=4;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
         this.instantiateSettings();
@@ -88,5 +88,10 @@ export class AppComponent {
         this.pageName="Settings";
         this.linksName=["Add user", "User list"];
         this.routerLinks=["AddUser", "UserList"];
+    }
+
+    openPage(pageValue:number){
+        console.log("yes from open page (app)");
+        this.pageToShow=pageValue;
     }
 }

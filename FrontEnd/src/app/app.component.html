@@ -2,7 +2,9 @@
     <connection-content (sendCurrentUser)="instantiateUser($event)" ></connection-content>
 </div>
 <div *ngIf="pageToShow==1">
-    <home></home>
+    <home
+        (pageToOpen)="openPage($event)"
+    ></home>
 </div>
 <div *ngIf="pageToShow==3">
     <news></news>
@@ -10,7 +12,9 @@
 
 <div *ngIf="pageToShow==2">
     <div class="header">
-        <header currentFrameValue="{{pageName}}" linksName="{{linksName}}" routerLinks="{{routerLinks}}"></header>
+        <header currentFrameValue="{{pageName}}" linksName="{{linksName}}" routerLinks="{{routerLinks}}"
+                (pageToOpen)="openPage($event)"
+        ></header>
     </div>
     <router-outlet ></router-outlet>
 </div>
