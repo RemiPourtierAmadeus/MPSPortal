@@ -6,6 +6,9 @@
         <div class="title large-2 medium-2 small-2 columns end">
             <h1>News</h1>
         </div>
+        <div class="menuIcon large-1 medium-1 small-1 columns end">
+            <i class="fa fa-home" aria-hidden="true" (click)="openHomePage()"></i>
+        </div>
     </div>
     <div *ngIf="menuIsClosed==false" class="navBar">
         <div class="row">
@@ -17,27 +20,27 @@
         </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="menuIcon large-1 medium-1 small-1 columns">
-        <i class="fa fa-bars" aria-hidden="true" (click)="showHideMenu()"></i>
-    </div>
-    <div class="title large-2 medium-2 small-2 columns ">
-        <h1>{{currentFrameValue}}</h1>
-    </div>
-    <div class="menuIcon large-1 medium-1 small-1 columns end" >
-        <i class="fa fa-home" aria-hidden="true"  (click)="openHomePage()"></i>
-    </div>
-
-</div>
-
-<div *ngIf="menuIsClosed==false" class="navBar">
+<div *ngIf="currentFrameValue=='Settings'">
     <div class="row">
-        <nav>
-            <a class="menuItem" [routerLink]="['AddUser']">Add user </a>
-            <a class="menuItem" [routerLink]="['UserList']">User list </a>
-            <a class="menuItem" [routerLink]="['Language']">Languages </a>
-        </nav>
+        <div class="menuIcon large-1 medium-1 small-1 columns">
+            <i class="fa fa-bars" aria-hidden="true" (click)="showHideMenu()"></i>
+        </div>
+        <div class="title large-2 medium-2 small-2 columns ">
+            <h1>{{currentFrameValue}}</h1>
+        </div>
+        <div class="menuIcon large-1 medium-1 small-1 columns end">
+            <i class="fa fa-home" aria-hidden="true" (click)="openHomePage()"></i>
+        </div>
+
+    </div>
+    <div *ngIf="menuIsClosed==false" class="navBar">
+        <div class="row">
+            <nav>
+                <a class="menuItem" [routerLink]="['AddUser']">Add user </a>
+                <a class="menuItem" [routerLink]="['UserList']">User list </a>
+                <a class="menuItem" [routerLink]="['Language']">Languages </a>
+            </nav>
+        </div>
     </div>
 </div>
 

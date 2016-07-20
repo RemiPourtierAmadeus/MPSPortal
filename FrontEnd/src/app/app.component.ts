@@ -64,7 +64,8 @@ export class AppComponent {
     public routerLinks:string[];
 
     constructor(){
-        this.pageToShow=2;
+        this.pageToShow=4;
+        console.log('oui je reload');
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
         this.instantiateSettings();

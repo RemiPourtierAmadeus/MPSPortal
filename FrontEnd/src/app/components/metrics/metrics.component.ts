@@ -52,6 +52,7 @@ export class MetricsComponent {
     }
 
     openPage(pageValue:number){
+        console.log("oui aussi: "+pageValue);
         this.pageToOpen.emit(pageValue);
     }
 
