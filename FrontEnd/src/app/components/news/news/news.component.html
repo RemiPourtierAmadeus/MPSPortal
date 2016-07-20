@@ -1,5 +1,7 @@
 <div class="header">
-    <header currentFrameValue="{{frameType}}"></header>
+    <header currentFrameValue="{{frameType}}"
+            (pageToOpen)="openPage($event)"
+    ></header>
 </div>
 <div class="main">
     <div class="row">

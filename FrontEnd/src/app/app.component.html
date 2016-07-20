@@ -7,7 +7,9 @@
     ></home>
 </div>
 <div *ngIf="pageToShow==3">
-    <news></news>
+    <news
+            (pageToOpen)="openPage($event)"
+    ></news>
 </div>
 
 <div *ngIf="pageToShow==2">
