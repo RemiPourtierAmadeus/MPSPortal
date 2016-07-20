@@ -2,7 +2,7 @@
  * Component MetricsMetricsComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {PanelComponent} from "./panel/panel.component";
 import {ManageMetricsService} from "../../shared/services/src/metrics/manage-metrics.service";
 
@@ -20,6 +20,9 @@ export class MetricsComponent {
     private metricsItem:string[];
     private metricsItemRow1:string[];
     private metricsItemRow2:string[];
+
+
+    @Output() pageToOpen = new EventEmitter<number>();
 
     constructor(private _manageMetricsService:ManageMetricsService){
         this.metricsItem=[];
@@ -47,4 +50,9 @@ export class MetricsComponent {
         this.metricsItemRow2.push(items[2]);
         this.metricsItemRow2.push(items[3]);
     }
+
+    openPage(pageValue:number){
+        this.pageToOpen.emit(pageValue);
+    }
+
 }

@@ -21,6 +21,8 @@
 
 
 <div *ngIf="pageToShow==4">
-    <metrics></metrics>
+    <metrics
+            (pageToOpen)="openPage($event)"
+    ></metrics>
 </div>
 
