@@ -40,13 +40,14 @@ export class AddProjectComponent {
      * the name of the project.
      * @param term
      */
-    search (term) {
+    search (term:string) {
+        term= term.toLowerCase();
         if(term.length>0){
             console.log(term);
             this.projectNames=[];
             for(let i=0;i<this.projects.length;i++){
                 console.log("current project: "+this.projects[i].name);
-                if(this.projects[i].name.indexOf(term)==0){
+                if(this.projects[i].name.toLowerCase().indexOf(term)==0){
                     this.projectNames.push(this.projects[i].name);
                 }
             }
