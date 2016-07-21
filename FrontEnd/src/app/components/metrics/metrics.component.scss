@@ -10,3 +10,15 @@ h1{
   min-height:100%;
   background-color:$mainBackgroundColor;
 }
+
+.fa-home{
+  font-size:40px;
+  color:$titleColor;
+  cursor: pointer;
+  font-style: normal;
+}
+
+
+.fa-home:hover{
+  opacity:0.8;
+}
