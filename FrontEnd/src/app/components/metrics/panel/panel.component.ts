@@ -37,6 +37,9 @@ export class PanelComponent {
         this.showDescription = !this.showDescription;
     }
 
+    /**
+     *
+     */
     clicked() {
         let pageValue = -1;
         switch (this.name) {
@@ -53,7 +56,6 @@ export class PanelComponent {
                 pageValue = -1;
                 break;
         }
-        console.log("link value: " + pageValue);
         this.openLink.emit(pageValue);
     }
 

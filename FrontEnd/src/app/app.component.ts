@@ -92,7 +92,12 @@ export class AppComponent {
     }
 
     openPage(pageValue:number){
-        console.log("yes from open page (app)");
-        this.pageToShow=pageValue;
+        if(pageValue>=0){
+
+            this.pageToShow=pageValue;
+        }
+        else{
+            console.log("No path defined for the clicked link");
+        }
     }
 }
