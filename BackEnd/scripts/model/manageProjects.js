@@ -18,46 +18,27 @@ var projectKeys = require('../core/core').projectKeys;
  * @param data, success
  * @param fail
  */
-exports.updateProjects= function (data,success, fail){
-    userParams[projectKeys[0]] = userId;/** set user id */
-    userParams[projectKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";/** Password : encoding  */
-    userParams[projectKeys[5]] = 1; /** Active : 1 => yes */
-    userParams[projectKeys[7]] = 1; /** Generated password : 1 => yes */
-
-    var query="INSERT INTO T_Project ";
-    var attributes="(";
-    var values="(";
-    var cpt=0; //Will represent the number of field in parameters.
-    for(var i=0; i<projectKeys.length;i++){
-        if (userParams.hasOwnProperty(projectKeys[i])) {
-            if (cpt == 0) {
-                attributes = attributes+ projectKeys[i];
-                values= values+"'"+ userParams[projectKeys[i]]+"'";
-            }
+exports.updateProjects= function (projectParams,success, fail){
+    /**
+     * We create the final query.
+     * @type {string}
+     */
+    if (projectParams.hasOwnProperty(projectKeys[1]) && projectParams.hasOwnProperty(projectKeys[0])) {
+        var query = "UPDATE T_Project SET  " + projectKeys[1] + "='" + projectParams[projectKeys[1]] + "' WHERE id=" + projectParams[projectKeys[0]];
+        console.log("Query: " + query);
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(query, function (err, data) {
+            if (err) throw err;
             else {
-                if(i!=4){
-                    values= values+", "+"'"+userParams[projectKeys[i]]+"'";
-                }
-                else{
-                    values= values+", "+userParams[projectKeys[i]];
-                }
-                attributes = attributes+", "+ projectKeys[i];
+                success(data);
             }
-            cpt++;
-        }
+        });
     }
-    attributes=attributes+")";
-    values=values+")";
-    query= query + attributes+" VALUES "+values;
-    console.log("query for adding user: "+query);
-
-    connectionVariable.query( query, function (err, data) {
-        if (err) throw err;
-        else {
-            success(data);
-            updateUserIdInDB(userId, userTypeValue);
-        }
-    });
+    else {
+        fail();
+    }
 }
 
 /**

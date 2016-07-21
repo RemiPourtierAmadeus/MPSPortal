@@ -18,7 +18,7 @@
                 <div class=" large-10 columns description">
                     <label>Project name
                         <input #term type="text" placeholder="" (keyup)="search(term.value)"
-                               />
+                        />
                     </label>
                 </div>
                 <div class=" large-2 columns buttonRow ">
@@ -28,9 +28,11 @@
 
 
             <div class="row">
-                <li *ngFor="let name of projectNames">
-                    {{name}}
-                </li>
+                <div class="large-12">
+                    <li *ngFor="let name of projectNames">
+                        {{name}}
+                    </li>
+                </div>
             </div>
         </div>
     </div>

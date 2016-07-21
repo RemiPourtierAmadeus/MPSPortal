@@ -35,15 +35,24 @@ export class AddProjectComponent {
         );
     }
 
+    /**
+     * The function search extracts from projects list the project which has a name with as a prefix
+     * the name of the project.
+     * @param term
+     */
     search (term) {
         if(term.length>0){
             console.log(term);
             this.projectNames=[];
             for(let i=0;i<this.projects.length;i++){
+                console.log("current project: "+this.projects[i].name);
                 if(this.projects[i].name.indexOf(term)==0){
                     this.projectNames.push(this.projects[i].name);
                 }
             }
+        }
+        else{
+            this.projectNames=[];
         }
     }
 
