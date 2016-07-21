@@ -1,0 +1,12 @@
+@import '../../../styles/_variables';
+
+.large-offset-4{
+  text-align: center;
+  margin-top:20px;
+
+  h2 {
+    border-top: 3px solid $titleColor;
+    color: $titleColor;
+  }
+}
+
