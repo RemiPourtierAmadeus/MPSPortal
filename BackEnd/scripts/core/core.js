@@ -114,7 +114,7 @@ var projectKeys = [
     "version",
     "step_id_list",
     "language_id",
-    "order",
+    "step_order",
     "jenkins_link",
     "active"
 ];

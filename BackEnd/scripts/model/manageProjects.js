@@ -138,7 +138,7 @@ exports.deleteProjects= function (data,success, fail){
  * @param data, success
  * @param fail
  */
-exports.getProjects= function (data,success, fail){
+exports.getProjects= function (success, fail){
     var query = "SELECT ";
     /**
      * We first build the query manually from the projectKeys (an array which contains all the
@@ -152,7 +152,7 @@ exports.getProjects= function (data,success, fail){
             query = query + ", " + projectKeys[i];
         }
     }
-    query = query + " FROM T_Projects ";
+    query = query + " FROM T_Project ";
 
     console.log("query for getProjects:" + query);
     /**

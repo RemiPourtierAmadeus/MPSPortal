@@ -66,16 +66,16 @@ router.put('/', function (req, res) {
  * getProjects from projectManager.
  */
 router.get('/', function (req, res) {
-    var success = function (objetJSON) {
-        console.log(objetJSON);
-        res.send(objetJSON);
+    var success = function (objectJSON) {
+        console.log(objectJSON);
+        res.send(objectJSON);
     };
 
     var fail = function(){
         res.sendStatus(500);
     };
 
-    projectManager.getProjects(data,success, fail);
+    projectManager.getProjects(success, fail);
 });
 
 /**
