@@ -28,8 +28,7 @@ export class LanguageItemComponent {
 
     private language:LanguageModel;
 
-    constructor(private manageLanguageService:ManageLanguageService,
-        private router:Router) {
+    constructor(private manageLanguageService:ManageLanguageService) {
         this.pageState = "general";
         this.content = "";
         this.id=-1;
