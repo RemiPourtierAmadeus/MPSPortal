@@ -30,7 +30,8 @@
             <div class="row">
                 <div class="large-12">
                     <li *ngFor="let name of projectNames">
-                        {{name}}  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        {{name}}  <i class="fa fa-plus-circle" aria-hidden="true"
+                                     (click)="addProject(name)"></i>
 
                     </li>
                 </div>

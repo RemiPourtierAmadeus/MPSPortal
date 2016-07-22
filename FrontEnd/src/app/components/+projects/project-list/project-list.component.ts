@@ -20,6 +20,7 @@ export class ProjectListComponent {
     private projects:Array<ProjectModel>;
     private errorMessage:string;
 
+    @Input("newProject") newProject:number;
     /**
      * Input fromAddUser.
      * We use this attribute to know what to display to user.
@@ -51,6 +52,15 @@ export class ProjectListComponent {
         else{
             this.getProjects();
         }
+    }
+
+    ngOnChanges(){
+        console.log("yes, i have: "+ this.newProject);
+
+        this.manageProjectService.getProjectFromId(this.newProject).then(
+            project => this.projects.push(project),
+            err => this.errorMessage=err
+        );
     }
 
     /**

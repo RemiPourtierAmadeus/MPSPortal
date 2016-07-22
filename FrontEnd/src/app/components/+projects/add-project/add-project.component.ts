@@ -2,7 +2,7 @@
  * Component ProjectsAddProjectComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 import {ShowHideButtonComponent} from "../../core/show-hide-button/show-hide-button.component";
 import {ProjectModel} from "../../models/project.model";
 import {ManageProjectService} from "../../../shared/services/src/manage-project.service";
@@ -22,10 +22,14 @@ export class AddProjectComponent {
     private errorMessage:string;
     private projectNames:Array<string>;
 
+    @Input("projectList") projectAlreadyAdded:Array<string>;
+    @Output sendProject=new EventEmitter<number>();
+
     constructor(private manageProjectService:ManageProjectService){
         this.showForm=true;
         this.projects=[];
         this.projectNames=[];
+        this.projectAlreadyAdded=[];
     }
 
     ngOnInit(){
@@ -46,7 +50,6 @@ export class AddProjectComponent {
             console.log(term);
             this.projectNames=[];
             for(let i=0;i<this.projects.length;i++){
-                console.log("current project: "+this.projects[i].name);
                 if(this.projects[i].name.toLowerCase().indexOf(term)==0){
                     this.projectNames.push(this.projects[i].name);
                 }
@@ -64,6 +67,17 @@ export class AddProjectComponent {
      */
     showHideForm(show:boolean){
         this.showForm=show;
+    }
+
+    addProject(name){
+        console.log("name: "+name);
+        for(let i=0;i<this.projects.length;i++){
+            if(name === this.projects[i].name){
+                this.sendProject.emit(this.projects[i].id);
+                this.projectAlreadyAdded.push(name);
+                break;
+            }
+        }
     }
 
     onSubmit(){

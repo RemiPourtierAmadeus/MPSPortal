@@ -8,9 +8,14 @@
 </div>
 
 <div class="row">
-    <add-project></add-project>
+    <add-project
+            projectList="{{projectList}}"
+            (sendProject)="addProject($event)"
+    ></add-project>
 </div>
 
 <div class="row">
-    <project-list></project-list>
+    <project-list
+            newProject="{{newProject}}"
+    ></project-list>
 </div>
