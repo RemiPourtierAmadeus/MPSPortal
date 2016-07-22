@@ -75,7 +75,17 @@ router.get('/', function (req, res) {
         res.sendStatus(500);
     };
 
-    projectManager.getProjects(success, fail);
+    if(req.query.hasOwnProperty("id")){
+        if(req.query.id>=0){
+            projectManager.getProjectFromID(req.query.id, success, fail);
+        }
+        else{
+            fail();
+        }
+    }
+    else{
+        projectManager.getProjects(success, fail);
+    }
 });
 
 /**

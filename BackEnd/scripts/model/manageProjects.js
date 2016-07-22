@@ -156,21 +156,21 @@ exports.getProjects= function (success, fail){
  * @param success:function
  * @param fail:function
  */
-exports.getLanguagesFromId = function (id, success, fail) {
+exports.getProjectFromID = function (id, success, fail) {
     var query = "SELECT ";
     /**
      * We first build the query manually from the languageKeys (an array which contains all the
      * table attributes). We don't want to use the traditional "*" for security reasons.
      */
-    for (var i = 0; i < languageKeys.length; i++) {
+    for (var i = 0; i < projectKeys.length; i++) {
         if (i == 0) {
-            query = query + "" + languageKeys[i];
+            query = query + "" + projectKeys[i];
         }
         else {
-            query = query + ", " + languageKeys[i];
+            query = query + ", " + projectKeys[i];
         }
     }
-    query = query + " FROM TR_Language WHERE id='"+id+"'";
+    query = query + " FROM T_Project WHERE id='"+id+"'";
 
     //console.log("query for getLanguages:" + query);
     /**

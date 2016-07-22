@@ -58,7 +58,7 @@ export class ProjectListComponent {
         console.log("yes, i have: "+ this.newProject);
 
         this.manageProjectService.getProjectFromId(this.newProject).then(
-            project => this.projects.push(project),
+            project => {debugger; this.projects.push(project)},
             err => this.errorMessage=err
         );
     }

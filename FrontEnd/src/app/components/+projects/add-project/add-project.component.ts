@@ -22,8 +22,8 @@ export class AddProjectComponent {
     private errorMessage:string;
     private projectNames:Array<string>;
 
-    @Input("projectList") projectAlreadyAdded:Array<string>;
-    @Output sendProject=new EventEmitter<number>();
+    private projectAlreadyAdded:Array<string>;
+    @Output() sendProject=new EventEmitter<number>();
 
     constructor(private manageProjectService:ManageProjectService){
         this.showForm=true;
@@ -69,7 +69,7 @@ export class AddProjectComponent {
         this.showForm=show;
     }
 
-    addProject(name){
+    addProject(name:string){
         console.log("name: "+name);
         for(let i=0;i<this.projects.length;i++){
             if(name === this.projects[i].name){

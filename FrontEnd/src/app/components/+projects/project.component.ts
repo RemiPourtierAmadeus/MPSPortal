@@ -16,17 +16,14 @@ import {AddProjectComponent} from "./add-project/add-project.component";
 })
 export class ProjectComponent {
 
-    private projectList:Array<number>;
     private newProject:number;
 
     constructor(){
-        this.projectList=[];
         this.newProject=-1;
     }
 
     addProject(projectID:number){
         this.newProject=projectID;
-        this.projectList.push(projectID);
     }
 
 }
