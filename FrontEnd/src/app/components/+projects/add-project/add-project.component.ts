@@ -28,6 +28,7 @@ export class AddProjectComponent {
 
     private projectAlreadyAdded:Array<string>;
     @Output() sendProject = new EventEmitter<number>();
+    @Input("projectRemoved") projectRemoved:number;
 
     constructor(private manageProjectService:ManageProjectService) {
         this.showForm = true;
@@ -41,6 +42,21 @@ export class AddProjectComponent {
             projects => this.projects = projects,
             err => this.errorMessage = err
         );
+    }
+
+    ngOnChanges(){
+        if(this.projectRemoved>-1){
+            this.manageProjectService.getProjectFromId(this.projectRemoved).then(
+                project => this.addAgainProject(project),
+                err => this.errorMessage=err
+            );
+        }
+    }
+
+    addAgainProject(project:ProjectModel){
+        this.projectAlreadyAdded.splice(this.projectAlreadyAdded.indexOf(project.name),1);
+        this.projectNames=[];
+        this.projects.push(project);
     }
 
     /**

@@ -2,7 +2,7 @@
  * Component ProjectsProjectListComponent
  */
 
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {ProjectItemComponent} from "./project-item/project-item.component";
 import {ProjectModel} from "../../models/project.model";
 import {ManageProjectService} from "../../../shared/services/src/manage-project.service";
@@ -31,6 +31,7 @@ export class ProjectListComponent {
      * to allow admin to manage all projects stored in the database.
      */
     @Input("fromAddUser") fromAddUser:boolean;
+    @Output() projectToDelete=new EventEmitter<number>();
 
     /**
      * Constructor
@@ -67,6 +68,20 @@ export class ProjectListComponent {
             languages => this.projects = languages,
             error => this.errorMessage = <any> error
         );
+    }
+
+    /**
+     * Function deleteProject remove from the list of projects the project which have the same id as in parameter.
+     * At the end, we emit to the pattern component in order to inform it the project has been removed.
+     * @param id
+     */
+    deleteProject(id:number){
+        for(let i=0;i<this.projects.length;i++){
+            if(this.projects[i].id==id){
+                this.projects.splice(i,1);
+            }
+        }
+        this.projectToDelete.emit(id);
     }
 
 }

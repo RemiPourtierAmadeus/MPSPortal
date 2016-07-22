@@ -6,6 +6,7 @@
         <project-item
                 name="{{project.name}}"
                 id="{{project.id}}"
+                (projectToDelete)="deleteProject($event)"
         ></project-item>
         <!--
                 <language-item

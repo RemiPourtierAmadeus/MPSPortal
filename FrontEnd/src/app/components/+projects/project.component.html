@@ -9,6 +9,7 @@
 
 <div class="row">
     <add-project
+            projectRemoved="{{projectRemoved}}"
             (sendProject)="addProject($event)"
     ></add-project>
 </div>
@@ -16,5 +17,6 @@
 <div class="row">
     <project-list
             newProject="{{newProject}}"
+            (projectToDelete)="deleteProject($event)"
     ></project-list>
 </div>

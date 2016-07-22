@@ -15,7 +15,7 @@ export class ProjectItemComponent {
     @Input('name') name:string;
     @Input('id') id:number;
 
-    @Output() haveToDeleteLanguage=new EventEmitter<number>();
+    @Output() projectToDelete=new EventEmitter<number>();
 
     private pageState:string;
 
@@ -23,12 +23,8 @@ export class ProjectItemComponent {
         this.pageState="general";
     }
 
-    editProject(){
-
-    }
-
     deleteProject(){
-
+        this.projectToDelete.emit(this.id);
     }
 
 }
