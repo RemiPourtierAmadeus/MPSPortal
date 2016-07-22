@@ -51,7 +51,7 @@ export class ManageProjectService {
 
         return this.http.get(currentServerLink)
             .toPromise()
-            .then(res =>  <ProjectModel[]> res.json())
+            .then(res =>  <ProjectModel> res.json())
             .catch(this.handleError);
     }
 

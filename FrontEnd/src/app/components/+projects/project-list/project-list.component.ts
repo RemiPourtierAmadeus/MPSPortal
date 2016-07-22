@@ -37,7 +37,7 @@ export class ProjectListComponent {
      * @param manageProjectService
      */
     constructor(private manageProjectService:ManageProjectService){
-        this.projects= [];
+        this.projects= [new ProjectModel(12,"test","test","test",25,25,"test","test")];
         this.fromAddUser=false;
     }
 
@@ -46,21 +46,16 @@ export class ProjectListComponent {
      * the constructor.
      */
     ngOnInit(){
-        if(this.fromAddUser){
-
-        }
-        else{
-            this.getProjects();
-        }
     }
 
     ngOnChanges(){
         console.log("yes, i have: "+ this.newProject);
-
-        this.manageProjectService.getProjectFromId(this.newProject).then(
-            project => {debugger; this.projects.push(project)},
-            err => this.errorMessage=err
-        );
+        if(this.newProject!=-1){
+            this.manageProjectService.getProjectFromId(this.newProject).then(
+                project => this.projects.push(project[0]),
+                err => this.errorMessage=err
+            );
+        }
     }
 
     /**

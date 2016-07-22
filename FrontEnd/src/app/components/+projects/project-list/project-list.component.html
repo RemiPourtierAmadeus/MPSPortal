@@ -2,9 +2,10 @@
     <div *ngFor="let project of projects"
          class="large-8 large-centered medium-8 medium-centered small-12 small-centered">
 
-        <project-item></project-item>
+        {{project.name}}
+        <!--<project-item></project-item>
 
-        <!--<language-item
+        <language-item
                 id="{{project.id}}"
                 content="{{project.name}}"
                 (haveToDeleteLanguage)="deleteLanguage($event)"
