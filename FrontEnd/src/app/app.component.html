@@ -1,5 +1,5 @@
 <div *ngIf="pageToShow==0">
-    <connection-content (sendCurrentUser)="instantiateUser($event)" ></connection-content>
+    <connection-content (redirectHomePage)="openPage($event)" ></connection-content>
 </div>
 <div *ngIf="pageToShow==1">
     <home
