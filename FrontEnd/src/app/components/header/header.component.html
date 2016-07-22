@@ -13,15 +13,12 @@
         <div class="menuIcon large-1 medium-1 small-1 columns ">
             <i class="fa fa-home" aria-hidden="true" (click)="openHomePage()"></i>
         </div>
-        <div class="menuIcon large-1 medium-1 small-1 columns">
-            <i class="fa fa-bars" aria-hidden="true" (click)="showHideMenu()"></i>
-        </div>
         <div class="title large-2 medium-2 small-2 columns end ">
             <h1>{{currentFrameValue}}</h1>
         </div>
 
     </div>
-    <div *ngIf="menuIsClosed==false" class="navBar">
+    <div class="navBar">
         <div class="row">
             <nav>
                 <a class="menuItem" [routerLink]="['AddUser']">Add user </a>

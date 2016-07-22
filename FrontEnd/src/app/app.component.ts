@@ -31,6 +31,8 @@ import {LanguageComponent} from "./components/+language/language.component";
 })
 
 /**
+ * metrics
+ * amadeus1
  * Routing configuration. The decorator @RouteConfig defines the path, the name and the component
  * for each route. This decorator is directly linked to the header.component.html which contains
  * the clickable links and to the tag router-outlet. The tag router-outlet will displays the
@@ -65,7 +67,6 @@ export class AppComponent {
 
     constructor(){
         this.pageToShow=0;
-        console.log('oui je reload');
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
         this.instantiateSettings();

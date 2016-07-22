@@ -84,7 +84,7 @@ export class ConnectionContentComponent {
     redirectToHomePage(){
         console.log("this is the redirection, user id: "+this.user.userId);
 
-        this.redirectHomePage.emit(2);
+        this.redirectHomePage.emit(1);
         //TODO
     }
 
@@ -120,4 +120,5 @@ export class ConnectionContentComponent {
             this.redirectToHomePage();
         }
     }
+
 }
