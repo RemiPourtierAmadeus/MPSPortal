@@ -38,7 +38,7 @@ export class ProjectListComponent {
      * @param manageProjectService
      */
     constructor(private manageProjectService:ManageProjectService){
-        this.projects= [new ProjectModel(12,"test","test","test",25,25,"test","test")];
+        this.projects= [];
         this.fromAddUser=false;
     }
 

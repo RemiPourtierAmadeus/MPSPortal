@@ -31,7 +31,7 @@ export class AddProjectComponent {
     @Input("projectRemoved") projectRemoved:number;
 
     constructor(private manageProjectService:ManageProjectService) {
-        this.showForm = true;
+        this.showForm = false;
         this.projects = [];
         this.projectNames = [];
         this.projectAlreadyAdded = [];
@@ -54,9 +54,9 @@ export class AddProjectComponent {
     }
 
     addAgainProject(project:ProjectModel){
-        this.projectAlreadyAdded.splice(this.projectAlreadyAdded.indexOf(project.name),1);
+        /*this.projectAlreadyAdded.splice(this.projectAlreadyAdded.indexOf(project.name),1);
         this.projectNames=[];
-        this.projects.push(project);
+        this.projects.push(project);*/
     }
 
     /**
