@@ -6,12 +6,19 @@
 .card{
   margin-top:5px;
 
-  .fa-plus-circle{
-    cursor: pointer;
-    color:$titleColor;
-  }
-  .fa-plus-circle:hover{
-    opacity:0.8;
+  ul{
+    list-style-type: none;
+
+    .projectItem, .fa-plus-circle{
+      cursor: pointer;
+    }
+    .projectItem:hover, .fa-plus-circle:hover{
+      opacity:0.8;
+    }
+    .fa-plus-circle{
+      color:$titleColor;
+    }
+
   }
 }
 
