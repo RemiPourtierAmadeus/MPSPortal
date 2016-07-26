@@ -7,13 +7,15 @@ import {ManageUsersService} from "../../../shared/services/src/manage-users.serv
 import {LoginPipe} from "../../../shared/pipes/src/loginPipe";
 import {UserComponent} from "../../models/user/user.component";
 import {ProjectComponent} from "../../+projects/project.component";
+import {ProjectModel} from "../../models/project.model";
+import {ManageProjectService} from "../../../shared/services/src/manage-project.service";
 
 @Component({
     selector: 'add-user',
     moduleId: module.id,
     templateUrl: './add-user.component.html',
     styleUrls: ['./add-user.component.css'],
-    providers: [ManageUsersService],
+    providers: [ManageUsersService, ManageProjectService],
     pipes:[LoginPipe],
     directives:[ProjectComponent]
 })
@@ -38,7 +40,9 @@ export class AddUserComponent {
     public errorFromServer;
 
     private dbUserTable;
-    private tmp;
+
+    private projectListID:Array<number>;
+    private projectList:Array<ProjectModel>;
 
     /**
      * Constructor AddUserComponent.
@@ -46,7 +50,8 @@ export class AddUserComponent {
      * all the component attributes.
      * @param _manageUserService
      */
-    constructor(private _manageUserService:ManageUsersService) {
+    constructor(private _manageUserService:ManageUsersService,
+                private _manageProjectService:ManageProjectService) {
         this.submitted = false;
         this.userTypesValues = ["Admin", "Operational", "Developer", "Manager"];
         this.websitePartsValues = ["Metrics", "Performance"]; //TODO: TO use !
@@ -57,7 +62,8 @@ export class AddUserComponent {
         this.reportsN = "";
         this.reportsY = "";
         this.formCorrectlyFilled = true;
-        this.tmp="";
+        this.projectList=[];
+        this.projectListID=[];
     }
 
     /**
@@ -115,6 +121,20 @@ export class AddUserComponent {
         return login;
     }
 
+
+    /**
+     * ProjectListHasChanged. We use this function when the user adds or deletes a new project.
+     * The call comes from ProjectComponent outputs. The data received in parameters are
+     * the current project ids selected. We save the id list and wait for the click on
+     * the submit button. We don't call any function from ManageProjectService in order
+     * to increase performances. The call will be in the onSubmit function.
+     * @param projectIDList
+     */
+    projectListHasChanged(projectIDList:Array<number>){
+        this.projectListID=projectIDList;
+    }
+
+
     /**
      * Function onSubmit.
      * The function is called when user click on the submit button in the form. If the form has been correctly filled,
@@ -124,10 +144,17 @@ export class AddUserComponent {
         if (this.formComplete()) {
             this.submitted = true;
             let finalUserJSON = this.buildUserJSON();
-            this._manageUserService.addUser(finalUserJSON).then(
-                user => this.responseFromServer = user,
-                error => this.errorFromServer = <any> error);
-            console.log("response from server: "+ this.responseFromServer);
+            this._manageProjectService.getProjectFromId(this.projectListID).then(
+                projectList=> this.addUser(projectList,finalUserJSON),
+                error => this.errorFromServer = <any> error
+            );
         }
+    }
+
+
+    addUser(projectList:Array<ProjectModel>,finalUserJSON){
+        this._manageUserService.addUser(projectList, finalUserJSON).then(
+            user => this.responseFromServer = user,
+            error => this.errorFromServer = <any> error);
     }
 }

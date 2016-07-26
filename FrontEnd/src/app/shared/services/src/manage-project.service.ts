@@ -55,6 +55,16 @@ export class ManageProjectService {
             .catch(this.handleError);
     }
 
+    getProjectFromId(ids:Array<number>){
+
+        let currentServerLink=this._serverLink+"?id="+id;
+
+        return this.http.get(currentServerLink)
+            .toPromise()
+            .then(res =>  <ProjectModel> res.json())
+            .catch(this.handleError);
+    }
+
     /**
      * Function updateProject. This function updates Project data.
      * @param ProjectJSON
