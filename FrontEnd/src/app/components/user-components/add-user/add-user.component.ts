@@ -16,8 +16,8 @@ import {ManageProjectService} from "../../../shared/services/src/manage-project.
     templateUrl: './add-user.component.html',
     styleUrls: ['./add-user.component.css'],
     providers: [ManageUsersService, ManageProjectService],
-    pipes:[LoginPipe],
-    directives:[ProjectComponent]
+    pipes: [LoginPipe],
+    directives: [ProjectComponent]
 })
 
 /**
@@ -57,13 +57,13 @@ export class AddUserComponent {
         this.websitePartsValues = ["Metrics", "Performance"]; //TODO: TO use !
         this.reportsValues = ["Yes", "No"]; //TODO: TO use !
         this.user = new UserComponent("", "", "",
-            "", false, false, false,false, "");
+            "", false, false, false, false, "");
         this.dbUserTable = ["user_id", "full_name", "email_address", "type"];
         this.reportsN = "";
         this.reportsY = "";
         this.formCorrectlyFilled = true;
-        this.projectList=[];
-        this.projectListID=[];
+        this.projectList = [];
+        this.projectListID = [];
     }
 
     /**
@@ -86,12 +86,17 @@ export class AddUserComponent {
      */
     buildUserJSON() {
         this.user.login = this.transformFullName();
-        console.log("User login: "+this.user.login);
+        console.log("User login: " + this.user.login);
+        let projectJSON = {
+            user_id: '1',
+            project_id: '1'
+        }
         let userJSON = {
             full_name: this.user.fullName,
             email_address: this.user.email,
             type: this.user.type.toLowerCase(),
-            login: this.user.login
+            login: this.user.login,
+            projects: projectJSON
         };
         return userJSON;
     }
@@ -103,18 +108,18 @@ export class AddUserComponent {
      * more information about the login structure, please check the pipe loginPipe.
      * @returns {string}
      */
-    transformFullName(){
-        let array=[];
-        array= this.user.fullName.split(" ");
-        let login="";
-        for( var i=0;i<array.length;i++){
-            array[i]=array[i].toLowerCase();
-            if(array[i].length>0){
-                if(i==0){
-                    login=array[i].toLowerCase();
+    transformFullName() {
+        let array = [];
+        array = this.user.fullName.split(" ");
+        let login = "";
+        for (var i = 0; i < array.length; i++) {
+            array[i] = array[i].toLowerCase();
+            if (array[i].length > 0) {
+                if (i == 0) {
+                    login = array[i].toLowerCase();
                 }
-                else{
-                    login=login+"."+array[i].toLowerCase();
+                else {
+                    login = login + "." + array[i].toLowerCase();
                 }
             }
         }
@@ -130,8 +135,8 @@ export class AddUserComponent {
      * to increase performances. The call will be in the onSubmit function.
      * @param projectIDList
      */
-    projectListHasChanged(projectIDList:Array<number>){
-        this.projectListID=projectIDList;
+    projectListHasChanged(projectIDList:Array<number>) {
+        this.projectListID = projectIDList;
     }
 
 
@@ -144,17 +149,28 @@ export class AddUserComponent {
         if (this.formComplete()) {
             this.submitted = true;
             let finalUserJSON = this.buildUserJSON();
-            this._manageProjectService.getProjectFromId(this.projectListID).then(
-                projectList=> this.addUser(projectList,finalUserJSON),
-                error => this.errorFromServer = <any> error
-            );
+            debugger;
+            this._manageUserService.addUser(finalUserJSON).then(
+                user => this.responseFromServer = user,
+                error => this.errorFromServer = <any> error);
+
+
+            /*this._manageProjectService.getProjectFromId(this.projectListID).then(
+             projectList=> this.addUser(projectList,finalUserJSON),
+             error => this.errorFromServer = <any> error
+             );*/
         }
     }
 
+    /**
+     * AddUser calls the function addUser from ManageUserService in order to add it
+     * into the database.
+     * @param projectList
+     * @param finalUserJSON
 
-    addUser(projectList:Array<ProjectModel>,finalUserJSON){
+     addUser(projectList:Array<ProjectModel>,finalUserJSON){
         this._manageUserService.addUser(projectList, finalUserJSON).then(
             user => this.responseFromServer = user,
             error => this.errorFromServer = <any> error);
-    }
+    }*/
 }

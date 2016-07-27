@@ -94,7 +94,6 @@ export class AppComponent {
 
     openPage(pageValue:number){
         if(pageValue>=0){
-
             this.pageToShow=pageValue;
         }
         else{

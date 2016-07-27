@@ -55,6 +55,11 @@ export class ManageProjectService {
             .catch(this.handleError);
     }
 
+    /**
+     *
+     * @param ids
+     * @returns {any<T>|Promise<void>|Promise<T>|Promise<R>|any}
+     */
     getProjectFromId(ids:Array<number>){
 
         let currentServerLink=this._serverLink+"?id="+id;
