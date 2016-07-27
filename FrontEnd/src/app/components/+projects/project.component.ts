@@ -2,7 +2,7 @@
  * Component ProjectComponent
  */
 
-import {Component, Output} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {ProjectListComponent} from "./project-list/project-list.component";
 import {AddProjectComponent} from "./add-project/add-project.component";
 
@@ -19,7 +19,8 @@ export class ProjectComponent {
     private newProject:number;
     private projectRemoved:number;
 
-    @Output() projectList:Array<number>;
+    private projectList:Array<number>;
+    @Output() sendProjectList =new EventEmitter<Array<number>>();
 
     constructor(){
         this.newProject=-1;
@@ -31,13 +32,19 @@ export class ProjectComponent {
         this.newProject=projectID;
         this.projectList.push(projectID);
         console.log("add current id: "+projectID);
+        this.sendProjectList.emit(this.projectList);
     }
 
 
+    /**
+     * DeleteProject
+     * @param projectID
+     */
     deleteProject(projectID:number){
         this.projectRemoved=projectID;
 
         this.projectList.slice(this.projectList.indexOf(projectID),1);
+        this.sendProjectList.emit(this.projectList);
         console.log("delete current id: "+projectID);
     }
 }

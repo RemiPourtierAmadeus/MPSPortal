@@ -42,7 +42,6 @@ export class AddUserComponent {
     private dbUserTable;
 
     private projectListID:Array<number>;
-    private projectList:Array<ProjectModel>;
 
     /**
      * Constructor AddUserComponent.
@@ -62,7 +61,6 @@ export class AddUserComponent {
         this.reportsN = "";
         this.reportsY = "";
         this.formCorrectlyFilled = true;
-        this.projectList = [];
         this.projectListID = [];
     }
 

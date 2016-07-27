@@ -74,15 +74,12 @@
                     <option *ngFor="let partWeb of websitePartsValues" value="partWeb">{{partWeb}}</option>
                 </select>-->
             </div>
-
         </div>
-
         <div class="row">
             <project
-                (projectList)="projectListHasChanged($event)"
+                    (sendProjectList)="projectListHasChanged($event)"
             ></project>
         </div>
-
         <br>
         <div class="row buttonRow">
             <div class="large-1 large-offset-5 medium-4 medium-offset-5 small-offset-4 end buttonCell">

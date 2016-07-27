@@ -83,7 +83,7 @@ function saveProject(projectID, projectParam, success, fail){
     attributes = attributes + ")";
     values = values + ")";
     query = query + attributes + " VALUES " + values;
-    console.log("query for adding language: " + query);
+    console.log("query for adding project: " + query);
 
     connectionVariable.query(query, function (err, data) {
         if (err) throw err;
@@ -151,7 +151,7 @@ exports.getProjects= function (success, fail){
 
 
 /**
- * Function getLanguagesFromId. This function returns the language according to language id.
+ * Function getProjectFromID. This function returns the project according to project id.
  * @param id:number
  * @param success:function
  * @param fail:function
@@ -159,7 +159,7 @@ exports.getProjects= function (success, fail){
 exports.getProjectFromID = function (id, success, fail) {
     var query = "SELECT ";
     /**
-     * We first build the query manually from the languageKeys (an array which contains all the
+     * We first build the query manually from the projectKeys (an array which contains all the
      * table attributes). We don't want to use the traditional "*" for security reasons.
      */
     for (var i = 0; i < projectKeys.length; i++) {
@@ -172,7 +172,6 @@ exports.getProjectFromID = function (id, success, fail) {
     }
     query = query + " FROM T_Project WHERE id='"+id+"'";
 
-    //console.log("query for getLanguages:" + query);
     /**
      * We run the query
      */
