@@ -38,6 +38,7 @@ export class ManageProjectService {
      */
     getProjectFromId(id:number){
 
+        console.log("yes, id: "+id);
         /**
          * Variable currentServerLink.
          * We use this variable because we don't want to modify the attribute this._serverLink
@@ -48,27 +49,13 @@ export class ManageProjectService {
          * @type {string}
          */
         let currentServerLink=this._serverLink+"?id="+id;
-
+        console.log("yes");
         return this.http.get(currentServerLink)
             .toPromise()
             .then(res =>  <ProjectModel> res.json())
             .catch(this.handleError);
     }
 
-    /**
-     *
-     * @param ids
-     * @returns {any<T>|Promise<void>|Promise<T>|Promise<R>|any}
-     */
-    getProjectFromId(ids:Array<number>){
-
-        let currentServerLink=this._serverLink+"?id="+id;
-
-        return this.http.get(currentServerLink)
-            .toPromise()
-            .then(res =>  <ProjectModel> res.json())
-            .catch(this.handleError);
-    }
 
     /**
      * Function updateProject. This function updates Project data.

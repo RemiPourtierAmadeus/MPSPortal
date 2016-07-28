@@ -88,19 +88,18 @@ export class AddUserComponent {
      */
     buildUserJSON() {
         this.user.login = this.transformFullName();
-        console.log("User login: " + this.user.login);
-        /*let projectJSON = {
-            user_id: '1',
-            project_id: '1'
+        let projectArray=[];
+        for(let i=0;i<this.projectListID.length;i++){
+            projectArray.push({id:this.projectListID[i]});
         }
         let userJSON = {
             full_name: this.user.fullName,
             email_address: this.user.email,
             type: this.user.type.toLowerCase(),
             login: this.user.login,
-            projects: projectJSON
+            projects: projectArray
         };
-        return userJSON;*/
+        return userJSON;
     }
 
 
@@ -148,10 +147,12 @@ export class AddUserComponent {
      * we add the new user to the database by calling the manageUser service function  "AddUser".
      */
     onSubmit() {
+        console.log("bha oui");
         if (this.formComplete()) {
+            console.log("la aussi");
             this.submitted = true;
             let finalUserJSON = this.buildUserJSON();
-            debugger;
+            debugger;/*
             this._manageUserService.addUser(finalUserJSON).then(
                 user => this.responseFromServer = user,
                 error => this.errorFromServer = <any> error);
