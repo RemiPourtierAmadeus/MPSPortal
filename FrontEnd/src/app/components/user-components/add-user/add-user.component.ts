@@ -39,6 +39,9 @@ export class AddUserComponent {
     public responseFromServer;
     public errorFromServer;
 
+    //Variable tmp is used into pipe transformation
+    public tmp:string;
+
     private dbUserTable;
 
     private projectListID:Array<number>;
@@ -62,6 +65,7 @@ export class AddUserComponent {
         this.reportsY = "";
         this.formCorrectlyFilled = true;
         this.projectListID = [];
+        this.tmp="";
     }
 
     /**
@@ -85,7 +89,7 @@ export class AddUserComponent {
     buildUserJSON() {
         this.user.login = this.transformFullName();
         console.log("User login: " + this.user.login);
-        let projectJSON = {
+        /*let projectJSON = {
             user_id: '1',
             project_id: '1'
         }
@@ -96,7 +100,7 @@ export class AddUserComponent {
             login: this.user.login,
             projects: projectJSON
         };
-        return userJSON;
+        return userJSON;*/
     }
 
 
