@@ -157,16 +157,4 @@ export class AddUserComponent {
                 error => this.errorFromServer = <any> error);
         }
     }
-
-    /**
-     * AddUser calls the function addUser from ManageUserService in order to add it
-     * into the database.
-     * @param projectList
-     * @param finalUserJSON
-
-     addUser(projectList:Array<ProjectModel>,finalUserJSON){
-        this._manageUserService.addUser(projectList, finalUserJSON).then(
-            user => this.responseFromServer = user,
-            error => this.errorFromServer = <any> error);
-    }*/
 }

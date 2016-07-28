@@ -2,7 +2,12 @@
  * Component ProjectsAddProjectComponent
  */
 
-import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {Component, Output, EventEmitter, Input,
+    trigger,
+    state,
+    style,
+    transition,
+    animate, group} from '@angular/core';
 import {ShowHideButtonComponent} from "../../core/show-hide-button/show-hide-button.component";
 import {ProjectModel} from "../../models/project.model";
 import {ManageProjectService} from "../../../shared/services/src/manage-project.service";
@@ -13,7 +18,33 @@ import {ManageProjectService} from "../../../shared/services/src/manage-project.
     templateUrl: './add-project.component.html',
     styleUrls: ['./add-project.component.css'],
     directives: [ShowHideButtonComponent],
-    providers: [ManageProjectService]
+    providers: [ManageProjectService]/*,
+    animations: [    //To add: @flyInOut="'in'"
+        trigger('flyInOut', [
+            state('in', style({ transform: 'translateX(0)', opacity: 1})),
+            transition('void => *', [
+                style({ transform: 'translateX(50px)', opacity: 0}),
+                group([
+                    animate('0.3s 0.1s ease', style({
+                        transform: 'translateX(0)'
+                    })),
+                    animate('0.3s ease', style({
+                        opacity: 1
+                    }))
+                ])
+            ]),
+            transition('* => void', [
+                group([
+                    animate('0.3s ease', style({
+                        transform: 'translateX(50px)'
+                    })),
+                    animate('0.3s 0.2s ease', style({
+                        opacity: 0
+                    }))
+                ])
+            ])
+        ])
+    ]*/
 })
 export class AddProjectComponent {
 
@@ -54,9 +85,9 @@ export class AddProjectComponent {
     }
 
     addAgainProject(project:ProjectModel){
-        /*this.projectAlreadyAdded.splice(this.projectAlreadyAdded.indexOf(project.name),1);
+        this.projectAlreadyAdded.splice(this.projectAlreadyAdded.indexOf(project.name),1);
         this.projectNames=[];
-        this.projects.push(project);*/
+        this.projects.push(project[0]);
     }
 
     /**
@@ -65,6 +96,7 @@ export class AddProjectComponent {
      * @param term
      */
     search(term:string) {
+        console.log("term: "+term);
         term = term.toLowerCase();
         if (term.length > 0) {
             this.projectNames = [];

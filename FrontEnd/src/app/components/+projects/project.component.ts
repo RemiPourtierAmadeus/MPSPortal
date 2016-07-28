@@ -28,6 +28,12 @@ export class ProjectComponent {
         this.projectList=[];
     }
 
+    /**
+     * AddProject. When a user clicks on a project into the project list, we call the function
+     * addProject in order to save the current project and send the current selected projects
+     * to other component through output.
+     * @param projectID
+     */
     addProject(projectID:number){
         this.newProject=projectID;
         this.projectList.push(projectID);
