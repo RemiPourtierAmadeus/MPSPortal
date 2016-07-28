@@ -49,7 +49,6 @@ export class ManageProjectService {
          * @type {string}
          */
         let currentServerLink=this._serverLink+"?id="+id;
-        console.log("yes");
         return this.http.get(currentServerLink)
             .toPromise()
             .then(res =>  <ProjectModel> res.json())

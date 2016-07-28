@@ -152,16 +152,9 @@ export class AddUserComponent {
             console.log("la aussi");
             this.submitted = true;
             let finalUserJSON = this.buildUserJSON();
-            debugger;/*
             this._manageUserService.addUser(finalUserJSON).then(
                 user => this.responseFromServer = user,
                 error => this.errorFromServer = <any> error);
-
-
-            /*this._manageProjectService.getProjectFromId(this.projectListID).then(
-             projectList=> this.addUser(projectList,finalUserJSON),
-             error => this.errorFromServer = <any> error
-             );*/
         }
     }
 
