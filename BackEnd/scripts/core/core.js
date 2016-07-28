@@ -119,6 +119,11 @@ var projectKeys = [
     "active"
 ];
 
+var userProjectKeys=[
+    "user_id",
+    "project_id"
+]
+
 /**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
@@ -135,7 +140,8 @@ module.exports = {
     newsSubTypes : newsSubTypes,
     languageKeys : languageKeys,
     stepKeys: stepKeys,
-    projectKeys: projectKeys
+    projectKeys: projectKeys,
+    userProjectKeys: userProjectKeys
 };
 
 

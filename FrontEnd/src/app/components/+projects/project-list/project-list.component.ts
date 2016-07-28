@@ -50,9 +50,7 @@ export class ProjectListComponent {
     }
 
     ngOnChanges(){
-        console.log("new id: "+this.newProject);
         if(this.newProject!=-1){
-            console.log("bha oui");
             this.manageProjectService.getProjectFromId(this.newProject).then(
                 project => {debugger; this.projects.push(project[0])},
                 err => this.errorMessage=err
