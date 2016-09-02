@@ -62,7 +62,6 @@ export class NewsItemComponent {
      * news it will have everything pre-filled according to actual data.
      */
     ngOnInit() {
-        console.log("state : "+this.state);
         this.news = new NewsModelComponent(this.id, this.title, this.content,
             this.date, this.hour, this.type, this.subtype, this.newsFrom, this.state);
         this.organizeConstants();
