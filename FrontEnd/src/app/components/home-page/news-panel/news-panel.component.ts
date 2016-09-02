@@ -2,7 +2,7 @@
  * Component NewsPanelComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {NewsItemComponent} from "../../news/news-item/news-item.component";
 import {NewsModelComponent} from "../../models/news-model/news-model.component";
 import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
@@ -20,6 +20,8 @@ export class NewsPanelComponent {
 
     newsList: NewsModelComponent[];
     newsNotFound: boolean;
+
+    @Output() pageToOpen=new EventEmitter<number>();
 
     constructor(private _manageNewsService: ManageNewsService, private _newsConstantService:NewsConstantService){}
 
@@ -85,11 +87,18 @@ export class NewsPanelComponent {
         let emptyNews=new NewsModelComponent(-1,"No news found","","","","","","","");
         this.newsList=[emptyNews];
         this.newsNotFound=true;
-
     }
 
-    redirectToSpecificNews(id){
-        console.log("iep l'id c'est: "+ id);
+    /**
+     * RedirectToNews.
+     * We call this function when a user clicks on the link "Last news".
+     * This function will use the output of the component in order to
+     * inform the pattern component that users would like to see
+     * the news page.
+     */
+    redirectToNews(){
+        this.pageToOpen.emit(3);
     }
+
 
 }

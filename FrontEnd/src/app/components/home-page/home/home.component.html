@@ -12,7 +12,9 @@
         <br/>
         <div class="row">
             <div class="metrics large-10 large-offset-1 columns end">
-                <news-panel></news-panel>
+                <news-panel
+                        (pageToOpen)="openPage($event)"
+                ></news-panel>
             </div>
         </div>
     </div>
