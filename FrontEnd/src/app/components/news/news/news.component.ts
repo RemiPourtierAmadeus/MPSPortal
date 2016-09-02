@@ -196,8 +196,9 @@ export class NewsComponent {
      * @param state
      */
     cleanListFromStatus(state) {
+        console.log("Selected state: "+state);
         for(let i=0;i<this.newsList.length;i++){
-            if(!(this.newsList[i].state===state.toLowerCase())){
+            if(!(this.newsList[i].state.toLowerCase()===state.toLowerCase())){
                 this.newsList=this.deleteNewsInList(this.newsList,i);
                 i=i-1;
             }
@@ -256,7 +257,8 @@ export class NewsComponent {
             content: news.content,
             type: news.type,
             subtype: news.subtype,
-            newsFrom: news.newsFrom
+            newsFrom: news.newsFrom,
+            state: news.state
         };
         this._manageNewsService.updateNews(newsJSON).then(
             news => this.verifyResponse(news), //or if you would like to get directly the response you can

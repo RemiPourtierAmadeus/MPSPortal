@@ -85,10 +85,10 @@ export class NewsItemComponent {
      * The function puts the value of the state at the index 0 of the array.
      */
     organizeState(){
-        let results=[this.news.state.charAt(0).toUpperCase()+this.news.state.slice(1)];//
+        let results=[this.news.state.charAt(0).toUpperCase()+this.news.state.slice(1).toLowerCase()];//
         for(let i =0;i< this.stateValues.length;i++){
-            if(!(this.stateValues[i]===this.news.state)){
-                results.push(this.stateValues[i].charAt(0).toUpperCase()+this.stateValues[i].slice(1));
+            if(!(this.stateValues[i].toLowerCase()===this.news.state.toLowerCase())){
+                results.push(this.stateValues[i].charAt(0).toUpperCase()+this.stateValues[i].slice(1).toLowerCase());
             }
         }
         this.stateValues=results;
@@ -179,7 +179,7 @@ export class NewsItemComponent {
      */
     cancelEditing(){
         this.news = new NewsModelComponent(this.id, this.title, this.content,
-            this.date, this.hour, this.type, this.subtype, this.newsFrom, "active");
+            this.date, this.hour, this.type, this.subtype, this.newsFrom, this.state);
         this.pageState="general";
     }
 
