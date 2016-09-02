@@ -92,6 +92,10 @@ export class AppComponent {
         this.routerLinks = ["AddUser", "UserList"];
     }
 
+    /**
+     * Function openPage.
+     * @param pageValue
+     */
     openPage(pageValue:number) {
         if (pageValue >= 0) {
             this.pageToShow = pageValue;

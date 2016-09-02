@@ -28,7 +28,7 @@ export class ChangePwdComponent {
 
     /**
      * Function ngOnInit.
-     * We instanciate our current user from the component inputs.
+     * We instantiate our current user from the component inputs.
      */
     ngOnInit(){
         this.user=new UserComponent("", "", "",

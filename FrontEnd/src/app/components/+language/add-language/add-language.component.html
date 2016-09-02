@@ -1,27 +1,27 @@
 <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="main">
     <div class="row">
 
-        <div class="card columns large-8 large-centered">
+        <div class="card columns large-8 large-centered medium-10 medium-centered small-10 small-centered">
 
             <div class="row">
-                <div class="showHide large-1 columns end">
+                <div class="showHide large-1 medium-1 small-1 columns end">
                     <show-hide-button
                             (sendShowHide)="showHideForm($event)"
                     ></show-hide-button>
                 </div>
-                <div class="titleForm large-6 columns end">
+                <div class="titleForm large-6 medium-6 small-6 columns end">
                     <h3>Add language</h3>
                 </div>
 
             </div>
             <div *ngIf="showForm==true">
-                <div class=" large-10 columns description">
+                <div class=" large-10 medium-10 small-10 columns description">
                     <label>Language name
                         <input type="text" placeholder="" required
                                [(ngModel)]="language.name"/>
                     </label>
                 </div>
-                <div class=" large-2 columns buttonRow ">
+                <div class=" large-2 medium-2 small-2 columns buttonRow ">
                     <button type="submit" class="button info" [disabled]="!userForm.form.valid">Submit</button>
 
                 </div>
