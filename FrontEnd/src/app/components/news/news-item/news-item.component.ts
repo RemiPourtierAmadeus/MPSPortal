@@ -34,11 +34,13 @@ export class NewsItemComponent {
     @Input('type') type:string;
     @Input('subtype') subtype:string;
     @Input('newsFrom') newsFrom:string;
+    @Input('state') state:string;
 
 
     typesValues:string[];
     subtypesValues:string[];
     newsFromValues:string[];
+    stateValues:string[];
 
 
     @Output() newsToDelete = new EventEmitter<NewsModelComponent>();
@@ -49,6 +51,7 @@ export class NewsItemComponent {
         this.typesValues = _newsConstantService.getTypes();
         this.subtypesValues = _newsConstantService.getSubTypes();
         this.newsFromValues = _newsConstantService.getNewsFrom();
+        this.stateValues=_newsConstantService.getStatus();
         this.pageState = "general";
     }
 
@@ -59,8 +62,9 @@ export class NewsItemComponent {
      * news it will have everything pre-filled according to actual data.
      */
     ngOnInit() {
+        console.log("state : "+this.state);
         this.news = new NewsModelComponent(this.id, this.title, this.content,
-            this.date, this.hour, this.type, this.subtype, this.newsFrom, "active");
+            this.date, this.hour, this.type, this.subtype, this.newsFrom, this.state);
         this.organizeConstants();
     }
 
@@ -72,8 +76,23 @@ export class NewsItemComponent {
         this.organizeTypes();
         this.organizeSubTypes();
         this.organizeNewsFrom();
+        this.organizeState();
     }
 
+    /**
+     * Function organizeState.
+     * This function sorts the stateValues according to the state of the current news (received through inputs state).
+     * The function puts the value of the state at the index 0 of the array.
+     */
+    organizeState(){
+        let results=[this.news.state];
+        for(let i =0;i< this.stateValues.length;i++){
+            if(!(this.stateValues[i]===this.news.state)){
+                results.push(this.stateValues[i]);
+            }
+        }
+        this.stateValues=results;
+    }
 
     /**
      * Function organizeTypes.
@@ -81,9 +100,9 @@ export class NewsItemComponent {
      * at the beginning of the list in order to use it for the edit page.
      */
     organizeTypes() {
-        let results=[this.news.type];
+        let results=[this.news.type.toLowerCase()];
         for(let i=0;i<this.typesValues.length;i++){
-            if(!(this.news.type===this.typesValues[i])){
+            if(!(this.news.type===this.typesValues[i].toLowerCase())){
                 results.push(this.typesValues[i]);
             }
         }

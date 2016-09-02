@@ -27,7 +27,7 @@ import {LanguageComponent} from "./components/+language/language.component";
         HomeComponent,
         MetricsComponent
     ],
-    providers:[ManageNewsService]
+    providers: [ManageNewsService]
 })
 
 /**
@@ -60,15 +60,15 @@ export class AppComponent {
      * from the home page.
      */
     public pageToShow;
-    public message="Doesn't work";
+    public message = "Doesn't work";
     public pageName:string;
     public linksName:string[];
     public routerLinks:string[];
 
-    constructor(){
-        this.pageToShow=1;
+    constructor() {
+        this.pageToShow = 3;
         this.user = new UserComponent("", "", "",
-            "", false, false, false, false, "","");
+            "", false, false, false, false, "", "");
         this.instantiateSettings();
     }
 
@@ -76,27 +76,27 @@ export class AppComponent {
      * Function instanciateUser
      * @param user
      */
-    instantiateUser(user:UserComponent){
-        this.user=user;
-        if(this.user.userId>=0){
-            this.pageToShow=1;
+    instantiateUser(user:UserComponent) {
+        this.user = user;
+        if (this.user.userId >= 0) {
+            this.pageToShow = 1;
         }
     }
 
     /**
      * Instantiate settings function
      */
-    instantiateSettings(){
-        this.pageName="Settings";
-        this.linksName=["Add user", "User list"];
-        this.routerLinks=["AddUser", "UserList"];
+    instantiateSettings() {
+        this.pageName = "Settings";
+        this.linksName = ["Add user", "User list"];
+        this.routerLinks = ["AddUser", "UserList"];
     }
 
-    openPage(pageValue:number){
-        if(pageValue>=0){
-            this.pageToShow=pageValue;
+    openPage(pageValue:number) {
+        if (pageValue >= 0) {
+            this.pageToShow = pageValue;
         }
-        else{
+        else {
             console.log("No path defined for the clicked link");
         }
     }

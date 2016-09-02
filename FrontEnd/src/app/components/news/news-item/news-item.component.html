@@ -139,6 +139,11 @@
                             <option *ngFor="let subtypes of subtypesValues" ng-value="subtypes">{{subtypes}}</option>
                         </select>
                     </div>
+                    <div class="large-2 large-offset-1 medium-6 small-6 columns subtype end">
+                        <select [(ngModel)]="news.state" required>
+                            <option *ngFor="let currentState of stateValues" ng-value="state">{{currentState}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
