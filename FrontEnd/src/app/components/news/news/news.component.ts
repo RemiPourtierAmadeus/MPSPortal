@@ -46,7 +46,7 @@ export class NewsComponent {
      */
     getNews() {
         this._manageNewsService.getNews().then(
-            news => this.newsList = news,
+            news => {this.newsList = news;this.orderByDate();},
             error => this.noNews(error)
         );
     }
@@ -196,7 +196,6 @@ export class NewsComponent {
      * @param state
      */
     cleanListFromStatus(state) {
-        console.log("Selected state: "+state);
         for(let i=0;i<this.newsList.length;i++){
             if(!(this.newsList[i].state.toLowerCase()===state.toLowerCase())){
                 this.newsList=this.deleteNewsInList(this.newsList,i);
