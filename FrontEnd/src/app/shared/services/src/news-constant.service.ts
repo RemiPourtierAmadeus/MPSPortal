@@ -32,8 +32,8 @@ export class NewsConstantService {
             "Performance"
         ];
         this.status = [
-            "Active",
-            "Inactive"
+            "active",
+            "inactive"
         ];
         this.numberOfLastNews=3;
     }

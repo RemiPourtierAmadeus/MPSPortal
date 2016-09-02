@@ -85,10 +85,10 @@ export class NewsItemComponent {
      * The function puts the value of the state at the index 0 of the array.
      */
     organizeState(){
-        let results=[this.news.state];
+        let results=[this.news.state.charAt(0).toUpperCase()+this.news.state.slice(1)];//
         for(let i =0;i< this.stateValues.length;i++){
             if(!(this.stateValues[i]===this.news.state)){
-                results.push(this.stateValues[i]);
+                results.push(this.stateValues[i].charAt(0).toUpperCase()+this.stateValues[i].slice(1));
             }
         }
         this.stateValues=results;
@@ -100,9 +100,9 @@ export class NewsItemComponent {
      * at the beginning of the list in order to use it for the edit page.
      */
     organizeTypes() {
-        let results=[this.news.type.toLowerCase()];
+        let results=[this.news.type];
         for(let i=0;i<this.typesValues.length;i++){
-            if(!(this.news.type===this.typesValues[i].toLowerCase())){
+            if(!(this.news.type===this.typesValues[i])){
                 results.push(this.typesValues[i]);
             }
         }
