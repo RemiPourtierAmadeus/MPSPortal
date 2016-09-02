@@ -66,7 +66,7 @@ export class AppComponent {
     public routerLinks:string[];
 
     constructor(){
-        this.pageToShow=0;
+        this.pageToShow=1;
         this.user = new UserComponent("", "", "",
             "", false, false, false, false, "","");
         this.instantiateSettings();
