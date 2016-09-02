@@ -101,8 +101,6 @@ export class AddProjectComponent {
         if (term.length > 0) {
             this.projectNames = [];
             for (let i = 0; i < this.projects.length; i++) {
-                console.log("project: " + this.projectAlreadyAdded.indexOf(this.projects[i].name));
-
                 if (this.projects[i].name.toLowerCase().indexOf(term) == 0
                     && this.projectAlreadyAdded.indexOf(this.projects[i].name) == -1
                 ) {
