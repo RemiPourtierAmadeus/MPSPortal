@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router-deprecated';
+import {Router} from "@angular/router-deprecated";
 import {UserComponent} from "../../models/user/user.component";
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 
@@ -12,7 +12,7 @@ import {ManageUsersService} from "../../../shared/services/src/manage-users.serv
     moduleId: module.id,
     templateUrl: './user-list.component.html',
     styleUrls : ['./user-list.component.css'],
-    providers: [ManageUsersService, Router]
+    providers: [ManageUsersService]
 })
 
 export class UserListComponent  {
@@ -52,7 +52,6 @@ export class UserListComponent  {
         this._manageUserService.getUsers().then(
             users => this.users=users,
             error => this.errorMessage= <any> error);
-        console.log("Into getUsers: "+this.users);
     }
 
     /**
