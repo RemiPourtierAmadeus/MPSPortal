@@ -1,0 +1,20 @@
+<div class="row projectList">
+    <div *ngFor="let project of projects"
+         class="large-4 large-centered medium-8 medium-centered small-12 small-centered">
+
+        <project-item
+                name="{{project.name}}"
+                id="{{project.id}}"
+                (projectToDelete)="deleteProject($event)"
+        ></project-item>
+
+        <!--
+                <language-item
+                        id="{{project.id}}"
+                        content="{{project.name}}"
+                        (haveToDeleteLanguage)="deleteLanguage($event)"
+                ></language-item>-->
+    </div>
+
+
+</div>

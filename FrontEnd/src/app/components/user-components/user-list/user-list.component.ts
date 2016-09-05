@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router-deprecated";
 import {UserComponent} from "../../models/user/user.component";
 import {ManageUsersService} from "../../../shared/services/src/manage-users.service";
 
@@ -30,7 +31,9 @@ export class UserListComponent  {
      * Constructor
      * @param _manageUserService
      */
-    constructor(private _manageUserService: ManageUsersService){ }
+    constructor(private _manageUserService: ManageUsersService,
+        private router:Router
+    ){ }
 
     /**
      * Function ngOnInit. This function is native to Angular 2. It will be executed while the component execution, just after
@@ -49,21 +52,16 @@ export class UserListComponent  {
         this._manageUserService.getUsers().then(
             users => this.users=users,
             error => this.errorMessage= <any> error);
-        console.log("Into getUsers: "+this.users);
     }
 
     /**
-     * Function addUsers. The function gets in parameters user information and then call the function
-     * addUser from ManageUserService in order to store the new user into the database.
-     * @param name
+     * Function EditUser.
+     * This function gets
+     * @param userId
      */
-    addUsers(name:string){
-        if(!name){
-            return;
-        }
-        this._manageUserService.addUser(name).then(
-            user => this.users.push(user),
-            error => this.errorMessage = <any> error);
+    editUser(userId:string){
+        console.log("user id: "+userId);
+        this.router.navigate(['/user-components/edit-user', userId]);
     }
 
 

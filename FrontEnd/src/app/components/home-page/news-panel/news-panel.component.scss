@@ -8,10 +8,24 @@
 
 }
 
-h3, .icon{
+.icon{
   font-family: 'Calibri', sans-serif;
   color:rgb(0,99,167);
 }
+
+h3{
+  font-family: 'Calibri', sans-serif;
+
+  a{
+    color:rgb(0,99,167);
+  }
+
+  a:hover{
+    text-decoration:underline;
+  }
+
+}
+
 
 .icon{
   font-size: 45px;

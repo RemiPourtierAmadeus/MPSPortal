@@ -32,6 +32,8 @@ var userTypes = [
 ];
 
 
+
+
 /**
  * We define the length of the generated password.
  * @type {number}
@@ -81,6 +83,48 @@ var newsSubTypes = [
 
 
 /**
+ * Initialisation of the variable which contains all the attributes of the language table in the
+ * database. We will use them in the language manager.
+ * @type {string[]}
+ */
+var languageKeys = [
+    "id",
+    "name"
+];
+
+/**
+ * Initialisation of the variable which contains all the attributes of the step table in the
+ * database. We will use them in the step manager.
+ * @type {string[]}
+ */
+var stepKeys = [
+    "id",
+    "orderStep",
+    "name"
+];
+
+/**
+ * Initialisation of the variable which contains all the attributes of the project table in the
+ * database. We will use them in the project manager.
+ * @type {string[]}
+ */
+var projectKeys = [
+    "id",
+    "name",
+    "version",
+    "step_id_list",
+    "language_id",
+    "step_order",
+    "jenkins_link",
+    "active"
+];
+
+var userProjectKeys=[
+    "user_id",
+    "project_id"
+]
+
+/**
  * We exports the variable in order to be used in other files.
  * To imports one of the variable, you just have to write the following line:
  *      var userKeys = require('../core/core').userKeys; // To have userKeys
@@ -93,7 +137,11 @@ module.exports = {
     paramQ : paramQ,
     newsKeys : newsKeys,
     newsTypes : newsTypes,
-    newsSubTypes : newsSubTypes
+    newsSubTypes : newsSubTypes,
+    languageKeys : languageKeys,
+    stepKeys: stepKeys,
+    projectKeys: projectKeys,
+    userProjectKeys: userProjectKeys
 };
 
 

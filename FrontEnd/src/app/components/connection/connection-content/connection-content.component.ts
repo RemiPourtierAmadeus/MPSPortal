@@ -34,7 +34,7 @@ export class ConnectionContentComponent {
     public emailContent;
 
 
-    @Output() sendCurrentUser= new EventEmitter<UserComponent>();
+    @Output() redirectHomePage= new EventEmitter<number>();
     /**
      * Current page value contains the following variable: 1,2,3
      * Each number corresponds to a component:
@@ -84,7 +84,7 @@ export class ConnectionContentComponent {
     redirectToHomePage(){
         console.log("this is the redirection, user id: "+this.user.userId);
 
-        this.sendCurrentUser.emit(this.user);
+        this.redirectHomePage.emit(1);
         //TODO
     }
 
@@ -120,4 +120,5 @@ export class ConnectionContentComponent {
             this.redirectToHomePage();
         }
     }
+
 }

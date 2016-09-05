@@ -12,6 +12,8 @@ import {UserListComponent} from "./components/user-components/user-list/user-lis
 import {MetricsComponent} from "./components/metrics/metrics.component";
 import {AddLanguageComponent} from "./components/+language/add-language/add-language.component";
 import {LanguageListComponent} from "./components/+language/language-list/language-list.component";
+import {LanguageComponent} from "./components/+language/language.component";
+import {EditUserComponent} from "./components/user-components/edit-user/edit-user.component";
 
 @Component({
     selector: 'app',
@@ -26,10 +28,12 @@ import {LanguageListComponent} from "./components/+language/language-list/langua
         HomeComponent,
         MetricsComponent
     ],
-    providers:[ManageNewsService]
+    providers: [ManageNewsService]
 })
 
 /**
+ * metrics
+ * amadeus1
  * Routing configuration. The decorator @RouteConfig defines the path, the name and the component
  * for each route. This decorator is directly linked to the header.component.html which contains
  * the clickable links and to the tag router-outlet. The tag router-outlet will displays the
@@ -37,12 +41,12 @@ import {LanguageListComponent} from "./components/+language/language-list/langua
  * component.
  */
 @RouteConfig([
-    {path: '/', name: 'Metrics', component: HomeComponent},
+    {path: '/', name: 'Metrics', component: LanguageComponent},
     {path: '/about', name: 'About', component: AboutComponent},
     {path: '/user-components/add-user', name: 'AddUser', component: AddUserComponent},
     {path: '/user-components/user-list', name: 'UserList', component: UserListComponent},
-    {path: '/language/add', name: 'AddLanguage', component: AddLanguageComponent},
-    {path: '/language/list', name: 'LanguageList', component: LanguageListComponent}
+    {path: '/user-components/edit-user', name: 'EditUser', component: EditUserComponent},
+    {path: '/languages', name: 'Language', component: LanguageComponent}
 ])
 export class AppComponent {
 
@@ -52,21 +56,21 @@ export class AppComponent {
      * Page to show is variable which contains an integer
      * If pageToShow = 0 => user is not connected => show connection content
      * If pageToShow = 1 => user is connected and we show the home page
-     * If pageToShow = 2 => user is connected and the user has choosen the part of the website
+     * If pageToShow = 2 => user is connected and the user has chosen the part of the website
      * IF pageToShow = 3 => user is connected and want to see the news
      * IF pageToShow = 4 => metrics home page
      * from the home page.
      */
     public pageToShow;
-    public message="Doesn't work";
+    public message = "Doesn't work";
     public pageName:string;
     public linksName:string[];
     public routerLinks:string[];
 
-    constructor(){
-        this.pageToShow=3;
+    constructor() {
+        this.pageToShow = 2;
         this.user = new UserComponent("", "", "",
-            "", false, false, false, false, "","");
+            "", false, false, false, false, "", "");
         this.instantiateSettings();
     }
 
@@ -74,16 +78,32 @@ export class AppComponent {
      * Function instanciateUser
      * @param user
      */
-    instantiateUser(user:UserComponent){
-        this.user=user;
-        if(this.user.userId>=0){
-            this.pageToShow=1;
+    instantiateUser(user:UserComponent) {
+        this.user = user;
+        if (this.user.userId >= 0) {
+            this.pageToShow = 1;
         }
     }
 
-    instantiateSettings(){
-        this.pageName="Settings";
-        this.linksName=["Add user", "User list"];
-        this.routerLinks=["AddUser", "UserList"];
+    /**
+     * Instantiate settings function
+     */
+    instantiateSettings() {
+        this.pageName = "Settings";
+        this.linksName = ["Add user", "User list"];
+        this.routerLinks = ["AddUser", "UserList"];
+    }
+
+    /**
+     * Function openPage.
+     * @param pageValue
+     */
+    openPage(pageValue:number) {
+        if (pageValue >= 0) {
+            this.pageToShow = pageValue;
+        }
+        else {
+            console.log("No path defined for the clicked link");
+        }
     }
 }

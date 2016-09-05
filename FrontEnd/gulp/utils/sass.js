@@ -14,11 +14,13 @@ let bs = getBrowserSync();
  * @param {String} destinationDirectory - The destination directory.
  * @param {boolean} enableProdMode - A boolean to define if we are in production or not.
  */
-export function sass (files, destinationDirectory, enableProdMode = false) {
+export function sass(files, destinationDirectory, enableProdMode = false) {
     return gulp.src(files, {base: SRC_DIR})
-               .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.init()))
-               .pipe(plugins.sass())
-               .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.write('./')))
-               .pipe(gulp.dest(destinationDirectory))
-               .pipe(bs.stream());
+        .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.init()))
+        .pipe(plugins.plumber())
+        .pipe(plugins.sass())
+        .pipe(plugins.plumber.stop())
+        .pipe(plugins.if(!enableProdMode, plugins.sourcemaps.write('./')))
+        .pipe(gulp.dest(destinationDirectory))
+        .pipe(bs.stream());
 }

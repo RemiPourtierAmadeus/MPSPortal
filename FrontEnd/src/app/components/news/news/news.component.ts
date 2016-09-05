@@ -2,7 +2,7 @@
  * Component NewsComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Response} from "@angular/http";
 import {NewsFormComponent} from "../news-form/news-form.component";
 import {ManageNewsService} from "../../../shared/services/src/manage-news.service";
@@ -27,16 +27,14 @@ export class NewsComponent {
 
     newsList:NewsModelComponent[];
     tmpNewsList:NewsModelComponent[];
-    subtypeValue:string;
     typeValue:string;
     newsNotFound:boolean;
-    test:string;
     frameType:string;
-    responseFromServer:NewsModelComponent;
     errorFromServer;
 
+    @Output() pageToOpen= new EventEmitter<number>();
+
     constructor(private _manageNewsService:ManageNewsService) {
-        this.test = "nope";
         this.getNews();
         this.frameType = "News";
     }
@@ -48,7 +46,7 @@ export class NewsComponent {
      */
     getNews() {
         this._manageNewsService.getNews().then(
-            news => this.newsList = news,
+            news => {this.newsList = news;this.orderByDate();},
             error => this.noNews(error)
         );
     }
@@ -199,7 +197,7 @@ export class NewsComponent {
      */
     cleanListFromStatus(state) {
         for(let i=0;i<this.newsList.length;i++){
-            if(!(this.newsList[i].state===state.toLowerCase())){
+            if(!(this.newsList[i].state.toLowerCase()===state.toLowerCase())){
                 this.newsList=this.deleteNewsInList(this.newsList,i);
                 i=i-1;
             }
@@ -258,7 +256,8 @@ export class NewsComponent {
             content: news.content,
             type: news.type,
             subtype: news.subtype,
-            newsFrom: news.newsFrom
+            newsFrom: news.newsFrom,
+            state: news.state
         };
         this._manageNewsService.updateNews(newsJSON).then(
             news => this.verifyResponse(news), //or if you would like to get directly the response you can
@@ -310,5 +309,10 @@ export class NewsComponent {
         let emptyNews = new NewsModelComponent(-1, "No news found", "", "", "", "", "", "", "");
         this.newsList = [emptyNews];
         this.newsNotFound = true;
+    }
+
+
+    openPage(pageValue:number){
+        this.pageToOpen.emit(pageValue);
     }
 }

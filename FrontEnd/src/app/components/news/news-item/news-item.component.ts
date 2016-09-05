@@ -34,11 +34,13 @@ export class NewsItemComponent {
     @Input('type') type:string;
     @Input('subtype') subtype:string;
     @Input('newsFrom') newsFrom:string;
+    @Input('state') state:string;
 
 
     typesValues:string[];
     subtypesValues:string[];
     newsFromValues:string[];
+    stateValues:string[];
 
 
     @Output() newsToDelete = new EventEmitter<NewsModelComponent>();
@@ -49,6 +51,7 @@ export class NewsItemComponent {
         this.typesValues = _newsConstantService.getTypes();
         this.subtypesValues = _newsConstantService.getSubTypes();
         this.newsFromValues = _newsConstantService.getNewsFrom();
+        this.stateValues=_newsConstantService.getStatus();
         this.pageState = "general";
     }
 
@@ -60,7 +63,7 @@ export class NewsItemComponent {
      */
     ngOnInit() {
         this.news = new NewsModelComponent(this.id, this.title, this.content,
-            this.date, this.hour, this.type, this.subtype, this.newsFrom, "active");
+            this.date, this.hour, this.type, this.subtype, this.newsFrom, this.state);
         this.organizeConstants();
     }
 
@@ -72,8 +75,23 @@ export class NewsItemComponent {
         this.organizeTypes();
         this.organizeSubTypes();
         this.organizeNewsFrom();
+        this.organizeState();
     }
 
+    /**
+     * Function organizeState.
+     * This function sorts the stateValues according to the state of the current news (received through inputs state).
+     * The function puts the value of the state at the index 0 of the array.
+     */
+    organizeState(){
+        let results=[this.news.state.charAt(0).toUpperCase()+this.news.state.slice(1).toLowerCase()];//
+        for(let i =0;i< this.stateValues.length;i++){
+            if(!(this.stateValues[i].toLowerCase()===this.news.state.toLowerCase())){
+                results.push(this.stateValues[i].charAt(0).toUpperCase()+this.stateValues[i].slice(1).toLowerCase());
+            }
+        }
+        this.stateValues=results;
+    }
 
     /**
      * Function organizeTypes.
@@ -160,7 +178,7 @@ export class NewsItemComponent {
      */
     cancelEditing(){
         this.news = new NewsModelComponent(this.id, this.title, this.content,
-            this.date, this.hour, this.type, this.subtype, this.newsFrom, "active");
+            this.date, this.hour, this.type, this.subtype, this.newsFrom, this.state);
         this.pageState="general";
     }
 

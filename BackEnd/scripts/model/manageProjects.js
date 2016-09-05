@@ -9,8 +9,8 @@
 
 var mysql = require("mysql");
 var connectionVariable = require('../core/config').connectionVariable;
-var paramQ = require('../core/core').paramQ;
 var fs = require('fs');
+var projectKeys = require('../core/core').projectKeys;
 
 /**
  * Function updateProjects.
@@ -18,46 +18,27 @@ var fs = require('fs');
  * @param data, success
  * @param fail
  */
-exports.updateProjects= function (data,success, fail){
-    userParams[userKeys[0]] = userId;/** set user id */
-    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";/** Password : encoding  */
-    userParams[userKeys[5]] = 1; /** Active : 1 => yes */
-    userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
-
-    var query="INSERT INTO T_User ";
-    var attributes="(";
-    var values="(";
-    var cpt=0; //Will represent the number of field in parameters.
-    for(var i=0; i<userKeys.length;i++){
-        if (userParams.hasOwnProperty(userKeys[i])) {
-            if (cpt == 0) {
-                attributes = attributes+ userKeys[i];
-                values= values+"'"+ userParams[userKeys[i]]+"'";
-            }
+exports.updateProjects= function (projectParams,success, fail){
+    /**
+     * We create the final query.
+     * @type {string}
+     */
+    if (projectParams.hasOwnProperty(projectKeys[1]) && projectParams.hasOwnProperty(projectKeys[0])) {
+        var query = "UPDATE T_Project SET  " + projectKeys[1] + "='" + projectParams[projectKeys[1]] + "' WHERE id=" + projectParams[projectKeys[0]];
+        console.log("Query: " + query);
+        /**
+         * We update the data.
+         */
+        connectionVariable.query(query, function (err, data) {
+            if (err) throw err;
             else {
-                if(i!=4){
-                    values= values+", "+"'"+userParams[userKeys[i]]+"'";
-                }
-                else{
-                    values= values+", "+userParams[userKeys[i]];
-                }
-                attributes = attributes+", "+ userKeys[i];
+                success(data);
             }
-            cpt++;
-        }
+        });
     }
-    attributes=attributes+")";
-    values=values+")";
-    query= query + attributes+" VALUES "+values;
-    console.log("query for adding user: "+query);
-
-    connectionVariable.query( query, function (err, data) {
-        if (err) throw err;
-        else {
-            success(data);
-            updateUserIdInDB(userId, userTypeValue);
-        }
-    });
+    else {
+        fail();
+    }
 }
 
 /**
@@ -66,44 +47,50 @@ exports.updateProjects= function (data,success, fail){
  * @param data, success
  * @param fail
  */
-exports.addProject= function (data,success, fail){
-    userParams[userKeys[0]] = userId;/** set user id */
-    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";/** Password : encoding  */
-    userParams[userKeys[5]] = 1; /** Active : 1 => yes */
-    userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
+exports.addProject= function (projectParam, data,success, fail){
+    var query = "SELECT MAX(id) 'value' FROM T_Project";
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            var projectID = data[0].value + 1;
+            saveProject(projectID, projectParam, success, fail);
+        }
+    });
+}
 
-    var query="INSERT INTO T_User ";
-    var attributes="(";
-    var values="(";
-    var cpt=0; //Will represent the number of field in parameters.
-    for(var i=0; i<userKeys.length;i++){
-        if (userParams.hasOwnProperty(userKeys[i])) {
+function saveProject(projectID, projectParam, success, fail){
+    projectParam[projectKeys[0]] = projectID;
+    var query = "INSERT INTO T_Project ";
+    var attributes = "(";
+    var values = "(";
+    var cpt = 0; //Will represent the number of field in parameters.
+    for (var i = 0; i < projectKeys.length; i++) {
+        if (projectParam.hasOwnProperty(projectKeys[i])) {
             if (cpt == 0) {
-                attributes = attributes+ userKeys[i];
-                values= values+"'"+ userParams[userKeys[i]]+"'";
+                attributes = attributes + projectKeys[i];
+                values = values + "" + projectParam[projectKeys[i]] + "";
             }
             else {
-                if(i!=4){
-                    values= values+", "+"'"+userParams[userKeys[i]]+"'";
-                }
-                else{
-                    values= values+", "+userParams[userKeys[i]];
-                }
-                attributes = attributes+", "+ userKeys[i];
+                values = values + ", " + "'" + projectParam[projectKeys[i]] + "'";
+                attributes = attributes + ", " + projectKeys[i];
             }
             cpt++;
         }
     }
-    attributes=attributes+")";
-    values=values+")";
-    query= query + attributes+" VALUES "+values;
-    console.log("query for adding user: "+query);
+    attributes = attributes + ")";
+    values = values + ")";
+    query = query + attributes + " VALUES " + values;
+    console.log("query for adding project: " + query);
 
-    connectionVariable.query( query, function (err, data) {
+    connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
-            success(data);
-            updateUserIdInDB(userId, userTypeValue);
+            console.log("into else ?");
+            var finalObject = [{id: projectID}];
+            success(finalObject);
         }
     });
 }
@@ -115,8 +102,8 @@ exports.addProject= function (data,success, fail){
  * @param fail
  */
 exports.deleteProjects= function (data,success, fail){
-    console.log("projects params: " + userParams.user_id);
-    connectionVariable.query('DELETE FROM T_User WHERE user_id=?', userParams.user_id, function (err, data) {
+    console.log("projects params: " + userParams.id);
+    connectionVariable.query('DELETE FROM T_Project WHERE id=?', userParams.id, function (err, data) {
         if (err) throw err;
         else {
             success(data);
@@ -132,21 +119,21 @@ exports.deleteProjects= function (data,success, fail){
  * @param data, success
  * @param fail
  */
-exports.getProjects= function (data,success, fail){
+exports.getProjects= function (success, fail){
     var query = "SELECT ";
     /**
-     * We first build the query manually from the userKeys (an array which contains all the
+     * We first build the query manually from the projectKeys (an array which contains all the
      * table attributes). We don't want to use the traditional "*" for security reasons.
      */
-    for (var i = 0; i < userKeys.length; i++) {
+    for (var i = 0; i < projectKeys.length; i++) {
         if (i == 0) {
-            query = query + "" + userKeys[i];
+            query = query + "" + projectKeys[i];
         }
         else {
-            query = query + ", " + userKeys[i];
+            query = query + ", " + projectKeys[i];
         }
     }
-    query = query + " FROM T_Projects ";
+    query = query + " FROM T_Project ";
 
     console.log("query for getProjects:" + query);
     /**
@@ -160,4 +147,45 @@ exports.getProjects= function (data,success, fail){
         console.log('Data received from Db:\n');
         console.log(data);
     });
+}
+
+
+/**
+ * Function getProjectFromID. This function returns the project according to project id.
+ * @param id:number
+ * @param success:function
+ * @param fail:function
+ */
+exports.getProjectFromID = function (id, success, fail) {
+    var query = "SELECT ";
+    /**
+     * We first build the query manually from the projectKeys (an array which contains all the
+     * table attributes). We don't want to use the traditional "*" for security reasons.
+     */
+    for (var i = 0; i < projectKeys.length; i++) {
+        if (i == 0) {
+            query = query + "" + projectKeys[i];
+        }
+        else {
+            query = query + ", " + projectKeys[i];
+        }
+    }
+    query = query + " FROM T_Project WHERE id='"+id+"'";
+
+    /**
+     * We run the query
+     */
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else if(data.length>0){
+            success(data);
+        }
+        else{
+            var finalObject = [{id: '-1'}];
+            success(finalObject)
+        }
+        console.log('Data received from Db:\n');
+        console.log(data);
+    });
+
 }

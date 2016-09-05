@@ -37,6 +37,7 @@
     "gulp-inject": "~4.0.0",
     "gulp-inline-ng2-template": "~1.1.4",
     "gulp-load-plugins": "~1.2.2",
+    "gulp-plumber": "^1.1.0",
     "gulp-sass": "~2.3.1",
     "gulp-shell": "~0.5.2",
     "gulp-sourcemaps": "~1.6.0",

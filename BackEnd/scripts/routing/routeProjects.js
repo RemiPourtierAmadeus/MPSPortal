@@ -45,10 +45,9 @@ router.post('/', function(req,res){
  */
 router.put('/', function (req, res) {
     console.log(req.body);
-    var success = function () {
-        var finalObject = [{success: 'true'}];
-        console.log(finalObject);
-        res.send(finalObject);
+    var success = function (objectJSON) {
+        console.log("into success: "+objectJSON);
+        res.send(objectJSON);
     };
 
     var fail = function(){
@@ -67,16 +66,26 @@ router.put('/', function (req, res) {
  * getProjects from projectManager.
  */
 router.get('/', function (req, res) {
-    var success = function (objetJSON) {
-        console.log(objetJSON);
-        res.send(objetJSON);
+    var success = function (objectJSON) {
+        console.log(objectJSON);
+        res.send(objectJSON);
     };
 
     var fail = function(){
         res.sendStatus(500);
     };
 
-    projectManager.getProjects(data,success, fail);
+    if(req.query.hasOwnProperty("id")){
+        if(req.query.id>=0){
+            projectManager.getProjectFromID(req.query.id, success, fail);
+        }
+        else{
+            fail();
+        }
+    }
+    else{
+        projectManager.getProjects(success, fail);
+    }
 });
 
 /**

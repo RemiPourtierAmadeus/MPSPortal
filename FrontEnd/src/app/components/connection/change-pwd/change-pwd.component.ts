@@ -28,7 +28,7 @@ export class ChangePwdComponent {
 
     /**
      * Function ngOnInit.
-     * We instanciate our current user from the component inputs.
+     * We instantiate our current user from the component inputs.
      */
     ngOnInit(){
         this.user=new UserComponent("", "", "",
@@ -109,6 +109,9 @@ export class ChangePwdComponent {
     passwordIsCorrect(){
         let number=false;
         let letter=false;
+        if(this.user.password.length<6){
+            return false;
+        }
         for(var i=0;i<this.user.password.length;i++){
             if(number && letter) return true;
             if(this.user.password.charCodeAt(i) >47 && this.user.password.charCodeAt(i) <58 ){

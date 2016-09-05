@@ -4,7 +4,7 @@
             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
         </div>
         <div class="title large-4 columns end ">
-            <h3> Last news </h3>
+            <h3><a (click)="redirectToNews()">Last news </a></h3>
         </div>
     </div>
     <div class="row newsListContent"  *ngIf="newsNotFound==false">
@@ -23,7 +23,7 @@
                         </div>
                         <div class="action row">
                             <div class="large-7 columns">
-                                <a (click)="redirectToSpecificNews(news.id)" >more information</a>
+                                {{news.content}}
                             </div>
                             <div class="large-2 large-offset-1 columns type ">
                                 <div *ngIf="news.type=='Info'">

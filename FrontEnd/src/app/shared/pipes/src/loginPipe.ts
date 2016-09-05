@@ -6,21 +6,24 @@ import {Pipe, PipeTransform} from '@angular/core';
  */
 @Pipe({name: 'loginTransformation'})
 export class LoginPipe implements PipeTransform {
-    transform(value:string, [exponent]) :string{
-        let array=[];
-        array=value.split(" ");
-        let login="";
-        for( var i=0;i<array.length;i++){
-            array[i]=array[i].toLowerCase();
-            if(array[i].length>0){
-                if(i==0){
-                    login=array[i].toLowerCase();
-                }
-                else{
-                    login=login+"."+array[i].toLowerCase();
+    transform(value:string, [exponent]):string {
+        if (value.length > 0) {
+            let array = [];
+            array = value.split(" ");
+            let login = "";
+            for (var i = 0; i < array.length; i++) {
+                array[i] = array[i].toLowerCase();
+                if (array[i].length > 0) {
+                    if (i == 0) {
+                        login = array[i].toLowerCase();
+                    }
+                    else {
+                        login = login + "." + array[i].toLowerCase();
+                    }
                 }
             }
+            return login;
         }
-        return login;
+        return "";
     }
 }

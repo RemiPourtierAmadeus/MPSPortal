@@ -1,7 +1,7 @@
 <div class="row">
     <div class="large-offset-1 medium-offset-1 small-offset-1">
         <label>
-            <h2> Add user</h2>
+            <h2>Add user</h2>
         </label>
     </div>
 </div>
@@ -74,9 +74,12 @@
                     <option *ngFor="let partWeb of websitePartsValues" value="partWeb">{{partWeb}}</option>
                 </select>-->
             </div>
-
         </div>
-
+        <div class="row">
+            <project
+                    (sendProjectList)="projectListHasChanged($event)"
+            ></project>
+        </div>
         <br>
         <div class="row buttonRow">
             <div class="large-1 large-offset-5 medium-4 medium-offset-5 small-offset-4 end buttonCell">

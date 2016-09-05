@@ -15,6 +15,7 @@ var passwordLength = require('../core/core').passwordLength;
 var paramQ = require('../core/core').paramQ;
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+var userProjectKeys = require('../core/core').userProjectKeys;
 //var transporter = nodemailer.createTransport('smtps://muscsmtp3:25');
 
 //smtps://user%40gmail.com:pass@smtp.gmail.com
@@ -27,7 +28,7 @@ var nodemailer = require('nodemailer');
  * @param fail
  */
 exports.connect = function (userParams, success, fail) {
-    var generateNewPassword=false;
+    var generateNewPassword = false;
     /**
      * We first build the query manually. We ask the user_id and the login from the login and the password
      * we have in userParams.
@@ -35,16 +36,16 @@ exports.connect = function (userParams, success, fail) {
     if (userParams.hasOwnProperty(userKeys[6]) && userParams.hasOwnProperty(userKeys[4])) {
         var query = "SELECT " + userKeys[0] + ", " + userKeys[7] + " FROM T_User WHERE "
             + userKeys[6] + "='" + userParams[userKeys[6]] + "' AND "
-            + userKeys[4] + "=MD5('" + paramQ +userParams[userKeys[4]]+"')";
+            + userKeys[4] + "=MD5('" + paramQ + userParams[userKeys[4]] + "')";
     }
     /**
      * We first build the query manually. We ask the user_id from the email address
      * we have in userParams.
      */
-    else if(userParams.hasOwnProperty(userKeys[2]) ){
-        generateNewPassword=true;
+    else if (userParams.hasOwnProperty(userKeys[2])) {
+        generateNewPassword = true;
         var query = "SELECT " + userKeys[0] + " FROM T_User WHERE "
-            + userKeys[2] + "='" + userParams[userKeys[2]] +"'";
+            + userKeys[2] + "='" + userParams[userKeys[2]] + "'";
     }
 
 
@@ -59,15 +60,15 @@ exports.connect = function (userParams, success, fail) {
              * Else we create our own JSON with the value -1 which means that the user has not
              * been found.
              */
-            if (typeof data[0] == 'undefined' && data[0]== null){
+            if (typeof data[0] == 'undefined' && data[0] == null) {
                 console.log("User has not been found");
-                data=[{"user_id":-1}];
+                data = [{"user_id": -1}];
             }
-            else if(generateNewPassword==true){
+            else if (generateNewPassword == true) {
                 var generatedPassword = generatePassword();
-                data={"user_id":data[0].user_id, "password":generatedPassword, "generatedPwd":1};
-                updateUsersInDb(generateNewPassword,data, success,fail);
-                data=[data];
+                data = {"user_id": data[0].user_id, "password": generatedPassword, "generatedPwd": 1};
+                updateUsersInDb(generateNewPassword, data, success, fail);
+                data = [data];
                 //TODO: sendEmail()
             }
             success(data);
@@ -77,22 +78,22 @@ exports.connect = function (userParams, success, fail) {
     });
 }
 
-function updateUsersInDb(newPasswordGenerated, userParams, success, fail){
+function updateUsersInDb(newPasswordGenerated, userParams, success, fail) {
     //userParams[userKeys[0]]=""+userParams[userKeys[0]];
-    console.log("user id: "+userParams[userKeys[0]].length );
+    console.log("user id: " + userParams[userKeys[0]].length);
     var paramsInQuery = "";
     /**
      * Start treatment of the request. We verify we have a user id in the request.
      */
-    if (userParams[userKeys[0]] >= 0 ) {
+    if (userParams[userKeys[0]] >= 0) {
         /**
          * We start building the query. We get back all data we have from the http request.
          * Then we add the attributes to change into the parameters of the query : paramsInQuery.
          */
-        var cpt=0;
+        var cpt = 0;
         for (var i = 1; i < userKeys.length; i++) {
             if (userParams.hasOwnProperty(userKeys[i])) {
-                if(userKeys[i]==="password"){
+                if (userKeys[i] === "password") {
                     paramsInQuery = userKeys[i] + "=MD5('" + paramQ + userParams[userKeys[i]] + "')";
                 }
                 else if (cpt == 0) {
@@ -116,7 +117,7 @@ function updateUsersInDb(newPasswordGenerated, userParams, success, fail){
         connectionVariable.query(paramsInQuery, function (err, data) {
             if (err) throw err;
             else {
-                if(!newPasswordGenerated){
+                if (!newPasswordGenerated) {
                     success(data);
                 }
             }
@@ -170,46 +171,75 @@ exports.getUsers = function (success, fail) {
  * @param fail
  */
 function addUser(userId, userTypeValue, generatedPassword, userParams, success, fail) {
-    userParams[userKeys[0]] = userId;/** set user id */
-    userParams[userKeys[4]] = "MD5('"+paramQ+generatedPassword+"')";/** Password : encoding  */
-    userParams[userKeys[5]] = 1; /** Active : 1 => yes */
-    userParams[userKeys[7]] = 1; /** Generated password : 1 => yes */
+    userParams[userKeys[0]] = userId;
+    /** set user id */
+    userParams[userKeys[4]] = "MD5('" + paramQ + generatedPassword + "')";
+    /** Password : encoding  */
+    userParams[userKeys[5]] = 1;
+    /** Active : 1 => yes */
+    userParams[userKeys[7]] = 1;
+    /** Generated password : 1 => yes */
 
-    var query="INSERT INTO T_User ";
-    var attributes="(";
-    var values="(";
-    var cpt=0; //Will represent the number of field in parameters.
-    for(var i=0; i<userKeys.length;i++){
+    var query = "INSERT INTO T_User ";
+    var attributes = "(";
+    var values = "(";
+    var cpt = 0; //Will represent the number of field in parameters.
+    for (var i = 0; i < userKeys.length; i++) {
         if (userParams.hasOwnProperty(userKeys[i])) {
             if (cpt == 0) {
-                attributes = attributes+ userKeys[i];
-                values= values+"'"+ userParams[userKeys[i]]+"'";
+                attributes = attributes + userKeys[i];
+                values = values + "'" + userParams[userKeys[i]] + "'";
             }
             else {
-                if(i!=4){
-                    values= values+", "+"'"+userParams[userKeys[i]]+"'";
+                if (i != 4) {
+                    values = values + ", " + "'" + userParams[userKeys[i]] + "'";
                 }
-                else{
-                    values= values+", "+userParams[userKeys[i]];
+                else {
+                    values = values + ", " + userParams[userKeys[i]];
                 }
-                attributes = attributes+", "+ userKeys[i];
+                attributes = attributes + ", " + userKeys[i];
             }
             cpt++;
         }
     }
-    attributes=attributes+")";
-    values=values+")";
-    query= query + attributes+" VALUES "+values;
-    console.log("query for adding user: "+query);
+    attributes = attributes + ")";
+    values = values + ")";
+    query = query + attributes + " VALUES " + values;
+    console.log("query for adding user: " + query);
 
-    connectionVariable.query( query, function (err, data) {
+    var projectIDList = userParams.projects;
+    connectionVariable.query(query, function (err, data) {
         if (err) throw err;
         else {
             success(data);
             updateUserIdInDB(userId, userTypeValue);
+            if (userParams.hasOwnProperty("projects")) {
+                assignProjectToUser(userParams.projects, userId);
+            }
         }
     });
 }
+
+/**
+ * The function assignUserProject assigns to the current user the list of his project
+ * projectList structure: [{id1: value1}, {id2: value2}, ...]
+ * @param projectList
+ */
+function assignProjectToUser(projectIDList, userId) {
+    var query = "INSERT INTO T_UserProject (" + userProjectKeys[0] + "," + userProjectKeys[1] + ") VALUES";
+    for (var i = 0; i < projectIDList.length; i++) {
+        query = query + " (" + userId + "," + projectIDList[i].id + ")";
+        if(i+1<projectIDList.length) query=query+",";
+    }
+    console.log("query for assign project/user: " + query);
+    connectionVariable.query(query, function (err, data) {
+        if (err) throw err;
+        else {
+            console.log("Project have been assigned to user successfully");
+        }
+    });
+}
+
 
 /**
  * Function updateUsers. This function will update a user according to data in userParams.
@@ -219,7 +249,7 @@ function addUser(userId, userTypeValue, generatedPassword, userParams, success, 
  */
 exports.updateUsers = function (userParams, success, fail) {
 
-    updateUsersInDb(false,userParams,success,fail);
+    updateUsersInDb(false, userParams, success, fail);
 }
 
 /**

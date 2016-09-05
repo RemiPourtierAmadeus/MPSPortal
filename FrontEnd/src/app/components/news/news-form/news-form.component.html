@@ -1,9 +1,6 @@
 <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="main">
     <div class="row">
-        <div class="titleForm large-2 columns">
-            <h2>Add news</h2>
-        </div>
-        <div class="buttonUpDown large-3 columns end">
+        <div class="buttonUpDown large-1 medium-1 small-1 columns ">
             <div *ngIf="showForm==true">
                 <i (click)="hideShowForm()" class="fa fa-angle-double-up" aria-hidden="true"></i>
             </div>
@@ -11,6 +8,10 @@
                 <i (click)="hideShowForm()" class="fa fa-angle-double-down" aria-hidden="true"></i>
             </div>
         </div>
+        <div class="titleForm large-10 medium-10 small-10 columns end">
+            <h2>Add news</h2>
+        </div>
+
     </div>
     <div *ngIf="showForm==true" class="formContent">
         <div class="row">

@@ -1,0 +1,37 @@
+@import "../../core/item-list/item-list.component";
+@import '../../../../styles/main';
+@import '../../../../styles/variables';
+
+
+.card{
+  margin-top:5px;
+
+  ul{
+    list-style-type: none;
+
+    .projectItem, .fa-plus-circle{
+      cursor: pointer;
+    }
+    .projectItem:hover, .fa-plus-circle:hover{
+      opacity:0.8;
+    }
+    .fa-plus-circle{
+      color:$titleColor;
+    }
+
+  }
+}
+
+.showHide{
+  text-align:right;
+
+}
+
+.titleForm{
+  margin-top:10px;
+  color:$titleColor;
+}
+
+.buttonRow{
+  margin-top:1.4em;
+}

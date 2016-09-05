@@ -2,7 +2,7 @@
  * Component MetricsPanelComponent
  */
 
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'metrics-panel',
@@ -10,4 +10,13 @@ import {Component} from '@angular/core';
     templateUrl: './metrics-panel.component.html',
     styleUrls : ['./metrics-panel.component.css']
 })
-export class MetricsPanelComponent { }
+export class MetricsPanelComponent {
+
+    @Output() openMetrics=new EventEmitter<number>();
+
+    constructor(){}
+
+    openMetricsPage(){
+        this.openMetrics.emit(4);
+    }
+}

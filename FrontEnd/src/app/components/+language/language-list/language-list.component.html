@@ -1,3 +1,16 @@
-<div class="row">
-    <h1> Hey, I'm LanguageListComponent !</h1>
+<div class="row languageList">
+    <div *ngFor="let language of languages"
+         class="large-8 large-centered medium-8 medium-centered small-12 small-centered">
+
+
+        <language-item
+                id="{{language.id}}"
+                content="{{language.name}}"
+                (haveToDeleteLanguage)="deleteLanguage($event)"
+        ></language-item>
+    </div>
+
+
 </div>
+
+

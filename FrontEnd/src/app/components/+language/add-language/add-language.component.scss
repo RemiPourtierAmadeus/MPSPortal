@@ -1,0 +1,23 @@
+@import "../../core/item-list/item-list.component";
+@import '../../../../styles/main';
+@import '../../../../styles/variables';
+
+
+.card{
+  margin-top:5px;
+}
+
+.showHide{
+  text-align:right;
+}
+
+.titleForm{
+  margin-top:10px;
+  color:$titleColor;
+}
+
+.buttonRow{
+  margin-top:1.4em;
+
+
+}

@@ -4,7 +4,7 @@
  * each m-panel (metrics/panelComponent)
  * @type {{name: string, pathImage: string, color: string}[]}
  */
-export var METRICSITEM: string[] = [
+export var METRICSITEM = [
     {name: "News", pathImage: '../../../../assets/metrics/news.png',
         color: '#0063A7', description:"Consult all the last news about Metrics",
         responsive:"large-5 large-offset-1  medium-5 medium-offset-1  small-5 small-offset-1",
