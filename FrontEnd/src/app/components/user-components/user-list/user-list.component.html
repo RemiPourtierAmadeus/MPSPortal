@@ -5,10 +5,11 @@
         <table>
             <thead>
             <tr>
-                <th width="150">login</th>
+                <th width="150">Login</th>
                 <th>Full name</th>
                 <th width="150">Email address</th>
                 <th width="150">Type</th>
+                <th width="20"></th>
             </tr>
             </thead>
             <tbody>
@@ -17,6 +18,10 @@
                 <td>{{user.full_name}}</td>
                 <td>{{user.email_address}}</td>
                 <td>{{user.type}}</td>
+                <td>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editUser(user.id)"></i>
+                    <i class="fa fa-times" aria-hidden="true" (click)="deleteUser()"></i>
+                </td>
             </tr>
             </tbody>
         </table>
