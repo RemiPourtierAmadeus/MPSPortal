@@ -19,7 +19,7 @@ import {ManageUsersService} from "../../../shared/services/src/manage-users.serv
 
 export class LogInComponent{
 
-    public user;
+    public user:UserComponent;
     public submitted;
     public errorFromServer;
 

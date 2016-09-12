@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {HeaderComponent} from './components/header/index';
-import {AboutComponent} from './components/+about/index';
 import {HomeComponent} from './components/home-page/home/home.component';
 import {ConnectionContentComponent} from "./components/connection/connection-content/connection-content.component";
 import {UserComponent} from "./components/models/user/user.component";
@@ -42,7 +41,6 @@ import {EditUserComponent} from "./components/user-components/edit-user/edit-use
  */
 @RouteConfig([
     {path: '/', name: 'Metrics', component: LanguageComponent},
-    {path: '/about', name: 'About', component: AboutComponent},
     {path: '/user-components/add-user', name: 'AddUser', component: AddUserComponent},
     {path: '/user-components/user-list', name: 'UserList', component: UserListComponent},
     {path: '/user-components/edit-user', name: 'EditUser', component: EditUserComponent},

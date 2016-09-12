@@ -32,7 +32,7 @@ export class UserComponent {
 
         public password?: string, /** When a variable has a ? that means this variable is optional
                                         when we call the constructor**/
-        public userId?: number,
+        public user_id?: number,
         public emailOptional?: string,
         public generatedPwd?: number,
         public error?: string

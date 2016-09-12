@@ -82,7 +82,7 @@ export class ConnectionContentComponent {
      * This function redirects the user to the home page after a successful connection
      */
     redirectToHomePage(){
-        console.log("this is the redirection, user id: "+this.user.userId);
+        console.log("this is the redirection, user id: "+this.user.user_id);
 
         this.redirectHomePage.emit(1);
         //TODO
@@ -107,7 +107,7 @@ export class ConnectionContentComponent {
         else if(this.user.error==="Email sent"){
             this.currentPageValue=4;
         }
-        else if(user.userId==-1 || this.user.error==="Given passwords are different."
+        else if(user.user_id==-1 || this.user.error==="Given passwords are different."
             || this.user.error==="Password must contains at least 6 letters & numbers."){
             this.connectionFailed=true;
             this.errorMessage=user.error;
