@@ -5,13 +5,12 @@ import { RouterModule } from '@angular/router';
 import { AppComponent }   from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
-import { AboutModule } from './components/+about/about.module';
-import { HomeModule } from './components/+home/home.module';
-import { HeaderModule } from './components/header/header.module';
+import { FormsModule }   from '@angular/forms';
+
 
 @NgModule({
     declarations: [AppComponent],
-    imports:      [BrowserModule, HttpModule, RouterModule, routing, AboutModule, HomeModule, HeaderModule],
+    imports:      [BrowserModule, HttpModule, RouterModule, routing, FormsModule],
     providers: [appRoutingProviders],
     bootstrap:    [AppComponent],
 })

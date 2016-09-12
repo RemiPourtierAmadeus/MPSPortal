@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()">
+
     <label><h3>Login</h3></label>
     <div class="row">
         <div class="large-12 columns">
@@ -21,7 +22,7 @@
                     <i class="fa fa-key" ></i>
                 </div>
                 <div class="inputContent large-11 medium-10 small-10 columns end" data-equalizer-watch>
-                    <input type="password" name="password" [(ngModel)]="user.password"
+                    <input type="password" class="form-control" name="password" [(ngModel)]="user.password"
                            placeholder="Password" required/>
                 </div>
             </div>
