@@ -64,5 +64,4 @@ export class UserListComponent  {
         this.router.navigate(['/user-components/edit-user', userId]);
     }
 
-
 }
