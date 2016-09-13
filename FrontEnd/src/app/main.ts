@@ -6,4 +6,5 @@ if ('<%= ENV %>' === 'prod') {
     enableProdMode();
 }
 
+//TODO: HTTP ?
 platformBrowserDynamic().bootstrapModule(AppModule);
